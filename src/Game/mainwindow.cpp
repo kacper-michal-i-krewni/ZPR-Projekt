@@ -16,11 +16,10 @@ MainWindow::MainWindow(QWidget *parent)
     // set up of the .ui file
     ui->setupUi(this);
     ui->centralwidget->setLayout(ui->gridLayout_2);
-    ui->centralwidget->layout()->addItem(chatView);
     // the model for the messages will have 1 column
     m_chatModel->insertColumn(0);
     // set the model as the data source vor the list view
-    ui->centralwidget->layout()->chatView->setModel(m_chatModel);
+    ui->chatView->setModel(m_chatModel);
     // connect the signals from the chat client to the slots in this ui
     connect(m_chatClient, &ChatClient::connected, this, &MainWindow::connectedToServer);
     connect(m_chatClient, &ChatClient::loggedIn, this, &MainWindow::loggedIn);
