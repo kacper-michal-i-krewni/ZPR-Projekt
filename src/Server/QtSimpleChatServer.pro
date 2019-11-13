@@ -9,8 +9,10 @@ CONFIG += debug_and_release
 
 HEADERS += \
     chatserver.h \
+    player.h \
     serverworker.h \
-    serverwindow.h
+    serverwindow.h \
+    session.h
 
 SOURCES += \
     chatserver.cpp \

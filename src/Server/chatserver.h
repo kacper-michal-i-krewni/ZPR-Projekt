@@ -1,6 +1,8 @@
 #ifndef CHATSERVER_H
 #define CHATSERVER_H
 
+#include "session.h"
+
 #include <QTcpServer>
 #include <QVector>
 class QThread;
@@ -27,6 +29,7 @@ private:
     void jsonFromLoggedIn(ServerWorker *sender, const QJsonObject &doc);
     void sendJson(ServerWorker *destination, const QJsonObject &message);
     QVector<ServerWorker *> m_clients;
+    QVector<Session *> sessions;
 };
 
 #endif // CHATSERVER_H
