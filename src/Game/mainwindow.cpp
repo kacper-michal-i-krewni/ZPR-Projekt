@@ -15,7 +15,6 @@ MainWindow::MainWindow(QWidget *parent)
 {
     // set up of the .ui file
     ui->setupUi(this);
-    ui->centralwidget->setLayout(ui->gridLayout_2);
     // the model for the messages will have 1 column
     m_chatModel->insertColumn(0);
     // set the model as the data source vor the list view
@@ -30,10 +29,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_chatClient, &ChatClient::userJoined, this, &MainWindow::userJoined);
     connect(m_chatClient, &ChatClient::userLeft, this, &MainWindow::userLeft);
     // connect the connect button to a slot that will attempt the connection
-    connect(ui->connectButton, &QPushButton::clicked, this, &MainWindow::attemptConnection);
+    connect(ui->connectAction, &QAction::triggered, this, &MainWindow::attemptConnection);
     // connect the click of the "send" button and the press of the enter while typing to the slot that sends the message
     connect(ui->sendButton, &QPushButton::clicked, this, &MainWindow::sendMessage);
-    connect(ui->messageEdit, &QLineEdit::returnPressed, this, &MainWindow::sendMessage);
+    connect(ui->lineEdit, &QLineEdit::returnPressed, this, &MainWindow::sendMessage);
 }
 
 MainWindow::~MainWindow()
@@ -55,7 +54,7 @@ void MainWindow::attemptConnection()
     if (hostAddress.isEmpty())
         return; // the user pressed cancel or typed nothing
     // disable the connect button to prevent the user clicking it again
-    ui->connectButton->setEnabled(false);
+    ui->connectAction->setEnabled(false);
     // tell the client to connect to the host using the port 1967
     m_chatClient->connectToServer(QHostAddress(hostAddress), 1967);
 }
@@ -82,7 +81,7 @@ void MainWindow::loggedIn()
 {
     // once we successully log in we enable the ui to display and send messages
     ui->sendButton->setEnabled(true);
-    ui->messageEdit->setEnabled(true);
+    ui->lineEdit->setEnabled(true);
     ui->chatView->setEnabled(true);
     // clear the user name record
     m_lastUserName.clear();
@@ -132,18 +131,18 @@ void MainWindow::messageReceived(const QString &sender, const QString &text)
 void MainWindow::sendMessage()
 {
     // we use the client to send the message that the user typed
-    m_chatClient->sendMessage(ui->messageEdit->text());
+    m_chatClient->sendMessage(ui->lineEdit->text());
     // now we add the message to the list
     // store the index of the new row to append to the model containing the messages
     const int newRow = m_chatModel->rowCount();
     // insert a row for the message
     m_chatModel->insertRow(newRow);
     // store the message in the model
-    m_chatModel->setData(m_chatModel->index(newRow, 0), ui->messageEdit->text());
+    m_chatModel->setData(m_chatModel->index(newRow, 0), ui->lineEdit->text());
     // set the alignment for the message
     m_chatModel->setData(m_chatModel->index(newRow, 0), int(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
     // clear the content of the message editor
-    ui->messageEdit->clear();
+    ui->lineEdit->clear();
     // scroll the view to display the new message
     ui->chatView->scrollToBottom();
     // reset the last printed username
@@ -157,10 +156,10 @@ void MainWindow::disconnectedFromServer()
     QMessageBox::warning(this, tr("Disconnected"), tr("The host terminated the connection"));
     // disable the ui to send and display messages
     ui->sendButton->setEnabled(false);
-    ui->messageEdit->setEnabled(false);
+    ui->lineEdit->setEnabled(false);
     ui->chatView->setEnabled(false);
     // enable the button to connect to the server again
-    ui->connectButton->setEnabled(true);
+    ui->connectAction->setEnabled(true);
     // reset the last printed username
     m_lastUserName.clear();
 }
@@ -254,10 +253,10 @@ void MainWindow::error(QAbstractSocket::SocketError socketError)
         Q_UNREACHABLE();
     }
     // enable the button to connect to the server again
-    ui->connectButton->setEnabled(true);
+    ui->connectAction->setEnabled(true);
     // disable the ui to send and display messages
     ui->sendButton->setEnabled(false);
-    ui->messageEdit->setEnabled(false);
+    ui->lineEdit->setEnabled(false);
     ui->chatView->setEnabled(false);
     // reset the last printed username
     m_lastUserName.clear();
