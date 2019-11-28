@@ -33,6 +33,9 @@ MainWindow::MainWindow(QWidget *parent)
     // connect the click of the "send" button and the press of the enter while typing to the slot that sends the message
     connect(ui->sendButton, &QPushButton::clicked, this, &MainWindow::sendMessage);
     connect(ui->lineEdit, &QLineEdit::returnPressed, this, &MainWindow::sendMessage);
+    ui->sendButton->setEnabled(false);
+    ui->lineEdit->setEnabled(false);
+    ui->chatView->setEnabled(false);
 }
 
 MainWindow::~MainWindow()
