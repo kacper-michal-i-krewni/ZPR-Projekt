@@ -28,14 +28,17 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_chatClient, &ChatClient::error, this, &MainWindow::error);
     connect(m_chatClient, &ChatClient::userJoined, this, &MainWindow::userJoined);
     connect(m_chatClient, &ChatClient::userLeft, this, &MainWindow::userLeft);
-    // connect the connect button to a slot that will attempt the connection
+    // connect the connect action to a slot that will attempt the connection
     connect(ui->connectAction, &QAction::triggered, this, &MainWindow::attemptConnection);
+    // connect the disconnect action to a slot that will make disconnect
+    connect(ui->disconnectAction, &QAction::triggered, this, &MainWindow::disconnect);
     // connect the click of the "send" button and the press of the enter while typing to the slot that sends the message
     connect(ui->sendButton, &QPushButton::clicked, this, &MainWindow::sendMessage);
     connect(ui->lineEdit, &QLineEdit::returnPressed, this, &MainWindow::sendMessage);
     ui->sendButton->setEnabled(false);
     ui->lineEdit->setEnabled(false);
     ui->chatView->setEnabled(false);
+    ui->disconnectAction->setEnabled(false);
 }
 
 MainWindow::~MainWindow()
@@ -58,6 +61,7 @@ void MainWindow::attemptConnection()
         return; // the user pressed cancel or typed nothing
     // disable the connect button to prevent the user clicking it again
     ui->connectAction->setEnabled(false);
+    ui->disconnectAction->setEnabled(true);
     // tell the client to connect to the host using the port 1967
     m_chatClient->connectToServer(QHostAddress(hostAddress), 1967);
 }
@@ -163,6 +167,18 @@ void MainWindow::disconnectedFromServer()
     ui->chatView->setEnabled(false);
     // enable the button to connect to the server again
     ui->connectAction->setEnabled(true);
+
+    // store the index of the new row to append to the model containing the messages
+    const int newRow = m_chatModel->rowCount();
+    // insert a row
+    m_chatModel->insertRow(newRow);
+    // store in the model the message to comunicate a user joined
+    m_chatModel->setData(m_chatModel->index(newRow, 0), tr("%1 left the Chat").arg(m_chatClient->getNickname()));
+    // set the alignment for the text
+    m_chatModel->setData(m_chatModel->index(newRow, 0), Qt::AlignCenter, Qt::TextAlignmentRole);
+    // set the color for the text
+    m_chatModel->setData(m_chatModel->index(newRow, 0), QBrush(Qt::blue), Qt::ForegroundRole);
+
     // reset the last printed username
     m_lastUserName.clear();
 }
@@ -265,3 +281,10 @@ void MainWindow::error(QAbstractSocket::SocketError socketError)
     m_lastUserName.clear();
 }
 
+void MainWindow::disconnect()
+{
+    //emit m_chatClient->userLeft(m_chatClient->getNickname());
+    emit m_chatClient->disconnected();
+    ui->connectAction->setEnabled(true);
+    ui->disconnectAction->setEnabled(false);
+}

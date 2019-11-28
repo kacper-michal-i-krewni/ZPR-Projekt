@@ -35,5 +35,6 @@ private slots:
     void userJoined(const QString &username);
     void userLeft(const QString &username);
     void error(QAbstractSocket::SocketError socketError);
+    void disconnect();
 };
 #endif // MAINWINDOW_H

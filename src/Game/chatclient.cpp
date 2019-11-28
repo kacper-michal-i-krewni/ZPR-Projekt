@@ -33,6 +33,7 @@ void ChatClient::login(const QString &userName)
         QJsonObject message;
         message["type"] = QStringLiteral("login");
         message["username"] = userName;
+        nickname = userName;
         // send the JSON using QDataStream
         clientStream << QJsonDocument(message).toJson(QJsonDocument::Compact);
     }
@@ -147,4 +148,9 @@ void ChatClient::onReadyRead()
             break;
         }
     }
+}
+
+const QString ChatClient::getNickname() const
+{
+    return nickname;
 }

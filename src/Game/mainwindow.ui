@@ -270,7 +270,7 @@
     <addaction name="separator"/>
     <addaction name="connectAction"/>
     <addaction name="separator"/>
-    <addaction name="actionDisconnect"/>
+    <addaction name="disconnectAction"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
@@ -282,7 +282,7 @@
     <string>Connect</string>
    </property>
   </action>
-  <action name="actionDisconnect">
+  <action name="disconnectAction">
    <property name="text">
     <string>Disconnect</string>
    </property>

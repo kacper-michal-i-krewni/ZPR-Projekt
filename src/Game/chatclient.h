@@ -11,6 +11,7 @@ class ChatClient : public QObject
     Q_DISABLE_COPY(ChatClient)
 public:
     explicit ChatClient(QObject *parent = nullptr);
+    const QString getNickname() const;
 public slots:
     void connectToServer(const QHostAddress &address, quint16 port);
     void login(const QString &userName);
@@ -31,6 +32,7 @@ private:
     QTcpSocket *m_clientSocket;
     bool m_loggedIn;
     void jsonReceived(const QJsonObject &doc);
+    QString nickname;
 };
 
 #endif // CHATCLIENT_H
