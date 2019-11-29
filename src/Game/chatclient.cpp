@@ -39,6 +39,7 @@ void ChatClient::login(const QString &userName)
     }
 }
 
+
 void ChatClient::sendMessage(const QString &text)
 {
     if (text.isEmpty())
@@ -153,4 +154,9 @@ void ChatClient::onReadyRead()
 const QString ChatClient::getNickname() const
 {
     return nickname;
+}
+
+void ChatClient::disconnect()
+{
+    emit m_clientSocket->disconnect();
 }

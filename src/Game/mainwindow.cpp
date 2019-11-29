@@ -32,6 +32,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->connectAction, &QAction::triggered, this, &MainWindow::attemptConnection);
     // connect the disconnect action to a slot that will make disconnect
     connect(ui->disconnectAction, &QAction::triggered, this, &MainWindow::disconnect);
+    // Exiting app
+    connect(ui->exitAction, &QAction::triggered, this, &MainWindow::close);
     // connect the click of the "send" button and the press of the enter while typing to the slot that sends the message
     connect(ui->sendButton, &QPushButton::clicked, this, &MainWindow::sendMessage);
     connect(ui->lineEdit, &QLineEdit::returnPressed, this, &MainWindow::sendMessage);
@@ -144,6 +146,8 @@ void MainWindow::sendMessage()
     const int newRow = m_chatModel->rowCount();
     // insert a row for the message
     m_chatModel->insertRow(newRow);
+    // Add nickname on the front
+    m_chatModel->setData(m_chatModel->index(newRow, 0), m_chatClient->getNickname() + ':');
     // store the message in the model
     m_chatModel->setData(m_chatModel->index(newRow, 0), ui->lineEdit->text());
     // set the alignment for the message
@@ -283,8 +287,10 @@ void MainWindow::error(QAbstractSocket::SocketError socketError)
 
 void MainWindow::disconnect()
 {
+    // disconnect player from server
+    // for now itd wrong, need to write some more code
     //emit m_chatClient->userLeft(m_chatClient->getNickname());
-    emit m_chatClient->disconnected();
+    //m_chatClient->disconnect();
     ui->connectAction->setEnabled(true);
     ui->disconnectAction->setEnabled(false);
 }

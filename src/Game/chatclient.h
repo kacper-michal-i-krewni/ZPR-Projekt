@@ -17,6 +17,7 @@ public slots:
     void login(const QString &userName);
     void sendMessage(const QString &text);
     void disconnectFromHost();
+    void disconnect();
 private slots:
     void onReadyRead();
 signals:
