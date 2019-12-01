@@ -17,20 +17,38 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     action.cpp \
+    affair.cpp \
     card.cpp \
     chatclient.cpp \
+    eu.cpp \
+    localbiznesman.cpp \
     main.cpp \
     mainwindow.cpp \
-    player.cpp \
-    session.cpp
+    media.cpp \
+    onz.cpp \
+    player.cpp \ \
+    police.cpp \
+    protest.cpp \
+    russia.cpp \
+    session.cpp \
+    usa.cpp
 
 HEADERS += \
     action.h \
+    affair.h \
     card.h \
     chatclient.h \
+    eu.h \
+    localbiznesman.h \
     mainwindow.h \
-    player.h \
-    session.h
+    media.h \
+    onz.h \
+    player.h \ \
+    police.h \
+    protest.h \
+    russia.h \
+    session.h \
+    usa.h
 
 FORMS += \
     mainwindow.ui
@@ -39,3 +57,5 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES +=

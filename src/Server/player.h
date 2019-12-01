@@ -12,7 +12,7 @@ class Player:public QObject
 {
     Q_OBJECT
 public:
-    Player( std::string nick = "", double money = 3, int lifes = 2, bool enabled = false);
+    Player( std::string Nick = "", double money = 3, int lifes = 2, bool enabled = false);
     double getMoney();
     double changeMoney( double difference );
     double setMoney( double amount );

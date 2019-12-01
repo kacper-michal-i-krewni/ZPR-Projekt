@@ -34,21 +34,22 @@ class Ui_MainWindow
 public:
     QAction *connectAction;
     QAction *disconnectAction;
-    QAction *actionCreate_a_game;
+    QAction *createGameAction;
     QAction *exitAction;
     QWidget *centralwidget;
     QWidget *gridLayoutWidget;
-    QGridLayout *gridLayout;
-    QPushButton *pushButton_6;
-    QPushButton *pushButton_9;
-    QPushButton *pushButton_3;
-    QPushButton *pushButton_2;
-    QPushButton *pushButton;
-    QPushButton *pushButton_7;
-    QPushButton *pushButton_8;
-    QPushButton *pushButton_5;
+    QGridLayout *actionsLayout;
+    QPushButton *protestButton;
+    QPushButton *rosjaButton;
+    QPushButton *policjaButton;
+    QPushButton *onzButton;
+    QPushButton *mediaButton;
+    QPushButton *ueButton;
+    QPushButton *usaButton;
+    QPushButton *lokalniBiznesmaniButton;
+    QPushButton *aferaButton;
     QWidget *horizontalLayoutWidget;
-    QHBoxLayout *horizontalLayout;
+    QHBoxLayout *messageLayout;
     QLineEdit *lineEdit;
     QPushButton *sendButton;
     QGraphicsView *graphicsView;
@@ -64,7 +65,7 @@ public:
     QLabel *label_3;
     QLabel *label_4;
     QWidget *gridLayoutWidget_2;
-    QGridLayout *gridLayout_3;
+    QGridLayout *chatViewLayout;
     QListView *chatView;
     QMenuBar *menubar;
     QMenu *menuMenu;
@@ -79,8 +80,8 @@ public:
         connectAction->setObjectName(QStringLiteral("connectAction"));
         disconnectAction = new QAction(MainWindow);
         disconnectAction->setObjectName(QStringLiteral("disconnectAction"));
-        actionCreate_a_game = new QAction(MainWindow);
-        actionCreate_a_game->setObjectName(QStringLiteral("actionCreate_a_game"));
+        createGameAction = new QAction(MainWindow);
+        createGameAction->setObjectName(QStringLiteral("createGameAction"));
         exitAction = new QAction(MainWindow);
         exitAction->setObjectName(QStringLiteral("exitAction"));
         centralwidget = new QWidget(MainWindow);
@@ -88,65 +89,70 @@ public:
         gridLayoutWidget = new QWidget(centralwidget);
         gridLayoutWidget->setObjectName(QStringLiteral("gridLayoutWidget"));
         gridLayoutWidget->setGeometry(QRect(0, 500, 691, 83));
-        gridLayout = new QGridLayout(gridLayoutWidget);
-        gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        gridLayout->setSizeConstraint(QLayout::SetDefaultConstraint);
-        gridLayout->setContentsMargins(0, 0, 0, 0);
-        pushButton_6 = new QPushButton(gridLayoutWidget);
-        pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
+        actionsLayout = new QGridLayout(gridLayoutWidget);
+        actionsLayout->setObjectName(QStringLiteral("actionsLayout"));
+        actionsLayout->setSizeConstraint(QLayout::SetDefaultConstraint);
+        actionsLayout->setContentsMargins(0, 0, 0, 0);
+        protestButton = new QPushButton(gridLayoutWidget);
+        protestButton->setObjectName(QStringLiteral("protestButton"));
 
-        gridLayout->addWidget(pushButton_6, 1, 0, 1, 1);
+        actionsLayout->addWidget(protestButton, 1, 2, 1, 1);
 
-        pushButton_9 = new QPushButton(gridLayoutWidget);
-        pushButton_9->setObjectName(QStringLiteral("pushButton_9"));
+        rosjaButton = new QPushButton(gridLayoutWidget);
+        rosjaButton->setObjectName(QStringLiteral("rosjaButton"));
 
-        gridLayout->addWidget(pushButton_9, 1, 3, 1, 1);
+        actionsLayout->addWidget(rosjaButton, 1, 1, 1, 1);
 
-        pushButton_3 = new QPushButton(gridLayoutWidget);
-        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+        policjaButton = new QPushButton(gridLayoutWidget);
+        policjaButton->setObjectName(QStringLiteral("policjaButton"));
 
-        gridLayout->addWidget(pushButton_3, 0, 2, 1, 1);
+        actionsLayout->addWidget(policjaButton, 2, 2, 1, 1);
 
-        pushButton_2 = new QPushButton(gridLayoutWidget);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        onzButton = new QPushButton(gridLayoutWidget);
+        onzButton->setObjectName(QStringLiteral("onzButton"));
 
-        gridLayout->addWidget(pushButton_2, 0, 1, 1, 1);
+        actionsLayout->addWidget(onzButton, 2, 1, 1, 1);
 
-        pushButton = new QPushButton(gridLayoutWidget);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
+        mediaButton = new QPushButton(gridLayoutWidget);
+        mediaButton->setObjectName(QStringLiteral("mediaButton"));
 
-        gridLayout->addWidget(pushButton, 0, 0, 1, 1);
+        actionsLayout->addWidget(mediaButton, 1, 3, 1, 1);
 
-        pushButton_7 = new QPushButton(gridLayoutWidget);
-        pushButton_7->setObjectName(QStringLiteral("pushButton_7"));
+        ueButton = new QPushButton(gridLayoutWidget);
+        ueButton->setObjectName(QStringLiteral("ueButton"));
 
-        gridLayout->addWidget(pushButton_7, 1, 1, 1, 1);
+        actionsLayout->addWidget(ueButton, 2, 3, 1, 1);
 
-        pushButton_8 = new QPushButton(gridLayoutWidget);
-        pushButton_8->setObjectName(QStringLiteral("pushButton_8"));
+        usaButton = new QPushButton(gridLayoutWidget);
+        usaButton->setObjectName(QStringLiteral("usaButton"));
 
-        gridLayout->addWidget(pushButton_8, 1, 2, 1, 1);
+        actionsLayout->addWidget(usaButton, 0, 1, 1, 1);
 
-        pushButton_5 = new QPushButton(gridLayoutWidget);
-        pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
+        lokalniBiznesmaniButton = new QPushButton(gridLayoutWidget);
+        lokalniBiznesmaniButton->setObjectName(QStringLiteral("lokalniBiznesmaniButton"));
 
-        gridLayout->addWidget(pushButton_5, 0, 3, 1, 1);
+        actionsLayout->addWidget(lokalniBiznesmaniButton, 0, 2, 1, 1);
+
+        aferaButton = new QPushButton(gridLayoutWidget);
+        aferaButton->setObjectName(QStringLiteral("aferaButton"));
+
+        actionsLayout->addWidget(aferaButton, 0, 3, 1, 1);
 
         horizontalLayoutWidget = new QWidget(centralwidget);
         horizontalLayoutWidget->setObjectName(QStringLiteral("horizontalLayoutWidget"));
         horizontalLayoutWidget->setGeometry(QRect(0, 580, 951, 31));
-        horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        messageLayout = new QHBoxLayout(horizontalLayoutWidget);
+        messageLayout->setObjectName(QStringLiteral("messageLayout"));
+        messageLayout->setContentsMargins(0, 0, 0, 0);
         lineEdit = new QLineEdit(horizontalLayoutWidget);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
 
-        horizontalLayout->addWidget(lineEdit);
+        messageLayout->addWidget(lineEdit);
 
         sendButton = new QPushButton(horizontalLayoutWidget);
         sendButton->setObjectName(QStringLiteral("sendButton"));
 
-        horizontalLayout->addWidget(sendButton);
+        messageLayout->addWidget(sendButton);
 
         graphicsView = new QGraphicsView(centralwidget);
         graphicsView->setObjectName(QStringLiteral("graphicsView"));
@@ -187,14 +193,14 @@ public:
         gridLayoutWidget_2 = new QWidget(centralwidget);
         gridLayoutWidget_2->setObjectName(QStringLiteral("gridLayoutWidget_2"));
         gridLayoutWidget_2->setGeometry(QRect(689, 0, 261, 581));
-        gridLayout_3 = new QGridLayout(gridLayoutWidget_2);
-        gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
-        gridLayout_3->setSizeConstraint(QLayout::SetDefaultConstraint);
-        gridLayout_3->setContentsMargins(0, 0, 0, 0);
+        chatViewLayout = new QGridLayout(gridLayoutWidget_2);
+        chatViewLayout->setObjectName(QStringLiteral("chatViewLayout"));
+        chatViewLayout->setSizeConstraint(QLayout::SetDefaultConstraint);
+        chatViewLayout->setContentsMargins(0, 0, 0, 0);
         chatView = new QListView(gridLayoutWidget_2);
         chatView->setObjectName(QStringLiteral("chatView"));
 
-        gridLayout_3->addWidget(chatView, 0, 0, 1, 1);
+        chatViewLayout->addWidget(chatView, 0, 0, 1, 1);
 
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
@@ -209,7 +215,7 @@ public:
 
         menubar->addAction(menuMenu->menuAction());
         menuMenu->addSeparator();
-        menuMenu->addAction(actionCreate_a_game);
+        menuMenu->addAction(createGameAction);
         menuMenu->addSeparator();
         menuMenu->addAction(connectAction);
         menuMenu->addSeparator();
@@ -227,16 +233,17 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
         connectAction->setText(QApplication::translate("MainWindow", "Connect", Q_NULLPTR));
         disconnectAction->setText(QApplication::translate("MainWindow", "Disconnect", Q_NULLPTR));
-        actionCreate_a_game->setText(QApplication::translate("MainWindow", "Create a game", Q_NULLPTR));
+        createGameAction->setText(QApplication::translate("MainWindow", "Create a game", Q_NULLPTR));
         exitAction->setText(QApplication::translate("MainWindow", "Exit", Q_NULLPTR));
-        pushButton_6->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
-        pushButton_9->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
-        pushButton_3->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
-        pushButton_2->setText(QApplication::translate("MainWindow", "Akcja2", Q_NULLPTR));
-        pushButton->setText(QApplication::translate("MainWindow", "Akcja1", Q_NULLPTR));
-        pushButton_7->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
-        pushButton_8->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
-        pushButton_5->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
+        protestButton->setText(QApplication::translate("MainWindow", "Protest", Q_NULLPTR));
+        rosjaButton->setText(QApplication::translate("MainWindow", "Rosja", Q_NULLPTR));
+        policjaButton->setText(QApplication::translate("MainWindow", "Policja", Q_NULLPTR));
+        onzButton->setText(QApplication::translate("MainWindow", "ONZ", Q_NULLPTR));
+        mediaButton->setText(QApplication::translate("MainWindow", "Media", Q_NULLPTR));
+        ueButton->setText(QApplication::translate("MainWindow", "UE", Q_NULLPTR));
+        usaButton->setText(QApplication::translate("MainWindow", "USA", Q_NULLPTR));
+        lokalniBiznesmaniButton->setText(QApplication::translate("MainWindow", "Lokalni Biznesmani", Q_NULLPTR));
+        aferaButton->setText(QApplication::translate("MainWindow", "Afera!", Q_NULLPTR));
         sendButton->setText(QApplication::translate("MainWindow", "Wy\305\233lij", Q_NULLPTR));
         label->setText(QApplication::translate("MainWindow", "Kaczmi: 10 mil", Q_NULLPTR));
         label_2->setText(QApplication::translate("MainWindow", "Micha\305\202: 0 kapusty", Q_NULLPTR));

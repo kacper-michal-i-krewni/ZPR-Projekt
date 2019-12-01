@@ -8,15 +8,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += debug_and_release
 
 HEADERS += \
+    action.h \
     chatserver.h \
+    player.h \
     serverworker.h \
-    serverwindow.h
+    serverwindow.h \
+    session.h
 
 SOURCES += \
+    action.cpp \
     chatserver.cpp \
+    player.cpp \
     servermain.cpp \
     serverworker.cpp \
-    serverwindow.cpp
+    serverwindow.cpp \
+    session.cpp
 
 FORMS += \
     serverwindow.ui

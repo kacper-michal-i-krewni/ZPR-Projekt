@@ -23,63 +23,70 @@
       <height>83</height>
      </rect>
     </property>
-    <layout class="QGridLayout" name="gridLayout">
+    <layout class="QGridLayout" name="actionsLayout">
      <property name="sizeConstraint">
       <enum>QLayout::SetDefaultConstraint</enum>
      </property>
-     <item row="1" column="0">
-      <widget class="QPushButton" name="pushButton_6">
+     <item row="1" column="2">
+      <widget class="QPushButton" name="protestButton">
        <property name="text">
-        <string>PushButton</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="3">
-      <widget class="QPushButton" name="pushButton_9">
-       <property name="text">
-        <string>PushButton</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="2">
-      <widget class="QPushButton" name="pushButton_3">
-       <property name="text">
-        <string>PushButton</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QPushButton" name="pushButton_2">
-       <property name="text">
-        <string>Akcja2</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0">
-      <widget class="QPushButton" name="pushButton">
-       <property name="text">
-        <string>Akcja1</string>
+        <string>Protest</string>
        </property>
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QPushButton" name="pushButton_7">
+      <widget class="QPushButton" name="rosjaButton">
        <property name="text">
-        <string>PushButton</string>
+        <string>Rosja</string>
        </property>
       </widget>
      </item>
-     <item row="1" column="2">
-      <widget class="QPushButton" name="pushButton_8">
+     <item row="2" column="2">
+      <widget class="QPushButton" name="policjaButton">
        <property name="text">
-        <string>PushButton</string>
+        <string>Policja</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QPushButton" name="onzButton">
+       <property name="text">
+        <string>ONZ</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="3">
+      <widget class="QPushButton" name="mediaButton">
+       <property name="text">
+        <string>Media</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="3">
+      <widget class="QPushButton" name="ueButton">
+       <property name="text">
+        <string>UE</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QPushButton" name="usaButton">
+       <property name="text">
+        <string>USA</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QPushButton" name="lokalniBiznesmaniButton">
+       <property name="text">
+        <string>Lokalni Biznesmani</string>
        </property>
       </widget>
      </item>
      <item row="0" column="3">
-      <widget class="QPushButton" name="pushButton_5">
+      <widget class="QPushButton" name="aferaButton">
        <property name="text">
-        <string>PushButton</string>
+        <string>Afera!</string>
        </property>
       </widget>
      </item>
@@ -94,7 +101,7 @@
       <height>31</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QHBoxLayout" name="messageLayout">
      <item>
       <widget class="QLineEdit" name="lineEdit"/>
      </item>
@@ -248,7 +255,7 @@
       <height>581</height>
      </rect>
     </property>
-    <layout class="QGridLayout" name="gridLayout_3">
+    <layout class="QGridLayout" name="chatViewLayout">
      <property name="sizeConstraint">
       <enum>QLayout::SetDefaultConstraint</enum>
      </property>
@@ -272,7 +279,7 @@
      <string>Menu</string>
     </property>
     <addaction name="separator"/>
-    <addaction name="actionCreate_a_game"/>
+    <addaction name="createGameAction"/>
     <addaction name="separator"/>
     <addaction name="connectAction"/>
     <addaction name="separator"/>
@@ -293,7 +300,7 @@
     <string>Disconnect</string>
    </property>
   </action>
-  <action name="actionCreate_a_game">
+  <action name="createGameAction">
    <property name="text">
     <string>Create a game</string>
    </property>
