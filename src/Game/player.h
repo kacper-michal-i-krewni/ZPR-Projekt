@@ -5,7 +5,7 @@
 
 
 
-class Player
+class Player:public QObject
 {
     Q_OBJECT
 public:
@@ -20,7 +20,7 @@ public:
     int DecrementLifes();
     int setLifes( int amount );
 
-    virtual ~Player();
+    ~Player(){}
 private:
     const std::string _Nick;
     double _money;
