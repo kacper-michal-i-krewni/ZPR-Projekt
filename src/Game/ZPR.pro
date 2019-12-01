@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     action.cpp \
+    card.cpp \
     chatclient.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -25,6 +26,7 @@ SOURCES += \
 
 HEADERS += \
     action.h \
+    card.h \
     chatclient.h \
     mainwindow.h \
     player.h \

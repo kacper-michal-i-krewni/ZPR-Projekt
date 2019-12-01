@@ -294,3 +294,8 @@ void MainWindow::disconnect()
     ui->connectAction->setEnabled(true);
     ui->disconnectAction->setEnabled(false);
 }
+
+void MainWindow::createGame()
+{
+
+}

@@ -8,7 +8,7 @@ class Action
 public:
     Action();
     virtual void action() = 0;
-    virtual ~Action();
+    virtual ~Action(){}
 private:
     bool IndicatePlayer;
 

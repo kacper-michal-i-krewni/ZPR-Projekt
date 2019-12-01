@@ -1,6 +1,9 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include "card.h"
+
+#include <memory>
 #include <QObject>
 
 
@@ -22,10 +25,11 @@ public:
 
     ~Player(){}
 private:
-    const std::string _Nick;
+    const std::string _nick;
     double _money;
     int _lifes;
     bool _enabled;
+    std::vector<std::shared_ptr<Card>> _cards;
 
 };
 

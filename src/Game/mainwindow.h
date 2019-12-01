@@ -36,5 +36,6 @@ private slots:
     void userLeft(const QString &username);
     void error(QAbstractSocket::SocketError socketError);
     void disconnect();
+    void createGame();
 };
 #endif // MAINWINDOW_H

@@ -160,3 +160,4 @@ void ChatClient::disconnect()
 {
     emit m_clientSocket->disconnect();
 }
+
