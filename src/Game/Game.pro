@@ -17,6 +17,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     action.cpp \
+    actions/affair.cpp \
+    actions/eu.cpp \
+    actions/localbiznesman.cpp \
+    actions/media.cpp \
+    actions/onz.cpp \
+    actions/police.cpp \
+    actions/protest.cpp \
+    actions/russia.cpp \
+    actions/session.cpp \
+    actions/usa.cpp \
     affair.cpp \
     card.cpp \
     chatclient.cpp \
@@ -35,6 +45,16 @@ SOURCES += \
 
 HEADERS += \
     action.h \
+    actions/affair.h \
+    actions/eu.h \
+    actions/localbiznesman.h \
+    actions/media.h \
+    actions/onz.h \
+    actions/police.h \
+    actions/protest.h \
+    actions/russia.h \
+    actions/session.h \
+    actions/usa.h \
     affair.h \
     card.h \
     chatclient.h \
