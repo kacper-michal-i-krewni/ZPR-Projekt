@@ -3,9 +3,11 @@
 
 #include <QObject>
 
-class Card //: public QObject
+/*!
+ * \brief The Card class
+ */
+class Card
 {
-//    Q_OBJECT
 public:
     explicit Card();
 

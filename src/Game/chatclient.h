@@ -5,6 +5,8 @@
 #include <QTcpSocket>
 class QHostAddress;
 class QJsonDocument;
+
+
 class ChatClient : public QObject
 {
     Q_OBJECT

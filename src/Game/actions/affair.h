@@ -5,12 +5,25 @@
 
 #include <QObject>
 
+/*!
+ * \brief The Affair class is a specific action in game and has implementation of action slot.
+ */
 class Affair : public Action
 {
 public:
+    /*!
+     * \brief Affair constructor
+     */
     Affair();
-    virtual void action() override;
+    /*!
+     * \brief Affair destructor
+     */
     virtual ~Affair() override;
+public slots:
+    /*!
+     * \brief action is an implementation of action method
+     */
+    virtual void action() override;
 };
 
 #endif // AFFAIR_H
