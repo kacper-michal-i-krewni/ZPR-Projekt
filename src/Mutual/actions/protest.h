@@ -1,7 +1,7 @@
 #ifndef PROTEST_H
 #define PROTEST_H
 
-#include "action.h"
+#include "../action.h"
 
 #include <QObject>
 

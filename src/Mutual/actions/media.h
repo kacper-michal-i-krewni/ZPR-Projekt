@@ -1,7 +1,7 @@
 #ifndef MEDIA_H
 #define MEDIA_H
 
-#include "action.h"
+#include "../action.h"
 
 #include <QObject>
 
