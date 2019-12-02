@@ -28,6 +28,7 @@ SOURCES += \
     actions/usa.cpp \
     card.cpp \
     chatclient.cpp \
+    gamelogic.cpp \
     main.cpp \
     mainwindow.cpp \
     player.cpp \
@@ -45,6 +46,7 @@ HEADERS += \
     actions/usa.h \
     card.h \
     chatclient.h \
+    gamelogic.h \
     mainwindow.h \
     player.h \
 

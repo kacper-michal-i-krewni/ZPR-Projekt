@@ -9,6 +9,7 @@ CONFIG += debug_and_release
 
 HEADERS += \
     action.h \
+    card.h \
     chatserver.h \
     player.h \
     serverworker.h \
@@ -17,6 +18,7 @@ HEADERS += \
 
 SOURCES += \
     action.cpp \
+    card.cpp \
     chatserver.cpp \
     player.cpp \
     servermain.cpp \

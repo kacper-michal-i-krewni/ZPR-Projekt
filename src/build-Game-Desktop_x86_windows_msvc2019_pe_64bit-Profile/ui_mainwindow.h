@@ -41,14 +41,14 @@ public:
     QWidget *gridLayoutWidget;
     QGridLayout *actionsLayout;
     QPushButton *protestButton;
-    QPushButton *rosjaButton;
-    QPushButton *policjaButton;
+    QPushButton *russiaButton;
+    QPushButton *policeButton;
     QPushButton *onzButton;
     QPushButton *mediaButton;
-    QPushButton *ueButton;
+    QPushButton *euButton;
     QPushButton *usaButton;
-    QPushButton *lokalniBiznesmaniButton;
-    QPushButton *aferaButton;
+    QPushButton *localBiznesmanButton;
+    QPushButton *affairButton;
     QWidget *horizontalLayoutWidget;
     QHBoxLayout *messageLayout;
     QLineEdit *lineEdit;
@@ -107,15 +107,15 @@ public:
 
         actionsLayout->addWidget(protestButton, 1, 2, 1, 1);
 
-        rosjaButton = new QPushButton(gridLayoutWidget);
-        rosjaButton->setObjectName(QStringLiteral("rosjaButton"));
+        russiaButton = new QPushButton(gridLayoutWidget);
+        russiaButton->setObjectName(QStringLiteral("russiaButton"));
 
-        actionsLayout->addWidget(rosjaButton, 1, 1, 1, 1);
+        actionsLayout->addWidget(russiaButton, 1, 1, 1, 1);
 
-        policjaButton = new QPushButton(gridLayoutWidget);
-        policjaButton->setObjectName(QStringLiteral("policjaButton"));
+        policeButton = new QPushButton(gridLayoutWidget);
+        policeButton->setObjectName(QStringLiteral("policeButton"));
 
-        actionsLayout->addWidget(policjaButton, 2, 2, 1, 1);
+        actionsLayout->addWidget(policeButton, 2, 2, 1, 1);
 
         onzButton = new QPushButton(gridLayoutWidget);
         onzButton->setObjectName(QStringLiteral("onzButton"));
@@ -127,25 +127,25 @@ public:
 
         actionsLayout->addWidget(mediaButton, 1, 3, 1, 1);
 
-        ueButton = new QPushButton(gridLayoutWidget);
-        ueButton->setObjectName(QStringLiteral("ueButton"));
+        euButton = new QPushButton(gridLayoutWidget);
+        euButton->setObjectName(QStringLiteral("euButton"));
 
-        actionsLayout->addWidget(ueButton, 2, 3, 1, 1);
+        actionsLayout->addWidget(euButton, 2, 3, 1, 1);
 
         usaButton = new QPushButton(gridLayoutWidget);
         usaButton->setObjectName(QStringLiteral("usaButton"));
 
         actionsLayout->addWidget(usaButton, 0, 1, 1, 1);
 
-        lokalniBiznesmaniButton = new QPushButton(gridLayoutWidget);
-        lokalniBiznesmaniButton->setObjectName(QStringLiteral("lokalniBiznesmaniButton"));
+        localBiznesmanButton = new QPushButton(gridLayoutWidget);
+        localBiznesmanButton->setObjectName(QStringLiteral("localBiznesmanButton"));
 
-        actionsLayout->addWidget(lokalniBiznesmaniButton, 0, 2, 1, 1);
+        actionsLayout->addWidget(localBiznesmanButton, 0, 2, 1, 1);
 
-        aferaButton = new QPushButton(gridLayoutWidget);
-        aferaButton->setObjectName(QStringLiteral("aferaButton"));
+        affairButton = new QPushButton(gridLayoutWidget);
+        affairButton->setObjectName(QStringLiteral("affairButton"));
 
-        actionsLayout->addWidget(aferaButton, 0, 3, 1, 1);
+        actionsLayout->addWidget(affairButton, 0, 3, 1, 1);
 
         horizontalLayoutWidget = new QWidget(centralwidget);
         horizontalLayoutWidget->setObjectName(QStringLiteral("horizontalLayoutWidget"));
@@ -193,7 +193,7 @@ public:
 
         verticalLayoutWidget = new QWidget(centralwidget);
         verticalLayoutWidget->setObjectName(QStringLiteral("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(450, 310, 77, 191));
+        verticalLayoutWidget->setGeometry(QRect(450, 310, 82, 191));
         playerMenuLayout1 = new QVBoxLayout(verticalLayoutWidget);
         playerMenuLayout1->setObjectName(QStringLiteral("playerMenuLayout1"));
         playerMenuLayout1->setContentsMargins(0, 0, 0, 0);
@@ -219,7 +219,7 @@ public:
 
         verticalLayoutWidget_2 = new QWidget(centralwidget);
         verticalLayoutWidget_2->setObjectName(QStringLiteral("verticalLayoutWidget_2"));
-        verticalLayoutWidget_2->setGeometry(QRect(450, 0, 77, 191));
+        verticalLayoutWidget_2->setGeometry(QRect(450, 0, 82, 191));
         playeMenyLayout2 = new QVBoxLayout(verticalLayoutWidget_2);
         playeMenyLayout2->setObjectName(QStringLiteral("playeMenyLayout2"));
         playeMenyLayout2->setContentsMargins(0, 0, 0, 0);
@@ -262,7 +262,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QStringLiteral("menubar"));
-        menubar->setGeometry(QRect(0, 0, 951, 21));
+        menubar->setGeometry(QRect(0, 0, 951, 20));
         menuMenu = new QMenu(menubar);
         menuMenu->setObjectName(QStringLiteral("menuMenu"));
         MainWindow->setMenuBar(menubar);
@@ -293,14 +293,14 @@ public:
         createGameAction->setText(QApplication::translate("MainWindow", "Create a game", Q_NULLPTR));
         exitAction->setText(QApplication::translate("MainWindow", "Exit", Q_NULLPTR));
         protestButton->setText(QApplication::translate("MainWindow", "Protest", Q_NULLPTR));
-        rosjaButton->setText(QApplication::translate("MainWindow", "Rosja", Q_NULLPTR));
-        policjaButton->setText(QApplication::translate("MainWindow", "Policja", Q_NULLPTR));
+        russiaButton->setText(QApplication::translate("MainWindow", "Rosja", Q_NULLPTR));
+        policeButton->setText(QApplication::translate("MainWindow", "Policja", Q_NULLPTR));
         onzButton->setText(QApplication::translate("MainWindow", "ONZ", Q_NULLPTR));
         mediaButton->setText(QApplication::translate("MainWindow", "Media", Q_NULLPTR));
-        ueButton->setText(QApplication::translate("MainWindow", "UE", Q_NULLPTR));
+        euButton->setText(QApplication::translate("MainWindow", "UE", Q_NULLPTR));
         usaButton->setText(QApplication::translate("MainWindow", "USA", Q_NULLPTR));
-        lokalniBiznesmaniButton->setText(QApplication::translate("MainWindow", "Lokalni Biznesmani", Q_NULLPTR));
-        aferaButton->setText(QApplication::translate("MainWindow", "Afera!", Q_NULLPTR));
+        localBiznesmanButton->setText(QApplication::translate("MainWindow", "Lokalni Biznesmani", Q_NULLPTR));
+        affairButton->setText(QApplication::translate("MainWindow", "Afera!", Q_NULLPTR));
         sendButton->setText(QApplication::translate("MainWindow", "Wy\305\233lij", Q_NULLPTR));
         nickname1->setText(QApplication::translate("MainWindow", "Kaczmii", Q_NULLPTR));
         wallet1->setText(QApplication::translate("MainWindow", "3 mil", Q_NULLPTR));

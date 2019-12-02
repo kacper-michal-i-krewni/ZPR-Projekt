@@ -4,8 +4,10 @@
 #include <QWidget>
 #include <QMainWindow>
 #include <QAbstractSocket>
+
 class ChatClient;
 class QStandardItemModel;
+class GameLogic;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -22,6 +24,7 @@ private:
     Ui::MainWindow *ui;
     ChatClient *m_chatClient;
     QStandardItemModel *m_chatModel;
+    GameLogic *m_gameLogic;
     QString m_lastUserName;
 private slots:
     void attemptConnection();
