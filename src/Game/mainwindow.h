@@ -112,5 +112,7 @@ private slots:
      * Gets data from input dialog
      */
     void createGame();
+    void tooglePlayerInterface(bool b);
+
 };
 #endif // MAINWINDOW_H
