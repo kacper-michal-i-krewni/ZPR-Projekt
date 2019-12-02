@@ -1,8 +1,8 @@
 #ifndef SESSION_H
 #define SESSION_H
 
-#include "action.h"
-#include "player.h"
+#include "../../Mutual/action.h"
+#include "../../Mutual/player.h"
 #include <memory>
 #include <QTimer>
 

@@ -36,6 +36,7 @@ SOURCES += \
 HEADERS += \
     ../Mutual/action.h \
     ../Mutual/actions/affair.h \
+    ../Mutual/actions/allactions.h \
     ../Mutual/actions/eu.h \
     ../Mutual/actions/localbiznesman.h \
     ../Mutual/actions/media.h \

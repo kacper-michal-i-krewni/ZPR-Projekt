@@ -40,5 +40,7 @@ private slots:
     void error(QAbstractSocket::SocketError socketError);
     void disconnect();
     void createGame();
+    void tooglePlayerInterface(bool b);
+
 };
 #endif // MAINWINDOW_H
