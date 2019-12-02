@@ -23,7 +23,7 @@ public:
      *
      * It is vitrual, because it needs to destroy lower objects in hierarchy.
      */
-    virtual ~Action(){}
+    virtual ~Action();
 public slots:
     /*!
      * \brief Virtual action method.
