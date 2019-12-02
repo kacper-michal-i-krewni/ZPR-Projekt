@@ -1,5 +1,6 @@
 #include "gamelogic.h"
-#include "../../Mutual/actions/allactions.h"
+//#include "../../Mutual/actions/allactions.h"
+#include "../Mutual/actions/allactions.h"
 
 GameLogic::GameLogic(QObject *parent)
     : QObject(parent)
