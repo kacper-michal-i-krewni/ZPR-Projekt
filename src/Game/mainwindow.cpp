@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "chatclient.h"
 #include "gamelogic.h"
+#include "../Mutual/actions/allactions.h"
 
 #include <QStandardItemModel>
 #include <QInputDialog>
@@ -41,25 +42,22 @@ MainWindow::MainWindow(QWidget *parent)
     // connect the click of the "send" button and the press of the enter while typing to the slot that sends the message
     connect(ui->sendButton, &QPushButton::clicked, this, &MainWindow::sendMessage);
     connect(ui->lineEdit, &QLineEdit::returnPressed, this, &MainWindow::sendMessage);
+    // connect all actions buttons
+    connect(ui->usaButton, &QPushButton::clicked, &m_gameLogic->_usa, &USA::action);
+    connect(ui->usaButton, &QPushButton::clicked, &m_gameLogic->_localBiznesman, &LocalBiznesman::action);
+    connect(ui->usaButton, &QPushButton::clicked, &m_gameLogic->_affair, &Affair::action);
+    connect(ui->usaButton, &QPushButton::clicked, &m_gameLogic->_russia, &Russia::action);
+    connect(ui->usaButton, &QPushButton::clicked, &m_gameLogic->_protest, &Protest::action);
+    connect(ui->usaButton, &QPushButton::clicked, &m_gameLogic->_media, &Media::action);
+    connect(ui->usaButton, &QPushButton::clicked, &m_gameLogic->_onz, &ONZ::action);
+    connect(ui->usaButton, &QPushButton::clicked, &m_gameLogic->_police, &Police::action);
+    connect(ui->usaButton, &QPushButton::clicked, &m_gameLogic->_eu, &EU::action);
+
     ui->sendButton->setEnabled(false);
     ui->lineEdit->setEnabled(false);
     ui->chatView->setEnabled(false);
     ui->disconnectAction->setEnabled(false);
-    // block all action buttons
-    ui->usaButton->setEnabled(false);
-    ui->localBiznesmanButton->setEnabled(false);
-    ui->affairButton->setEnabled(false);
-    ui->russiaButton->setEnabled(false);
-    ui->protestButton->setEnabled(false);
-    ui->mediaButton->setEnabled(false);
-    ui->onzButton->setEnabled(false);
-    ui->policeButton->setEnabled(false);
-    ui->euButton->setEnabled(false);
-    // block user interface
-    ui->block1->setEnabled(false);
-    ui->check1->setEnabled(false);
-    ui->block2->setEnabled(false);
-    ui->check2->setEnabled(false);
+    tooglePlayerInterface(false);
 
 }
 
@@ -324,4 +322,23 @@ void MainWindow::createGame()
         , QLineEdit::Normal
         , QStringLiteral("4")
     );
+}
+
+void MainWindow::tooglePlayerInterface(bool b)
+{
+    // block all action buttons
+    ui->usaButton->setEnabled(b);
+    ui->localBiznesmanButton->setEnabled(b);
+    ui->affairButton->setEnabled(b);
+    ui->russiaButton->setEnabled(b);
+    ui->protestButton->setEnabled(b);
+    ui->mediaButton->setEnabled(b);
+    ui->onzButton->setEnabled(b);
+    ui->policeButton->setEnabled(b);
+    ui->euButton->setEnabled(b);
+    // block user interface
+    ui->block1->setEnabled(b);
+    ui->check1->setEnabled(b);
+    ui->block2->setEnabled(b);
+    ui->check2->setEnabled(b);
 }
