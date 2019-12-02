@@ -11,3 +11,8 @@ void Russia::action()
 
 
 }
+
+Russia::~Russia()
+{
+
+}

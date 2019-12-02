@@ -25,23 +25,12 @@ SOURCES += \
     actions/police.cpp \
     actions/protest.cpp \
     actions/russia.cpp \
-    actions/session.cpp \
     actions/usa.cpp \
-    affair.cpp \
     card.cpp \
     chatclient.cpp \
-    eu.cpp \
-    localbiznesman.cpp \
     main.cpp \
     mainwindow.cpp \
-    media.cpp \
-    onz.cpp \
-    player.cpp \ \
-    police.cpp \
-    protest.cpp \
-    russia.cpp \
-    session.cpp \
-    usa.cpp
+    player.cpp \
 
 HEADERS += \
     action.h \
@@ -53,22 +42,11 @@ HEADERS += \
     actions/police.h \
     actions/protest.h \
     actions/russia.h \
-    actions/session.h \
     actions/usa.h \
-    affair.h \
     card.h \
     chatclient.h \
-    eu.h \
-    localbiznesman.h \
     mainwindow.h \
-    media.h \
-    onz.h \
-    player.h \ \
-    police.h \
-    protest.h \
-    russia.h \
-    session.h \
-    usa.h
+    player.h \
 
 FORMS += \
     mainwindow.ui

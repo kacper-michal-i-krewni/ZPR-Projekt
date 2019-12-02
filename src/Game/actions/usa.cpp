@@ -10,3 +10,9 @@ void USA::action()
 
 
 }
+
+
+USA::~USA()
+{
+
+}

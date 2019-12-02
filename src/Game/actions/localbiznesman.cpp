@@ -10,3 +10,9 @@ void LocalBiznesman::action()
 
 
 }
+
+
+LocalBiznesman::~LocalBiznesman()
+{
+
+}

@@ -11,9 +11,20 @@
 class EU : public Action
 {
 public:
+    /*!
+     * \brief EU constructor
+     */
     EU();
-    ~EU() override;
+    /*!
+     * \brief ~EU destructor
+     */
+    virtual ~EU() override;
 public slots:
+    /*!
+     * \brief action is an implementation of action method from Action class
+     *
+     *  it has no action, this action is only for blocking
+     */
     virtual void action() override;
 };
 

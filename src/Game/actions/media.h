@@ -9,8 +9,8 @@ class Media : public Action
 {
 public:
     Media();
-    virtual void action() = 0;
-    virtual ~Media(){}
+    virtual void action() override;
+    ~Media() override;
 };
 
 #endif // MEDIA_H

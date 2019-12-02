@@ -11,3 +11,9 @@ void Police::action()
 
 
 }
+
+
+Police::~Police()
+{
+
+}

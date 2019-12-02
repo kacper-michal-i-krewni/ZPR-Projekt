@@ -9,8 +9,8 @@ class Protest : public Action
 {
 public:
     Protest();
-    virtual void action() = 0;
-    virtual ~Protest(){}
+    virtual void action() override;
+    ~Protest() override;
 };
 
 #endif // PROTEST_H

@@ -10,7 +10,7 @@ class Russia : public Action
 public:
     Russia();
     virtual void action() override;
-    virtual ~Russia() override;
+    ~Russia() override;
 };
 
 #endif // RUSSIA_H

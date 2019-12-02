@@ -11,3 +11,8 @@ void Protest::action()
 
 
 }
+
+Protest::~Protest()
+{
+
+}

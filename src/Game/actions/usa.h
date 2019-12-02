@@ -10,7 +10,7 @@ class USA : public Action
 public:
     USA();
     virtual void action() override;
-    virtual ~USA() override;
+    ~USA() override;
 };
 
 #endif // USA_H

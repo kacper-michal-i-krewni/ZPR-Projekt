@@ -9,8 +9,8 @@ class Police : public Action
 {
 public:
     Police();
-    virtual void action() = 0;
-    virtual ~Police(){}
+    virtual void action() override;
+    ~Police() override;
 };
 
 #endif // POLICE_H

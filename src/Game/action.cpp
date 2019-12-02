@@ -4,3 +4,8 @@ Action::Action()
 {
 
 }
+
+Action::~Action()
+{
+
+}

@@ -10,3 +10,8 @@ void Affair::action()
 
 
 }
+
+Affair::~Affair()
+{
+
+}

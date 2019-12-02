@@ -9,8 +9,8 @@ class ONZ : public Action
 {
 public:
     ONZ();
-    virtual void action() = 0;
-    virtual ~ONZ(){}
+    virtual void action() override;
+    ~ONZ() override;
 };
 
 #endif // ONZ_H

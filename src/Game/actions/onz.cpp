@@ -10,3 +10,9 @@ void ONZ::action()
 
 
 }
+
+
+ONZ::~ONZ()
+{
+
+}

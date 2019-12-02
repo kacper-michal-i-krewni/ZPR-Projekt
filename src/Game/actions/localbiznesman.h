@@ -10,7 +10,7 @@ class LocalBiznesman : public Action
 public:
     LocalBiznesman();
     virtual void action() override;
-    virtual ~LocalBiznesman() override;
+    ~LocalBiznesman() override;
 };
 
 #endif // LOCALBIZNESMAN_H

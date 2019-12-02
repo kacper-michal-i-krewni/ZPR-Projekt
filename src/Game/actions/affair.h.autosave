@@ -18,12 +18,12 @@ public:
     /*!
      * \brief Affair destructor
      */
-     virtual ~Affair() override;
+    virtual ~Affair() override;
 public slots:
     /*!
-     * \brief action is an implementation of action method
+     * \brief action is an implementation of action method from Action class
      *
-     *  If player has 7 mil or more it is possible for him to make this action. This action make one of the players lose his/her card.
+     *  Player pays 7 mil and make one of the player reveal one of his/her card.
      */
     virtual void action() override;
 };

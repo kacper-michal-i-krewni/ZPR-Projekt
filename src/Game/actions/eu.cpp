@@ -10,3 +10,8 @@ void EU::action()
 
 
 }
+
+EU::~EU()
+{
+
+}

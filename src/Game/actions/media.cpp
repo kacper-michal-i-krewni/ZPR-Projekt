@@ -10,3 +10,9 @@ void Media::action()
 
 
 }
+
+
+Media::~Media()
+{
+
+}
