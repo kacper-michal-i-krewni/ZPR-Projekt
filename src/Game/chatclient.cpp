@@ -158,6 +158,6 @@ const QString ChatClient::getNickname() const
 
 void ChatClient::disconnect()
 {
-    emit m_clientSocket->disconnect();
+    m_clientSocket->disconnectFromHost();
 }
 

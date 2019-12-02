@@ -1,7 +1,7 @@
 #ifndef POLICE_H
 #define POLICE_H
 
-#include "action.h"
+#include "../action.h"
 
 #include <QObject>
 

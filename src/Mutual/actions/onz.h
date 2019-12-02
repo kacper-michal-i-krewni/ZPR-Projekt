@@ -1,7 +1,7 @@
 #ifndef ONZ_H
 #define ONZ_H
 
-#include "action.h"
+#include "../action.h"
 
 #include <QObject>
 

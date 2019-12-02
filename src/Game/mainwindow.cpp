@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "chatclient.h"
+#include "gamelogic.h"
 
 #include <QStandardItemModel>
 #include <QInputDialog>
@@ -12,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
     , m_chatClient(new ChatClient(this))
     , m_chatModel(new QStandardItemModel(this))
+    , m_gameLogic( new GameLogic(this))
 {
     // set up of the .ui file
     ui->setupUi(this);
@@ -28,6 +30,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_chatClient, &ChatClient::error, this, &MainWindow::error);
     connect(m_chatClient, &ChatClient::userJoined, this, &MainWindow::userJoined);
     connect(m_chatClient, &ChatClient::userLeft, this, &MainWindow::userLeft);
+    // connect the create game action to slot that will attempt creating game
+    connect(ui->createGameAction, &QAction::triggered, this, &MainWindow::createGame);
     // connect the connect action to a slot that will attempt the connection
     connect(ui->connectAction, &QAction::triggered, this, &MainWindow::attemptConnection);
     // connect the disconnect action to a slot that will make disconnect
@@ -41,6 +45,22 @@ MainWindow::MainWindow(QWidget *parent)
     ui->lineEdit->setEnabled(false);
     ui->chatView->setEnabled(false);
     ui->disconnectAction->setEnabled(false);
+    // block all action buttons
+    ui->usaButton->setEnabled(false);
+    ui->localBiznesmanButton->setEnabled(false);
+    ui->affairButton->setEnabled(false);
+    ui->russiaButton->setEnabled(false);
+    ui->protestButton->setEnabled(false);
+    ui->mediaButton->setEnabled(false);
+    ui->onzButton->setEnabled(false);
+    ui->policeButton->setEnabled(false);
+    ui->euButton->setEnabled(false);
+    // block user interface
+    ui->block1->setEnabled(false);
+    ui->check1->setEnabled(false);
+    ui->block2->setEnabled(false);
+    ui->check2->setEnabled(false);
+
 }
 
 MainWindow::~MainWindow()
@@ -54,7 +74,7 @@ void MainWindow::attemptConnection()
     // We ask the user for the address of the server, we use 127.0.0.1 (aka localhost) as default
     const QString hostAddress = QInputDialog::getText(
         this
-        , tr("Chose Server")
+        , tr("Choose Server")
         , tr("Server Address")
         , QLineEdit::Normal
         , QStringLiteral("127.0.0.1")
@@ -290,12 +310,18 @@ void MainWindow::disconnect()
     // disconnect player from server
     // for now itd wrong, need to write some more code
     //emit m_chatClient->userLeft(m_chatClient->getNickname());
-    //m_chatClient->disconnect();
+    m_chatClient->disconnect();
     ui->connectAction->setEnabled(true);
     ui->disconnectAction->setEnabled(false);
 }
 
 void MainWindow::createGame()
 {
-
+    const QString playerNumber = QInputDialog::getText(
+        this
+        , tr("Number of players")
+        , tr("Players:")
+        , QLineEdit::Normal
+        , QStringLiteral("4")
+    );
 }

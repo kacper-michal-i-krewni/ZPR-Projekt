@@ -35,14 +35,14 @@
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QPushButton" name="rosjaButton">
+      <widget class="QPushButton" name="russiaButton">
        <property name="text">
         <string>Rosja</string>
        </property>
       </widget>
      </item>
      <item row="2" column="2">
-      <widget class="QPushButton" name="policjaButton">
+      <widget class="QPushButton" name="policeButton">
        <property name="text">
         <string>Policja</string>
        </property>
@@ -63,7 +63,7 @@
       </widget>
      </item>
      <item row="2" column="3">
-      <widget class="QPushButton" name="ueButton">
+      <widget class="QPushButton" name="euButton">
        <property name="text">
         <string>UE</string>
        </property>
@@ -77,14 +77,14 @@
       </widget>
      </item>
      <item row="0" column="2">
-      <widget class="QPushButton" name="lokalniBiznesmaniButton">
+      <widget class="QPushButton" name="localBiznesmanButton">
        <property name="text">
         <string>Lokalni Biznesmani</string>
        </property>
       </widget>
      </item>
      <item row="0" column="3">
-      <widget class="QPushButton" name="aferaButton">
+      <widget class="QPushButton" name="affairButton">
        <property name="text">
         <string>Afera!</string>
        </property>
@@ -114,138 +114,6 @@
      </item>
     </layout>
    </widget>
-   <widget class="QGraphicsView" name="graphicsView">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>310</y>
-      <width>81</width>
-      <height>151</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QGraphicsView" name="graphicsView_2">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>310</y>
-      <width>81</width>
-      <height>151</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QGraphicsView" name="graphicsView_3">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>30</y>
-      <width>81</width>
-      <height>151</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QGraphicsView" name="graphicsView_4">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>30</y>
-      <width>81</width>
-      <height>151</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QGraphicsView" name="graphicsView_5">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>170</y>
-      <width>161</width>
-      <height>71</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QGraphicsView" name="graphicsView_6">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>250</y>
-      <width>161</width>
-      <height>71</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QGraphicsView" name="graphicsView_7">
-    <property name="geometry">
-     <rect>
-      <x>480</x>
-      <y>170</y>
-      <width>161</width>
-      <height>71</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QGraphicsView" name="graphicsView_8">
-    <property name="geometry">
-     <rect>
-      <x>480</x>
-      <y>250</y>
-      <width>161</width>
-      <height>71</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>460</y>
-      <width>181</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Kaczmi: 10 mil</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>0</y>
-      <width>181</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Michał: 0 kapusty</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>170</y>
-      <width>41</width>
-      <height>151</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>TextLabel</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>650</x>
-      <y>170</y>
-      <width>41</width>
-      <height>151</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>TextLabel</string>
-    </property>
-   </widget>
    <widget class="QWidget" name="gridLayoutWidget_2">
     <property name="geometry">
      <rect>
@@ -264,6 +132,122 @@
      </item>
     </layout>
    </widget>
+   <widget class="QWidget" name="gridLayoutWidget_3">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>310</y>
+      <width>211</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="cardsLayout">
+     <item row="0" column="0">
+      <widget class="QGraphicsView" name="card1"/>
+     </item>
+     <item row="0" column="1">
+      <widget class="QGraphicsView" name="card2"/>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>310</y>
+      <width>82</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="playerMenuLayout1">
+     <item>
+      <widget class="QLabel" name="nickname1">
+       <property name="text">
+        <string>Kaczmii</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="wallet1">
+       <property name="text">
+        <string>3 mil</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="block1">
+       <property name="text">
+        <string>Zablokuj</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="check1">
+       <property name="text">
+        <string>Sprawdz</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>0</y>
+      <width>82</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="playeMenyLayout2">
+     <item>
+      <widget class="QLabel" name="nickname2">
+       <property name="text">
+        <string>Kaczmii</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="wallet2">
+       <property name="text">
+        <string>3 mil</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="block2">
+       <property name="text">
+        <string>Zablokuj</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="check2">
+       <property name="text">
+        <string>Sprawdz</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="gridLayoutWidget_4">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>0</y>
+      <width>211</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="cardsLayout2">
+     <item row="0" column="0">
+      <widget class="QGraphicsView" name="card3"/>
+     </item>
+     <item row="0" column="1">
+      <widget class="QGraphicsView" name="card4"/>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -271,7 +255,7 @@
      <x>0</x>
      <y>0</y>
      <width>951</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuMenu">

@@ -1,7 +1,7 @@
 #ifndef LOCALBIZNESMAN_H
 #define LOCALBIZNESMAN_H
 
-#include "action.h"
+#include "../action.h"
 
 #include <QObject>
 

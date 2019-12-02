@@ -1,7 +1,7 @@
 #ifndef AFFAIR_H
 #define AFFAIR_H
 
-#include "action.h"
+#include "../action.h"
 
 #include <QObject>
 

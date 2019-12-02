@@ -1,8 +1,7 @@
 #ifndef RUSSIA_H
 #define RUSSIA_H
 
-#include "action.h"
-
+#include "../action.h"
 #include <QObject>
 
 
