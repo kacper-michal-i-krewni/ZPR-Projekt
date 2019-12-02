@@ -13,7 +13,8 @@ ChatServer::ChatServer(QObject *parent)
 void ChatServer::incomingConnection(qintptr socketDescriptor)
 {
     ServerWorker *worker = new ServerWorker(this);
-    if (!worker->setSocketDescriptor(socketDescriptor)) {
+    if (!worker->setSocketDescriptor(socketDescriptor)) 
+    {
         worker->deleteLater();
         return;
     }
@@ -31,7 +32,8 @@ void ChatServer::sendJson(ServerWorker *destination, const QJsonObject &message)
 }
 void ChatServer::broadcast(const QJsonObject &message, ServerWorker *exclude)
 {
-    for (ServerWorker *worker : m_clients) {
+    for (ServerWorker *worker : m_clients) 
+    {
         Q_ASSERT(worker);
         if (worker == exclude)
             continue;
@@ -52,7 +54,8 @@ void ChatServer::userDisconnected(ServerWorker *sender)
 {
     m_clients.removeAll(sender);
     const QString userName = sender->userName();
-    if (!userName.isEmpty()) {
+    if (!userName.isEmpty()) 
+    {
         QJsonObject disconnectedMessage;
         disconnectedMessage["type"] = QStringLiteral("userdisconnected");
         disconnectedMessage["username"] = userName;
@@ -90,10 +93,12 @@ void ChatServer::jsonFromLoggedOut(ServerWorker *sender, const QJsonObject &docO
     const QString newUserName = usernameVal.toString().simplified();
     if (newUserName.isEmpty())
         return;
-    for (ServerWorker *worker : qAsConst(m_clients)) {
+    for (ServerWorker *worker : qAsConst(m_clients)) 
+    {
         if (worker == sender)
             continue;
-        if (worker->userName().compare(newUserName, Qt::CaseInsensitive) == 0) {
+        if (worker->userName().compare(newUserName, Qt::CaseInsensitive) == 0) 
+        {
             QJsonObject message;
             message["type"] = QStringLiteral("login");
             message["success"] = false;

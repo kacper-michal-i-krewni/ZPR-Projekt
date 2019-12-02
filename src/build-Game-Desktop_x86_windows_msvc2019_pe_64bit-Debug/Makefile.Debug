@@ -89,6 +89,7 @@ OBJECTS       = debug\action.obj \
 
 DIST          =  ..\Mutual\action.h \
 		..\Mutual\actions\affair.h \
+		..\Mutual\actions\allactions.h \
 		..\Mutual\actions\eu.h \
 		..\Mutual\actions\localbiznesman.h \
 		..\Mutual\actions\media.h \
@@ -243,7 +244,7 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) Game.zip $(SOURCES) $(DIST) ..\Game\Game.pro D:\Qt\5.9.8\msvc2017_64\mkspecs\features\spec_pre.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\common\angle.conf D:\Qt\5.9.8\msvc2017_64\mkspecs\common\msvc-desktop.conf D:\Qt\5.9.8\msvc2017_64\mkspecs\qconfig.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3danimation.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3danimation_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dcore.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dcore_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dextras.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dextras_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dinput.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dinput_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dlogic.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dlogic_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dquick.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dquick_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dquickanimation.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dquickanimation_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dquickextras.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dquickextras_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dquickinput.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dquickinput_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dquickrender.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dquickrender_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dquickscene2d.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dquickscene2d_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3drender.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3drender_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_accessibility_support_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_axbase.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_axbase_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_axcontainer.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_axcontainer_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_axserver.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_axserver_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_bluetooth.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_bluetooth_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_bootstrap_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_concurrent.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_concurrent_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_core.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_core_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_dbus.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_dbus_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_designer.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_designer_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_designercomponents_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_egl_support_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_fb_support_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_fontdatabase_support_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_gamepad.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_gamepad_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_gui.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_gui_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_help.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_help_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_location.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_location_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_multimedia.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_multimedia_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_multimediawidgets.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_network.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_network_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_nfc.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_nfc_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_opengl.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_opengl_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_openglextensions.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_openglextensions_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_packetprotocol_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_platformcompositor_support_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_positioning.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_positioning_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_printsupport.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_printsupport_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_qml.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_qml_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_qmldebug_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_qmldevtools_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_qmltest.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_qmltest_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_quick.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_quick_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_quickcontrols2.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_quickparticles_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_quickwidgets.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_quickwidgets_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_scxml.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_scxml_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_sensors.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_sensors_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_serialbus.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_serialbus_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_serialport.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_serialport_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_sql.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_sql_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_svg.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_svg_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_testlib.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_testlib_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_theme_support_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_uiplugin.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_uitools.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_uitools_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_webchannel.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_webchannel_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_websockets.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_websockets_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_webview.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_webview_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_widgets.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_widgets_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_winextras.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_winextras_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_xml.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_xml_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_xmlpatterns.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_zlib_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\features\qt_functions.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\qt_config.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\win32-msvc\qmake.conf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\spec_post.prf .qmake.stash D:\Qt\5.9.8\msvc2017_64\mkspecs\features\exclusive_builds.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\common\msvc-version.conf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\toolchain.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\default_pre.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\win32\default_pre.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\resolve_config.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\exclusive_builds_post.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\default_post.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\build_pass.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\qml_debug.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\precompile_header.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\warn_on.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\qt.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\resources.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\moc.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\win32\opengl.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\uic.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\qmake_use.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\file_copies.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\win32\windows.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\testcase_targets.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\exceptions.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\yacc.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\lex.prf ..\Game\Game.pro D:\Qt\5.9.8\msvc2017_64\lib\qtmaind.prl D:\Qt\5.9.8\msvc2017_64\lib\Qt5Widgetsd.prl D:\Qt\5.9.8\msvc2017_64\lib\Qt5Guid.prl D:\Qt\5.9.8\msvc2017_64\lib\Qt5Networkd.prl D:\Qt\5.9.8\msvc2017_64\lib\Qt5Cored.prl    D:\Qt\5.9.8\msvc2017_64\mkspecs\features\data\dummy.cpp ..\Mutual\action.h ..\Mutual\actions\affair.h ..\Mutual\actions\eu.h ..\Mutual\actions\localbiznesman.h ..\Mutual\actions\media.h ..\Mutual\actions\onz.h ..\Mutual\actions\police.h ..\Mutual\actions\protest.h ..\Mutual\actions\russia.h ..\Mutual\actions\usa.h ..\Mutual\card.h ..\Mutual\player.h ..\Game\chatclient.h ..\Game\gamelogic.h ..\Game\mainwindow.h ..\Mutual\action.cpp ..\Mutual\actions\affair.cpp ..\Mutual\actions\eu.cpp ..\Mutual\actions\localbiznesman.cpp ..\Mutual\actions\media.cpp ..\Mutual\actions\onz.cpp ..\Mutual\actions\police.cpp ..\Mutual\actions\protest.cpp ..\Mutual\actions\russia.cpp ..\Mutual\actions\usa.cpp ..\Mutual\card.cpp ..\Mutual\player.cpp ..\Game\chatclient.cpp ..\Game\gamelogic.cpp ..\Game\main.cpp ..\Game\mainwindow.cpp ..\Game\mainwindow.ui    
+	$(ZIP) Game.zip $(SOURCES) $(DIST) ..\Game\Game.pro D:\Qt\5.9.8\msvc2017_64\mkspecs\features\spec_pre.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\common\angle.conf D:\Qt\5.9.8\msvc2017_64\mkspecs\common\msvc-desktop.conf D:\Qt\5.9.8\msvc2017_64\mkspecs\qconfig.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3danimation.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3danimation_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dcore.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dcore_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dextras.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dextras_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dinput.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dinput_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dlogic.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dlogic_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dquick.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dquick_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dquickanimation.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dquickanimation_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dquickextras.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dquickextras_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dquickinput.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dquickinput_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dquickrender.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dquickrender_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dquickscene2d.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3dquickscene2d_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3drender.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_3drender_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_accessibility_support_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_axbase.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_axbase_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_axcontainer.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_axcontainer_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_axserver.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_axserver_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_bluetooth.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_bluetooth_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_bootstrap_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_concurrent.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_concurrent_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_core.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_core_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_dbus.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_dbus_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_designer.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_designer_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_designercomponents_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_egl_support_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_fb_support_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_fontdatabase_support_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_gamepad.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_gamepad_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_gui.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_gui_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_help.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_help_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_location.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_location_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_multimedia.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_multimedia_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_multimediawidgets.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_network.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_network_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_nfc.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_nfc_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_opengl.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_opengl_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_openglextensions.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_openglextensions_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_packetprotocol_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_platformcompositor_support_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_positioning.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_positioning_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_printsupport.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_printsupport_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_qml.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_qml_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_qmldebug_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_qmldevtools_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_qmltest.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_qmltest_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_quick.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_quick_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_quickcontrols2.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_quickparticles_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_quickwidgets.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_quickwidgets_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_scxml.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_scxml_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_sensors.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_sensors_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_serialbus.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_serialbus_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_serialport.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_serialport_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_sql.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_sql_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_svg.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_svg_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_testlib.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_testlib_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_theme_support_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_uiplugin.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_uitools.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_uitools_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_webchannel.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_webchannel_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_websockets.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_websockets_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_webview.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_webview_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_widgets.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_widgets_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_winextras.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_winextras_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_xml.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_xml_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_xmlpatterns.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\modules\qt_lib_zlib_private.pri D:\Qt\5.9.8\msvc2017_64\mkspecs\features\qt_functions.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\qt_config.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\win32-msvc\qmake.conf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\spec_post.prf .qmake.stash D:\Qt\5.9.8\msvc2017_64\mkspecs\features\exclusive_builds.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\common\msvc-version.conf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\toolchain.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\default_pre.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\win32\default_pre.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\resolve_config.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\exclusive_builds_post.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\default_post.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\build_pass.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\qml_debug.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\precompile_header.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\warn_on.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\qt.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\resources.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\moc.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\win32\opengl.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\uic.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\qmake_use.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\file_copies.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\win32\windows.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\testcase_targets.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\exceptions.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\yacc.prf D:\Qt\5.9.8\msvc2017_64\mkspecs\features\lex.prf ..\Game\Game.pro D:\Qt\5.9.8\msvc2017_64\lib\qtmaind.prl D:\Qt\5.9.8\msvc2017_64\lib\Qt5Widgetsd.prl D:\Qt\5.9.8\msvc2017_64\lib\Qt5Guid.prl D:\Qt\5.9.8\msvc2017_64\lib\Qt5Networkd.prl D:\Qt\5.9.8\msvc2017_64\lib\Qt5Cored.prl    D:\Qt\5.9.8\msvc2017_64\mkspecs\features\data\dummy.cpp ..\Mutual\action.h ..\Mutual\actions\affair.h ..\Mutual\actions\allactions.h ..\Mutual\actions\eu.h ..\Mutual\actions\localbiznesman.h ..\Mutual\actions\media.h ..\Mutual\actions\onz.h ..\Mutual\actions\police.h ..\Mutual\actions\protest.h ..\Mutual\actions\russia.h ..\Mutual\actions\usa.h ..\Mutual\card.h ..\Mutual\player.h ..\Game\chatclient.h ..\Game\gamelogic.h ..\Game\mainwindow.h ..\Mutual\action.cpp ..\Mutual\actions\affair.cpp ..\Mutual\actions\eu.cpp ..\Mutual\actions\localbiznesman.cpp ..\Mutual\actions\media.cpp ..\Mutual\actions\onz.cpp ..\Mutual\actions\police.cpp ..\Mutual\actions\protest.cpp ..\Mutual\actions\russia.cpp ..\Mutual\actions\usa.cpp ..\Mutual\card.cpp ..\Mutual\player.cpp ..\Game\chatclient.cpp ..\Game\gamelogic.cpp ..\Game\main.cpp ..\Game\mainwindow.cpp ..\Game\mainwindow.ui    
 
 clean: compiler_clean 
 	-$(DEL_FILE) debug\action.obj debug\affair.obj debug\eu.obj debug\localbiznesman.obj debug\media.obj debug\onz.obj debug\police.obj debug\protest.obj debug\russia.obj debug\usa.obj debug\card.obj debug\player.obj debug\chatclient.obj debug\gamelogic.obj debug\main.obj debug\mainwindow.obj debug\moc_action.obj debug\moc_player.obj debug\moc_chatclient.obj debug\moc_gamelogic.obj debug\moc_mainwindow.obj
@@ -451,7 +452,10 @@ debug\moc_chatclient.cpp: D:\Qt\5.9.8\msvc2017_64\include\QtCore\QObject \
 		D:\Qt\5.9.8\msvc2017_64\bin\moc.exe
 	D:\Qt\5.9.8\msvc2017_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include debug/moc_predefs.h -ID:/Qt/5.9.8/msvc2017_64/mkspecs/win32-msvc -IC:/Users/Kaczmii/Documents/ZPR/ZPR-Projekt/src/Game -ID:/Qt/5.9.8/msvc2017_64/include -ID:/Qt/5.9.8/msvc2017_64/include/QtWidgets -ID:/Qt/5.9.8/msvc2017_64/include/QtGui -ID:/Qt/5.9.8/msvc2017_64/include/QtANGLE -ID:/Qt/5.9.8/msvc2017_64/include/QtNetwork -ID:/Qt/5.9.8/msvc2017_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\cppwinrt" ..\Game\chatclient.h -o debug\moc_chatclient.cpp
 
-debug\moc_gamelogic.cpp: D:\Qt\5.9.8\msvc2017_64\include\QtCore\QObject \
+debug\moc_gamelogic.cpp: ..\Mutual\actions\allactions.h \
+		..\Mutual\actions\affair.h \
+		..\Mutual\action.h \
+		D:\Qt\5.9.8\msvc2017_64\include\QtCore\QObject \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobjectdefs.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qnamespace.h \
@@ -498,6 +502,14 @@ debug\moc_gamelogic.cpp: D:\Qt\5.9.8\msvc2017_64\include\QtCore\QObject \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qvarlengtharray.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qcontainerfwd.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject_impl.h \
+		..\Mutual\actions\eu.h \
+		..\Mutual\actions\localbiznesman.h \
+		..\Mutual\actions\media.h \
+		..\Mutual\actions\onz.h \
+		..\Mutual\actions\police.h \
+		..\Mutual\actions\protest.h \
+		..\Mutual\actions\russia.h \
+		..\Mutual\actions\usa.h \
 		..\Game\gamelogic.h \
 		debug\moc_predefs.h \
 		D:\Qt\5.9.8\msvc2017_64\bin\moc.exe
@@ -687,6 +699,7 @@ debug\action.obj: ..\Mutual\action.cpp ../Mutual/action.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject_impl.h
 
 debug\affair.obj: ..\Mutual\actions\affair.cpp ../Mutual/actions/affair.h \
+		../Mutual/action.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\QObject \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobjectdefs.h \
@@ -736,6 +749,7 @@ debug\affair.obj: ..\Mutual\actions\affair.cpp ../Mutual/actions/affair.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject_impl.h
 
 debug\eu.obj: ..\Mutual\actions\eu.cpp ../Mutual/actions/eu.h \
+		../Mutual/action.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\QObject \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobjectdefs.h \
@@ -785,6 +799,7 @@ debug\eu.obj: ..\Mutual\actions\eu.cpp ../Mutual/actions/eu.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject_impl.h
 
 debug\localbiznesman.obj: ..\Mutual\actions\localbiznesman.cpp ../Mutual/actions/localbiznesman.h \
+		../Mutual/action.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\QObject \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobjectdefs.h \
@@ -834,6 +849,7 @@ debug\localbiznesman.obj: ..\Mutual\actions\localbiznesman.cpp ../Mutual/actions
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject_impl.h
 
 debug\media.obj: ..\Mutual\actions\media.cpp ../Mutual/actions/media.h \
+		../Mutual/action.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\QObject \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobjectdefs.h \
@@ -883,6 +899,7 @@ debug\media.obj: ..\Mutual\actions\media.cpp ../Mutual/actions/media.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject_impl.h
 
 debug\onz.obj: ..\Mutual\actions\onz.cpp ../Mutual/actions/onz.h \
+		../Mutual/action.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\QObject \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobjectdefs.h \
@@ -932,6 +949,7 @@ debug\onz.obj: ..\Mutual\actions\onz.cpp ../Mutual/actions/onz.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject_impl.h
 
 debug\police.obj: ..\Mutual\actions\police.cpp ../Mutual/actions/police.h \
+		../Mutual/action.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\QObject \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobjectdefs.h \
@@ -981,6 +999,7 @@ debug\police.obj: ..\Mutual\actions\police.cpp ../Mutual/actions/police.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject_impl.h
 
 debug\protest.obj: ..\Mutual\actions\protest.cpp ../Mutual/actions/protest.h \
+		../Mutual/action.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\QObject \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobjectdefs.h \
@@ -1030,6 +1049,7 @@ debug\protest.obj: ..\Mutual\actions\protest.cpp ../Mutual/actions/protest.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject_impl.h
 
 debug\russia.obj: ..\Mutual\actions\russia.cpp ../Mutual/actions/russia.h \
+		../Mutual/action.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\QObject \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobjectdefs.h \
@@ -1079,6 +1099,7 @@ debug\russia.obj: ..\Mutual\actions\russia.cpp ../Mutual/actions/russia.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject_impl.h
 
 debug\usa.obj: ..\Mutual\actions\usa.cpp ../Mutual/actions/usa.h \
+		../Mutual/action.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\QObject \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobjectdefs.h \
@@ -1304,6 +1325,9 @@ debug\chatclient.obj: ..\Game\chatclient.cpp ../Game/chatclient.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\QJsonValue
 
 debug\gamelogic.obj: ..\Game\gamelogic.cpp ../Game/gamelogic.h \
+		../Mutual/actions/allactions.h \
+		../Mutual/actions/affair.h \
+		../Mutual/action.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\QObject \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobjectdefs.h \
@@ -1350,7 +1374,15 @@ debug\gamelogic.obj: ..\Game\gamelogic.cpp ../Game/gamelogic.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qmetatype.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qvarlengtharray.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qcontainerfwd.h \
-		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject_impl.h
+		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject_impl.h \
+		../Mutual/actions/eu.h \
+		../Mutual/actions/localbiznesman.h \
+		../Mutual/actions/media.h \
+		../Mutual/actions/onz.h \
+		../Mutual/actions/police.h \
+		../Mutual/actions/protest.h \
+		../Mutual/actions/russia.h \
+		../Mutual/actions/usa.h
 
 debug\main.obj: ..\Game\main.cpp ../Game/mainwindow.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtWidgets\QWidget \
@@ -1584,6 +1616,17 @@ debug\mainwindow.obj: ..\Game\mainwindow.cpp ../Game/mainwindow.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtNetwork\QTcpSocket \
 		D:\Qt\5.9.8\msvc2017_64\include\QtNetwork\qtcpsocket.h \
 		../Game/gamelogic.h \
+		../Mutual/actions/allactions.h \
+		../Mutual/actions/affair.h \
+		../Mutual/action.h \
+		../Mutual/actions/eu.h \
+		../Mutual/actions/localbiznesman.h \
+		../Mutual/actions/media.h \
+		../Mutual/actions/onz.h \
+		../Mutual/actions/police.h \
+		../Mutual/actions/protest.h \
+		../Mutual/actions/russia.h \
+		../Mutual/actions/usa.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtGui\QStandardItemModel \
 		D:\Qt\5.9.8\msvc2017_64\include\QtGui\qstandarditemmodel.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qabstractitemmodel.h \

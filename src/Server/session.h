@@ -8,6 +8,7 @@
 
 #include <QObject>
 
+
 class Session: public QObject
 {
 //    Q_OBJECT

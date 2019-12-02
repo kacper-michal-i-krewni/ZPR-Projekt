@@ -703,6 +703,7 @@ release\action.obj: ..\Mutual\action.cpp ../Mutual/action.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject_impl.h
 
 release\affair.obj: ..\Mutual\actions\affair.cpp ../Mutual/actions/affair.h \
+		../Mutual/action.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\QObject \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobjectdefs.h \
@@ -752,6 +753,7 @@ release\affair.obj: ..\Mutual\actions\affair.cpp ../Mutual/actions/affair.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject_impl.h
 
 release\eu.obj: ..\Mutual\actions\eu.cpp ../Mutual/actions/eu.h \
+		../Mutual/action.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\QObject \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobjectdefs.h \
@@ -801,6 +803,7 @@ release\eu.obj: ..\Mutual\actions\eu.cpp ../Mutual/actions/eu.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject_impl.h
 
 release\localbiznesman.obj: ..\Mutual\actions\localbiznesman.cpp ../Mutual/actions/localbiznesman.h \
+		../Mutual/action.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\QObject \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobjectdefs.h \
@@ -850,6 +853,7 @@ release\localbiznesman.obj: ..\Mutual\actions\localbiznesman.cpp ../Mutual/actio
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject_impl.h
 
 release\media.obj: ..\Mutual\actions\media.cpp ../Mutual/actions/media.h \
+		../Mutual/action.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\QObject \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobjectdefs.h \
@@ -899,6 +903,7 @@ release\media.obj: ..\Mutual\actions\media.cpp ../Mutual/actions/media.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject_impl.h
 
 release\onz.obj: ..\Mutual\actions\onz.cpp ../Mutual/actions/onz.h \
+		../Mutual/action.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\QObject \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobjectdefs.h \
@@ -948,6 +953,7 @@ release\onz.obj: ..\Mutual\actions\onz.cpp ../Mutual/actions/onz.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject_impl.h
 
 release\police.obj: ..\Mutual\actions\police.cpp ../Mutual/actions/police.h \
+		../Mutual/action.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\QObject \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobjectdefs.h \
@@ -997,6 +1003,7 @@ release\police.obj: ..\Mutual\actions\police.cpp ../Mutual/actions/police.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject_impl.h
 
 release\protest.obj: ..\Mutual\actions\protest.cpp ../Mutual/actions/protest.h \
+		../Mutual/action.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\QObject \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobjectdefs.h \
@@ -1046,6 +1053,7 @@ release\protest.obj: ..\Mutual\actions\protest.cpp ../Mutual/actions/protest.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject_impl.h
 
 release\russia.obj: ..\Mutual\actions\russia.cpp ../Mutual/actions/russia.h \
+		../Mutual/action.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\QObject \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobjectdefs.h \
@@ -1095,6 +1103,7 @@ release\russia.obj: ..\Mutual\actions\russia.cpp ../Mutual/actions/russia.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject_impl.h
 
 release\usa.obj: ..\Mutual\actions\usa.cpp ../Mutual/actions/usa.h \
+		../Mutual/action.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\QObject \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobjectdefs.h \
@@ -1626,8 +1635,11 @@ release\serverwindow.obj: ..\Server\serverwindow.cpp ../Server/serverwindow.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtWidgets\qdialog.h
 
 release\session.obj: ..\Server\session.cpp ../Server/session.h \
-		D:\Qt\5.9.8\msvc2017_64\include\QtCore\QTimer \
-		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qtimer.h \
+		../Mutual/action.h \
+		D:\Qt\5.9.8\msvc2017_64\include\QtCore\QObject \
+		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject.h \
+		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobjectdefs.h \
+		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qnamespace.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qglobal.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qconfig-bootstrapped.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qconfig.h \
@@ -1649,10 +1661,6 @@ release\session.obj: ..\Server\session.cpp ../Server/session.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qmutex.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qnumeric.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qversiontagging.h \
-		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qbasictimer.h \
-		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qnamespace.h \
-		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject.h \
-		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobjectdefs.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobjectdefs_impl.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qstring.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qchar.h \
@@ -1675,7 +1683,11 @@ release\session.obj: ..\Server\session.cpp ../Server/session.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qvarlengtharray.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qcontainerfwd.h \
 		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qobject_impl.h \
-		D:\Qt\5.9.8\msvc2017_64\include\QtCore\QObject
+		../Mutual/player.h \
+		../Mutual/card.h \
+		D:\Qt\5.9.8\msvc2017_64\include\QtCore\QTimer \
+		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qtimer.h \
+		D:\Qt\5.9.8\msvc2017_64\include\QtCore\qbasictimer.h
 
 release\moc_action.obj: release\moc_action.cpp 
 
