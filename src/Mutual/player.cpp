@@ -4,3 +4,38 @@ Player::Player( std::string nick, double money, int lifes, bool enabled): _nick(
 {
 
 }
+
+double Player::getMoney()
+{
+    return _money;
+}
+double Player::setMoney( double amount )
+{
+    _money = amount;
+    return _money;
+}
+const std::string Player::getNick()
+{
+    return _nick;
+}
+int Player::getLifes()
+{
+    return _lifes;
+}
+int Player::DecrementLifes()
+{
+    return --_lifes;
+}
+int Player::setLifes( int amount )
+{
+    return _lifes=amount;
+}
+void Player::setServerWorker( ServerWorker* serverWorker )
+{
+    *_serverWorker = serverWorker;
+}
+
+~Player::Player()
+{
+
+}

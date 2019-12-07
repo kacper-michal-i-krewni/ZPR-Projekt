@@ -2,7 +2,8 @@
 #define ACTION_H
 
 #include <QObject>
-
+#include <memory>
+class Player;
 /*!
  * \brief The Action class that is a base class for each action in game.
  *
@@ -39,6 +40,7 @@ private:
      */
     bool IndicatePlayer;
 
+    std::shared_ptr<Player> _player;
 };
 
 #endif // ACTION_H

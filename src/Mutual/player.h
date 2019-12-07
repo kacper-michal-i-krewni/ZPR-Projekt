@@ -4,6 +4,8 @@
 #include "card.h"
 #include <memory>
 #include <QObject>
+#include <QVector>
+#include <serverworker.h>
 
 
 /*!
@@ -55,8 +57,15 @@ public:
      * \return value of _lives after decrement
      */
     int setLifes( int amount );
-
-    ~Player(){}
+    /*!
+     * \brief setServerWorker is a function that set _serverWorker if player is connecting to a game
+     * \param serverWorker is a pointer to serverworker
+     */
+    void setServerWorker( ServerWorker* serverWorker );
+    /*!
+     * \brief ~Player is a Player destructor
+     */
+    ~Player();
 private:
     /*!
      * \brief _nick is a strong with player's nickname
@@ -77,7 +86,11 @@ private:
     /*!
      * \brief _cards is a vector that contains which cards player has.
      */
-    std::vector<std::shared_ptr<Card>> _cards;
+    QVector<std::shared_ptr<Card>> _cards;
+    /*!
+     * \brief _serverWorker is a representation of connection in server
+     */
+    std::shared_ptr<ServerWorker*> _serverWorker;
 
 };
 

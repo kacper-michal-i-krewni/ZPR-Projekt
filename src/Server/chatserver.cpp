@@ -6,6 +6,8 @@
 #include <QJsonObject>
 #include <QJsonValue>
 #include <QTimer>
+#include "session.h"
+
 ChatServer::ChatServer(QObject *parent)
     : QTcpServer(parent)
 {}
