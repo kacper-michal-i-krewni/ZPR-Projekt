@@ -35,7 +35,7 @@ void Player::setServerWorker( ServerWorker* serverWorker )
     *_serverWorker = serverWorker;
 }
 
-~Player::Player()
+Player::~Player()
 {
 
 }
