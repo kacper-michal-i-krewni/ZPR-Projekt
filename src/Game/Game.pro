@@ -16,40 +16,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    ../Mutual/action.cpp \
-    ../Mutual/actions/affair.cpp \
-    ../Mutual/actions/eu.cpp \
-    ../Mutual/actions/localbiznesman.cpp \
-    ../Mutual/actions/media.cpp \
-    ../Mutual/actions/onz.cpp \
-    ../Mutual/actions/police.cpp \
-    ../Mutual/actions/protest.cpp \
-    ../Mutual/actions/russia.cpp \
-    ../Mutual/actions/usa.cpp \
-    ../Mutual/card.cpp \
-    ../Mutual/player.cpp \
+    actions.cpp \
     chatclient.cpp \
     gamelogic.cpp \
     main.cpp \
     mainwindow.cpp \
+    player.cpp
 
 HEADERS += \
-    ../Mutual/action.h \
-    ../Mutual/actions/affair.h \
-    ../Mutual/actions/allactions.h \
-    ../Mutual/actions/eu.h \
-    ../Mutual/actions/localbiznesman.h \
-    ../Mutual/actions/media.h \
-    ../Mutual/actions/onz.h \
-    ../Mutual/actions/police.h \
-    ../Mutual/actions/protest.h \
-    ../Mutual/actions/russia.h \
-    ../Mutual/actions/usa.h \
-    ../Mutual/card.h \
-    ../Mutual/player.h \
+    actions.h \
     chatclient.h \
     gamelogic.h \
     mainwindow.h \
+    player.h
 
 FORMS += \
     mainwindow.ui

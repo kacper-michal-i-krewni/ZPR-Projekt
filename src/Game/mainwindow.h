@@ -8,6 +8,7 @@
 class ChatClient;
 class QStandardItemModel;
 class GameLogic;
+class Actions;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -45,6 +46,10 @@ private:
      * \brief m_gameLogic - pointer to correlated gameLogic object
      */
     GameLogic *m_gameLogic;
+
+
+    Actions *m_actions;
+
     /*!
      * \brief m_lastUserName
      */

@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 #include "chatclient.h"
 #include "gamelogic.h"
-#include "../Mutual/actions/allactions.h"
+#include "actions.h"
 
 #include <QStandardItemModel>
 #include <QInputDialog>
@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     , m_chatClient(new ChatClient(this))
     , m_chatModel(new QStandardItemModel(this))
     , m_gameLogic( new GameLogic(this))
+    , m_actions( new Actions(m_chatClient))
 {
     // set up of the .ui file
     ui->setupUi(this);
@@ -43,15 +44,15 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->sendButton, &QPushButton::clicked, this, &MainWindow::sendMessage);
     connect(ui->lineEdit, &QLineEdit::returnPressed, this, &MainWindow::sendMessage);
     // connect all actions buttons
-    connect(ui->usaButton, &QPushButton::clicked, &m_gameLogic->_usa, &USA::action);
-    connect(ui->usaButton, &QPushButton::clicked, &m_gameLogic->_localBiznesman, &LocalBiznesman::action);
-    connect(ui->usaButton, &QPushButton::clicked, &m_gameLogic->_affair, &Affair::action);
-    connect(ui->usaButton, &QPushButton::clicked, &m_gameLogic->_russia, &Russia::action);
-    connect(ui->usaButton, &QPushButton::clicked, &m_gameLogic->_protest, &Protest::action);
-    connect(ui->usaButton, &QPushButton::clicked, &m_gameLogic->_media, &Media::action);
-    connect(ui->usaButton, &QPushButton::clicked, &m_gameLogic->_onz, &ONZ::action);
-    connect(ui->usaButton, &QPushButton::clicked, &m_gameLogic->_police, &Police::action);
-    connect(ui->usaButton, &QPushButton::clicked, &m_gameLogic->_eu, &EU::action);
+    connect(ui->affairButton, &QPushButton::clicked, m_actions, &Actions::affair);
+    connect(ui->euButton, &QPushButton::clicked, m_actions, &Actions::eu);
+    connect(ui->localBiznesmanButton, &QPushButton::clicked, m_actions, &Actions::localBiznesman);
+    connect(ui->mediaButton, &QPushButton::clicked, m_actions, &Actions::media);
+    connect(ui->onzButton, &QPushButton::clicked, m_actions, &Actions::onz);
+    connect(ui->policeButton, &QPushButton::clicked, m_actions, &Actions::police);
+    connect(ui->protestButton, &QPushButton::clicked, m_actions, &Actions::protest);
+    connect(ui->russiaButton, &QPushButton::clicked, m_actions, &Actions::russia);
+    connect(ui->usaButton, &QPushButton::clicked, m_actions, &Actions::usa);
 
     ui->sendButton->setEnabled(false);
     ui->lineEdit->setEnabled(false);
@@ -110,6 +111,7 @@ void MainWindow::loggedIn()
     ui->sendButton->setEnabled(true);
     ui->lineEdit->setEnabled(true);
     ui->chatView->setEnabled(true);
+    ui->usaButton->setEnabled(true);
     // clear the user name record
     m_lastUserName.clear();
 }

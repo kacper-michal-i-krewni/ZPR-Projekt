@@ -1,7 +1,7 @@
 #ifndef GAMELOGIC_H
 #define GAMELOGIC_H
-#include "../Mutual/actions/allactions.h"
 
+class Player;
 #include <QObject>
 
 /*!
@@ -15,16 +15,9 @@ class GameLogic: public QObject
     Q_DISABLE_COPY(GameLogic)
 public:
     explicit GameLogic(QObject *parent = nullptr);
-public:
-    const USA _usa;
-    const LocalBiznesman _localBiznesman;
-    const Affair _affair;
-    const Russia _russia;
-    const Protest _protest;
-    const Media _media;
-    const ONZ _onz;
-    const Police _police;
-    const EU _eu;
+
+private:
+    std::shared_ptr<Player> _player;
 
 };
 

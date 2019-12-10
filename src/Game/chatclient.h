@@ -28,6 +28,9 @@ public:
      * \return nickname of client
      */
     const QString getNickname() const;
+
+
+    QTcpSocket* getQTcpSocket() const;
 public slots:
     /*!
      * \brief connectToServer - connects client application to a specific host

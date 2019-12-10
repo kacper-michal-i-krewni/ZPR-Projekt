@@ -1,14 +1,8 @@
-#ifndef ACTION_H
-#define ACTION_H
+#ifndef ACTIONS_H
+#define ACTIONS_H
 
 #include <QObject>
-#include <memory>
-#include <QDataStream>
-#include <QJsonDocument>
-#include <QJsonObject>
-#include "chatclient.h"
-
-#include "gameplayer.h"
+class ChatClient;
 /*!
  * \brief The Action class that is a base class for each action in game.
  *
@@ -18,17 +12,8 @@ class Actions: public QObject
 {
     Q_OBJECT
 public:
-    /*!
-     * \brief Action constructor.
-     *
-     * It does nothing.
-     */
-    Actions();
-    /*!
-     * \brief Action destructor.
-     *
-     * It is vitrual, because it needs to destroy lower objects in hierarchy.
-     */
+
+    Actions(ChatClient *chatClient);
     virtual ~Actions();
 public slots:
     void affair();
@@ -40,9 +25,8 @@ public slots:
     void protest();
     void russia();
     void usa();
-
 private:
-    GamePlayer *_player;
+    ChatClient *m_chatClient;
 };
 
-#endif // ACTION_H
+#endif // ACTIONS_H

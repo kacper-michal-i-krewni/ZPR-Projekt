@@ -22,6 +22,18 @@ ChatClient::ChatClient(QObject *parent)
     connect(m_clientSocket, &QTcpSocket::disconnected, this, [this]()->void{m_loggedIn = false;});
 }
 
+
+QTcpSocket* ChatClient::getQTcpSocket() const
+{
+    return m_clientSocket;
+}
+
+const QString ChatClient::getNickname() const
+{
+    return nickname;
+}
+
+
 void ChatClient::login(const QString &userName)
 {
     if (m_clientSocket->state() == QAbstractSocket::ConnectedState) { // if the client is connected
@@ -149,11 +161,6 @@ void ChatClient::onReadyRead()
             break;
         }
     }
-}
-
-const QString ChatClient::getNickname() const
-{
-    return nickname;
 }
 
 void ChatClient::disconnect()

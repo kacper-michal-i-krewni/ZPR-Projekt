@@ -2,13 +2,12 @@
 #define SESSION_H
 
 #include "../Mutual/action.h"
-#include "../Mutual/player.h"
 #include <memory>
 #include <QTimer>
 
 #include <QObject>
 
-
+class Player;
 class Session: public QObject
 {
 //    Q_OBJECT
@@ -17,7 +16,6 @@ public:
     //enum PlayerData{
     //    MONEY, LIFES, ACTION, /*ACTION_DESTINATION,*/ CARDS
     //};
-    std::vector<Player> getPlayers();
     virtual ~Session(){}
 
 public slots:
@@ -41,7 +39,6 @@ signals:
 
 
 private:
-    std::vector<std::shared_ptr<Player>> _players;
     QTimer _timer;
     //void wait();
 
