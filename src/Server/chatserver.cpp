@@ -126,19 +126,36 @@ void ChatServer::jsonFromLoggedIn(ServerWorker *sender, const QJsonObject &docOb
     const QJsonValue typeVal = docObj.value(QLatin1String("type"));
     if (typeVal.isNull() || !typeVal.isString())
         return;
-    if (typeVal.toString().compare(QLatin1String("message"), Qt::CaseInsensitive) != 0)
-        return;
-    const QJsonValue textVal = docObj.value(QLatin1String("text"));
-    if (textVal.isNull() || !textVal.isString())
-        return;
-    const QString text = textVal.toString().trimmed();
-    if (text.isEmpty())
-        return;
-    QJsonObject message;
-    message["type"] = QStringLiteral("message");
-    message["text"] = text;
-    message["sender"] = sender->userName();
-    broadcast(message, sender);
+    if ( typeVal.toString().compare(QLatin1String("action"), Qt::CaseInsensitive) == 0)
+    {
+        const QJsonValue textVal = docObj.value(QLatin1String("text"));
+        if (textVal.isNull() || !textVal.isString())
+            return;
+        const QString text = textVal.toString().trimmed();
+        if (text.isEmpty())
+            return;
+        QJsonObject message;
+        message["type"] = QStringLiteral("action");
+        message["text"] = text;
+        message["sender"] = sender->userName();
+        //broadcast(message, sender);
+        broadcast(message, nullptr);
+    }
+
+    if (typeVal.toString().compare(QLatin1String("message"), Qt::CaseInsensitive) == 0)
+    {
+        const QJsonValue textVal = docObj.value(QLatin1String("text"));
+        if (textVal.isNull() || !textVal.isString())
+            return;
+        const QString text = textVal.toString().trimmed();
+        if (text.isEmpty())
+            return;
+        QJsonObject message;
+        message["type"] = QStringLiteral("message");
+        message["text"] = text;
+        message["sender"] = sender->userName();
+        broadcast(message, sender);
+    }
 }
 
 

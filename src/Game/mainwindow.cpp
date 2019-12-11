@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "chatclient.h"
-#include "gamelogic.h"
 #include "actions.h"
 
 #include <QStandardItemModel>
@@ -14,7 +13,6 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
     , m_chatClient(new ChatClient(this))
     , m_chatModel(new QStandardItemModel(this))
-    , m_gameLogic( new GameLogic(this))
     , m_actions( new Actions(m_chatClient))
 {
     // set up of the .ui file
@@ -32,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_chatClient, &ChatClient::error, this, &MainWindow::error);
     connect(m_chatClient, &ChatClient::userJoined, this, &MainWindow::userJoined);
     connect(m_chatClient, &ChatClient::userLeft, this, &MainWindow::userLeft);
+    connect(m_chatClient, &ChatClient::actionExecute, this, &MainWindow::actionExecute);
     // connect the create game action to slot that will attempt creating game
     connect(ui->createGameAction, &QAction::triggered, this, &MainWindow::createGame);
     // connect the connect action to a slot that will attempt the connection
@@ -343,4 +342,9 @@ void MainWindow::tooglePlayerInterface(bool b)
     ui->check1->setEnabled(b);
     ui->block2->setEnabled(b);
     ui->check2->setEnabled(b);
+}
+
+void MainWindow::actionExecute(const QString &sender, const QString &action)
+{
+    QMessageBox::warning(this, tr(sender.toUtf8().constData()), tr(action.toUtf8().constData()));
 }

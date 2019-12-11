@@ -18,7 +18,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     actions.cpp \
     chatclient.cpp \
-    gamelogic.cpp \
     main.cpp \
     mainwindow.cpp \
     player.cpp
@@ -26,7 +25,6 @@ SOURCES += \
 HEADERS += \
     actions.h \
     chatclient.h \
-    gamelogic.h \
     mainwindow.h \
     player.h
 

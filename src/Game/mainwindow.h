@@ -118,6 +118,7 @@ private slots:
      */
     void createGame();
     void tooglePlayerInterface(bool b);
+    void actionExecute(const QString &sender, const QString &action);
 
 };
 #endif // MAINWINDOW_H

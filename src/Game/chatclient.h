@@ -101,6 +101,9 @@ signals:
      * \param username
      */
     void userLeft(const QString &username);
+
+
+    void actionExecute(const QString &sender, const QString &action);
 private:
     /*!
      * \brief m_clientSocket - the socket that is bound to the specific client.
