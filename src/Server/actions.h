@@ -1,7 +1,14 @@
 #ifndef ACTIONS_H
 #define ACTIONS_H
 
+
 #include <QObject>
+#include <map>
+
+class Player;
+
+
+
 /*!
  * \brief The Action class that is a base class for each action in game.
  *
@@ -11,20 +18,26 @@ class Actions: public QObject
 {
     Q_OBJECT
 public:
-
+    typedef void (Actions::*functionPointer)(Player*, Player*);
     Actions();
     virtual ~Actions();
-public slots:
-    void affair();
-    void eu();
-    void localBiznesman();
-    void media();
-    void onz();
-    void police();
-    void protest();
-    void russia();
-    void usa();
+    std::map<std::string, functionPointer> getMap();
+//public slots:
+    void affair(Player *executer, Player *victim = nullptr); // if action doesnt need viction the pointer will be nullptr
+    void eu(Player *executer, Player *victim = nullptr);
+    void localBiznesman(Player *executer, Player *victim = nullptr);
+    void media(Player *executer, Player *victim = nullptr);
+    void onz(Player *executer, Player *victim = nullptr);
+    void police(Player *executer, Player *victim = nullptr);
+    void protest(Player *executer, Player *victim = nullptr);
+    void russia(Player *executer, Player *victim = nullptr);
+    void usa(Player *executer, Player *victim = nullptr);
 private:
+
+    std::map<std::string, functionPointer> _actionsMap;
+    void fillMap();
+
+
 };
 
 #endif // ACTIONS_H
