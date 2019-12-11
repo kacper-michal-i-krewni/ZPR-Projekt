@@ -19,14 +19,12 @@ SOURCES += \
     actions.cpp \
     chatclient.cpp \
     main.cpp \
-    mainwindow.cpp \
-    player.cpp
+    mainwindow.cpp
 
 HEADERS += \
     actions.h \
     chatclient.h \
-    mainwindow.h \
-    player.h
+    mainwindow.h
 
 FORMS += \
     mainwindow.ui
