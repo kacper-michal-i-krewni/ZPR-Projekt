@@ -10,7 +10,7 @@ if(CMAKE_VERSION VERSION_LESS "3.7.0")
     set(CMAKE_INCLUDE_CURRENT_DIR ON)
 endif()
 
-find_packahe(Qt5 COMPONENTS Core REQUIRED)
+find_package(Qt5 COMPONENTS Core REQUIRED)
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt5 COMPONENTS Gui REQUIRED)
 find_package(Qt5 COMPONENTS Network REQUIRED)
@@ -19,7 +19,6 @@ add_executable(Game
     mainwindow.ui
     actions.cpp
     chatclient.cpp 
-    gamelogic.cpp 
     main.cpp 
     mainwindow.cpp 
 )
