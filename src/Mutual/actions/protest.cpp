@@ -2,7 +2,9 @@
 
 Protest::Protest()
 {
-
+    _indicatePlayer = true;
+    _name = "protest";
+    _blockers.push_front("eu");
 }
 
 

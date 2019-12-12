@@ -2,6 +2,8 @@
 #define ACTION_H
 
 #include <QObject>
+#include <QString>
+#include <QVector>
 #include <memory>
 class Player;
 /*!
@@ -19,6 +21,9 @@ public:
      * It does nothing.
      */
     Action();
+
+    bool isBlockedBy(QString &name);
+    bool isBlocking(QString &name);
     /*!
      * \brief Action destructor.
      *
@@ -32,15 +37,13 @@ public slots:
      * It is a core of this class. Thanks to virtual mechanism, it execute the right method for action.
      */
     virtual void action() = 0;
-private:
-    /*!
-     * \brief private variavle IndicatePlayer
-     *
-     * It says if action need to indicate player on board on which action is executed.
-     */
-    bool IndicatePlayer;
+protected:
 
-    std::shared_ptr<Player> _player;
+    bool _indicatePlayer;
+    QVector<QString> _blockers;
+    QVector<QString> _blocking;
+    QString _name;
+
 };
 
 #endif // ACTION_H

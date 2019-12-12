@@ -3,8 +3,10 @@
 
 #include <QTcpServer>
 #include <QVector>
+#include <memory>
 class QThread;
 class ServerWorker;
+class Actions;
 /*!
  * \brief The ChatServer class is a class that is responsible for Server actions like reciving jsons, send messages to everyone etc
  */
@@ -81,6 +83,7 @@ private:
      */
     void sendJson(ServerWorker *destination, const QJsonObject &message);
     QVector<ServerWorker *> m_clients;
+    std::shared_ptr<Actions> _actions;
 };
 
 #endif // CHATSERVER_H

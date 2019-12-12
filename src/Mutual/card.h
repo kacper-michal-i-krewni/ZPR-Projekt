@@ -10,7 +10,6 @@ class Card
 {
 public:
     explicit Card();
-
 };
 
 #endif // CARD_H

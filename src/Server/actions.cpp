@@ -1,4 +1,5 @@
 #include "actions.h"
+#include "player.h"
 
 
 Actions::Actions()
@@ -12,10 +13,20 @@ Actions::~Actions()
 
 }
 
+
+
+
 std::map<std::string, Actions::functionPointer> Actions::getMap()
 {
     return _actionsMap;
 }
+
+QVector<std::string> Actions::getCards()
+{
+    return _cards;
+}
+
+
 
 void Actions::affair(Player *executer, Player *victim)
 {
@@ -51,7 +62,8 @@ void Actions::russia(Player *executer, Player *victim)
 }
 void Actions::usa(Player *executer, Player *victim)
 {
-
+    int additionalMoney = 1;
+    executer->setMoney(executer->getMoney() + additionalMoney);
 }
 
 void Actions::fillMap()
@@ -67,3 +79,16 @@ void Actions::fillMap()
     _actionsMap["usa"] = &Actions::usa;
 
 }
+
+
+void Actions::fillCards()
+{
+    _cards.push_front("eu");
+    _cards.push_front("media");
+    _cards.push_front("onz");
+    _cards.push_front("police");
+    _cards.push_front("protest");
+    _cards.push_front("russia");
+
+}
+

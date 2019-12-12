@@ -3,6 +3,7 @@
 
 
 #include <QObject>
+#include "actions.h"
 
 
 /*!
@@ -75,6 +76,7 @@ private:
      * \brief _enabled says if player can make a move.
      */
     bool _enabled;
+    QVector<std::string> _cards;
 };
 
 #endif // PLAYER_H

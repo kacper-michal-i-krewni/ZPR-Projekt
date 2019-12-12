@@ -4,6 +4,7 @@
 
 #include <QObject>
 #include <map>
+#include <QVector>
 
 class Player;
 
@@ -22,6 +23,7 @@ public:
     Actions();
     virtual ~Actions();
     std::map<std::string, functionPointer> getMap();
+    QVector<std::string> getCards();
 //public slots:
     void affair(Player *executer, Player *victim = nullptr); // if action doesnt need viction the pointer will be nullptr
     void eu(Player *executer, Player *victim = nullptr);
@@ -33,10 +35,10 @@ public:
     void russia(Player *executer, Player *victim = nullptr);
     void usa(Player *executer, Player *victim = nullptr);
 private:
-
+    QVector<std::string> _cards;
     std::map<std::string, functionPointer> _actionsMap;
     void fillMap();
-
+    void fillCards();
 
 };
 

@@ -7,10 +7,14 @@
 #include <QJsonValue>
 #include <QTimer>
 #include "session.h"
+#include "actions.h"
 
 ChatServer::ChatServer(QObject *parent)
-    : QTcpServer(parent)
-{}
+    : QTcpServer(parent),
+       _actions( new Actions())
+{
+
+}
 
 void ChatServer::incomingConnection(qintptr socketDescriptor)
 {
@@ -135,6 +139,7 @@ void ChatServer::jsonFromLoggedIn(ServerWorker *sender, const QJsonObject &docOb
         if (text.isEmpty())
             return;
         QJsonObject message;
+        _actions->getMap[text](sender);
         message["type"] = QStringLiteral("action");
         message["text"] = text;
         message["sender"] = sender->userName();

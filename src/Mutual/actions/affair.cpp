@@ -2,6 +2,8 @@
 
 Affair::Affair()
 {
+    _indicatePlayer = true;
+    _name = "affair";
 
 }
 

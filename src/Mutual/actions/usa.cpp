@@ -2,7 +2,8 @@
 
 USA::USA()
 {
-
+    _indicatePlayer = false;
+    _name = "usa";
 }
 
 void USA::action()
