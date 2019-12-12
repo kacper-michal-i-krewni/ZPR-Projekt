@@ -17,23 +17,12 @@ find_package(Qt5 COMPONENTS Core REQUIRED)
 
 add_executable(Server
     serverwindow.ui
-    ../Mutual/action.cpp 
-    ../Mutual/actions/affair.cpp 
-    ../Mutual/actions/eu.cpp 
-    ../Mutual/actions/localbiznesman.cpp 
-    ../Mutual/actions/media.cpp 
-    ../Mutual/actions/onz.cpp 
-    ../Mutual/actions/police.cpp 
-    ../Mutual/actions/protest.cpp 
-    ../Mutual/actions/russia.cpp 
-    ../Mutual/actions/usa.cpp 
-    ../Mutual/card.cpp 
-    ../Mutual/player.cpp
     chatserver.cpp 
     servermain.cpp 
     serverworker.cpp 
     serverwindow.cpp 
     session.cpp
+    actions.cpp
 )
 
 target_link_libraries(Server Qt5::Widgets Qt5::Gui Qt5::Network Qt5::Core)
