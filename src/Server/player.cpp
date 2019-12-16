@@ -30,6 +30,10 @@ int Player::setLifes( int amount )
 {
     return _lifes=amount;
 }
+void Player::takeCard(std::shared_ptr<Card> card)
+{
+    _cards.push_back(card);
+}
 
 Player::~Player()
 {

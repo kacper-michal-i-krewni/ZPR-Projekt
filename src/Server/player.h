@@ -3,8 +3,11 @@
 
 
 #include <QObject>
+#include <memory>
 #include "actions.h"
 
+
+class Card;
 
 /*!
  * \brief The Player class.
@@ -58,6 +61,8 @@ public:
     /*!
      * \brief ~Player is a Player destructor
      */
+    void takeCard(std::shared_ptr<Card> card);
+
     ~Player();
 private:
     /*!
@@ -76,7 +81,7 @@ private:
      * \brief _enabled says if player can make a move.
      */
     bool _enabled;
-    QVector<std::string> _cards;
+    QVector<std::shared_ptr<Card>> _cards;
 };
 
 #endif // PLAYER_H

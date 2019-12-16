@@ -139,7 +139,7 @@ void ChatServer::jsonFromLoggedIn(ServerWorker *sender, const QJsonObject &docOb
         if (text.isEmpty())
             return;
         QJsonObject message;
-        _actions->getMap[text](sender);
+        //_actions->getMap[text](sender);
         message["type"] = QStringLiteral("action");
         message["text"] = text;
         message["sender"] = sender->userName();
