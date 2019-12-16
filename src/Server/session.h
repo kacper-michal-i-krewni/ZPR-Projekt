@@ -13,9 +13,6 @@ class Session: public QObject
 //    Q_OBJECT
 public:
     Session();
-    //enum PlayerData{
-    //    MONEY, LIFES, ACTION, /*ACTION_DESTINATION,*/ CARDS
-    //};
     virtual ~Session(){}
 
 public slots:

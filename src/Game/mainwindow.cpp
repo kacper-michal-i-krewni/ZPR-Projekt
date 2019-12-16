@@ -159,7 +159,7 @@ void MainWindow::messageReceived(const QString &sender, const QString &text)
 void MainWindow::sendMessage()
 {
     // we use the client to send the message that the user typed
-    m_chatClient->sendMessage(ui->lineEdit->text());
+    m_chatClient->sendChatMessage(ui->lineEdit->text());
     // now we add the message to the list
     // store the index of the new row to append to the model containing the messages
     const int newRow = m_chatModel->rowCount();
@@ -323,6 +323,8 @@ void MainWindow::createGame()
         , QLineEdit::Normal
         , QStringLiteral("4")
     );
+
+
 }
 
 void MainWindow::tooglePlayerInterface(bool b)

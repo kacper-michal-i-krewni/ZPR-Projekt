@@ -51,21 +51,25 @@ void ChatClient::login(const QString &userName)
     }
 }
 
-
-void ChatClient::sendMessage(const QString &text)
-{
-    if (text.isEmpty())
-        return; // We don't send empty messages
+void ChatClient::sendMessageToServer(const QJsonObject &message){
     // create a QDataStream operating on the socket
     QDataStream clientStream(m_clientSocket);
     // set the version so that programs compiled with different versions of Qt can agree on how to serialise
     clientStream.setVersion(QDataStream::Qt_5_7);
-    // Create the JSON we want to send
+
+    // send the JSON using QDataStream
+    clientStream << QJsonDocument(message).toJson();
+}
+void ChatClient::sendChatMessage(const QString &text)
+{
+    if (text.isEmpty())
+        return; // We don't send empty messages
+
     QJsonObject message;
     message["type"] = QStringLiteral("message");
     message["text"] = text;
-    // send the JSON using QDataStream
-    clientStream << QJsonDocument(message).toJson();
+
+    this->sendMessageToServer(message);
 }
 
 void ChatClient::disconnectFromHost()
@@ -188,4 +192,5 @@ void ChatClient::disconnect()
 {
     m_clientSocket->disconnectFromHost();
 }
+
 

@@ -47,7 +47,8 @@ public slots:
      * \brief sendMessage - sends message to server in order to forward this to other clients
      * \param text
      */
-    void sendMessage(const QString &text);
+    void sendMessageToServer(const QJsonObject &message);
+    void sendChatMessage(const QString &text);
     /*!
      * \brief disconnectFromHost - disconnects client socket from server
      */
