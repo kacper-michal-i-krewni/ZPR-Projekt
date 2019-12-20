@@ -38,28 +38,31 @@ void ChatClient::login(const QString &userName)
 {
     if (m_clientSocket->state() == QAbstractSocket::ConnectedState) { // if the client is connected
         // create a QDataStream operating on the socket
-        QDataStream clientStream(m_clientSocket);
+        // ! QDataStream clientStream(m_clientSocket);
         // set the version so that programs compiled with different versions of Qt can agree on how to serialise
-        clientStream.setVersion(QDataStream::Qt_5_7);
+        // ! clientStream.setVersion(QDataStream::Qt_5_7);
         // Create the JSON we want to send
         QJsonObject message;
         message["type"] = QStringLiteral("login");
         message["username"] = userName;
         nickname = userName;
+        this->sendMessageToServer(message);
         // send the JSON using QDataStream
-        clientStream << QJsonDocument(message).toJson(QJsonDocument::Compact);
+        // ! clientStream << QJsonDocument(message).toJson(QJsonDocument::Compact);
     }
 }
 
-void ChatClient::sendMessageToServer(const QJsonObject &message){
+void ChatClient::sendMessageToServer(const QJsonObject &message)
+{
     // create a QDataStream operating on the socket
     QDataStream clientStream(m_clientSocket);
     // set the version so that programs compiled with different versions of Qt can agree on how to serialise
     clientStream.setVersion(QDataStream::Qt_5_7);
 
     // send the JSON using QDataStream
-    clientStream << QJsonDocument(message).toJson();
+    clientStream << QJsonDocument(message).toJson(QJsonDocument::Compact);
 }
+
 void ChatClient::sendChatMessage(const QString &text)
 {
     if (text.isEmpty())

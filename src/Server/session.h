@@ -2,6 +2,7 @@
 #define SESSION_H
 
 #include "../Mutual/action.h"
+#include "serverworker.h"
 #include <memory>
 #include <QTimer>
 
@@ -10,10 +11,11 @@
 class Player;
 class Session: public QObject
 {
-//    Q_OBJECT
+    Q_OBJECT
 public:
     Session();
     virtual ~Session(){}
+    QVector<std::shared_ptr<ServerWorker>> getPlayers();
 
 public slots:
      void blockRequest(const Player &p1, const Player &p2);
@@ -36,7 +38,8 @@ signals:
 
 
 private:
-    QTimer _timer;
+    QVector<std::shared_ptr<ServerWorker>> _players;
+    //QTimer _timer;
     //void wait();
 
 

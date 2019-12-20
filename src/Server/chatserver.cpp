@@ -161,6 +161,12 @@ void ChatServer::jsonFromLoggedIn(ServerWorker *sender, const QJsonObject &docOb
         message["sender"] = sender->userName();
         broadcast(message, sender);
     }
+
+    if(typeVal.toString().compare(QLatin1String("session"), Qt::CaseInsensitive) == 0)
+    {
+        std::shared_ptr<Session> s;
+        _sessions.push_back(s);
+    }
 }
 
 

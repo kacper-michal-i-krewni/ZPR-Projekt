@@ -1,6 +1,8 @@
 #ifndef CHATSERVER_H
 #define CHATSERVER_H
 
+#include "session.h"
+
 #include <QTcpServer>
 #include <QVector>
 #include <memory>
@@ -84,6 +86,7 @@ private:
     void sendJson(ServerWorker *destination, const QJsonObject &message);
     QVector<ServerWorker *> m_clients;
     std::shared_ptr<Actions> _actions;
+    QVector<std::shared_ptr<Session>> _sessions;
 };
 
 #endif // CHATSERVER_H

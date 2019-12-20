@@ -324,6 +324,12 @@ void MainWindow::createGame()
         , QStringLiteral("4")
     );
 
+    QJsonObject message;
+    message["playerNumber"] = playerNumber;
+    message["text"] = QStringLiteral("createRequest");
+    message["type"] = QStringLiteral("session");
+
+    m_chatClient->sendMessageToServer(message);
 
 }
 
