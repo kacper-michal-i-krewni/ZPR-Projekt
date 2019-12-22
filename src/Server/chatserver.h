@@ -73,6 +73,9 @@ private:
      * \param sender is an user that disconnects
      * \param doc is an object that has message in json format
      */
+    void handleChatMessage(ServerWorker *sender, const QJsonObject &docObj);
+    void handleSessionMessage(ServerWorker *sender, const QJsonObject &docObj);
+    void handleActionMessage(ServerWorker *sender, const QJsonObject &docObj);
     void jsonFromLoggedOut(ServerWorker *sender, const QJsonObject &doc);
     /*!
      * \brief jsonFromLoggedIn is a function that handle conneting
