@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QMainWindow>
+#include <QJsonObject>
 #include <QAbstractSocket>
 
 class ChatClient;
