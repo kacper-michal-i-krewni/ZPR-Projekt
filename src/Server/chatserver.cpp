@@ -142,52 +142,66 @@ void ChatServer::jsonFromLoggedIn(ServerWorker *sender, const QJsonObject &docOb
         return;
     if ( typeVal.toString().compare(QLatin1String("action"), Qt::CaseInsensitive) == 0)
     {
-        const QJsonValue textVal = docObj.value(QLatin1String("text"));
-        if (textVal.isNull() || !textVal.isString())
-            return;
-        const QString text = textVal.toString().trimmed();
-        if (text.isEmpty())
-            return;
-        QJsonObject message;
-        //_actions->getMap[text](sender);
-        message["type"] = QStringLiteral("action");
-        message["text"] = text;
-        message["sender"] = sender->userName();
-        //broadcast(message, sender);
-        broadcast(message, nullptr);
+        handleActionMessage(sender, docObj);
     }
 
     if (typeVal.toString().compare(QLatin1String("message"), Qt::CaseInsensitive) == 0)
     {
-        const QJsonValue textVal = docObj.value(QLatin1String("text"));
-        if (textVal.isNull() || !textVal.isString())
-            return;
-        const QString text = textVal.toString().trimmed();
-        if (text.isEmpty())
-            return;
-        QJsonObject message;
-        message["type"] = QStringLiteral("message");
-        message["text"] = text;
-        message["sender"] = sender->userName();
-        broadcast(message, sender);
+        handleChatMessage(sender, docObj);
     }
 
     if(typeVal.toString().compare(QLatin1String("session"), Qt::CaseInsensitive) == 0)
     {
-        const QJsonValue numOfPlayers = docObj.value(QLatin1String("playerNumber"));
-        if (numOfPlayers.isNull() || !numOfPlayers.isString())
-            return;
-        int num = numOfPlayers.toInt();
-
-        std::shared_ptr<Session> s(new Session(sender, num));
-        _sessions.push_back(s);
-
-        QJsonObject message;
-        message["type"] = QStringLiteral("message");
-        message["text"] = QStringLiteral("czambo");
-        message["sender"] = sender->userName();
-        broadcast(message, sender);
+        handleSessionMessage(sender, docObj);
     }
 }
 
+void ChatServer::handleChatMessage(ServerWorker *sender, const QJsonObject &docObj)
+{
+    const QJsonValue textVal = docObj.value(QLatin1String("text"));
+    if (textVal.isNull() || !textVal.isString())
+        return;
+    const QString text = textVal.toString().trimmed();
+    if (text.isEmpty())
+        return;
+    QJsonObject message;
+    message["type"] = QStringLiteral("message");
+    message["text"] = text;
+    message["sender"] = sender->userName();
+    broadcast(message, sender);
+}
 
+
+void ChatServer::handleSessionMessage(ServerWorker *sender, const QJsonObject &docObj) // <-----TODO
+{
+    const QJsonValue numOfPlayers = docObj.value(QLatin1String("playerNumber"));
+    if (numOfPlayers.isNull() || !numOfPlayers.isString())
+        return;
+    int num = numOfPlayers.toInt();
+
+    std::shared_ptr<Session> s(new Session(sender, num));
+    _sessions.push_back(s);
+
+    QJsonObject message;
+    message["type"] = QStringLiteral("message");
+    message["text"] = QStringLiteral("czambo");
+    message["sender"] = sender->userName();
+    broadcast(message, sender);
+}
+
+void ChatServer::handleActionMessage(ServerWorker *sender, const QJsonObject &docObj)
+{
+    const QJsonValue textVal = docObj.value(QLatin1String("text"));
+    if (textVal.isNull() || !textVal.isString())
+        return;
+    const QString text = textVal.toString().trimmed();
+    if (text.isEmpty())
+        return;
+    QJsonObject message;
+    //_actions->getMap[text](sender);
+    message["type"] = QStringLiteral("action");
+    message["text"] = text;
+    message["sender"] = sender->userName();
+    //broadcast(message, sender);
+    broadcast(message, nullptr);
+}
