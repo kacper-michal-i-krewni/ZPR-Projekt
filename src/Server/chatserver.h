@@ -26,7 +26,7 @@ protected:
     /*!
      * \brief incomingConnection is an override function from QTcpServer
      * \param socketDescriptor
-     * 
+     *
      * It is responsible conneting right signals to slots
      */
     void incomingConnection(qintptr socketDescriptor) override;
@@ -39,7 +39,7 @@ signals:
 public slots:
     /*!
      * \brief stopServer is a function that disconnects all clients from server
-     * 
+     *
      */
     void stopServer();
 private slots:
@@ -52,8 +52,10 @@ private slots:
     /*!
      * \brief jsonReceived is function that handle message recived in json
      * \param sender is a pointer on user that send message
-     * \param doc is an object that has message in json format 
+     * \param doc is an object that has message in json format
      */
+    void sessionBroadcast(Session &sess, const QJsonObject &message, ServerWorker* exclude);
+
     void jsonReceived(ServerWorker *sender, const QJsonObject &doc);
     /*!
      * \brief userDisconnected is a function that handle user disconnecting

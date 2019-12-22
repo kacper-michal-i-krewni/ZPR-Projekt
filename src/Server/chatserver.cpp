@@ -19,7 +19,7 @@ ChatServer::ChatServer(QObject *parent)
 void ChatServer::incomingConnection(qintptr socketDescriptor)
 {
     ServerWorker *worker = new ServerWorker(this);
-    if (!worker->setSocketDescriptor(socketDescriptor)) 
+    if (!worker->setSocketDescriptor(socketDescriptor))
     {
         worker->deleteLater();
         return;
@@ -38,10 +38,20 @@ void ChatServer::sendJson(ServerWorker *destination, const QJsonObject &message)
 }
 void ChatServer::broadcast(const QJsonObject &message, ServerWorker *exclude)
 {
-    for (ServerWorker *worker : m_clients) 
+    for (ServerWorker *worker : m_clients)
     {
         Q_ASSERT(worker);
         if (worker == exclude)
+            continue;
+        sendJson(worker, message);
+    }
+}
+
+void ChatServer::sessionBroadcast(Session &sess, const QJsonObject &message, ServerWorker* exclude)
+{
+    for(ServerWorker* worker : sess.getPlayers()){
+        Q_ASSERT(worker);
+        if(worker == exclude)
             continue;
         sendJson(worker, message);
     }
@@ -60,7 +70,7 @@ void ChatServer::userDisconnected(ServerWorker *sender)
 {
     m_clients.removeAll(sender);
     const QString userName = sender->userName();
-    if (!userName.isEmpty()) 
+    if (!userName.isEmpty())
     {
         QJsonObject disconnectedMessage;
         disconnectedMessage["type"] = QStringLiteral("userdisconnected");
@@ -99,11 +109,11 @@ void ChatServer::jsonFromLoggedOut(ServerWorker *sender, const QJsonObject &docO
     const QString newUserName = usernameVal.toString().simplified();
     if (newUserName.isEmpty())
         return;
-    for (ServerWorker *worker : qAsConst(m_clients)) 
+    for (ServerWorker *worker : qAsConst(m_clients))
     {
         if (worker == sender)
             continue;
-        if (worker->userName().compare(newUserName, Qt::CaseInsensitive) == 0) 
+        if (worker->userName().compare(newUserName, Qt::CaseInsensitive) == 0)
         {
             QJsonObject message;
             message["type"] = QStringLiteral("login");
@@ -164,8 +174,19 @@ void ChatServer::jsonFromLoggedIn(ServerWorker *sender, const QJsonObject &docOb
 
     if(typeVal.toString().compare(QLatin1String("session"), Qt::CaseInsensitive) == 0)
     {
-        std::shared_ptr<Session> s;
+        const QJsonValue numOfPlayers = docObj.value(QLatin1String("playerNumber"));
+        if (numOfPlayers.isNull() || !numOfPlayers.isString())
+            return;
+        int num = numOfPlayers.toInt();
+
+        std::shared_ptr<Session> s(new Session(sender, num));
         _sessions.push_back(s);
+
+        QJsonObject message;
+        message["type"] = QStringLiteral("message");
+        message["text"] = QStringLiteral("czambo");
+        message["sender"] = sender->userName();
+        broadcast(message, sender);
     }
 }
 
