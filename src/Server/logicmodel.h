@@ -19,7 +19,6 @@ public slots:
 
 private:
     QVector<std::shared_ptr<Player>> _players;
-
 };
 
 #endif // LOGICMODEL_H

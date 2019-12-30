@@ -1,6 +1,6 @@
 QT += core network gui widgets
 
-TARGET = QtSimpleChatServer
+TARGET = GameServer
 TEMPLATE = app
 
 DEFINES += QT_DEPRECATED_WARNINGS
