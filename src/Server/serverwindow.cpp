@@ -29,6 +29,7 @@ void ServerWindow::toggleStartServer()
             return;
         }
         logMessage(QStringLiteral("Server Started"));
+        logMessage("Server IP adress is: " + m_chatServer->serverAddress().toString());
         ui->startStopButton->setText(tr("Stop Server"));
     }
 }

@@ -5,6 +5,8 @@
 
 #private
 [Bb]uild
+game_build
+server_build
 
 # User-specific files
 *.rsuser
