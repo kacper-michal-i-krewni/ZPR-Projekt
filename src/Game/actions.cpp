@@ -9,6 +9,10 @@ Actions::Actions(ChatClient *chatClient): m_chatClient(chatClient)
 
 }
 
+Actions::~Actions()
+{
+
+}
 
 void Actions::affair()
 {
@@ -56,7 +60,3 @@ void Actions::usa()
     clientStream << QJsonDocument(message).toJson();
 }
 
-Actions::~Actions()
-{
-
-}

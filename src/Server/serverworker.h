@@ -3,6 +3,9 @@
 
 #include <QObject>
 #include <QTcpSocket>
+#include "player.h"
+
+
 class QJsonObject;
 class ServerWorker : public QObject
 {
@@ -35,6 +38,9 @@ public:
      * \param jsonData is a data that is sended.
      */
     void sendJson(const QJsonObject &jsonData);
+
+    void setPlayer(const std::shared_ptr<Player*> player);
+    std::shared_ptr<Player*> getPlayer();
 signals:
     /*!
      * \brief jsonReceived is a signal that handle reciving messages.
@@ -74,6 +80,8 @@ private:
      * \brief m_userName is a string with nickname of user
      */
     QString m_userName;
+
+    std::shared_ptr<Player*> _player;
 };
 
 #endif // SERVERWORKER_H

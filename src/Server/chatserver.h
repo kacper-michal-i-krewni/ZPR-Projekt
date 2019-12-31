@@ -89,6 +89,7 @@ private:
      * \param message is a message that is send
      */
     void sendJson(ServerWorker *destination, const QJsonObject &message);
+    void updateGameStatus(Session &sess);
     QVector<ServerWorker *> m_clients;
     std::shared_ptr<Actions> _actions;
     QVector<std::shared_ptr<Session>> _sessions;

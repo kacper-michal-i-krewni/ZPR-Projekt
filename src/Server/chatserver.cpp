@@ -8,6 +8,7 @@
 #include <QTimer>
 #include "session.h"
 #include "actions.h"
+#include "player.h"
 
 ChatServer::ChatServer(QObject *parent)
     : QTcpServer(parent),
@@ -35,6 +36,21 @@ void ChatServer::sendJson(ServerWorker *destination, const QJsonObject &message)
 {
     Q_ASSERT(destination);
     destination->sendJson(message);
+}
+
+void updateGameStatus(Session &sess)
+{
+    QVector<ServerWorker*> players = sess.getPlayers();
+    for ( auto x : players)
+    {
+        QJsonObject updateMessage;
+        updateMessage["type"] = QStringLiteral("update");
+        updateMessage["player"] = x->userName();
+        //updateMessage["lifes"] = std::to_string(x->getPlayer().getLifes());
+
+        //sessionBroadcast(sess, updateMessage, nullptr);
+    }
+
 }
 void ChatServer::broadcast(const QJsonObject &message, ServerWorker *exclude)
 {
