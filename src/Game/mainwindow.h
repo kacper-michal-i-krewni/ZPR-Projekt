@@ -5,10 +5,10 @@
 #include <QMainWindow>
 #include <QJsonObject>
 #include <QAbstractSocket>
+#include <memory>
 
 class ChatClient;
 class QStandardItemModel;
-class GameLogic;
 class Actions;
 
 QT_BEGIN_NAMESPACE
@@ -38,18 +38,13 @@ private:
     /*!
      * \brief m_chatClient - pointer to correlated chat client
      */
-    ChatClient *m_chatClient;
+    std::shared_ptr<ChatClient> m_chatClient;
     /*!
      * \brief m_chatModel - pointer to chat model - responsible for creating a chat segment
      */
-    QStandardItemModel *m_chatModel;
-    /*!
-     * \brief m_gameLogic - pointer to correlated gameLogic object
-     */
-    GameLogic *m_gameLogic;
+    std::shared_ptr<QStandardItemModel> m_chatModel;
 
-
-    Actions *m_actions;
+    std::shared_ptr<Actions> m_actions;
 
     /*!
      * \brief m_lastUserName

@@ -48,49 +48,49 @@ private slots:
      * \param message is a message that is send
      * \param exclude is a pointer to user that we want to exclude from broadcast
      */
-    void broadcast(const QJsonObject &message, ServerWorker *exclude);
+    void broadcast(const QJsonObject &message, std::shared_ptr<ServerWorker> exclude);
     /*!
      * \brief jsonReceived is function that handle message recived in json
      * \param sender is a pointer on user that send message
      * \param doc is an object that has message in json format
      */
-    void sessionBroadcast(Session &sess, const QJsonObject &message, ServerWorker* exclude);
+    void sessionBroadcast(Session &sess, const QJsonObject &message, std::shared_ptr<ServerWorker> exclude);
 
-    void jsonReceived(ServerWorker *sender, const QJsonObject &doc);
+    void jsonReceived(std::shared_ptr<ServerWorker> sender, const QJsonObject &doc);
     /*!
      * \brief userDisconnected is a function that handle user disconnecting
      * \param sender is an user that disconnect
      */
-    void userDisconnected(ServerWorker *sender);
+    void userDisconnected(std::shared_ptr<ServerWorker> sender);
     /*!
      * \brief userError handle all errors from user
      * \param sender is an user that cause the error
      */
-    void userError(ServerWorker *sender);
+    void userError(std::shared_ptr<ServerWorker> sender);
 private:
     /*!
      * \brief jsonFromLoggedOut is a function that handle disconnecting
      * \param sender is an user that disconnects
      * \param doc is an object that has message in json format
      */
-    void handleChatMessage(ServerWorker *sender, const QJsonObject &docObj);
-    void handleSessionMessage(ServerWorker *sender, const QJsonObject &docObj);
-    void handleActionMessage(ServerWorker *sender, const QJsonObject &docObj);
-    void jsonFromLoggedOut(ServerWorker *sender, const QJsonObject &doc);
+    void handleChatMessage(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj);
+    void handleSessionMessage(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj);
+    void handleActionMessage(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj);
+    void jsonFromLoggedOut(std::shared_ptr<ServerWorker> sender, const QJsonObject &doc);
     /*!
      * \brief jsonFromLoggedIn is a function that handle conneting
      * \param sender is an user that connects
      * \param doc is an object that has message in json format
      */
-    void jsonFromLoggedIn(ServerWorker *sender, const QJsonObject &doc);
+    void jsonFromLoggedIn(std::shared_ptr<ServerWorker> sender, const QJsonObject &doc);
     /*!
      * \brief sendJson is a function that send json message to a specific user
      * \param destination is an user who recive a message
      * \param message is a message that is send
      */
-    void sendJson(ServerWorker *destination, const QJsonObject &message);
+    void sendJson(std::shared_ptr<ServerWorker> destination, const QJsonObject &message);
     void updateGameStatus(Session &sess);
-    QVector<ServerWorker *> m_clients;
+    QVector<std::shared_ptr<ServerWorker>> m_clients;
     std::shared_ptr<Actions> _actions;
     QVector<std::shared_ptr<Session>> _sessions;
 };

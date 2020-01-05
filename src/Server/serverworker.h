@@ -39,8 +39,8 @@ public:
      */
     void sendJson(const QJsonObject &jsonData);
 
-    void setPlayer(const std::shared_ptr<Player*> player);
-    std::shared_ptr<Player*> getPlayer();
+    void setPlayer(const std::shared_ptr<Player> player);
+    std::shared_ptr<Player> getPlayer();
 signals:
     /*!
      * \brief jsonReceived is a signal that handle reciving messages.
@@ -81,7 +81,7 @@ private:
      */
     QString m_userName;
 
-    std::shared_ptr<Player*> _player;
+    std::shared_ptr<Player> _player;
 };
 
 #endif // SERVERWORKER_H

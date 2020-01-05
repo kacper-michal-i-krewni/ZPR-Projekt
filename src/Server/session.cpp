@@ -1,6 +1,6 @@
 #include "session.h"
 
-Session::Session(ServerWorker* owner, int& num)
+Session::Session(std::shared_ptr<ServerWorker> owner, int& num)
 {
     this->_numOfPlayers = num;
     this->_owner = owner;

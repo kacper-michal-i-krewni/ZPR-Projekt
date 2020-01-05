@@ -34,12 +34,12 @@ void ServerWorker::sendJson(const QJsonObject &json)
     socketStream << jsonData;
 }
 
-void ServerWorker::setPlayer(const std::shared_ptr<Player*> player)
+void ServerWorker::setPlayer(const std::shared_ptr<Player> player)
 {
     _player = player;
 }
 
-std::shared_ptr<Player*> ServerWorker::getPlayer()
+std::shared_ptr<Player> ServerWorker::getPlayer()
 {
     return _player;
 }

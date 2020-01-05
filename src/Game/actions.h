@@ -2,6 +2,7 @@
 #define ACTIONS_H
 
 #include <QObject>
+#include <memory>
 class ChatClient;
 /*!
  * \brief The Action class that is a base class for each action in game.
@@ -13,7 +14,7 @@ class Actions: public QObject
     Q_OBJECT
 public:
 
-    Actions(ChatClient *chatClient);
+    Actions(std::shared_ptr<ChatClient> );
     virtual ~Actions();
 public slots:
     void affair();
@@ -26,7 +27,7 @@ public slots:
     void russia();
     void usa();
 private:
-    ChatClient *m_chatClient;
+    std::shared_ptr<ChatClient> m_chatClient;
 };
 
 #endif // ACTIONS_H

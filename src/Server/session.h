@@ -13,9 +13,9 @@ class Session: public QObject
 {
     Q_OBJECT
 public:
-    Session(ServerWorker* owner, int& plNum);
+    Session(std::shared_ptr<ServerWorker> owner, int& plNum);
     virtual ~Session(){}
-    QVector<ServerWorker*> getPlayers(){return _players;}
+    QVector<std::shared_ptr<ServerWorker>> getPlayers(){return _players;}
     int getNumOfPlayers(){return _numOfPlayers;}
 
 public slots:
@@ -39,8 +39,8 @@ signals:
 
 
 private:
-    QVector<ServerWorker*> _players;
-    ServerWorker* _owner;
+    QVector<std::shared_ptr<ServerWorker>> _players;
+    std::shared_ptr<ServerWorker> _owner;
     int _numOfPlayers;
     //QTimer _timer;
     //void wait();

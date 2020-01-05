@@ -2,6 +2,7 @@
 #define SERVERWINDOW_H
 
 #include <QWidget>
+#include <memory>
 
 namespace Ui {
 class ServerWindow;
@@ -32,7 +33,7 @@ private:
      * \brief m_chatServer is a pointer to ChatServer class, because
      *  we want to use its functions like send messaegs and etc.
      */
-    ChatServer *m_chatServer;
+    std::shared_ptr<ChatServer> m_chatServer;
 private slots:
     /*!
      * \brief toggleStartServer is a function that replace 'Server start' with 'Server stop'

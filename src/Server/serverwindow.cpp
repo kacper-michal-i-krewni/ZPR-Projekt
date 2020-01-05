@@ -9,7 +9,7 @@ ServerWindow::ServerWindow(QWidget *parent)
 {
     ui->setupUi(this);
     connect(ui->startStopButton, &QPushButton::clicked, this, &ServerWindow::toggleStartServer);
-    connect(m_chatServer, &ChatServer::logMessage, this, &ServerWindow::logMessage);
+    connect(m_chatServer.get(), &ChatServer::logMessage, this, &ServerWindow::logMessage);
 }
 
 ServerWindow::~ServerWindow()

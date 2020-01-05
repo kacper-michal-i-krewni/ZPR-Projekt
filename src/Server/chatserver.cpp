@@ -19,20 +19,20 @@ ChatServer::ChatServer(QObject *parent)
 
 void ChatServer::incomingConnection(qintptr socketDescriptor)
 {
-    ServerWorker *worker = new ServerWorker(this);
+    std::shared_ptr<ServerWorker> worker (new ServerWorker(this));
     if (!worker->setSocketDescriptor(socketDescriptor))
     {
         worker->deleteLater();
         return;
     }
-    connect(worker, &ServerWorker::disconnectedFromClient, this, std::bind(&ChatServer::userDisconnected, this, worker));
-    connect(worker, &ServerWorker::error, this, std::bind(&ChatServer::userError, this, worker));
-    connect(worker, &ServerWorker::jsonReceived, this, std::bind(&ChatServer::jsonReceived, this, worker, std::placeholders::_1));
-    connect(worker, &ServerWorker::logMessage, this, &ChatServer::logMessage);
+    connect(worker.get(), &ServerWorker::disconnectedFromClient, this, std::bind(&ChatServer::userDisconnected, this, worker));
+    connect(worker.get(), &ServerWorker::error, this, std::bind(&ChatServer::userError, this, worker));
+    connect(worker.get(), &ServerWorker::jsonReceived, this, std::bind(&ChatServer::jsonReceived, this, worker, std::placeholders::_1));
+    connect(worker.get(), &ServerWorker::logMessage, this, &ChatServer::logMessage);
     m_clients.append(worker);
     emit logMessage(QStringLiteral("New client Connected"));
 }
-void ChatServer::sendJson(ServerWorker *destination, const QJsonObject &message)
+void ChatServer::sendJson(std::shared_ptr<ServerWorker> destination, const QJsonObject &message)
 {
     Q_ASSERT(destination);
     destination->sendJson(message);
@@ -40,8 +40,8 @@ void ChatServer::sendJson(ServerWorker *destination, const QJsonObject &message)
 
 void updateGameStatus(Session &sess)
 {
-    QVector<ServerWorker*> players = sess.getPlayers();
-    for ( auto x : players)
+    QVector<std::shared_ptr<ServerWorker>> players = sess.getPlayers();
+    for ( std::shared_ptr<ServerWorker> x : players)
     {
         QJsonObject updateMessage;
         updateMessage["type"] = QStringLiteral("update");
@@ -52,9 +52,9 @@ void updateGameStatus(Session &sess)
     }
 
 }
-void ChatServer::broadcast(const QJsonObject &message, ServerWorker *exclude)
+void ChatServer::broadcast(const QJsonObject &message, std::shared_ptr<ServerWorker> exclude)
 {
-    for (ServerWorker *worker : m_clients)
+    for (std::shared_ptr<ServerWorker> worker : m_clients)
     {
         Q_ASSERT(worker);
         if (worker == exclude)
@@ -63,9 +63,9 @@ void ChatServer::broadcast(const QJsonObject &message, ServerWorker *exclude)
     }
 }
 
-void ChatServer::sessionBroadcast(Session &sess, const QJsonObject &message, ServerWorker* exclude)
+void ChatServer::sessionBroadcast(Session &sess, const QJsonObject &message, std::shared_ptr<ServerWorker> exclude)
 {
-    for(ServerWorker* worker : sess.getPlayers()){
+    for(std::shared_ptr<ServerWorker> worker : sess.getPlayers()){
         Q_ASSERT(worker);
         if(worker == exclude)
             continue;
@@ -73,7 +73,7 @@ void ChatServer::sessionBroadcast(Session &sess, const QJsonObject &message, Ser
     }
 }
 
-void ChatServer::jsonReceived(ServerWorker *sender, const QJsonObject &doc)
+void ChatServer::jsonReceived(std::shared_ptr<ServerWorker> sender, const QJsonObject &doc)
 {
     Q_ASSERT(sender);
     emit logMessage("JSON received " + QString::fromUtf8(QJsonDocument(doc).toJson()));
@@ -82,7 +82,7 @@ void ChatServer::jsonReceived(ServerWorker *sender, const QJsonObject &doc)
     jsonFromLoggedIn(sender, doc);
 }
 
-void ChatServer::userDisconnected(ServerWorker *sender)
+void ChatServer::userDisconnected(std::shared_ptr<ServerWorker> sender)
 {
     m_clients.removeAll(sender);
     const QString userName = sender->userName();
@@ -97,7 +97,7 @@ void ChatServer::userDisconnected(ServerWorker *sender)
     sender->deleteLater();
 }
 
-void ChatServer::userError(ServerWorker *sender)
+void ChatServer::userError(std::shared_ptr<ServerWorker> sender)
 {
     Q_UNUSED(sender)
     emit logMessage("Error from " + sender->userName());
@@ -105,13 +105,13 @@ void ChatServer::userError(ServerWorker *sender)
 
 void ChatServer::stopServer()
 {
-    for (ServerWorker *worker : m_clients) {
+    for (std::shared_ptr<ServerWorker> worker : m_clients) {
         worker->disconnectFromClient();
     }
     close();
 }
 
-void ChatServer::jsonFromLoggedOut(ServerWorker *sender, const QJsonObject &docObj)
+void ChatServer::jsonFromLoggedOut(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj)
 {
     Q_ASSERT(sender);
     const QJsonValue typeVal = docObj.value(QLatin1String("type"));
@@ -125,7 +125,7 @@ void ChatServer::jsonFromLoggedOut(ServerWorker *sender, const QJsonObject &docO
     const QString newUserName = usernameVal.toString().simplified();
     if (newUserName.isEmpty())
         return;
-    for (ServerWorker *worker : qAsConst(m_clients))
+    for (std::shared_ptr<ServerWorker> worker : qAsConst(m_clients))
     {
         if (worker == sender)
             continue;
@@ -150,7 +150,7 @@ void ChatServer::jsonFromLoggedOut(ServerWorker *sender, const QJsonObject &docO
     broadcast(connectedMessage, sender);
 }
 
-void ChatServer::jsonFromLoggedIn(ServerWorker *sender, const QJsonObject &docObj)
+void ChatServer::jsonFromLoggedIn(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj)
 {
     Q_ASSERT(sender);
     const QJsonValue typeVal = docObj.value(QLatin1String("type"));
@@ -172,7 +172,7 @@ void ChatServer::jsonFromLoggedIn(ServerWorker *sender, const QJsonObject &docOb
     }
 }
 
-void ChatServer::handleChatMessage(ServerWorker *sender, const QJsonObject &docObj)
+void ChatServer::handleChatMessage(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj)
 {
     const QJsonValue textVal = docObj.value(QLatin1String("text"));
     if (textVal.isNull() || !textVal.isString())
@@ -188,7 +188,7 @@ void ChatServer::handleChatMessage(ServerWorker *sender, const QJsonObject &docO
 }
 
 
-void ChatServer::handleSessionMessage(ServerWorker *sender, const QJsonObject &docObj) // <-----TODO
+void ChatServer::handleSessionMessage(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj) // <-----TODO
 {
     const QJsonValue numOfPlayers = docObj.value(QLatin1String("playerNumber"));
     if (numOfPlayers.isNull() || !numOfPlayers.isString())
@@ -205,7 +205,7 @@ void ChatServer::handleSessionMessage(ServerWorker *sender, const QJsonObject &d
     broadcast(message, sender);
 }
 
-void ChatServer::handleActionMessage(ServerWorker *sender, const QJsonObject &docObj)
+void ChatServer::handleActionMessage(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj)
 {
     const QJsonValue textVal = docObj.value(QLatin1String("text"));
     if (textVal.isNull() || !textVal.isString())

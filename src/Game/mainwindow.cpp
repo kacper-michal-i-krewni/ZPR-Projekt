@@ -20,17 +20,17 @@ MainWindow::MainWindow(QWidget *parent)
     // the model for the messages will have 1 column
     m_chatModel->insertColumn(0);
     // set the model as the data source vor the list view
-    ui->chatView->setModel(m_chatModel);
+    ui->chatView->setModel(m_chatModel.get());
     // connect the signals from the chat client to the slots in this ui
-    connect(m_chatClient, &ChatClient::connected, this, &MainWindow::connectedToServer);
-    connect(m_chatClient, &ChatClient::loggedIn, this, &MainWindow::loggedIn);
-    connect(m_chatClient, &ChatClient::loginError, this, &MainWindow::loginFailed);
-    connect(m_chatClient, &ChatClient::messageReceived, this, &MainWindow::messageReceived);
-    connect(m_chatClient, &ChatClient::disconnected, this, &MainWindow::disconnectedFromServer);
-    connect(m_chatClient, &ChatClient::error, this, &MainWindow::error);
-    connect(m_chatClient, &ChatClient::userJoined, this, &MainWindow::userJoined);
-    connect(m_chatClient, &ChatClient::userLeft, this, &MainWindow::userLeft);
-    connect(m_chatClient, &ChatClient::actionExecute, this, &MainWindow::actionExecute);
+    connect(m_chatClient.get(), &ChatClient::connected, this, &MainWindow::connectedToServer);
+    connect(m_chatClient.get(), &ChatClient::loggedIn, this, &MainWindow::loggedIn);
+    connect(m_chatClient.get(), &ChatClient::loginError, this, &MainWindow::loginFailed);
+    connect(m_chatClient.get(), &ChatClient::messageReceived, this, &MainWindow::messageReceived);
+    connect(m_chatClient.get(), &ChatClient::disconnected, this, &MainWindow::disconnectedFromServer);
+    connect(m_chatClient.get(), &ChatClient::error, this, &MainWindow::error);
+    connect(m_chatClient.get(), &ChatClient::userJoined, this, &MainWindow::userJoined);
+    connect(m_chatClient.get(), &ChatClient::userLeft, this, &MainWindow::userLeft);
+    connect(m_chatClient.get(), &ChatClient::actionExecute, this, &MainWindow::actionExecute);
     // connect the create game action to slot that will attempt creating game
     connect(ui->createGameAction, &QAction::triggered, this, &MainWindow::createGame);
     // connect the connect action to a slot that will attempt the connection
@@ -43,15 +43,15 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->sendButton, &QPushButton::clicked, this, &MainWindow::sendMessage);
     connect(ui->lineEdit, &QLineEdit::returnPressed, this, &MainWindow::sendMessage);
     // connect all actions buttons
-    connect(ui->affairButton, &QPushButton::clicked, m_actions, &Actions::affair);
-    connect(ui->euButton, &QPushButton::clicked, m_actions, &Actions::eu);
-    connect(ui->localBiznesmanButton, &QPushButton::clicked, m_actions, &Actions::localBiznesman);
-    connect(ui->mediaButton, &QPushButton::clicked, m_actions, &Actions::media);
-    connect(ui->onzButton, &QPushButton::clicked, m_actions, &Actions::onz);
-    connect(ui->policeButton, &QPushButton::clicked, m_actions, &Actions::police);
-    connect(ui->protestButton, &QPushButton::clicked, m_actions, &Actions::protest);
-    connect(ui->russiaButton, &QPushButton::clicked, m_actions, &Actions::russia);
-    connect(ui->usaButton, &QPushButton::clicked, m_actions, &Actions::usa);
+    connect(ui->affairButton, &QPushButton::clicked, m_actions.get(), &Actions::affair);
+    connect(ui->euButton, &QPushButton::clicked, m_actions.get(), &Actions::eu);
+    connect(ui->localBiznesmanButton, &QPushButton::clicked, m_actions.get(), &Actions::localBiznesman);
+    connect(ui->mediaButton, &QPushButton::clicked, m_actions.get(), &Actions::media);
+    connect(ui->onzButton, &QPushButton::clicked, m_actions.get(), &Actions::onz);
+    connect(ui->policeButton, &QPushButton::clicked, m_actions.get(), &Actions::police);
+    connect(ui->protestButton, &QPushButton::clicked, m_actions.get(), &Actions::protest);
+    connect(ui->russiaButton, &QPushButton::clicked, m_actions.get(), &Actions::russia);
+    connect(ui->usaButton, &QPushButton::clicked, m_actions.get(), &Actions::usa);
 
     ui->sendButton->setEnabled(false);
     ui->lineEdit->setEnabled(false);

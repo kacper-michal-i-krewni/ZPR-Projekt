@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QTcpSocket>
+#include <memory>
 class QHostAddress;
 class QJsonDocument;
 
@@ -30,7 +31,7 @@ public:
     const QString getNickname() const;
 
 
-    QTcpSocket* getQTcpSocket() const;
+    std::shared_ptr<QTcpSocket> getQTcpSocket() const;
 public slots:
     /*!
      * \brief connectToServer - connects client application to a specific host
@@ -110,7 +111,7 @@ private:
      * \brief m_clientSocket - the socket that is bound to the specific client.
      * It's a core field of a class
      */
-    QTcpSocket *m_clientSocket;
+    std::shared_ptr<QTcpSocket> m_clientSocket;
     /*!
      * \brief m_loggedIn - a flag that states if user is logged in or not
      */
