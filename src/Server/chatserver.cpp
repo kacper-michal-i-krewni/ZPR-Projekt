@@ -46,8 +46,8 @@ void ChatServer::updateGameStatus(Session &sess)
         QJsonObject updateMessage;
         updateMessage["type"] = QStringLiteral("update");
         updateMessage["player"] = x->getUserName();
-        updateMessage["lifes"] = x->getPlayer().getLifes();
-        updateMessage["money"] = x->getPlayer().getMoney();
+        updateMessage["lifes"] = x->getPlayer()->getLifes();
+        updateMessage["money"] = x->getPlayer()->getMoney();
         sessionBroadcast(sess, updateMessage, nullptr);
     }
 
