@@ -33,6 +33,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_chatClient.get(), &ChatClient::userLeft, this, &MainWindow::userLeft);
     connect(m_chatClient.get(), &ChatClient::actionExecute, this, &MainWindow::actionExecute);
     connect(m_chatClient.get(), &ChatClient::sessionListComplete, this, &MainWindow::displaySessionDialog);
+    connect(m_chatClient.get(), &ChatClient::updatePlayerInterface, this, &MainWindow::updatePlayerInterface);
     // connect the create game action to slot that will attempt creating game
     connect(ui->createGameAction, &QAction::triggered, this, &MainWindow::createGame);
     // connect the connect action to a slot that will attempt the connection
@@ -94,10 +95,12 @@ void MainWindow::connectToGame()
 
 }
 
+
 void MainWindow::displaySessionDialog(){
     GameListDialog* dialog = new GameListDialog(nullptr, m_chatClient->getDialogSessionInfo());
     dialog->setModal(true);
     dialog->exec();
+
 }
 
 void MainWindow::connectedToServer()
@@ -110,6 +113,9 @@ void MainWindow::connectedToServer()
     }
     // try to login with the given username
     attemptLogin(newUsername);
+    GameListDialog* dialog = new GameListDialog(nullptr, m_chatClient->getDialogSessionInfo());
+    dialog->setModal(true);
+    dialog->exec();
 }
 
 void MainWindow::attemptLogin(const QString &userName)
@@ -385,4 +391,18 @@ void MainWindow::tooglePlayerInterface(bool b)
 void MainWindow::actionExecute(const QString &sender, const QString &action)
 {
     QMessageBox::warning(this, tr(sender.toUtf8().constData()), tr(action.toUtf8().constData()));
+}
+
+
+void MainWindow::updatePlayerInterface(const QString &player, const double money, const double lifes)
+{
+    if ( ui->nickname1->text().compare(player,Qt::CaseInsensitive ) == 0 ) // if first
+    {
+        ui->wallet1->setText(QString("%1").arg(money));
+    }
+    else if ( ui->nickname2->text().compare(player,Qt::CaseInsensitive ) == 0 ) // if first
+    {
+        ui->wallet2->setText(QString("%1").arg(money));
+    }
+
 }

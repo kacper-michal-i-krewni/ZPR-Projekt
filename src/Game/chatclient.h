@@ -105,7 +105,11 @@ signals:
     void userLeft(const QString &username);
     void actionExecute(const QString &sender, const QString &action);
 
+
     void sessionListComplete(QMap<QString, QVariant> &map);
+
+    void updatePlayerInterface(const QString &player, const double money, const double lifes);
+
 private:
     /*!
      * \brief m_clientSocket - the socket that is bound to the specific client.
