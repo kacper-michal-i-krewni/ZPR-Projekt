@@ -18,15 +18,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     actions.cpp \
     chatclient.cpp \
+    gamelistdialog.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     actions.h \
     chatclient.h \
+    gamelistdialog.h \
     mainwindow.h
 
 FORMS += \
+    gamelistdialog.ui \
     mainwindow.ui
 
 # Default rules for deployment.
