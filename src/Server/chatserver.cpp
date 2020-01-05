@@ -229,7 +229,8 @@ void ChatServer::handleActionMessage(std::shared_ptr<ServerWorker> sender, const
     if (text.isEmpty())
         return;
     QJsonObject message;
-    //_actions->getMap[text](sender);
+    std::map<std::string, Actions::functionPointer> actions = _actions->getMap();
+    //_actions->getMap()[text.toStdString()](sender->getPlayer() );
     message["type"] = QStringLiteral("action");
     message["text"] = text;
     message["sender"] = sender->getUserName();

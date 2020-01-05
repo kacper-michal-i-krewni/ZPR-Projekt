@@ -5,6 +5,7 @@
 #include <QObject>
 #include <map>
 #include <QVector>
+#include <memory>
 
 class Player;
 
@@ -19,21 +20,21 @@ class Actions: public QObject
 {
     Q_OBJECT
 public:
-    typedef void (Actions::*functionPointer)(Player*, Player*);
+    typedef void (Actions::*functionPointer)(std::shared_ptr<Player>, std::shared_ptr<Player>);
     Actions();
     virtual ~Actions();
     std::map<std::string, functionPointer> getMap();
     QVector<std::string> getCards();
 //public slots:
-    void affair(Player *executer, Player *victim = nullptr); // if action doesnt need viction the pointer will be nullptr
-    void eu(Player *executer, Player *victim = nullptr);
-    void localBiznesman(Player *executer, Player *victim = nullptr);
-    void media(Player *executer, Player *victim = nullptr);
-    void onz(Player *executer, Player *victim = nullptr);
-    void police(Player *executer, Player *victim = nullptr);
-    void protest(Player *executer, Player *victim = nullptr);
-    void russia(Player *executer, Player *victim = nullptr);
-    void usa(Player *executer, Player *victim = nullptr);
+    void affair(std::shared_ptr<Player> executer, std::shared_ptr<Player> victim = nullptr); // if action doesnt need viction the pointer will be nullptr
+    void eu(std::shared_ptr<Player> executer, std::shared_ptr<Player> victim = nullptr);
+    void localBiznesman(std::shared_ptr<Player> executer, std::shared_ptr<Player> victim = nullptr);
+    void media(std::shared_ptr<Player> executer,std::shared_ptr<Player> victim = nullptr);
+    void onz(std::shared_ptr<Player> executer, std::shared_ptr<Player> victim = nullptr);
+    void police(std::shared_ptr<Player> executer, std::shared_ptr<Player> victim = nullptr);
+    void protest(std::shared_ptr<Player> executer, std::shared_ptr<Player> victim = nullptr);
+    void russia(std::shared_ptr<Player> executer, std::shared_ptr<Player> victim = nullptr);
+    void usa(std::shared_ptr<Player> executer, std::shared_ptr<Player> victim = nullptr);
 private:
     QVector<std::string> _cards;
     std::map<std::string, functionPointer> _actionsMap;

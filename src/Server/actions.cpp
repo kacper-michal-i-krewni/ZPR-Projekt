@@ -28,39 +28,39 @@ QVector<std::string> Actions::getCards()
 
 
 
-void Actions::affair(Player *executer, Player *victim)
+void Actions::affair(std::shared_ptr<Player> executer, std::shared_ptr<Player> victim)
 {
 
 }
-void Actions::eu(Player *executer, Player *victim)
+void Actions::eu(std::shared_ptr<Player> executer, std::shared_ptr<Player> victim)
 {
 
 }
-void Actions::localBiznesman(Player *executer, Player *victim)
+void Actions::localBiznesman(std::shared_ptr<Player> executer, std::shared_ptr<Player> victim)
 {
 
 }
-void Actions::media(Player *executer, Player *victim)
+void Actions::media(std::shared_ptr<Player> executer, std::shared_ptr<Player> victim)
 {
 
 }
-void Actions::onz(Player *executer, Player *victim)
+void Actions::onz(std::shared_ptr<Player> executer, std::shared_ptr<Player> victim)
 {
 
 }
-void Actions::police(Player *executer, Player *victim)
+void Actions::police(std::shared_ptr<Player> executer, std::shared_ptr<Player> victim)
 {
 
 }
-void Actions::protest(Player *executer, Player *victim)
+void Actions::protest(std::shared_ptr<Player> executer, std::shared_ptr<Player> victim)
 {
 
 }
-void Actions::russia(Player *executer, Player *victim)
+void Actions::russia(std::shared_ptr<Player> executer, std::shared_ptr<Player> victim)
 {
 
 }
-void Actions::usa(Player *executer, Player *victim)
+void Actions::usa(std::shared_ptr<Player> executer, std::shared_ptr<Player> victim)
 {
     int additionalMoney = 1;
     executer->setMoney(executer->getMoney() + additionalMoney);
