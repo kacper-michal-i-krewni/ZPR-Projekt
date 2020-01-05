@@ -27,12 +27,12 @@ public:
      * \brief userName is a typical function getter
      * \return m_userName
      */
-    QString userName() const;
+    QString getUserName() const;
     /*!
      * \brief setUserName is a function that sets m_userName field
      * \param userName is a new m_userName
      */
-    void setUserName(const QString &userName);
+    void setUserName(const QString &getUserName);
     /*!
      * \brief sendJson send json message
      * \param jsonData is a data that is sended.

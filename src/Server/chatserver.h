@@ -73,10 +73,12 @@ private:
      * \param sender is an user that disconnects
      * \param doc is an object that has message in json format
      */
+
     void handleChatMessage(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj);
     void handleSessionMessage(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj);
     void handleActionMessage(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj);
     void jsonFromLoggedOut(std::shared_ptr<ServerWorker> sender, const QJsonObject &doc);
+
     /*!
      * \brief jsonFromLoggedIn is a function that handle conneting
      * \param sender is an user that connects
@@ -88,11 +90,14 @@ private:
      * \param destination is an user who recive a message
      * \param message is a message that is send
      */
+
     void sendJson(std::shared_ptr<ServerWorker> destination, const QJsonObject &message);
     void updateGameStatus(Session &sess);
     QVector<std::shared_ptr<ServerWorker>> m_clients;
+    void sendSessionsInfoForDialog(std::shared_ptr<ServerWorker> sender);
+
     std::shared_ptr<Actions> _actions;
-    QVector<std::shared_ptr<Session>> _sessions;
+    QVector<std::shared_ptr<Session> > _sessions;
 };
 
 #endif // CHATSERVER_H

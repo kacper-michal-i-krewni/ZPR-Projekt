@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "chatclient.h"
 #include "actions.h"
+#include "gamelistdialog.h"
 
 #include <QStandardItemModel>
 #include <QInputDialog>
@@ -34,7 +35,7 @@ MainWindow::MainWindow(QWidget *parent)
     // connect the create game action to slot that will attempt creating game
     connect(ui->createGameAction, &QAction::triggered, this, &MainWindow::createGame);
     // connect the connect action to a slot that will attempt the connection
-    connect(ui->connectAction, &QAction::triggered, this, &MainWindow::attemptConnection);
+    connect(ui->connectAction, &QAction::triggered, this, &MainWindow::connectToGame);
     // connect the disconnect action to a slot that will make disconnect
     connect(ui->disconnectAction, &QAction::triggered, this, &MainWindow::disconnect);
     // Exiting app
@@ -67,9 +68,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::attemptConnection()
+void MainWindow::connectToGame()
 {
-    // We ask the user for the address of the server, we use 127.0.0.1 (aka localhost) as default
+    //connect to the specific server
     const QString hostAddress = QInputDialog::getText(
         this
         , tr("Choose Server")
@@ -84,6 +85,14 @@ void MainWindow::attemptConnection()
     ui->disconnectAction->setEnabled(true);
     // tell the client to connect to the host using the port 1967
     m_chatClient->connectToServer(QHostAddress(hostAddress), 1967);
+
+    //show a list of created, waiting games
+    //<- TU POTRZEBUJĘ INFO Z SERVERA
+
+    GameListDialog* dialog = new GameListDialog(nullptr, m_chatClient->getDialogSessionInfo());
+    dialog->setModal(true);
+    dialog->exec();
+    //m_chatClient->connectToServer(QHostAddress(hostAddress), 1967);
 }
 
 void MainWindow::connectedToServer()
@@ -316,6 +325,22 @@ void MainWindow::disconnect()
 
 void MainWindow::createGame()
 {
+    // We ask the user for the address of the server, we use 127.0.0.1 (aka localhost) as default
+    const QString hostAddress = QInputDialog::getText(
+        this
+        , tr("Choose Server")
+        , tr("Server Address")
+        , QLineEdit::Normal
+        , QStringLiteral("127.0.0.1")
+    );
+    if (hostAddress.isEmpty())
+        return; // the user pressed cancel or typed nothing
+    // disable the connect button to prevent the user clicking it again
+    ui->connectAction->setEnabled(false);
+    ui->disconnectAction->setEnabled(true);
+    // tell the client to connect to the host using the port 1967
+    m_chatClient->connectToServer(QHostAddress(hostAddress), 1967);
+
     const QString playerNumber = QInputDialog::getText(
         this
         , tr("Number of players")

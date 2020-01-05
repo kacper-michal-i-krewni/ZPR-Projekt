@@ -55,7 +55,7 @@ private slots:
      * \brief attemptConnection - ask user to connect to server.
      * User is asked via pop-up to enter server's ip address
      */
-    void attemptConnection();
+    void connectToGame();
     /*!
      * \brief connectedToServer - evoked when user clicks a button "Connect". Asks for username via input dialog
      */

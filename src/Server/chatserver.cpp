@@ -45,7 +45,7 @@ void updateGameStatus(Session &sess)
     {
         QJsonObject updateMessage;
         updateMessage["type"] = QStringLiteral("update");
-        updateMessage["player"] = x->userName();
+        updateMessage["player"] = x->getUserName();
         //updateMessage["lifes"] = std::to_string(x->getPlayer().getLifes());
 
         //sessionBroadcast(sess, updateMessage, nullptr);
@@ -77,7 +77,7 @@ void ChatServer::jsonReceived(std::shared_ptr<ServerWorker> sender, const QJsonO
 {
     Q_ASSERT(sender);
     emit logMessage("JSON received " + QString::fromUtf8(QJsonDocument(doc).toJson()));
-    if (sender->userName().isEmpty())
+    if (sender->getUserName().isEmpty())
         return jsonFromLoggedOut(sender, doc);
     jsonFromLoggedIn(sender, doc);
 }
@@ -85,7 +85,7 @@ void ChatServer::jsonReceived(std::shared_ptr<ServerWorker> sender, const QJsonO
 void ChatServer::userDisconnected(std::shared_ptr<ServerWorker> sender)
 {
     m_clients.removeAll(sender);
-    const QString userName = sender->userName();
+    const QString userName = sender->getUserName();
     if (!userName.isEmpty())
     {
         QJsonObject disconnectedMessage;
@@ -100,7 +100,7 @@ void ChatServer::userDisconnected(std::shared_ptr<ServerWorker> sender)
 void ChatServer::userError(std::shared_ptr<ServerWorker> sender)
 {
     Q_UNUSED(sender)
-    emit logMessage("Error from " + sender->userName());
+    emit logMessage("Error from " + sender->getUserName());
 }
 
 void ChatServer::stopServer()
@@ -129,7 +129,7 @@ void ChatServer::jsonFromLoggedOut(std::shared_ptr<ServerWorker> sender, const Q
     {
         if (worker == sender)
             continue;
-        if (worker->userName().compare(newUserName, Qt::CaseInsensitive) == 0)
+        if (worker->getUserName().compare(newUserName, Qt::CaseInsensitive) == 0)
         {
             QJsonObject message;
             message["type"] = QStringLiteral("login");
@@ -148,6 +148,21 @@ void ChatServer::jsonFromLoggedOut(std::shared_ptr<ServerWorker> sender, const Q
     connectedMessage["type"] = QStringLiteral("newuser");
     connectedMessage["username"] = newUserName;
     broadcast(connectedMessage, sender);
+
+    sendSessionsInfoForDialog(sender);
+
+}
+
+void ChatServer::sendSessionsInfoForDialog(std::shared_ptr<ServerWorker> sender)
+{
+    for(std::shared_ptr<Session> s: _sessions)
+    {
+        QJsonObject sessionMessage;
+        sessionMessage["type"] = QStringLiteral("sessionDialogInfo");
+        sessionMessage["numberOfPlayers"] = s->getNumOfPlayers();
+        sessionMessage["owner"] = s->getOwner()->getUserName();
+        sendJson(sender, sessionMessage);
+    }
 }
 
 void ChatServer::jsonFromLoggedIn(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj)
@@ -183,7 +198,7 @@ void ChatServer::handleChatMessage(std::shared_ptr<ServerWorker> sender, const Q
     QJsonObject message;
     message["type"] = QStringLiteral("message");
     message["text"] = text;
-    message["sender"] = sender->userName();
+    message["sender"] = sender->getUserName();
     broadcast(message, sender);
 }
 
@@ -201,7 +216,7 @@ void ChatServer::handleSessionMessage(std::shared_ptr<ServerWorker> sender, cons
     QJsonObject message;
     message["type"] = QStringLiteral("message");
     message["text"] = QStringLiteral("czambo");
-    message["sender"] = sender->userName();
+    message["sender"] = sender->getUserName();
     broadcast(message, sender);
 }
 
@@ -217,7 +232,7 @@ void ChatServer::handleActionMessage(std::shared_ptr<ServerWorker> sender, const
     //_actions->getMap[text](sender);
     message["type"] = QStringLiteral("action");
     message["text"] = text;
-    message["sender"] = sender->userName();
+    message["sender"] = sender->getUserName();
     //broadcast(message, sender);
     broadcast(message, nullptr);
 }

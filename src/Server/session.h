@@ -17,6 +17,7 @@ public:
     virtual ~Session(){}
     QVector<std::shared_ptr<ServerWorker>> getPlayers(){return _players;}
     int getNumOfPlayers(){return _numOfPlayers;}
+    std::shared_ptr<ServerWorker> getOwner(){return _owner;}
 
 public slots:
      void blockRequest(const Player &p1, const Player &p2);
