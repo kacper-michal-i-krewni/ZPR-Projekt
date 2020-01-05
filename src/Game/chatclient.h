@@ -28,7 +28,7 @@ public:
      * \return nickname of client
      */
     const QString getNickname() const;
-
+    const std::vector<QMap<QString, QVariant>> getDialogSessionInfo() {return _dialogSessionInfo;}
 
     QTcpSocket* getQTcpSocket() const;
 public slots:
@@ -125,6 +125,7 @@ private:
      * \brief nickname
      */
     QString nickname;
+    std::vector<QMap<QString, QVariant>> _dialogSessionInfo;
 };
 
 #endif // CHATCLIENT_H

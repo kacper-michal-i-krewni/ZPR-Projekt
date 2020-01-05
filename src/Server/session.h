@@ -17,6 +17,7 @@ public:
     virtual ~Session(){}
     QVector<ServerWorker*> getPlayers(){return _players;}
     int getNumOfPlayers(){return _numOfPlayers;}
+    ServerWorker* getOwner(){return _owner;}
 
 public slots:
      void blockRequest(const Player &p1, const Player &p2);

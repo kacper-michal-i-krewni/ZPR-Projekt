@@ -13,7 +13,7 @@ class GameListDialog : public QDialog
 
 public:
     //explicit GameListDialog(QWidget *parent = nullptr);
-    explicit GameListDialog(QWidget *parent, std::vector<QMap<QString, QString> > &mapVec);
+    explicit GameListDialog(QWidget *parent,const std::vector<QMap<QString, QVariant>> &mapVec);
     ~GameListDialog();
 
 private:

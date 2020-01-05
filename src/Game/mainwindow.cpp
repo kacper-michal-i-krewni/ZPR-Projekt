@@ -70,11 +70,26 @@ MainWindow::~MainWindow()
 
 void MainWindow::connectToGame()
 {
-    //show a list of created, waiting games
-    
-    std::vector<QMap<QString,QString> > sessionData;//<- TU POTRZEBUJĘ INFO Z SERVERA
+    //connect to the specific server
+    const QString hostAddress = QInputDialog::getText(
+        this
+        , tr("Choose Server")
+        , tr("Server Address")
+        , QLineEdit::Normal
+        , QStringLiteral("127.0.0.1")
+    );
+    if (hostAddress.isEmpty())
+        return; // the user pressed cancel or typed nothing
+    // disable the connect button to prevent the user clicking it again
+    ui->connectAction->setEnabled(false);
+    ui->disconnectAction->setEnabled(true);
+    // tell the client to connect to the host using the port 1967
+    m_chatClient->connectToServer(QHostAddress(hostAddress), 1967);
 
-    GameListDialog* dialog = new GameListDialog(nullptr, sessionData);
+    //show a list of created, waiting games
+    //<- TU POTRZEBUJĘ INFO Z SERVERA
+
+    GameListDialog* dialog = new GameListDialog(nullptr, m_chatClient->getDialogSessionInfo());
     dialog->setModal(true);
     dialog->exec();
     //m_chatClient->connectToServer(QHostAddress(hostAddress), 1967);

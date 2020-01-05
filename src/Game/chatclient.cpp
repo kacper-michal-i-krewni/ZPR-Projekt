@@ -150,6 +150,13 @@ void ChatClient::jsonReceived(const QJsonObject &docObj)
 
         emit actionExecute(senderVal.toString(), textVal.toString());
     }
+    else if (typeVal.toString().compare(QLatin1String("sessionDialogInfo"), Qt::CaseInsensitive) == 0) // A user action
+    {
+        QJsonDocument *qDoc = new QJsonDocument(docObj);
+        QList<QVariant> list = qDoc->toVariant().toList();
+        QMap<QString, QVariant> map = list[0].toMap();
+        _dialogSessionInfo.push_back(map);
+    }
 }
 
 void ChatClient::connectToServer(const QHostAddress &address, quint16 port)

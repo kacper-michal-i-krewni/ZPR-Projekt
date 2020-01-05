@@ -77,6 +77,7 @@ private:
     void handleSessionMessage(ServerWorker *sender, const QJsonObject &docObj);
     void handleActionMessage(ServerWorker *sender, const QJsonObject &docObj);
     void jsonFromLoggedOut(ServerWorker *sender, const QJsonObject &doc);
+
     /*!
      * \brief jsonFromLoggedIn is a function that handle conneting
      * \param sender is an user that connects
@@ -89,9 +90,11 @@ private:
      * \param message is a message that is send
      */
     void sendJson(ServerWorker *destination, const QJsonObject &message);
+    void sendSessionsInfoForDialog(ServerWorker *sender);
+
     QVector<ServerWorker *> m_clients;
     std::shared_ptr<Actions> _actions;
-    QVector<std::shared_ptr<Session>> _sessions;
+    QVector<std::shared_ptr<Session> > _sessions;
 };
 
 #endif // CHATSERVER_H
