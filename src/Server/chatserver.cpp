@@ -38,7 +38,7 @@ void ChatServer::sendJson(std::shared_ptr<ServerWorker> destination, const QJson
     destination->sendJson(message);
 }
 
-void updateGameStatus(Session &sess)
+void ChatServer::updateGameStatus(Session &sess)
 {
     QVector<std::shared_ptr<ServerWorker>> players = sess.getPlayers();
     for ( std::shared_ptr<ServerWorker> x : players)
@@ -46,9 +46,9 @@ void updateGameStatus(Session &sess)
         QJsonObject updateMessage;
         updateMessage["type"] = QStringLiteral("update");
         updateMessage["player"] = x->getUserName();
-        //updateMessage["lifes"] = std::to_string(x->getPlayer().getLifes());
-
-        //sessionBroadcast(sess, updateMessage, nullptr);
+        updateMessage["lifes"] = x->getPlayer().getLifes();
+        updateMessage["money"] = x->getPlayer().getMoney();
+        sessionBroadcast(sess, updateMessage, nullptr);
     }
 
 }
