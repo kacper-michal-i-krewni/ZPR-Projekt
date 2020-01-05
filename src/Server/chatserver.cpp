@@ -149,18 +149,23 @@ void ChatServer::jsonFromLoggedOut(std::shared_ptr<ServerWorker> sender, const Q
     connectedMessage["username"] = newUserName;
     broadcast(connectedMessage, sender);
 
-    sendSessionsInfoForDialog(sender);
+  //TODO
 
 }
 
 void ChatServer::sendSessionsInfoForDialog(std::shared_ptr<ServerWorker> sender)
 {
-    for(std::shared_ptr<Session> s: _sessions)
+    //for(std::shared_ptr<Session> s: _sessions)
+    for(auto s = _sessions.begin(); s != _sessions.end(); ++s)
     {
         QJsonObject sessionMessage;
         sessionMessage["type"] = QStringLiteral("sessionDialogInfo");
-        sessionMessage["numberOfPlayers"] = s->getNumOfPlayers();
-        sessionMessage["owner"] = s->getOwner()->getUserName();
+        sessionMessage["numberOfPlayers"] = s->get()->getNumOfPlayers();
+        sessionMessage["owner"] = s->get()->getOwner()->getUserName();
+
+        if(s == _sessions.end()) sessionMessage["end"] = true;
+        else sessionMessage["end"] = false;
+
         sendJson(sender, sessionMessage);
     }
 }
@@ -205,19 +210,27 @@ void ChatServer::handleChatMessage(std::shared_ptr<ServerWorker> sender, const Q
 
 void ChatServer::handleSessionMessage(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj) // <-----TODO
 {
-    const QJsonValue numOfPlayers = docObj.value(QLatin1String("playerNumber"));
-    if (numOfPlayers.isNull() || !numOfPlayers.isString())
-        return;
-    int num = numOfPlayers.toInt();
+    const QJsonValue requestVal = docObj.value(QLatin1String("request"));
+    if ( requestVal.toString().compare(QLatin1String("createRequest"), Qt::CaseInsensitive) == 0)
+    {
+        const QJsonValue numOfPlayers = docObj.value(QLatin1String("playerNumber"));
+        if (numOfPlayers.isNull() || !numOfPlayers.isString())
+            return;
+        int num = numOfPlayers.toInt();
 
-    std::shared_ptr<Session> s(new Session(sender, num));
-    _sessions.push_back(s);
+        std::shared_ptr<Session> s(new Session(sender, num));
+        _sessions.push_back(s);
 
-    QJsonObject message;
-    message["type"] = QStringLiteral("message");
-    message["text"] = QStringLiteral("czambo");
-    message["sender"] = sender->getUserName();
-    broadcast(message, sender);
+        QJsonObject message;
+        message["type"] = QStringLiteral("message");
+        message["text"] = QStringLiteral("czambo");
+        message["sender"] = sender->getUserName();
+        broadcast(message, sender);
+    }
+    if ( requestVal.toString().compare(QLatin1String("showSessionsRequest"), Qt::CaseInsensitive) == 0)
+    {
+        sendSessionsInfoForDialog(sender);
+    }
 }
 
 void ChatServer::handleActionMessage(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj)

@@ -32,6 +32,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_chatClient.get(), &ChatClient::userJoined, this, &MainWindow::userJoined);
     connect(m_chatClient.get(), &ChatClient::userLeft, this, &MainWindow::userLeft);
     connect(m_chatClient.get(), &ChatClient::actionExecute, this, &MainWindow::actionExecute);
+    connect(m_chatClient.get(), &ChatClient::sessionListComplete, this, &MainWindow::displaySessionDialog);
     // connect the create game action to slot that will attempt creating game
     connect(ui->createGameAction, &QAction::triggered, this, &MainWindow::createGame);
     // connect the connect action to a slot that will attempt the connection
@@ -86,13 +87,17 @@ void MainWindow::connectToGame()
     // tell the client to connect to the host using the port 1967
     m_chatClient->connectToServer(QHostAddress(hostAddress), 1967);
 
-    //show a list of created, waiting games
-    //<- TU POTRZEBUJĘ INFO Z SERVERA
+    QJsonObject message;
+    message["request"] = QStringLiteral("showSessionsRequest");
+    message["type"] = QStringLiteral("session");
+    m_chatClient->sendMessageToServer(message);
 
+}
+
+void MainWindow::displaySessionDialog(){
     GameListDialog* dialog = new GameListDialog(nullptr, m_chatClient->getDialogSessionInfo());
     dialog->setModal(true);
     dialog->exec();
-    //m_chatClient->connectToServer(QHostAddress(hostAddress), 1967);
 }
 
 void MainWindow::connectedToServer()
@@ -351,7 +356,7 @@ void MainWindow::createGame()
 
     QJsonObject message;
     message["playerNumber"] = playerNumber;
-    message["text"] = QStringLiteral("createRequest");
+    message["request"] = QStringLiteral("createRequest");
     message["type"] = QStringLiteral("session");
 
     m_chatClient->sendMessageToServer(message);

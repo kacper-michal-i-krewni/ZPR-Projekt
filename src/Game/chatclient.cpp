@@ -198,6 +198,9 @@ void ChatClient::jsonReceived(const QJsonObject &docObj)
 
         QMap<QString, QVariant> map = docObj.toVariantMap();
         _dialogSessionInfo.push_back(map);
+        if(docObj.value(QLatin1String("end")) == true)
+            emit sessionListComplete(map);
+
     }
     else if (typeVal.toString().compare(QLatin1String("update"), Qt::CaseInsensitive) == 0) // A update message
     {
