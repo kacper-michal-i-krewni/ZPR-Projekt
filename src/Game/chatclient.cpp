@@ -195,9 +195,8 @@ void ChatClient::jsonReceived(const QJsonObject &docObj)
     }
     else if (typeVal.toString().compare(QLatin1String("sessionDialogInfo"), Qt::CaseInsensitive) == 0) // A session info
     {
-        QJsonDocument *qDoc = new QJsonDocument(docObj);
-        QList<QVariant> list = qDoc->toVariant().toList();
-        QMap<QString, QVariant> map = list[0].toMap();
+
+        QMap<QString, QVariant> map = docObj.toVariantMap();
         _dialogSessionInfo.push_back(map);
     }
     else if (typeVal.toString().compare(QLatin1String("update"), Qt::CaseInsensitive) == 0) // A update message
