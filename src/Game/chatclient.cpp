@@ -201,6 +201,15 @@ void ChatClient::jsonReceived(const QJsonObject &docObj)
     }
     else if (typeVal.toString().compare(QLatin1String("update"), Qt::CaseInsensitive) == 0) // A update message
     {
+        const QJsonValue playersNick = docObj.value(QLatin1String("player"));
+        if (playersNick.isNull() || !playersNick.isString())
+            return; // the text field was invalid so we ignore
+        const QJsonValue playersLifes = docObj.value(QLatin1String("lifes"));
+        if (playersLifes.isNull())
+            return; // the text field was invalid so we ignore
+        const QJsonValue playersMoney= docObj.value(QLatin1String("money"));
+        if (playersMoney.isNull() || !playersMoney.isDouble())
+            return; // the text field was invalid so we ignore
 
     }
 }

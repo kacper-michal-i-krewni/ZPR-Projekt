@@ -115,6 +115,7 @@ private slots:
     void createGame();
     void tooglePlayerInterface(bool b);
     void actionExecute(const QString &sender, const QString &action);
+    void updatePlayerInterface(const QString &player, const double money, const double lifes);
 
 };
 #endif // MAINWINDOW_H
