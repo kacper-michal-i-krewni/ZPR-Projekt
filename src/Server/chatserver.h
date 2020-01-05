@@ -93,7 +93,7 @@ private:
 
     void sendJson(std::shared_ptr<ServerWorker> destination, const QJsonObject &message);
     void updateGameStatus(Session &sess);
-    QVector<std::shared_ptr<ServerWorker>> m_clients;
+    QVector<std::shared_ptr<ServerWorker> > m_clients;
     void sendSessionsInfoForDialog(std::shared_ptr<ServerWorker> sender);
 
     std::shared_ptr<Actions> _actions;
