@@ -29,7 +29,7 @@ public:
      * \return nickname of client
      */
     const QString getNickname() const;
-    const std::vector<QMap<QString, QVariant>> getDialogSessionInfo() {return _dialogSessionInfo;}
+    const std::vector<QMap<QString, QVariant> > getDialogSessionInfo() {return _dialogSessionInfo;}
 
     std::shared_ptr<QTcpSocket> getQTcpSocket() const;
 public slots:
@@ -103,10 +103,13 @@ signals:
      * \param username
      */
     void userLeft(const QString &username);
-
-
     void actionExecute(const QString &sender, const QString &action);
+
+
+    void sessionListComplete(QMap<QString, QVariant> &map);
+
     void updatePlayerInterface(const QString &player, const double money, const double lifes);
+
 private:
     /*!
      * \brief m_clientSocket - the socket that is bound to the specific client.
