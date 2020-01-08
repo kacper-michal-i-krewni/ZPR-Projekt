@@ -118,42 +118,38 @@ void ChatServer::jsonFromLoggedOut(std::shared_ptr<ServerWorker> sender, const Q
     const QJsonValue typeVal = docObj.value(QLatin1String("type"));
     if (typeVal.isNull() || !typeVal.isString())
         return;
-    if (typeVal.toString().compare(QLatin1String("login"), Qt::CaseInsensitive)  == 0)
+    if (typeVal.toString().compare(QLatin1String("login"), Qt::CaseInsensitive)  != 0)
+        return;
+    const QJsonValue usernameVal = docObj.value(QLatin1String("username"));
+    if (usernameVal.isNull() || !usernameVal.isString())
+        return;
+    const QString newUserName = usernameVal.toString().simplified();
+    if (newUserName.isEmpty())
+        return;
+    for (std::shared_ptr<ServerWorker> worker : qAsConst(m_clients))
     {
-        const QJsonValue usernameVal = docObj.value(QLatin1String("username"));
-        if (usernameVal.isNull() || !usernameVal.isString())
-            return;
-        const QString newUserName = usernameVal.toString().simplified();
-        if (newUserName.isEmpty())
-            return;
-        for (std::shared_ptr<ServerWorker> worker : qAsConst(m_clients))
+        if (worker == sender)
+            continue;
+        if (worker->getUserName().compare(newUserName, Qt::CaseInsensitive) == 0)
         {
-            if (worker == sender)
-                continue;
-            if (worker->getUserName().compare(newUserName, Qt::CaseInsensitive) == 0)
-            {
-                QJsonObject message;
-                message["type"] = QStringLiteral("login");
-                message["success"] = false;
-                message["reason"] = QStringLiteral("duplicate username");
-                sendJson(sender, message);
-                return;
-            }
+            QJsonObject message;
+            message["type"] = QStringLiteral("login");
+            message["success"] = false;
+            message["reason"] = QStringLiteral("duplicate username");
+            sendJson(sender, message);
+            return;
         }
-        sender->setUserName(newUserName);
-        QJsonObject successMessage;
-        successMessage["type"] = QStringLiteral("login");
-        successMessage["success"] = true;
-        sendJson(sender, successMessage);
-        QJsonObject connectedMessage;
-        connectedMessage["type"] = QStringLiteral("newuser");
-        connectedMessage["username"] = newUserName;
-        broadcast(connectedMessage, sender);
     }
+    sender->setUserName(newUserName);
+    QJsonObject successMessage;
+    successMessage["type"] = QStringLiteral("login");
+    successMessage["success"] = true;
+    sendJson(sender, successMessage);
+    QJsonObject connectedMessage;
+    connectedMessage["type"] = QStringLiteral("newuser");
+    connectedMessage["username"] = newUserName;
+    broadcast(connectedMessage, sender);
 
-    if (typeVal.toString().compare(QLatin1String("session"), Qt::CaseInsensitive)  == 0){
-        handleSessionMessage(sender, docObj);
-    }
   //TODO
 
 }

@@ -35,9 +35,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_chatClient.get(), &ChatClient::sessionListComplete, this, &MainWindow::displaySessionDialog);
     connect(m_chatClient.get(), &ChatClient::updatePlayerInterface, this, &MainWindow::updatePlayerInterface);
     // connect the create game action to slot that will attempt creating game
+    connect(ui->connectToServerAction, &QAction::triggered, this, &MainWindow::connectToServer);
     connect(ui->createGameAction, &QAction::triggered, this, &MainWindow::createGame);
     // connect the connect action to a slot that will attempt the connection
-    connect(ui->connectAction, &QAction::triggered, this, &MainWindow::connectToGame);
+    connect(ui->joinToGameAction, &QAction::triggered, this, &MainWindow::joinToGame);
     // connect the disconnect action to a slot that will make disconnect
     connect(ui->disconnectAction, &QAction::triggered, this, &MainWindow::disconnect);
     // Exiting app
@@ -60,6 +61,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->lineEdit->setEnabled(false);
     ui->chatView->setEnabled(false);
     ui->disconnectAction->setEnabled(false);
+    ui->joinToGameAction->setEnabled(false);
+    ui->createGameAction->setEnabled(false);
     tooglePlayerInterface(false);
 
 }
@@ -70,9 +73,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::connectToGame()
-{
-    //connect to the specific server
+void MainWindow::connectToServer(){
     const QString hostAddress = QInputDialog::getText(
         this
         , tr("Choose Server")
@@ -83,15 +84,36 @@ void MainWindow::connectToGame()
     if (hostAddress.isEmpty())
         return; // the user pressed cancel or typed nothing
     // disable the connect button to prevent the user clicking it again
-    ui->connectAction->setEnabled(false);
-    ui->disconnectAction->setEnabled(true);
+
     // tell the client to connect to the host using the port 1967
     m_chatClient->connectToServer(QHostAddress(hostAddress), 1967);
+}
 
+void MainWindow::joinToGame()
+{
     QJsonObject message;
     message["request"] = QStringLiteral("showSessionsRequest");
     message["type"] = QStringLiteral("session");
     m_chatClient->sendMessageToServer(message);
+}
+
+void MainWindow::createGame()
+{
+    const QString playerNumber = QInputDialog::getText(
+        this
+        , tr("Number of players")
+        , tr("Players:")
+        , QLineEdit::Normal
+        , QStringLiteral("4")
+    );
+
+    QJsonObject message;
+    message["playerNumber"] = playerNumber;
+    message["request"] = QStringLiteral("createRequest");
+    message["type"] = QStringLiteral("session");
+
+    m_chatClient->sendMessageToServer(message);
+
 }
 
 
@@ -128,6 +150,10 @@ void MainWindow::loggedIn()
     ui->lineEdit->setEnabled(true);
     ui->chatView->setEnabled(true);
     ui->usaButton->setEnabled(true);
+    ui->connectToServerAction->setEnabled(false);
+    ui->createGameAction->setEnabled(true);
+    ui->joinToGameAction->setEnabled(true);
+    ui->disconnectAction->setEnabled(true);
     // clear the user name record
     m_lastUserName.clear();
 }
@@ -206,7 +232,7 @@ void MainWindow::disconnectedFromServer()
     ui->lineEdit->setEnabled(false);
     ui->chatView->setEnabled(false);
     // enable the button to connect to the server again
-    ui->connectAction->setEnabled(true);
+    ui->joinToGameAction->setEnabled(true);
 
     // store the index of the new row to append to the model containing the messages
     const int newRow = m_chatModel->rowCount();
@@ -312,7 +338,7 @@ void MainWindow::error(QAbstractSocket::SocketError socketError)
         Q_UNREACHABLE();
     }
     // enable the button to connect to the server again
-    ui->connectAction->setEnabled(true);
+    ui->joinToGameAction->setEnabled(true);
     // disable the ui to send and display messages
     ui->sendButton->setEnabled(false);
     ui->lineEdit->setEnabled(false);
@@ -327,44 +353,10 @@ void MainWindow::disconnect()
     // for now itd wrong, need to write some more code
     //emit m_chatClient->userLeft(m_chatClient->getNickname());
     m_chatClient->disconnect();
-    ui->connectAction->setEnabled(true);
+    ui->joinToGameAction->setEnabled(true);
     ui->disconnectAction->setEnabled(false);
 }
 
-void MainWindow::createGame()
-{
-    // We ask the user for the address of the server, we use 127.0.0.1 (aka localhost) as default
-    const QString hostAddress = QInputDialog::getText(
-        this
-        , tr("Choose Server")
-        , tr("Server Address")
-        , QLineEdit::Normal
-        , QStringLiteral("127.0.0.1")
-    );
-    if (hostAddress.isEmpty())
-        return; // the user pressed cancel or typed nothing
-    // disable the connect button to prevent the user clicking it again
-    ui->connectAction->setEnabled(false);
-    ui->disconnectAction->setEnabled(true);
-    // tell the client to connect to the host using the port 1967
-    m_chatClient->connectToServer(QHostAddress(hostAddress), 1967);
-
-    const QString playerNumber = QInputDialog::getText(
-        this
-        , tr("Number of players")
-        , tr("Players:")
-        , QLineEdit::Normal
-        , QStringLiteral("4")
-    );
-
-    QJsonObject message;
-    message["playerNumber"] = playerNumber;
-    message["request"] = QStringLiteral("createRequest");
-    message["type"] = QStringLiteral("session");
-
-    m_chatClient->sendMessageToServer(message);
-
-}
 
 void MainWindow::tooglePlayerInterface(bool b)
 {
