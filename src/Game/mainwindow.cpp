@@ -73,6 +73,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+// ----------- MENU ACTIONS -------------- //
+
 void MainWindow::connectToServer(){
     const QString hostAddress = QInputDialog::getText(
         this
@@ -117,12 +120,19 @@ void MainWindow::createGame()
 }
 
 
-void MainWindow::displaySessionDialog(QVector<QMap<QString, QVariant> > &sessVec){
-    GameListDialog* dialog = new GameListDialog(nullptr, sessVec); //TU MA BYĆ SESSMAP);
-    dialog->setModal(true);
-    dialog->exec();
-
+void MainWindow::disconnect()
+{
+    // disconnect player from server
+    // for now itd wrong, need to write some more code
+    //emit m_chatClient->userLeft(m_chatClient->getNickname());
+    m_chatClient->disconnect();
+    ui->joinToGameAction->setEnabled(true);
+    ui->disconnectAction->setEnabled(false);
 }
+
+
+
+// ------- STATES OF APPLICATION --------- //
 
 void MainWindow::connectedToServer()
 {
@@ -165,61 +175,6 @@ void MainWindow::loginFailed(const QString &reason)
     QMessageBox::critical(this, tr("Error"), reason);
     // allow the user to retry, execute the same slot as when just connected
     connectedToServer();
-}
-
-void MainWindow::messageReceived(const QString &sender, const QString &text)
-{
-    // store the index of the new row to append to the model containing the messages
-    int newRow = m_chatModel->rowCount();
-    // we display a line containing the username only if it's different from the last username we displayed
-    if (m_lastUserName != sender) {
-        // store the last displayed username
-        m_lastUserName = sender;
-        // create a bold default font
-        QFont boldFont;
-        boldFont.setBold(true);
-        // insert 2 row, one for the message and one for the username
-        m_chatModel->insertRows(newRow, 2);
-        // store the username in the model
-        m_chatModel->setData(m_chatModel->index(newRow, 0), sender + ':');
-        // set the alignment for the username
-        m_chatModel->setData(m_chatModel->index(newRow, 0), int(Qt::AlignLeft | Qt::AlignVCenter), Qt::TextAlignmentRole);
-        // set the for the username
-        m_chatModel->setData(m_chatModel->index(newRow, 0), boldFont, Qt::FontRole);
-        ++newRow;
-    } else {
-        // insert a row for the message
-        m_chatModel->insertRow(newRow);
-    }
-    // store the message in the model
-    m_chatModel->setData(m_chatModel->index(newRow, 0), text);
-    // set the alignment for the message
-    m_chatModel->setData(m_chatModel->index(newRow, 0), int(Qt::AlignLeft | Qt::AlignVCenter), Qt::TextAlignmentRole);
-    // scroll the view to display the new message
-    ui->chatView->scrollToBottom();
-}
-
-void MainWindow::sendMessage()
-{
-    // we use the client to send the message that the user typed
-    m_chatClient->sendChatMessage(ui->lineEdit->text());
-    // now we add the message to the list
-    // store the index of the new row to append to the model containing the messages
-    const int newRow = m_chatModel->rowCount();
-    // insert a row for the message
-    m_chatModel->insertRow(newRow);
-    // Add nickname on the front
-    m_chatModel->setData(m_chatModel->index(newRow, 0), m_chatClient->getNickname() + ':');
-    // store the message in the model
-    m_chatModel->setData(m_chatModel->index(newRow, 0), ui->lineEdit->text());
-    // set the alignment for the message
-    m_chatModel->setData(m_chatModel->index(newRow, 0), int(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
-    // clear the content of the message editor
-    ui->lineEdit->clear();
-    // scroll the view to display the new message
-    ui->chatView->scrollToBottom();
-    // reset the last printed username
-    m_lastUserName.clear();
 }
 
 void MainWindow::disconnectedFromServer()
@@ -284,6 +239,116 @@ void MainWindow::userLeft(const QString &username)
     m_lastUserName.clear();
 }
 
+//slot evoked when info from server is recieved
+void MainWindow::displaySessionDialog(QVector<QMap<QString, QVariant> > &sessVec){
+    GameListDialog* dialog = new GameListDialog(nullptr, sessVec); //TU MA BYĆ SESSMAP);
+    dialog->setModal(true);
+    dialog->exec();
+
+}
+
+// -------- MESSAGES --------- //
+
+void MainWindow::messageReceived(const QString &sender, const QString &text)
+{
+    // store the index of the new row to append to the model containing the messages
+    int newRow = m_chatModel->rowCount();
+    // we display a line containing the username only if it's different from the last username we displayed
+    if (m_lastUserName != sender) {
+        // store the last displayed username
+        m_lastUserName = sender;
+        // create a bold default font
+        QFont boldFont;
+        boldFont.setBold(true);
+        // insert 2 row, one for the message and one for the username
+        m_chatModel->insertRows(newRow, 2);
+        // store the username in the model
+        m_chatModel->setData(m_chatModel->index(newRow, 0), sender + ':');
+        // set the alignment for the username
+        m_chatModel->setData(m_chatModel->index(newRow, 0), int(Qt::AlignLeft | Qt::AlignVCenter), Qt::TextAlignmentRole);
+        // set the for the username
+        m_chatModel->setData(m_chatModel->index(newRow, 0), boldFont, Qt::FontRole);
+        ++newRow;
+    } else {
+        // insert a row for the message
+        m_chatModel->insertRow(newRow);
+    }
+    // store the message in the model
+    m_chatModel->setData(m_chatModel->index(newRow, 0), text);
+    // set the alignment for the message
+    m_chatModel->setData(m_chatModel->index(newRow, 0), int(Qt::AlignLeft | Qt::AlignVCenter), Qt::TextAlignmentRole);
+    // scroll the view to display the new message
+    ui->chatView->scrollToBottom();
+}
+
+void MainWindow::sendMessage()
+{
+    // we use the client to send the message that the user typed
+    m_chatClient->sendChatMessage(ui->lineEdit->text());
+    // now we add the message to the list
+    // store the index of the new row to append to the model containing the messages
+    const int newRow = m_chatModel->rowCount();
+    // insert a row for the message
+    m_chatModel->insertRow(newRow);
+    // Add nickname on the front
+    m_chatModel->setData(m_chatModel->index(newRow, 0), m_chatClient->getNickname() + ':');
+    // store the message in the model
+    m_chatModel->setData(m_chatModel->index(newRow, 0), ui->lineEdit->text());
+    // set the alignment for the message
+    m_chatModel->setData(m_chatModel->index(newRow, 0), int(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
+    // clear the content of the message editor
+    ui->lineEdit->clear();
+    // scroll the view to display the new message
+    ui->chatView->scrollToBottom();
+    // reset the last printed username
+    m_lastUserName.clear();
+}
+
+
+
+
+// ------- OTHER -------- //
+
+void MainWindow::tooglePlayerInterface(bool b)
+{
+    // block all action buttons
+    ui->usaButton->setEnabled(b);
+    ui->localBiznesmanButton->setEnabled(b);
+    ui->affairButton->setEnabled(b);
+    ui->russiaButton->setEnabled(b);
+    ui->protestButton->setEnabled(b);
+    ui->mediaButton->setEnabled(b);
+    ui->onzButton->setEnabled(b);
+    ui->policeButton->setEnabled(b);
+    ui->euButton->setEnabled(b);
+    // block user interface
+    ui->block1->setEnabled(b);
+    ui->check1->setEnabled(b);
+    ui->block2->setEnabled(b);
+    ui->check2->setEnabled(b);
+}
+
+void MainWindow::actionExecute(const QString &sender, const QString &action)
+{
+    QMessageBox::warning(this, tr(sender.toUtf8().constData()), tr(action.toUtf8().constData()));
+}
+
+
+void MainWindow::updatePlayerInterface(const QString &player, const double money, const double lifes)
+{
+    if ( ui->nickname1->text().compare(player,Qt::CaseInsensitive ) == 0 ) // if first
+    {
+        ui->wallet1->setText(QString("%1").arg(money));
+    }
+    else if ( ui->nickname2->text().compare(player,Qt::CaseInsensitive ) == 0 ) // if first
+    {
+        ui->wallet2->setText(QString("%1").arg(money));
+    }
+
+}
+
+
+
 void MainWindow::error(QAbstractSocket::SocketError socketError)
 {
     // show a message to the user that informs of what kind of error occurred
@@ -345,53 +410,4 @@ void MainWindow::error(QAbstractSocket::SocketError socketError)
     ui->chatView->setEnabled(false);
     // reset the last printed username
     m_lastUserName.clear();
-}
-
-void MainWindow::disconnect()
-{
-    // disconnect player from server
-    // for now itd wrong, need to write some more code
-    //emit m_chatClient->userLeft(m_chatClient->getNickname());
-    m_chatClient->disconnect();
-    ui->joinToGameAction->setEnabled(true);
-    ui->disconnectAction->setEnabled(false);
-}
-
-
-void MainWindow::tooglePlayerInterface(bool b)
-{
-    // block all action buttons
-    ui->usaButton->setEnabled(b);
-    ui->localBiznesmanButton->setEnabled(b);
-    ui->affairButton->setEnabled(b);
-    ui->russiaButton->setEnabled(b);
-    ui->protestButton->setEnabled(b);
-    ui->mediaButton->setEnabled(b);
-    ui->onzButton->setEnabled(b);
-    ui->policeButton->setEnabled(b);
-    ui->euButton->setEnabled(b);
-    // block user interface
-    ui->block1->setEnabled(b);
-    ui->check1->setEnabled(b);
-    ui->block2->setEnabled(b);
-    ui->check2->setEnabled(b);
-}
-
-void MainWindow::actionExecute(const QString &sender, const QString &action)
-{
-    QMessageBox::warning(this, tr(sender.toUtf8().constData()), tr(action.toUtf8().constData()));
-}
-
-
-void MainWindow::updatePlayerInterface(const QString &player, const double money, const double lifes)
-{
-    if ( ui->nickname1->text().compare(player,Qt::CaseInsensitive ) == 0 ) // if first
-    {
-        ui->wallet1->setText(QString("%1").arg(money));
-    }
-    else if ( ui->nickname2->text().compare(player,Qt::CaseInsensitive ) == 0 ) // if first
-    {
-        ui->wallet2->setText(QString("%1").arg(money));
-    }
-
 }
