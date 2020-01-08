@@ -6,6 +6,7 @@
 #include <QTcpServer>
 #include <QVector>
 #include <memory>
+
 class QThread;
 class ServerWorker;
 class Actions;

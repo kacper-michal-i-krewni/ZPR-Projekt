@@ -92,12 +92,11 @@ void MainWindow::connectToGame()
     message["request"] = QStringLiteral("showSessionsRequest");
     message["type"] = QStringLiteral("session");
     m_chatClient->sendMessageToServer(message);
-
 }
 
 
-void MainWindow::displaySessionDialog(){
-    GameListDialog* dialog = new GameListDialog(nullptr, m_chatClient->getDialogSessionInfo());
+void MainWindow::displaySessionDialog(QVector<QMap<QString, QVariant> > &sessVec){
+    GameListDialog* dialog = new GameListDialog(nullptr, sessVec); //TU MA BYĆ SESSMAP);
     dialog->setModal(true);
     dialog->exec();
 
@@ -113,9 +112,7 @@ void MainWindow::connectedToServer()
     }
     // try to login with the given username
     attemptLogin(newUsername);
-    GameListDialog* dialog = new GameListDialog(nullptr, m_chatClient->getDialogSessionInfo());
-    dialog->setModal(true);
-    dialog->exec();
+
 }
 
 void MainWindow::attemptLogin(const QString &userName)

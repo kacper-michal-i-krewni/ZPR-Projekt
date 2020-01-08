@@ -6,6 +6,7 @@
 #include <QJsonObject>
 #include <QJsonValue>
 #include <QTimer>
+#include <QJsonArray>
 #include "session.h"
 #include "actions.h"
 #include "player.h"
@@ -156,18 +157,15 @@ void ChatServer::jsonFromLoggedOut(std::shared_ptr<ServerWorker> sender, const Q
 void ChatServer::sendSessionsInfoForDialog(std::shared_ptr<ServerWorker> sender)
 {
     //for(std::shared_ptr<Session> s: _sessions)
-    for(auto s = _sessions.begin(); s != _sessions.end(); ++s)
+    QJsonObject sessionMessage;
+    sessionMessage["type"] = QStringLiteral("sessionDialogInfo");
+    QJsonArray sessionArray;
+    for(auto s : _sessions)
     {
-        QJsonObject sessionMessage;
-        sessionMessage["type"] = QStringLiteral("sessionDialogInfo");
-        sessionMessage["numberOfPlayers"] = s->get()->getNumOfPlayers();
-        sessionMessage["owner"] = s->get()->getOwner()->getUserName();
-
-        if(s == _sessions.end()) sessionMessage["end"] = true;
-        else sessionMessage["end"] = false;
-
-        sendJson(sender, sessionMessage);
+        sessionArray.append(s->toJSON());
     }
+    sessionMessage["sessions"] = sessionArray;
+    sendJson(sender, sessionMessage);
 }
 
 void ChatServer::jsonFromLoggedIn(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj)

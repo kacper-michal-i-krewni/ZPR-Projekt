@@ -7,6 +7,15 @@ Session::Session(std::shared_ptr<ServerWorker> owner, int& num)
     this->_players.push_back(owner);
 
 }
+
+QJsonObject Session::toJSON()
+{
+    QJsonObject json;
+    json["numOfPlayers"] = _numOfPlayers;
+    json["owner"] = _owner->getUserName();
+    return json;
+}
+
 void Session::blockRequest(const Player &p1, const Player &p2)
 {
 

@@ -5,6 +5,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
+#include <QJsonArray>
 
 ChatClient::ChatClient(QObject *parent)
     : QObject(parent)
@@ -193,16 +194,22 @@ void ChatClient::jsonReceived(const QJsonObject &docObj)
 
         emit actionExecute(senderVal.toString(), textVal.toString());
     }
+
     else if (typeVal.toString().compare(QLatin1String("sessionDialogInfo"), Qt::CaseInsensitive) == 0) // A session info
     {
+        QJsonArray sessionArray = docObj["sessions"].toArray();
 
-        QMap<QString, QVariant> map = docObj.toVariantMap();
-        _dialogSessionInfo.push_back(map);
-        if(docObj.value(QLatin1String("end")) == true)
-            emit sessionListComplete(map);
+        QVector<QMap<QString, QVariant> > sVector;
+        for (int sIndex = 0; sIndex < sessionArray.size(); ++sIndex) {
+                QJsonObject sObject = sessionArray[sIndex].toObject();
+                sVector.push_back(sObject.toVariantMap());
+        }
+
+        emit sessionListComplete(sVector);
 
     }
-    else if (typeVal.toString().compare(QLatin1String("update"), Qt::CaseInsensitive) == 0) // A update message
+
+    else if (typeVal.toString().compare(QLatin1String("update"), Qt::CaseInsensitive) == 0) // An update message
     {
         const QJsonValue playersNick = docObj.value(QLatin1String("player"));
         if (playersNick.isNull() || !playersNick.isString())
