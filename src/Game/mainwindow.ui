@@ -305,7 +305,7 @@
      <x>0</x>
      <y>0</y>
      <width>951</width>
-     <height>22</height>
+     <height>29</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuMenu">
@@ -313,20 +313,23 @@
      <string>Menu</string>
     </property>
     <addaction name="separator"/>
+    <addaction name="connectToServerAction"/>
+    <addaction name="separator"/>
     <addaction name="createGameAction"/>
     <addaction name="separator"/>
-    <addaction name="connectAction"/>
+    <addaction name="joinToGameAction"/>
     <addaction name="separator"/>
     <addaction name="disconnectAction"/>
     <addaction name="separator"/>
     <addaction name="exitAction"/>
+    <addaction name="separator"/>
    </widget>
    <addaction name="menuMenu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="connectAction">
+  <action name="joinToGameAction">
    <property name="text">
-    <string>Connect</string>
+    <string>Join to game</string>
    </property>
   </action>
   <action name="disconnectAction">
@@ -342,6 +345,11 @@
   <action name="exitAction">
    <property name="text">
     <string>Exit</string>
+   </property>
+  </action>
+  <action name="connectToServerAction">
+   <property name="text">
+    <string>Connect to server</string>
    </property>
   </action>
  </widget>

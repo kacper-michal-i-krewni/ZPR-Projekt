@@ -55,15 +55,18 @@ private slots:
      * \brief attemptConnection - ask user to connect to server.
      * User is asked via pop-up to enter server's ip address
      */
-    void connectToGame();
+    void joinToGame();
     /*!
      * \brief connectedToServer - evoked when user clicks a button "Connect". Asks for username via input dialog
      */
+    void createGame();
+    void connectToServer();
     void connectedToServer();
     /*!
      * \brief attemptLogin - try to log in via chatClient->login()
      * \param userName
      */
+
     void attemptLogin(const QString &userName);
     /*!
      * \brief loggedIn - enables a set of buttons aviable only for logged users
@@ -112,12 +115,17 @@ private slots:
      * \brief createGame - method resposible for creating games.
      * Gets data from input dialog
      */
+<<<<<<< HEAD
     void createGame();
     void toggleActionsInterface(bool b);
     void toggleButtons(bool b);
-    void actionExecute(const QString &sender, const QString &action);
+=======
 
-    void displaySessionDialog();
+    void tooglePlayerInterface(bool b);
+>>>>>>> master
+    void actionExecute(const QString &sender, const QString &action);
+    void displaySessionDialog(QVector<QMap<QString, QVariant> > &sessVec);
+
 
     void updatePlayerInterface(const QString &player, const double money, const double lifes);
 

@@ -35,9 +35,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_chatClient.get(), &ChatClient::sessionListComplete, this, &MainWindow::displaySessionDialog);
     connect(m_chatClient.get(), &ChatClient::updatePlayerInterface, this, &MainWindow::updatePlayerInterface);
     // connect the create game action to slot that will attempt creating game
+    connect(ui->connectToServerAction, &QAction::triggered, this, &MainWindow::connectToServer);
     connect(ui->createGameAction, &QAction::triggered, this, &MainWindow::createGame);
     // connect the connect action to a slot that will attempt the connection
-    connect(ui->connectAction, &QAction::triggered, this, &MainWindow::connectToGame);
+    connect(ui->joinToGameAction, &QAction::triggered, this, &MainWindow::joinToGame);
     // connect the disconnect action to a slot that will make disconnect
     connect(ui->disconnectAction, &QAction::triggered, this, &MainWindow::disconnect);
     // Exiting app
@@ -60,8 +61,14 @@ MainWindow::MainWindow(QWidget *parent)
     ui->lineEdit->setEnabled(false);
     ui->chatView->setEnabled(false);
     ui->disconnectAction->setEnabled(false);
+<<<<<<< HEAD
     this->toggleActionsInterface(false);
     this->toggleButtons(false);
+=======
+    ui->joinToGameAction->setEnabled(false);
+    ui->createGameAction->setEnabled(false);
+    tooglePlayerInterface(false);
+>>>>>>> master
 
 }
 
@@ -71,9 +78,10 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::connectToGame()
-{
-    //connect to the specific server
+
+// ----------- MENU ACTIONS -------------- //
+
+void MainWindow::connectToServer(){
     const QString hostAddress = QInputDialog::getText(
         this
         , tr("Choose Server")
@@ -84,25 +92,52 @@ void MainWindow::connectToGame()
     if (hostAddress.isEmpty())
         return; // the user pressed cancel or typed nothing
     // disable the connect button to prevent the user clicking it again
-    ui->connectAction->setEnabled(false);
-    ui->disconnectAction->setEnabled(true);
+
     // tell the client to connect to the host using the port 1967
     m_chatClient->connectToServer(QHostAddress(hostAddress), 1967);
+}
 
+void MainWindow::joinToGame()
+{
     QJsonObject message;
     message["request"] = QStringLiteral("showSessionsRequest");
     message["type"] = QStringLiteral("session");
+    m_chatClient->sendMessageToServer(message);
+}
+
+void MainWindow::createGame()
+{
+    const QString playerNumber = QInputDialog::getText(
+        this
+        , tr("Number of players")
+        , tr("Players:")
+        , QLineEdit::Normal
+        , QStringLiteral("4")
+    );
+
+    QJsonObject message;
+    message["playerNumber"] = playerNumber;
+    message["request"] = QStringLiteral("createRequest");
+    message["type"] = QStringLiteral("session");
+
     m_chatClient->sendMessageToServer(message);
 
 }
 
 
-void MainWindow::displaySessionDialog(){
-    GameListDialog* dialog = new GameListDialog(nullptr, m_chatClient->getDialogSessionInfo());
-    dialog->setModal(true);
-    dialog->exec();
-
+void MainWindow::disconnect()
+{
+    // disconnect player from server
+    // for now itd wrong, need to write some more code
+    //emit m_chatClient->userLeft(m_chatClient->getNickname());
+    m_chatClient->disconnect();
+    ui->joinToGameAction->setEnabled(true);
+    ui->disconnectAction->setEnabled(false);
 }
+
+
+
+// ------- STATES OF APPLICATION --------- //
 
 void MainWindow::connectedToServer()
 {
@@ -114,9 +149,7 @@ void MainWindow::connectedToServer()
     }
     // try to login with the given username
     attemptLogin(newUsername);
-    GameListDialog* dialog = new GameListDialog(nullptr, m_chatClient->getDialogSessionInfo());
-    dialog->setModal(true);
-    dialog->exec();
+
 }
 
 void MainWindow::attemptLogin(const QString &userName)
@@ -131,7 +164,15 @@ void MainWindow::loggedIn()
     ui->sendButton->setEnabled(true);
     ui->lineEdit->setEnabled(true);
     ui->chatView->setEnabled(true);
+<<<<<<< HEAD
     this->toggleActionsInterface(true);
+=======
+    ui->usaButton->setEnabled(true);
+    ui->connectToServerAction->setEnabled(false);
+    ui->createGameAction->setEnabled(true);
+    ui->joinToGameAction->setEnabled(true);
+    ui->disconnectAction->setEnabled(true);
+>>>>>>> master
     // clear the user name record
     m_lastUserName.clear();
 }
@@ -144,6 +185,78 @@ void MainWindow::loginFailed(const QString &reason)
     // allow the user to retry, execute the same slot as when just connected
     connectedToServer();
 }
+
+void MainWindow::disconnectedFromServer()
+{
+    // if the client loses connection to the server
+    // comunicate the event to the user via a message box
+    QMessageBox::warning(this, tr("Disconnected"), tr("The host terminated the connection"));
+    // disable the ui to send and display messages
+    ui->sendButton->setEnabled(false);
+    ui->lineEdit->setEnabled(false);
+    ui->chatView->setEnabled(false);
+    // enable the button to connect to the server again
+    ui->joinToGameAction->setEnabled(true);
+
+    // store the index of the new row to append to the model containing the messages
+    const int newRow = m_chatModel->rowCount();
+    // insert a row
+    m_chatModel->insertRow(newRow);
+    // store in the model the message to comunicate a user joined
+    m_chatModel->setData(m_chatModel->index(newRow, 0), tr("%1 left the Chat").arg(m_chatClient->getNickname()));
+    // set the alignment for the text
+    m_chatModel->setData(m_chatModel->index(newRow, 0), Qt::AlignCenter, Qt::TextAlignmentRole);
+    // set the color for the text
+    m_chatModel->setData(m_chatModel->index(newRow, 0), QBrush(Qt::blue), Qt::ForegroundRole);
+
+    // reset the last printed username
+    m_lastUserName.clear();
+}
+
+void MainWindow::userJoined(const QString &username)
+{
+    // store the index of the new row to append to the model containing the messages
+    const int newRow = m_chatModel->rowCount();
+    // insert a row
+    m_chatModel->insertRow(newRow);
+    // store in the model the message to comunicate a user joined
+    m_chatModel->setData(m_chatModel->index(newRow, 0), tr("%1 Joined the Chat").arg(username));
+    // set the alignment for the text
+    m_chatModel->setData(m_chatModel->index(newRow, 0), Qt::AlignCenter, Qt::TextAlignmentRole);
+    // set the color for the text
+    m_chatModel->setData(m_chatModel->index(newRow, 0), QBrush(Qt::blue), Qt::ForegroundRole);
+    // scroll the view to display the new message
+    ui->chatView->scrollToBottom();
+    // reset the last printed username
+    m_lastUserName.clear();
+}
+void MainWindow::userLeft(const QString &username)
+{
+    // store the index of the new row to append to the model containing the messages
+    const int newRow = m_chatModel->rowCount();
+    // insert a row
+    m_chatModel->insertRow(newRow);
+    // store in the model the message to comunicate a user left
+    m_chatModel->setData(m_chatModel->index(newRow, 0), tr("%1 Left the Chat").arg(username));
+    // set the alignment for the text
+    m_chatModel->setData(m_chatModel->index(newRow, 0), Qt::AlignCenter, Qt::TextAlignmentRole);
+    // set the color for the text
+    m_chatModel->setData(m_chatModel->index(newRow, 0), QBrush(Qt::red), Qt::ForegroundRole);
+    // scroll the view to display the new message
+    ui->chatView->scrollToBottom();
+    // reset the last printed username
+    m_lastUserName.clear();
+}
+
+//slot evoked when info from server is recieved
+void MainWindow::displaySessionDialog(QVector<QMap<QString, QVariant> > &sessVec){
+    GameListDialog* dialog = new GameListDialog(nullptr, sessVec); //TU MA BYĆ SESSMAP);
+    dialog->setModal(true);
+    dialog->exec();
+
+}
+
+// -------- MESSAGES --------- //
 
 void MainWindow::messageReceived(const QString &sender, const QString &text)
 {
@@ -200,67 +313,50 @@ void MainWindow::sendMessage()
     m_lastUserName.clear();
 }
 
-void MainWindow::disconnectedFromServer()
+
+
+
+// ------- OTHER -------- //
+
+void MainWindow::tooglePlayerInterface(bool b)
 {
-    // if the client loses connection to the server
-    // comunicate the event to the user via a message box
-    QMessageBox::warning(this, tr("Disconnected"), tr("The host terminated the connection"));
-    // disable the ui to send and display messages
-    ui->sendButton->setEnabled(false);
-    ui->lineEdit->setEnabled(false);
-    ui->chatView->setEnabled(false);
-    // enable the button to connect to the server again
-    ui->connectAction->setEnabled(true);
-
-    // store the index of the new row to append to the model containing the messages
-    const int newRow = m_chatModel->rowCount();
-    // insert a row
-    m_chatModel->insertRow(newRow);
-    // store in the model the message to comunicate a user joined
-    m_chatModel->setData(m_chatModel->index(newRow, 0), tr("%1 left the Chat").arg(m_chatClient->getNickname()));
-    // set the alignment for the text
-    m_chatModel->setData(m_chatModel->index(newRow, 0), Qt::AlignCenter, Qt::TextAlignmentRole);
-    // set the color for the text
-    m_chatModel->setData(m_chatModel->index(newRow, 0), QBrush(Qt::blue), Qt::ForegroundRole);
-
-    // reset the last printed username
-    m_lastUserName.clear();
+    // block all action buttons
+    ui->usaButton->setEnabled(b);
+    ui->localBiznesmanButton->setEnabled(b);
+    ui->affairButton->setEnabled(b);
+    ui->russiaButton->setEnabled(b);
+    ui->protestButton->setEnabled(b);
+    ui->mediaButton->setEnabled(b);
+    ui->onzButton->setEnabled(b);
+    ui->policeButton->setEnabled(b);
+    ui->euButton->setEnabled(b);
+    // block user interface
+    ui->block1->setEnabled(b);
+    ui->check1->setEnabled(b);
+    ui->block2->setEnabled(b);
+    ui->check2->setEnabled(b);
 }
 
-void MainWindow::userJoined(const QString &username)
+void MainWindow::actionExecute(const QString &sender, const QString &action)
 {
-    // store the index of the new row to append to the model containing the messages
-    const int newRow = m_chatModel->rowCount();
-    // insert a row
-    m_chatModel->insertRow(newRow);
-    // store in the model the message to comunicate a user joined
-    m_chatModel->setData(m_chatModel->index(newRow, 0), tr("%1 Joined the Chat").arg(username));
-    // set the alignment for the text
-    m_chatModel->setData(m_chatModel->index(newRow, 0), Qt::AlignCenter, Qt::TextAlignmentRole);
-    // set the color for the text
-    m_chatModel->setData(m_chatModel->index(newRow, 0), QBrush(Qt::blue), Qt::ForegroundRole);
-    // scroll the view to display the new message
-    ui->chatView->scrollToBottom();
-    // reset the last printed username
-    m_lastUserName.clear();
+    QMessageBox::warning(this, tr(sender.toUtf8().constData()), tr(action.toUtf8().constData()));
 }
-void MainWindow::userLeft(const QString &username)
+
+
+void MainWindow::updatePlayerInterface(const QString &player, const double money, const double lifes)
 {
-    // store the index of the new row to append to the model containing the messages
-    const int newRow = m_chatModel->rowCount();
-    // insert a row
-    m_chatModel->insertRow(newRow);
-    // store in the model the message to comunicate a user left
-    m_chatModel->setData(m_chatModel->index(newRow, 0), tr("%1 Left the Chat").arg(username));
-    // set the alignment for the text
-    m_chatModel->setData(m_chatModel->index(newRow, 0), Qt::AlignCenter, Qt::TextAlignmentRole);
-    // set the color for the text
-    m_chatModel->setData(m_chatModel->index(newRow, 0), QBrush(Qt::red), Qt::ForegroundRole);
-    // scroll the view to display the new message
-    ui->chatView->scrollToBottom();
-    // reset the last printed username
-    m_lastUserName.clear();
+    if ( ui->nickname1->text().compare(player,Qt::CaseInsensitive ) == 0 ) // if first
+    {
+        ui->wallet1->setText(QString("%1").arg(money));
+    }
+    else if ( ui->nickname2->text().compare(player,Qt::CaseInsensitive ) == 0 ) // if first
+    {
+        ui->wallet2->setText(QString("%1").arg(money));
+    }
+
 }
+
+
 
 void MainWindow::error(QAbstractSocket::SocketError socketError)
 {
@@ -316,7 +412,7 @@ void MainWindow::error(QAbstractSocket::SocketError socketError)
         Q_UNREACHABLE();
     }
     // enable the button to connect to the server again
-    ui->connectAction->setEnabled(true);
+    ui->joinToGameAction->setEnabled(true);
     // disable the ui to send and display messages
     ui->sendButton->setEnabled(false);
     ui->lineEdit->setEnabled(false);
@@ -324,6 +420,7 @@ void MainWindow::error(QAbstractSocket::SocketError socketError)
     // reset the last printed username
     m_lastUserName.clear();
 }
+<<<<<<< HEAD
 
 void MainWindow::disconnect()
 {
@@ -410,3 +507,5 @@ void MainWindow::updatePlayerInterface(const QString &player, const double money
     }
 
 }
+=======
+>>>>>>> master

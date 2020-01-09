@@ -1,13 +1,13 @@
 #include "gamelistdialog.h"
 #include "ui_gamelistdialog.h"
 
-GameListDialog::GameListDialog(QWidget *parent,const std::vector<QMap<QString, QVariant>> &mapVec) :
+GameListDialog::GameListDialog(QWidget *parent,const QVector<QMap<QString, QVariant> > &mapVec) :
     QDialog(parent),
     ui(new Ui::GameListDialog)
 {
     ui->setupUi(this);
 
-    for(QMap<QString,QVariant> map: mapVec){
+    for(auto map: mapVec){
         QMapIterator<QString, QVariant> i(map);
         QString construct = "";
         while (i.hasNext()) {

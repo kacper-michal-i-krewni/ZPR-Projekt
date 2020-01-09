@@ -6,6 +6,7 @@
 #include <QJsonObject>
 #include <QJsonValue>
 #include <QTimer>
+#include <QJsonArray>
 #include "session.h"
 #include "actions.h"
 #include "player.h"
@@ -117,7 +118,7 @@ void ChatServer::jsonFromLoggedOut(std::shared_ptr<ServerWorker> sender, const Q
     const QJsonValue typeVal = docObj.value(QLatin1String("type"));
     if (typeVal.isNull() || !typeVal.isString())
         return;
-    if (typeVal.toString().compare(QLatin1String("login"), Qt::CaseInsensitive) != 0)
+    if (typeVal.toString().compare(QLatin1String("login"), Qt::CaseInsensitive)  != 0)
         return;
     const QJsonValue usernameVal = docObj.value(QLatin1String("username"));
     if (usernameVal.isNull() || !usernameVal.isString())
@@ -153,22 +154,7 @@ void ChatServer::jsonFromLoggedOut(std::shared_ptr<ServerWorker> sender, const Q
 
 }
 
-void ChatServer::sendSessionsInfoForDialog(std::shared_ptr<ServerWorker> sender)
-{
-    //for(std::shared_ptr<Session> s: _sessions)
-    for(auto s = _sessions.begin(); s != _sessions.end(); ++s)
-    {
-        QJsonObject sessionMessage;
-        sessionMessage["type"] = QStringLiteral("sessionDialogInfo");
-        sessionMessage["numberOfPlayers"] = s->get()->getNumOfPlayers();
-        sessionMessage["owner"] = s->get()->getOwner()->getUserName();
 
-        if(s == _sessions.end()) sessionMessage["end"] = true;
-        else sessionMessage["end"] = false;
-
-        sendJson(sender, sessionMessage);
-    }
-}
 
 void ChatServer::jsonFromLoggedIn(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj)
 {
@@ -231,6 +217,20 @@ void ChatServer::handleSessionMessage(std::shared_ptr<ServerWorker> sender, cons
     {
         sendSessionsInfoForDialog(sender);
     }
+}
+
+void ChatServer::sendSessionsInfoForDialog(std::shared_ptr<ServerWorker> sender)
+{
+    //for(std::shared_ptr<Session> s: _sessions)
+    QJsonObject sessionMessage;
+    sessionMessage["type"] = QStringLiteral("sessionDialogInfo");
+    QJsonArray sessionArray;
+    for(auto s : _sessions)
+    {
+        sessionArray.append(s->toJSON());
+    }
+    sessionMessage["sessions"] = sessionArray;
+    sendJson(sender, sessionMessage);
 }
 
 void ChatServer::handleActionMessage(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj)

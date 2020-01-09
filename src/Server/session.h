@@ -5,6 +5,7 @@
 #include "serverworker.h"
 #include <memory>
 #include <QTimer>
+#include <QJsonObject>
 
 #include <QObject>
 
@@ -15,9 +16,10 @@ class Session: public QObject
 public:
     Session(std::shared_ptr<ServerWorker> owner, int& plNum);
     virtual ~Session(){}
-    QVector<std::shared_ptr<ServerWorker>> getPlayers(){return _players;}
+    QVector<std::shared_ptr<ServerWorker> > getPlayers(){return _players;}
     int getNumOfPlayers(){return _numOfPlayers;}
     std::shared_ptr<ServerWorker> getOwner(){return _owner;}
+    QJsonObject toJSON();
 
 public slots:
      void blockRequest(const Player &p1, const Player &p2);
