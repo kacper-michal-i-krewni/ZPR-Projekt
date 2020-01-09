@@ -60,7 +60,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->lineEdit->setEnabled(false);
     ui->chatView->setEnabled(false);
     ui->disconnectAction->setEnabled(false);
-    tooglePlayerInterface(false);
+    this->toggleActionsInterface(false);
+    this->toggleButtons(false);
 
 }
 
@@ -130,7 +131,7 @@ void MainWindow::loggedIn()
     ui->sendButton->setEnabled(true);
     ui->lineEdit->setEnabled(true);
     ui->chatView->setEnabled(true);
-    ui->usaButton->setEnabled(true);
+    this->toggleActionsInterface(true);
     // clear the user name record
     m_lastUserName.clear();
 }
@@ -369,9 +370,9 @@ void MainWindow::createGame()
 
 }
 
-void MainWindow::tooglePlayerInterface(bool b)
+void MainWindow::toggleActionsInterface(bool b)
 {
-    // block all action buttons
+    // toggle all action buttons
     ui->usaButton->setEnabled(b);
     ui->localBiznesmanButton->setEnabled(b);
     ui->affairButton->setEnabled(b);
@@ -381,12 +382,15 @@ void MainWindow::tooglePlayerInterface(bool b)
     ui->onzButton->setEnabled(b);
     ui->policeButton->setEnabled(b);
     ui->euButton->setEnabled(b);
-    // block user interface
+}
+
+void MainWindow::toggleButtons(bool b)
+{
     ui->block1->setEnabled(b);
     ui->check1->setEnabled(b);
-    ui->block2->setEnabled(b);
-    ui->check2->setEnabled(b);
 }
+
+
 
 void MainWindow::actionExecute(const QString &sender, const QString &action)
 {

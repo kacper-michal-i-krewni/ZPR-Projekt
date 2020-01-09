@@ -6,6 +6,10 @@
 #include <map>
 #include <QVector>
 #include <memory>
+#include <functional>
+#include "../../Mutual/action.h"
+
+
 
 class Player;
 
@@ -21,6 +25,8 @@ class Actions: public QObject
     Q_OBJECT
 public:
     typedef void (Actions::*functionPointer)(std::shared_ptr<Player>, std::shared_ptr<Player>);
+    //typedef void (*functionPointer)(std::shared_ptr<Player>, std::shared_ptr<Player>);
+    //typedef std::function<void(std::shared_ptr<Player>, std::shared_ptr<Player>)> functionPointer;
     Actions();
     virtual ~Actions();
     std::map<std::string, functionPointer> getMap();
@@ -38,6 +44,7 @@ public:
 private:
     QVector<std::string> _cards;
     std::map<std::string, functionPointer> _actionsMap;
+    QVector<Action> _actions;
     void fillMap();
     void fillCards();
 

@@ -243,10 +243,12 @@ void ChatServer::handleActionMessage(std::shared_ptr<ServerWorker> sender, const
         return;
     QJsonObject message;
     std::map<std::string, Actions::functionPointer> actions = _actions->getMap();
-    //_actions->getMap()[text.toStdString()](sender->getPlayer() );
+    Actions::functionPointer x = actions[text.toStdString()];
+    ((_actions.get())->*x)(sender->getPlayer(), std::shared_ptr<Player>(nullptr));
     message["type"] = QStringLiteral("action");
     message["text"] = text;
     message["sender"] = sender->getUserName();
+    message["money"] = sender->getPlayer()->getMoney();
     //broadcast(message, sender);
     broadcast(message, nullptr);
 }

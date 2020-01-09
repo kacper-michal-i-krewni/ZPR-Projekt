@@ -113,7 +113,8 @@ private slots:
      * Gets data from input dialog
      */
     void createGame();
-    void tooglePlayerInterface(bool b);
+    void toggleActionsInterface(bool b);
+    void toggleButtons(bool b);
     void actionExecute(const QString &sender, const QString &action);
 
     void displaySessionDialog();

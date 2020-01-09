@@ -7,6 +7,7 @@
 ServerWorker::ServerWorker(QObject *parent)
     : QObject(parent)
     , m_serverSocket(new QTcpSocket(this))
+    , _player(new Player(m_userName.toStdString()))
 {
     // connect readyRead() to the slot that will take care of reading the data in
     connect(m_serverSocket, &QTcpSocket::readyRead, this, &ServerWorker::receiveJson);

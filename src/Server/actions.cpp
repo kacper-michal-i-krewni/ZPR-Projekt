@@ -1,6 +1,6 @@
 #include "actions.h"
 #include "player.h"
-
+#include "../../Mutual/actions/allactions.h"
 
 Actions::Actions()
 {
@@ -58,7 +58,8 @@ void Actions::protest(std::shared_ptr<Player> executer, std::shared_ptr<Player> 
 }
 void Actions::russia(std::shared_ptr<Player> executer, std::shared_ptr<Player> victim)
 {
-
+    int additionalMoney = 3;
+    executer->setMoney(executer->getMoney() + additionalMoney);
 }
 void Actions::usa(std::shared_ptr<Player> executer, std::shared_ptr<Player> victim)
 {
