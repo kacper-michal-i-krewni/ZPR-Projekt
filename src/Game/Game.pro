@@ -26,7 +26,8 @@ HEADERS += \
     actions.h \
     chatclient.h \
     gamelistdialog.h \
-    mainwindow.h
+    mainwindow.h \
+    session.h
 
 FORMS += \
     gamelistdialog.ui \

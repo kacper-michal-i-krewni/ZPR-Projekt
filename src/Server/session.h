@@ -8,6 +8,7 @@
 #include <QJsonObject>
 
 #include <QObject>
+#include <QUuid>
 
 class Player;
 class Session: public QObject
@@ -45,6 +46,7 @@ private:
     QVector<std::shared_ptr<ServerWorker>> _players;
     std::shared_ptr<ServerWorker> _owner;
     int _numOfPlayers;
+    QUuid _id;
     //QTimer _timer;
     //void wait();
 

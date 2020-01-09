@@ -3,6 +3,7 @@
 #include "chatclient.h"
 #include "actions.h"
 #include "gamelistdialog.h"
+#include "session.h"
 
 #include <QStandardItemModel>
 #include <QInputDialog>
@@ -240,7 +241,7 @@ void MainWindow::userLeft(const QString &username)
 }
 
 //slot evoked when info from server is recieved
-void MainWindow::displaySessionDialog(QVector<QMap<QString, QVariant> > &sessVec){
+void MainWindow::displaySessionDialog(QVector<Session> &sessVec){
     GameListDialog* dialog = new GameListDialog(nullptr, sessVec); //TU MA BYĆ SESSMAP);
     dialog->setModal(true);
     dialog->exec();

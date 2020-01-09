@@ -1,6 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "session.h"
+
 #include <QWidget>
 #include <QMainWindow>
 #include <QJsonObject>
@@ -118,7 +120,7 @@ private slots:
 
     void tooglePlayerInterface(bool b);
     void actionExecute(const QString &sender, const QString &action);
-    void displaySessionDialog(QVector<QMap<QString, QVariant> > &sessVec);
+    void displaySessionDialog(QVector<Session> &sessVec);
 
 
     void updatePlayerInterface(const QString &player, const double money, const double lifes);

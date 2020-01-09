@@ -2,15 +2,16 @@
 
 Session::Session(std::shared_ptr<ServerWorker> owner, int& num)
 {
+    this->_id = QUuid::createUuid();
     this->_numOfPlayers = num;
     this->_owner = owner;
     this->_players.push_back(owner);
-
 }
 
 QJsonObject Session::toJSON()
 {
     QJsonObject json;
+    json["id"] = _id.toString();
     json["numOfPlayers"] = _numOfPlayers;
     json["owner"] = _owner->getUserName();
     return json;

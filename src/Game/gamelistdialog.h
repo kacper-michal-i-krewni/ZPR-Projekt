@@ -1,6 +1,8 @@
 #ifndef GAMELISTDIALOG_H
 #define GAMELISTDIALOG_H
 
+#include "session.h"
+
 #include <QDialog>
 
 namespace Ui {
@@ -13,9 +15,10 @@ class GameListDialog : public QDialog
 
 public:
     //explicit GameListDialog(QWidget *parent = nullptr);
-    explicit GameListDialog(QWidget *parent,const QVector<QMap<QString, QVariant> > &mapVec);
+    explicit GameListDialog(QWidget *parent,const QVector<Session>  &sessVec);
     ~GameListDialog();
-
+private slots:
+    void onButtonClicked();
 private:
     Ui::GameListDialog *ui;
 };
