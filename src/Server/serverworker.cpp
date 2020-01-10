@@ -7,6 +7,9 @@
 ServerWorker::ServerWorker(QObject *parent)
     : QObject(parent)
     , m_serverSocket(new QTcpSocket(this))
+    , _isGameOwner(false)
+    , _isInGame(false)
+
 {
     // connect readyRead() to the slot that will take care of reading the data in
     connect(m_serverSocket, &QTcpSocket::readyRead, this, &ServerWorker::receiveJson);
@@ -58,6 +61,27 @@ void ServerWorker::setUserName(const QString &userName)
 {
     m_userName = userName;
 }
+
+bool ServerWorker::isGameOwner()
+{
+    return _isGameOwner;
+}
+
+void ServerWorker::setAsGameOwner(const bool &b)
+{
+    _isGameOwner = b;
+}
+
+bool ServerWorker::isInGame()
+{
+    return _isInGame;
+}
+
+void ServerWorker::setAsInGame(const bool &b)
+{
+    _isInGame= b;
+}
+
 
 void ServerWorker::receiveJson()
 {

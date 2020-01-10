@@ -199,6 +199,8 @@ void ChatServer::handleSessionMessage(std::shared_ptr<ServerWorker> sender, cons
     const QJsonValue requestVal = docObj.value(QLatin1String("request"));
     if ( requestVal.toString().compare(QLatin1String("createRequest"), Qt::CaseInsensitive) == 0)
     {
+        if (sender->isInGame() || sender->isGameOwner())
+            return;
         const QJsonValue numOfPlayers = docObj.value(QLatin1String("playerNumber"));
         if (numOfPlayers.isNull() || !numOfPlayers.isString())
             return;
@@ -206,6 +208,8 @@ void ChatServer::handleSessionMessage(std::shared_ptr<ServerWorker> sender, cons
 
         std::shared_ptr<Session> s(new Session(sender, num));
         _sessions.push_back(s);
+        sender->setAsGameOwner(true);
+        sender->setAsInGame(true);
 
         QJsonObject message;
         message["type"] = QStringLiteral("message");
@@ -217,6 +221,33 @@ void ChatServer::handleSessionMessage(std::shared_ptr<ServerWorker> sender, cons
     {
         sendSessionsInfoForDialog(sender);
     }
+    if ( requestVal.toString().compare(QLatin1String("joinRequest"), Qt::CaseInsensitive) == 0)
+    {
+        QJsonObject message;
+        message["type"] = QStringLiteral("sessionAcceptance");
+        if (sender->isInGame() || sender->isGameOwner())
+        {
+            message["success"] = false;
+        }
+        else
+        {
+            message["success"] = false;
+            const QJsonValue sessionId = docObj.value(QLatin1String("id"));
+            for (auto s: _sessions)
+            {
+                if (sessionId.toString().compare( s->getId(), Qt::CaseInsensitive) == 0)
+                {
+                    message["success"] = true;
+
+                    s->addPlayer(sender);
+                    sender->setAsInGame(true);
+                    break;
+                }
+            }
+        }
+        sendJson(sender, message);
+    }
+
 }
 
 void ChatServer::sendSessionsInfoForDialog(std::shared_ptr<ServerWorker> sender)

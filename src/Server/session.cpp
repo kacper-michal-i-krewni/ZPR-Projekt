@@ -17,6 +17,18 @@ QJsonObject Session::toJSON()
     return json;
 }
 
+void Session::removePlayer(const std::shared_ptr<ServerWorker> player)
+{
+    for(int p = 0; p < _players.size(); p++)
+    {
+        if(_players[p]==player)
+        {
+            _players.removeAt(p);
+            return;
+        }
+    }
+}
+
 void Session::blockRequest(const Player &p1, const Player &p2)
 {
 

@@ -10,6 +10,7 @@ GameListDialog::GameListDialog(QWidget *parent):
 {
     ui->setupUi(this);
     connect(ui->joinButton, &QPushButton::clicked, this, &GameListDialog::onButtonClicked);
+    connect(ui->joinButton, SIGNAL(clicked()), this, SLOT(close()));
 }
 
 void GameListDialog::setList(const QVector<Session> &sessVec)
@@ -27,6 +28,7 @@ GameListDialog::~GameListDialog()
 }
 
 void GameListDialog::onButtonClicked(){ //TODO implement this method
+    if(_sessVec.isEmpty()) return;
     QListWidgetItem* item = ui->listWidget->currentItem();
     int row = ui->listWidget->row(item);
     Session s = _sessVec[row]; //TODO check if indexes are cool
@@ -35,6 +37,8 @@ void GameListDialog::onButtonClicked(){ //TODO implement this method
     message["request"] = QStringLiteral("joinRequest");
     message["type"] = QStringLiteral("session");
     message["id"] = s.getId();
+    _sessVec.clear();
+
 
     emit buttonClicked(message);
 
