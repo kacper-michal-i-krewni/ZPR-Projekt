@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "blockingui.h"
+#include "ui_blockingui.h"
 #include "chatclient.h"
 #include "actions.h"
 #include "gamelistdialog.h"
@@ -15,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     , m_chatClient(new ChatClient(this))
     , m_chatModel(new QStandardItemModel(this))
     , m_actions( new Actions(m_chatClient))
+    , blockingui(new Ui::BlockingUi)
 {
     // set up of the .ui file
     ui->setupUi(this);
@@ -56,15 +59,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->protestButton, &QPushButton::clicked, m_actions.get(), &Actions::protest);
     connect(ui->russiaButton, &QPushButton::clicked, m_actions.get(), &Actions::russia);
     connect(ui->usaButton, &QPushButton::clicked, m_actions.get(), &Actions::usa);
-
-    ui->sendButton->setEnabled(false);
-    ui->lineEdit->setEnabled(false);
-    ui->chatView->setEnabled(false);
-    ui->disconnectAction->setEnabled(false);
-    ui->joinToGameAction->setEnabled(false);
-    ui->createGameAction->setEnabled(false);
-    tooglePlayerInterface(false);
-
+    connect(ui->block1, &QPushButton::clicked, this, &MainWindow::blockAction);
+    connect(ui->check1, &QPushButton::clicked, this, &MainWindow::checkAction);
+    connect(ui->ready1, &QPushButton::clicked, this, &MainWindow::readyAction);
 }
 
 MainWindow::~MainWindow()
@@ -159,11 +156,11 @@ void MainWindow::loggedIn()
     ui->sendButton->setEnabled(true);
     ui->lineEdit->setEnabled(true);
     ui->chatView->setEnabled(true);
-    ui->usaButton->setEnabled(true);
     ui->connectToServerAction->setEnabled(false);
     ui->createGameAction->setEnabled(true);
     ui->joinToGameAction->setEnabled(true);
     ui->disconnectAction->setEnabled(true);
+    toggleActionsInterface(true);
     // clear the user name record
     m_lastUserName.clear();
 }
@@ -240,7 +237,8 @@ void MainWindow::userLeft(const QString &username)
 }
 
 //slot evoked when info from server is recieved
-void MainWindow::displaySessionDialog(QVector<QMap<QString, QVariant> > &sessVec){
+void MainWindow::displaySessionDialog(QVector<QMap<QString, QVariant> > &sessVec)
+{
     GameListDialog* dialog = new GameListDialog(nullptr, sessVec); //TU MA BYĆ SESSMAP);
     dialog->setModal(true);
     dialog->exec();
@@ -309,7 +307,7 @@ void MainWindow::sendMessage()
 
 // ------- OTHER -------- //
 
-void MainWindow::tooglePlayerInterface(bool b)
+void MainWindow::toggleActionsInterface(bool b)
 {
     // block all action buttons
     ui->usaButton->setEnabled(b);
@@ -321,11 +319,6 @@ void MainWindow::tooglePlayerInterface(bool b)
     ui->onzButton->setEnabled(b);
     ui->policeButton->setEnabled(b);
     ui->euButton->setEnabled(b);
-    // block user interface
-    ui->block1->setEnabled(b);
-    ui->check1->setEnabled(b);
-    ui->block2->setEnabled(b);
-    ui->check2->setEnabled(b);
 }
 
 void MainWindow::actionExecute(const QString &sender, const QString &action)
@@ -340,13 +333,44 @@ void MainWindow::updatePlayerInterface(const QString &player, const double money
     {
         ui->wallet1->setText(QString("%1").arg(money));
     }
-    else if ( ui->nickname2->text().compare(player,Qt::CaseInsensitive ) == 0 ) // if first
+    else if ( ui->nickname2->text().compare(player,Qt::CaseInsensitive ) == 0 ) // if second
     {
-        ui->wallet2->setText(QString("%1").arg(money));
+       ui->wallet2->setText(QString("%1").arg(money));
+    }
+    else if ( ui->nickname3->text().compare(player,Qt::CaseInsensitive ) == 0 ) // if third
+    {
+       ui->wallet2->setText(QString("%1").arg(money));
+    }
+    else if ( ui->nickname4->text().compare(player,Qt::CaseInsensitive ) == 0 ) // if fourth
+    {
+       ui->wallet2->setText(QString("%1").arg(money));
     }
 
 }
 
+void MainWindow::blockAction()
+{
+    //std::unique_ptr<BlockingUi> block (new BlockingUi(nullptr));
+    BlockingUi *block  = new BlockingUi(nullptr, m_chatClient);
+    block->show();
+}
+
+void MainWindow::checkAction(void)
+{
+    QJsonObject message;
+    message["type"] = QStringLiteral("check");
+    message["player"] = m_chatClient->getNickname();
+    m_chatClient->sendMessageToServer(message);
+}
+
+void MainWindow::readyAction(void)
+{
+    QJsonObject message;
+    message["type"] = QStringLiteral("ready");
+    message["player"] = m_chatClient->getNickname();
+    m_chatClient->sendMessageToServer(message);
+
+}
 
 
 void MainWindow::error(QAbstractSocket::SocketError socketError)

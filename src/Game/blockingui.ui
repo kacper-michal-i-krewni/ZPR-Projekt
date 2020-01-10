@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>BlockingUi</class>
+ <widget class="QWidget" name="BlockingUi">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
+    <widget class="QPushButton" name="russia">
+     <property name="text">
+      <string>Rosja</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="protest">
+     <property name="text">
+      <string>Protest</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="media">
+     <property name="text">
+      <string>Media</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="onz">
+     <property name="text">
+      <string>ONZ</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="police">
+     <property name="text">
+      <string>Policja</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="eu">
+     <property name="text">
+      <string>UE</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

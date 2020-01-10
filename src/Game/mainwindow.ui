@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>951</width>
-    <height>653</height>
+    <width>1332</width>
+    <height>813</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,8 +15,475 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
+    <item row="2" column="0" colspan="3">
+     <layout class="QGridLayout" name="actionsLayout" rowstretch="0,0,0" columnstretch="0,0,0,0">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetNoConstraint</enum>
+      </property>
+      <item row="1" column="2">
+       <widget class="QPushButton" name="protestButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Protest</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QPushButton" name="russiaButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Rosja</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QPushButton" name="policeButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Policja</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QPushButton" name="onzButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>ONZ</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QPushButton" name="mediaButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Media</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="3">
+       <widget class="QPushButton" name="euButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>UE</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QPushButton" name="usaButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>USA</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QPushButton" name="localBiznesmanButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Lokalni Biznesmani</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QPushButton" name="affairButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Afera!</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
     <item row="0" column="0">
+     <layout class="QGridLayout" name="cardsLayout4">
+      <item row="0" column="2">
+       <spacer name="horizontalSpacer_5">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="0">
+       <spacer name="horizontalSpacer_7">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="5">
+       <layout class="QVBoxLayout" name="playerMenu4">
+        <item>
+         <widget class="QLabel" name="nickname4">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="wallet4"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="ready4">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Gotowy</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="check4">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Sprawdź</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="block4">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Zablokuj</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="0" column="3">
+       <widget class="QGraphicsView" name="card42"/>
+      </item>
+      <item row="0" column="1">
+       <widget class="QGraphicsView" name="card41"/>
+      </item>
+      <item row="0" column="4">
+       <spacer name="horizontalSpacer_8">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item row="0" column="2" rowspan="2">
+     <layout class="QGridLayout" name="chatViewLayout">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetNoConstraint</enum>
+      </property>
+      <item row="0" column="0">
+       <widget class="QListView" name="chatView">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="0">
+     <layout class="QGridLayout" name="cardsLayout1">
+      <item row="0" column="2">
+       <spacer name="horizontalSpacer_4">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="3">
+       <widget class="QGraphicsView" name="card12"/>
+      </item>
+      <item row="0" column="4">
+       <spacer name="horizontalSpacer_6">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="0">
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="1">
+       <widget class="QGraphicsView" name="card11"/>
+      </item>
+      <item row="0" column="5">
+       <layout class="QVBoxLayout" name="playerManu1">
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="nickname1">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="wallet1">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="ready1">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Gotowy</string>
+          </property>
+          <property name="checkable">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="check1">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Sprawdź</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="block1">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Zablokuj</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item row="3" column="0" colspan="3">
+     <layout class="QHBoxLayout" name="messageLayout">
+      <item>
+       <widget class="QLineEdit" name="lineEdit">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="sendButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Wyślij</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="1">
      <layout class="QGridLayout" name="cardsLayout2">
+      <item row="0" column="1">
+       <widget class="QGraphicsView" name="card21"/>
+      </item>
+      <item row="0" column="0">
+       <spacer name="horizontalSpacer_9">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="3">
+       <widget class="QGraphicsView" name="card22"/>
+      </item>
+      <item row="0" column="2">
+       <spacer name="horizontalSpacer_10">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="5">
+       <layout class="QVBoxLayout" name="playerMenu2">
+        <item>
+         <widget class="QLabel" name="nickname2"/>
+        </item>
+        <item>
+         <widget class="QLabel" name="wallet2"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="ready2">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Gotowy</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="check2">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Sprawdź</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="block2">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Zablokuj</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="0" column="4">
+       <spacer name="horizontalSpacer_11">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item row="0" column="1">
+     <layout class="QGridLayout" name="cardsLayout3">
+      <item row="0" column="5">
+       <layout class="QVBoxLayout" name="playermenu3">
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="nickname3">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="wallet3"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="ready3">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Gotowy</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="check3">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Sprawdź</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="block3">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Zablokuj</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="0" column="1">
+       <widget class="QGraphicsView" name="card31"/>
+      </item>
       <item row="0" column="0">
        <spacer name="horizontalSpacer">
         <property name="orientation">
@@ -43,14 +510,11 @@
         </property>
        </spacer>
       </item>
-      <item row="0" column="1">
-       <widget class="QGraphicsView" name="card3"/>
-      </item>
       <item row="0" column="3">
-       <widget class="QGraphicsView" name="card4"/>
+       <widget class="QGraphicsView" name="card32"/>
       </item>
       <item row="0" column="4">
-       <spacer name="horizontalSpacer_7">
+       <spacer name="horizontalSpacer_12">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
@@ -61,239 +525,6 @@
          </size>
         </property>
        </spacer>
-      </item>
-     </layout>
-    </item>
-    <item row="1" column="0">
-     <spacer name="verticalSpacer">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>40</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="4" column="0" colspan="4">
-     <layout class="QHBoxLayout" name="messageLayout">
-      <item>
-       <widget class="QLineEdit" name="lineEdit"/>
-      </item>
-      <item>
-       <widget class="QPushButton" name="sendButton">
-        <property name="text">
-         <string>Wyślij</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item row="0" column="1">
-     <spacer name="horizontalSpacer_5">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="2" column="0">
-     <layout class="QGridLayout" name="cardsLayout">
-      <item row="0" column="0">
-       <spacer name="horizontalSpacer_2">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="0" column="1">
-       <widget class="QGraphicsView" name="card1"/>
-      </item>
-      <item row="0" column="3">
-       <widget class="QGraphicsView" name="card2"/>
-      </item>
-      <item row="0" column="2">
-       <spacer name="horizontalSpacer_4">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="0" column="4">
-       <spacer name="horizontalSpacer_6">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-     </layout>
-    </item>
-    <item row="3" column="0" colspan="4">
-     <layout class="QGridLayout" name="actionsLayout" rowstretch="0,0,0" columnstretch="0,0,0,0">
-      <property name="sizeConstraint">
-       <enum>QLayout::SetNoConstraint</enum>
-      </property>
-      <item row="1" column="2">
-       <widget class="QPushButton" name="protestButton">
-        <property name="text">
-         <string>Protest</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QPushButton" name="russiaButton">
-        <property name="text">
-         <string>Rosja</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="2">
-       <widget class="QPushButton" name="policeButton">
-        <property name="text">
-         <string>Policja</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QPushButton" name="onzButton">
-        <property name="text">
-         <string>ONZ</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="3">
-       <widget class="QPushButton" name="mediaButton">
-        <property name="text">
-         <string>Media</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="3">
-       <widget class="QPushButton" name="euButton">
-        <property name="text">
-         <string>UE</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QPushButton" name="usaButton">
-        <property name="text">
-         <string>USA</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QPushButton" name="localBiznesmanButton">
-        <property name="text">
-         <string>Lokalni Biznesmani</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3">
-       <widget class="QPushButton" name="affairButton">
-        <property name="text">
-         <string>Afera!</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item row="0" column="2">
-     <layout class="QVBoxLayout" name="playeMenyLayout2">
-      <item>
-       <widget class="QLabel" name="nickname2">
-        <property name="text">
-         <string>Kaczmii</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="wallet2">
-        <property name="text">
-         <string>3 mil</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="block2">
-        <property name="text">
-         <string>Zablokuj</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="check2">
-        <property name="text">
-         <string>Sprawdz</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item row="2" column="2">
-     <layout class="QVBoxLayout" name="playerMenuLayout1">
-      <item>
-       <widget class="QLabel" name="nickname1">
-        <property name="text">
-         <string>Kaczmii</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="wallet1">
-        <property name="text">
-         <string>3 mil</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="block1">
-        <property name="text">
-         <string>Zablokuj</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="check1">
-        <property name="text">
-         <string>Sprawdz</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item row="0" column="3" rowspan="3">
-     <layout class="QGridLayout" name="chatViewLayout">
-      <property name="sizeConstraint">
-       <enum>QLayout::SetNoConstraint</enum>
-      </property>
-      <item row="0" column="0">
-       <widget class="QListView" name="chatView"/>
       </item>
      </layout>
     </item>
@@ -304,8 +535,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>951</width>
-     <height>29</height>
+     <width>1332</width>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuMenu">
@@ -328,16 +559,25 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="joinToGameAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Join to game</string>
    </property>
   </action>
   <action name="disconnectAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Disconnect</string>
    </property>
   </action>
   <action name="createGameAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Create a game</string>
    </property>

@@ -109,7 +109,6 @@ signals:
     void sessionListComplete(QVector<QMap<QString, QVariant> > &sessVec);
 
     void updatePlayerInterface(const QString &player, const double money, const double lifes);
-
 private:
     /*!
      * \brief m_clientSocket - the socket that is bound to the specific client.

@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     actions.cpp \
+    blockingui.cpp \
     chatclient.cpp \
     gamelistdialog.cpp \
     main.cpp \
@@ -24,11 +25,13 @@ SOURCES += \
 
 HEADERS += \
     actions.h \
+    blockingui.h \
     chatclient.h \
     gamelistdialog.h \
     mainwindow.h
 
 FORMS += \
+    blockingui.ui \
     gamelistdialog.ui \
     mainwindow.ui
 

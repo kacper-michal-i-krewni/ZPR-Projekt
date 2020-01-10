@@ -12,7 +12,7 @@ class QStandardItemModel;
 class Actions;
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui { class MainWindow; class BlockingUi; }
 QT_END_NAMESPACE
 
 /*!
@@ -45,6 +45,8 @@ private:
     std::shared_ptr<QStandardItemModel> m_chatModel;
 
     std::shared_ptr<Actions> m_actions;
+
+    Ui::BlockingUi *blockingui;
 
     /*!
      * \brief m_lastUserName
@@ -116,13 +118,15 @@ private slots:
      * Gets data from input dialog
      */
 
-    void tooglePlayerInterface(bool b);
+    void toggleActionsInterface(bool b);
     void actionExecute(const QString &sender, const QString &action);
     void displaySessionDialog(QVector<QMap<QString, QVariant> > &sessVec);
 
 
     void updatePlayerInterface(const QString &player, const double money, const double lifes);
-
+    void blockAction(void);
+    void checkAction(void);
+    void readyAction(void);
 
 };
 #endif // MAINWINDOW_H
