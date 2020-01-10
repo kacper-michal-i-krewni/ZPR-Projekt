@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "gamelistdialog.h"
 #include "session.h"
 
 #include <QWidget>
@@ -8,6 +9,7 @@
 #include <QJsonObject>
 #include <QAbstractSocket>
 #include <memory>
+#include <ui_gamelistdialog.h>
 
 class ChatClient;
 class QStandardItemModel;
@@ -24,6 +26,7 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
     Q_DISABLE_COPY(MainWindow)
+
 public:
     /*!
      * \brief MainWindow - contructor, creates chatClient, viewModel and gameLogic objects, connects all signals to their destinations
@@ -37,6 +40,7 @@ private:
      * \brief ui - pointer to user interface
      */
     Ui::MainWindow *ui;
+    std::shared_ptr<GameListDialog> m_gameListDialog;
     /*!
      * \brief m_chatClient - pointer to correlated chat client
      */
@@ -121,7 +125,7 @@ private slots:
     void tooglePlayerInterface(bool b);
     void actionExecute(const QString &sender, const QString &action);
     void displaySessionDialog(QVector<Session> &sessVec);
-
+    void sendSessionDialogResponse(QJsonObject &message);
 
     void updatePlayerInterface(const QString &player, const double money, const double lifes);
 
