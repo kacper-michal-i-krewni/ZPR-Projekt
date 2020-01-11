@@ -41,6 +41,10 @@ public:
 
     void setPlayer(const std::shared_ptr<Player> player);
     std::shared_ptr<Player> getPlayer();
+    bool isGameOwner();
+    void setAsGameOwner(const bool &b);
+    bool isInGame();
+    void setAsInGame(const bool &b);
 signals:
     /*!
      * \brief jsonReceived is a signal that handle reciving messages.
@@ -82,6 +86,8 @@ private:
     QString m_userName;
 
     std::shared_ptr<Player> _player;
+    bool _isGameOwner;
+    bool _isInGame;
 };
 
 #endif // SERVERWORKER_H

@@ -8,6 +8,7 @@
 #include <QJsonObject>
 
 #include <QObject>
+#include <QUuid>
 
 class Player;
 class Session: public QObject
@@ -17,8 +18,11 @@ public:
     Session(std::shared_ptr<ServerWorker> owner, int& plNum);
     virtual ~Session(){}
     QVector<std::shared_ptr<ServerWorker> > getPlayers(){return _players;}
+    void addPlayer(const std::shared_ptr<ServerWorker> player) {_players.push_back(player);}
+    void removePlayer(const std::shared_ptr<ServerWorker> player);
     int getNumOfPlayers(){return _numOfPlayers;}
     std::shared_ptr<ServerWorker> getOwner(){return _owner;}
+    QString getId(){return _id.toString();}
     QJsonObject toJSON();
 
 public slots:
@@ -42,9 +46,10 @@ signals:
 
 
 private:
-    QVector<std::shared_ptr<ServerWorker>> _players;
+    QVector<std::shared_ptr<ServerWorker> > _players;
     std::shared_ptr<ServerWorker> _owner;
     int _numOfPlayers;
+    QUuid _id;
     //QTimer _timer;
     //void wait();
 

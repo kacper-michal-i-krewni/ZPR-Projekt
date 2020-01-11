@@ -35,6 +35,16 @@ void Player::takeCard(std::shared_ptr<Card> card)
     _cards.push_back(card);
 }
 
+//bool Player::isGameOwner()
+//{
+//    return _gameOwner;
+//}
+
+//void Player::setAsGameOwner(bool &b)
+//{
+//    _gameOwner = b;
+//}
+
 Player::~Player()
 {
 

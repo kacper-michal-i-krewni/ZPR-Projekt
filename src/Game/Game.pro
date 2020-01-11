@@ -28,7 +28,8 @@ HEADERS += \
     blockingui.h \
     chatclient.h \
     gamelistdialog.h \
-    mainwindow.h
+    mainwindow.h \
+    session.h
 
 FORMS += \
     blockingui.ui \

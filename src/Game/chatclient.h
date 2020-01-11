@@ -1,6 +1,8 @@
 #ifndef CHATCLIENT_H
 #define CHATCLIENT_H
 
+#include "session.h"
+
 #include <QObject>
 #include <QTcpSocket>
 #include <memory>
@@ -106,7 +108,7 @@ signals:
     void actionExecute(const QString &sender, const QString &action);
 
 
-    void sessionListComplete(QVector<QMap<QString, QVariant> > &sessVec);
+    void sessionListComplete(QVector<Session> &sessVec);
 
     void updatePlayerInterface(const QString &player, const double money, const double lifes);
 private:

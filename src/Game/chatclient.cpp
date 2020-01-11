@@ -199,10 +199,12 @@ void ChatClient::jsonReceived(const QJsonObject &docObj)
     {
         QJsonArray sessionArray = docObj["sessions"].toArray();
 
-        QVector<QMap<QString, QVariant> > sVector;
+        QVector<Session> sVector;
         for (int sIndex = 0; sIndex < sessionArray.size(); ++sIndex) {
                 QJsonObject sObject = sessionArray[sIndex].toObject();
-                sVector.push_back(sObject.toVariantMap());
+                Session s;
+                s.readValuesFromJSON(sObject);
+                sVector.push_back(s);
         }
 
         emit sessionListComplete(sVector);

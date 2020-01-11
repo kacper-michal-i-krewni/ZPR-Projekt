@@ -5,6 +5,7 @@
 #include "chatclient.h"
 #include "actions.h"
 #include "gamelistdialog.h"
+#include "session.h"
 
 #include <QStandardItemModel>
 #include <QInputDialog>
@@ -14,6 +15,7 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
+    , m_gameListDialog (new GameListDialog(this))
     , m_chatClient(new ChatClient(this))
     , m_chatModel(new QStandardItemModel(this))
     , m_actions( new Actions(m_chatClient))
@@ -37,6 +39,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_chatClient.get(), &ChatClient::actionExecute, this, &MainWindow::actionExecute);
     connect(m_chatClient.get(), &ChatClient::sessionListComplete, this, &MainWindow::displaySessionDialog);
     connect(m_chatClient.get(), &ChatClient::updatePlayerInterface, this, &MainWindow::updatePlayerInterface);
+    connect(m_gameListDialog.get(), &GameListDialog::buttonClicked, this, &MainWindow::sendSessionDialogResponse);
     // connect the create game action to slot that will attempt creating game
     connect(ui->connectToServerAction, &QAction::triggered, this, &MainWindow::connectToServer);
     connect(ui->createGameAction, &QAction::triggered, this, &MainWindow::createGame);
@@ -238,12 +241,16 @@ void MainWindow::userLeft(const QString &username)
 }
 
 //slot evoked when info from server is recieved
-void MainWindow::displaySessionDialog(QVector<QMap<QString, QVariant> > &sessVec)
-{
-    GameListDialog* dialog = new GameListDialog(nullptr, sessVec); //TU MA BYĆ SESSMAP);
-    dialog->setModal(true);
-    dialog->exec();
+void MainWindow::displaySessionDialog(QVector<Session> &sessVec){
 
+    m_gameListDialog->setList(sessVec);
+    m_gameListDialog->setModal(true);
+    m_gameListDialog->exec();
+
+}
+
+void MainWindow::sendSessionDialogResponse(QJsonObject &message){
+    m_chatClient->sendMessageToServer(message);
 }
 
 // -------- MESSAGES --------- //

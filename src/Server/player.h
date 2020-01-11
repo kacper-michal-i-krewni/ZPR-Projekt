@@ -63,6 +63,10 @@ public:
      */
     void takeCard(std::shared_ptr<Card> card);
 
+//    bool isGameOwner();
+
+//    void setAsGameOwner(bool &b);
+
     ~Player();
 private:
     /*!
@@ -81,6 +85,7 @@ private:
      * \brief _enabled says if player can make a move.
      */
     bool _enabled;
+    //bool _gameOwner;
     QVector<std::shared_ptr<Card>> _cards;
 };
 
