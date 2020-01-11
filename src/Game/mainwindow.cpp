@@ -39,12 +39,14 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_chatClient.get(), &ChatClient::actionExecute, this, &MainWindow::actionExecute);
     connect(m_chatClient.get(), &ChatClient::sessionListComplete, this, &MainWindow::displaySessionDialog);
     connect(m_chatClient.get(), &ChatClient::updatePlayerInterface, this, &MainWindow::updatePlayerInterface);
+    connect(m_chatClient.get(), &ChatClient::sessionCreated, this, &MainWindow::sessionCreated);
     connect(m_gameListDialog.get(), &GameListDialog::buttonClicked, this, &MainWindow::sendSessionDialogResponse);
     // connect the create game action to slot that will attempt creating game
     connect(ui->connectToServerAction, &QAction::triggered, this, &MainWindow::connectToServer);
     connect(ui->createGameAction, &QAction::triggered, this, &MainWindow::createGame);
     // connect the connect action to a slot that will attempt the connection
     connect(ui->joinToGameAction, &QAction::triggered, this, &MainWindow::joinToGame);
+    connect(ui->startGameAction, &QAction::triggered, this, &MainWindow::startGame);
     // connect the disconnect action to a slot that will make disconnect
     connect(ui->disconnectAction, &QAction::triggered, this, &MainWindow::disconnect);
     // Exiting app
@@ -118,6 +120,15 @@ void MainWindow::createGame()
 
     m_chatClient->sendMessageToServer(message);
 
+}
+
+void MainWindow::startGame()
+{
+    QJsonObject message;
+    message["request"] = QStringLiteral("startRequest");
+    message["type"] = QStringLiteral("session");
+
+    m_chatClient->sendMessageToServer(message);
 }
 
 
@@ -241,7 +252,8 @@ void MainWindow::userLeft(const QString &username)
 }
 
 //slot evoked when info from server is recieved
-void MainWindow::displaySessionDialog(QVector<Session> &sessVec){
+void MainWindow::displaySessionDialog(QVector<Session> &sessVec)
+{
 
     m_gameListDialog->setList(sessVec);
     m_gameListDialog->setModal(true);
@@ -249,8 +261,34 @@ void MainWindow::displaySessionDialog(QVector<Session> &sessVec){
 
 }
 
-void MainWindow::sendSessionDialogResponse(QJsonObject &message){
+void MainWindow::sendSessionDialogResponse(QJsonObject &message)
+{
     m_chatClient->sendMessageToServer(message);
+}
+
+void MainWindow::sessionCreated(bool &success)
+{
+    const int newRow = m_chatModel->rowCount();
+    // insert a row
+    m_chatModel->insertRow(newRow);
+    // store in the model the message to comunicate a user joined
+    if(success)
+    {
+        m_chatModel->setData(m_chatModel->index(newRow, 0), tr("Session created!"));
+        // set the alignment for the text
+        m_chatModel->setData(m_chatModel->index(newRow, 0), Qt::AlignCenter, Qt::TextAlignmentRole);
+        // set the color for the text
+        m_chatModel->setData(m_chatModel->index(newRow, 0), QBrush(Qt::green), Qt::ForegroundRole);
+        ui->startGameAction->setEnabled(true);
+    }
+    else
+    {
+        m_chatModel->setData(m_chatModel->index(newRow, 0), tr("Unable to create session"));
+        // set the alignment for the text
+        m_chatModel->setData(m_chatModel->index(newRow, 0), Qt::AlignCenter, Qt::TextAlignmentRole);
+        // set the color for the text
+        m_chatModel->setData(m_chatModel->index(newRow, 0), QBrush(Qt::red), Qt::ForegroundRole);
+    }
 }
 
 // -------- MESSAGES --------- //

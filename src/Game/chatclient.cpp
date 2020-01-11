@@ -211,6 +211,13 @@ void ChatClient::jsonReceived(const QJsonObject &docObj)
 
     }
 
+    else if (typeVal.toString().compare(QLatin1String("sessionCreated"), Qt::CaseInsensitive) == 0)
+    {
+        QJsonValue success = docObj.value(QLatin1String("success"));
+        bool b = success.toBool();
+        emit sessionCreated(b);
+    }
+
     else if (typeVal.toString().compare(QLatin1String("update"), Qt::CaseInsensitive) == 0) // An update message
     {
         const QJsonValue playersNick = docObj.value(QLatin1String("player"));
