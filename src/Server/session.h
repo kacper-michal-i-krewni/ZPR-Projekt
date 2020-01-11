@@ -18,6 +18,7 @@ public:
     Session(std::shared_ptr<ServerWorker> owner, int playersLimit);
     virtual ~Session();
     QVector<std::shared_ptr<ServerWorker> > getPlayers();
+    void sendToAll(QJsonObject &message);
     void addPlayer(const std::shared_ptr<ServerWorker> player);
     void removePlayer(const std::shared_ptr<ServerWorker> player);
     int getNumOfPlayers();

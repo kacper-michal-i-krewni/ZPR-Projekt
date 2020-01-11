@@ -10,6 +10,11 @@ Session::~Session()
 
 }
 
+void Session::start()
+{
+
+}
+
 QVector<std::shared_ptr<ServerWorker>>  Session::getPlayers()
 {
     return _players;
@@ -72,4 +77,13 @@ QJsonObject Session::toJSON()
     json["playersLimit"] = _playersLimit;
     json["owner"] = getOwner()->getUserName();
     return json;
+}
+
+
+void Session::sendToAll(QJsonObject &message)
+{
+    for(auto p: _players)
+    {
+        p->sendJson(message);
+    }
 }

@@ -229,6 +229,34 @@ void ChatServer::handleSessionMessage(std::shared_ptr<ServerWorker> sender, cons
         //broadcast(broadMessage, sender);
     }
 
+    if ( requestVal.toString().compare(QLatin1String("startRequest"), Qt::CaseInsensitive) == 0)
+    {
+        const QJsonValue id = docObj.value(QLatin1String("id"));
+        for (auto s: _sessions)
+        {
+            if(id.toString().compare(s->getId(), Qt::CaseInsensitive) == 0)
+                if(s->getOwner()->getUserName().compare(sender->getUserName()) == 0)
+                {
+                    s->start();
+                    QJsonObject message;
+                    message["type"] = QStringLiteral("sessionStarted");
+                    message["success"] = true;
+                    s->sendToAll(message);
+                    return;
+                }else
+                {
+                    QJsonObject message;
+                    message["type"] = QStringLiteral("sessionStarted");
+                    message["success"] = false;
+                    s->sendToAll(message);
+                    return;
+                }
+        }
+        QJsonObject message;
+        message["type"] = QStringLiteral("sessionStarted");
+        message["success"] = false;
+        sendJson(sender, message);
+    }
 
 
     if ( requestVal.toString().compare(QLatin1String("showSessionsRequest"), Qt::CaseInsensitive) == 0)
