@@ -17,8 +17,8 @@ MainWindow::MainWindow(QWidget *parent)
     , m_chatClient(new ChatClient(this))
     , m_chatModel(new QStandardItemModel(this))
     , m_actions( new Actions(m_chatClient))
-    , blockingui(new Ui::BlockingUi)
 {
+    blockingui.reset(new BlockingUi(nullptr, m_chatClient));
     // set up of the .ui file
     ui->setupUi(this);
     // the model for the messages will have 1 column
@@ -62,6 +62,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->block1, &QPushButton::clicked, this, &MainWindow::blockAction);
     connect(ui->check1, &QPushButton::clicked, this, &MainWindow::checkAction);
     connect(ui->ready1, &QPushButton::clicked, this, &MainWindow::readyAction);
+    ui->block1->setEnabled(true);
 }
 
 MainWindow::~MainWindow()
@@ -350,13 +351,14 @@ void MainWindow::updatePlayerInterface(const QString &player, const double money
 
 void MainWindow::blockAction()
 {
-    //std::unique_ptr<BlockingUi> block (new BlockingUi(nullptr));
-    BlockingUi *block  = new BlockingUi(nullptr, m_chatClient);
-    block->show();
+    ui->block1->setEnabled(false);
+    //BlockingUi *block  = new BlockingUi(nullptr, m_chatClient);
+    blockingui->show();
 }
 
 void MainWindow::checkAction(void)
 {
+    ui->check1->setEnabled(false);
     QJsonObject message;
     message["type"] = QStringLiteral("check");
     message["player"] = m_chatClient->getNickname();
@@ -365,6 +367,7 @@ void MainWindow::checkAction(void)
 
 void MainWindow::readyAction(void)
 {
+    ui->ready1->setEnabled(false);
     QJsonObject message;
     message["type"] = QStringLiteral("ready");
     message["player"] = m_chatClient->getNickname();

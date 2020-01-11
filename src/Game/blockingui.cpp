@@ -14,12 +14,6 @@ BlockingUi::BlockingUi(QWidget *parent, std::shared_ptr<ChatClient> c) :
     connect(ui->onz, &QPushButton::clicked, this, &BlockingUi::onz);
     connect(ui->police, &QPushButton::clicked, this, &BlockingUi::police);
     connect(ui->protest, &QPushButton::clicked, this, &BlockingUi::protest);
-//    connect(ui->eu, &QPushButton::clicked, this, &BlockingUi::close);
-//    connect(ui->russia, &QPushButton::clicked, this, &BlockingUi::close);
-//    connect(ui->media, &QPushButton::clicked, this, &BlockingUi::close);
-//    connect(ui->onz, &QPushButton::clicked, this, &BlockingUi::close);
-//    connect(ui->police, &QPushButton::clicked, this, &BlockingUi::close);
-//    connect(ui->protest, &QPushButton::clicked, this, &BlockingUi::close);
 
 }
 

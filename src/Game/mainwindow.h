@@ -6,6 +6,8 @@
 #include <QJsonObject>
 #include <QAbstractSocket>
 #include <memory>
+#include "blockingui.h"
+#include "ui_blockingui.h"
 
 class ChatClient;
 class QStandardItemModel;
@@ -46,7 +48,7 @@ private:
 
     std::shared_ptr<Actions> m_actions;
 
-    Ui::BlockingUi *blockingui;
+    std::shared_ptr<BlockingUi> blockingui;
 
     /*!
      * \brief m_lastUserName
