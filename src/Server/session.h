@@ -25,7 +25,10 @@ public:
     QString getId();
     QJsonObject toJSON();
 
+    void start();
+
 public slots:
+
      void blockRequest(const Player &p1, const Player &p2);
      void actionRequest(const Action &a, const Player &p);
      void targetedActionRequest(const Action &a, const Player &player, const Player &target);

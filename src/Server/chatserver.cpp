@@ -209,21 +209,18 @@ void ChatServer::handleSessionMessage(std::shared_ptr<ServerWorker> sender, cons
         }
         else
         {
-            message["success"] = true;
-            sender->setAsInGame(true);
+            const QJsonValue numOfPlayers = docObj.value(QLatin1String("playerNumber"));
+            if (numOfPlayers.isNull() || !numOfPlayers.isString())
+                return;
+            int num = std::stoi(numOfPlayers.toString().toStdString());
+            std::shared_ptr<Session> s(new Session(sender, num));
+            _sessions.push_back(s);
             sender->setAsGameOwner(true);
+            sender->setAsInGame(true);
+            message["success"] = true;
+            message["id"] = s->getId();
         }
         sendJson(sender, message);
-
-        const QJsonValue numOfPlayers = docObj.value(QLatin1String("playerNumber"));
-        if (numOfPlayers.isNull() || !numOfPlayers.isString())
-            return;
-        int num = std::stoi(numOfPlayers.toString().toStdString());
-
-        std::shared_ptr<Session> s(new Session(sender, num));
-        _sessions.push_back(s);
-        sender->setAsGameOwner(true);
-        sender->setAsInGame(true);
 
         //QJsonObject broadMessage;
         //broadMessage["type"] = QStringLiteral("message");

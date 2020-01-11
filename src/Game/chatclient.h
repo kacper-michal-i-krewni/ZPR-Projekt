@@ -32,7 +32,8 @@ public:
      */
     const QString getNickname() const;
     //const std::vector<QMap<QString, QVariant> > getDialogSessionInfo() {return _dialogSessionInfo;}
-
+    void setSessionId(QString sessionId);
+    QString getSessionId();
     std::shared_ptr<QTcpSocket> getQTcpSocket() const;
 public slots:
     /*!
@@ -107,7 +108,7 @@ signals:
     void userLeft(const QString &username);
     void actionExecute(const QString &sender, const QString &action);
 
-    void sessionCreated(bool &success);
+    void sessionCreated(bool &success, QString &id);
     void sessionListComplete(QVector<Session> &sessVec);
 
     void updatePlayerInterface(const QString &player, const double money, const double lifes);
@@ -131,6 +132,7 @@ private:
      * \brief nickname
      */
     QString nickname;
+    QString _sessionId;
     //QVector<std::shared_ptr<QMap<QString, QVariant> > > _dialogSessionInfo;
 };
 

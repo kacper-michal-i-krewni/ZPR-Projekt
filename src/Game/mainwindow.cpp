@@ -130,6 +130,7 @@ void MainWindow::startGame()
     QJsonObject message;
     message["request"] = QStringLiteral("startRequest");
     message["type"] = QStringLiteral("session");
+    message["id"] = m_chatClient->getSessionId();
 
     m_chatClient->sendMessageToServer(message);
 }
@@ -270,7 +271,7 @@ void MainWindow::sendSessionDialogResponse(QJsonObject &message)
     m_chatClient->sendMessageToServer(message);
 }
 
-void MainWindow::sessionCreated(bool &success)
+void MainWindow::sessionCreated(bool &success, QString &id)
 {
     const int newRow = m_chatModel->rowCount();
     // insert a row
@@ -278,6 +279,7 @@ void MainWindow::sessionCreated(bool &success)
     // store in the model the message to comunicate a user joined
     if(success)
     {
+        m_chatClient->setSessionId(id);
         m_chatModel->setData(m_chatModel->index(newRow, 0), tr("Session created!"));
         // set the alignment for the text
         m_chatModel->setData(m_chatModel->index(newRow, 0), Qt::AlignCenter, Qt::TextAlignmentRole);

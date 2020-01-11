@@ -11,6 +11,7 @@ ChatClient::ChatClient(QObject *parent)
     : QObject(parent)
     , m_clientSocket(new QTcpSocket(this))
     , m_loggedIn(false)
+    ,_sessionId("null")
 {
     // Forward the connected and disconnected signals
     connect(m_clientSocket.get(), &QTcpSocket::connected, this, &ChatClient::connected);
@@ -38,6 +39,16 @@ void ChatClient::connectToServer(const QHostAddress &address, quint16 port)
     m_clientSocket->connectToHost(address, port);
 }
 
+
+void ChatClient::setSessionId(QString sessionId)
+{
+    _sessionId = sessionId;
+}
+
+QString ChatClient::getSessionId()
+{
+    return _sessionId;
+}
 
 void ChatClient::login(const QString &userName)
 {
@@ -215,7 +226,17 @@ void ChatClient::jsonReceived(const QJsonObject &docObj)
     {
         QJsonValue success = docObj.value(QLatin1String("success"));
         bool b = success.toBool();
-        emit sessionCreated(b);
+        if(b)
+        {
+            QJsonValue id = docObj.value(QLatin1String("id"));
+            QString s = id.toString();
+            emit sessionCreated(b, s);
+        }
+        else
+        {
+            QString s = QStringLiteral("null");
+            emit sessionCreated(b, s);
+        }
     }
 
     else if (typeVal.toString().compare(QLatin1String("update"), Qt::CaseInsensitive) == 0) // An update message

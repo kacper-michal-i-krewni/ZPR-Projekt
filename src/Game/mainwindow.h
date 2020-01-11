@@ -71,7 +71,7 @@ private slots:
      */
     void createGame();
     void startGame();
-    void sessionCreated(bool &success);
+    void sessionCreated(bool &success, QString &id);
     void connectToServer();
     void connectedToServer();
     /*!
