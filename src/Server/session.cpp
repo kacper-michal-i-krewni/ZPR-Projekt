@@ -1,21 +1,27 @@
 #include "session.h"
 
-Session::Session(std::shared_ptr<ServerWorker> owner, int& num)
+Session::Session(std::shared_ptr<ServerWorker> owner, int playersLimit): _id(QUuid::createUuid()), _owner(owner), _playersLimit(playersLimit)
 {
-    this->_id = QUuid::createUuid();
-    this->_numOfPlayers = num;
-    this->_owner = owner;
-    this->_players.push_back(owner);
+    _players.push_back(owner);
 }
 
-QJsonObject Session::toJSON()
+Session::~Session()
 {
-    QJsonObject json;
-    json["id"] = _id.toString();
-    json["numOfPlayers"] = _numOfPlayers;
-    json["owner"] = _owner->getUserName();
-    return json;
+
 }
+
+QVector<std::shared_ptr<ServerWorker>>  Session::getPlayers()
+{
+    return _players;
+}
+
+
+
+void Session::addPlayer(const std::shared_ptr<ServerWorker> player)
+{
+     _players.push_back(player);
+}
+
 
 void Session::removePlayer(const std::shared_ptr<ServerWorker> player)
 {
@@ -29,6 +35,17 @@ void Session::removePlayer(const std::shared_ptr<ServerWorker> player)
     }
 }
 
+
+int Session::getNumOfPlayers()
+{
+    return _players.size();
+}
+
+std::shared_ptr<ServerWorker> Session::getOwner()
+{
+    return _owner;
+}
+
 void Session::blockRequest(const Player &p1, const Player &p2)
 {
 
@@ -40,4 +57,19 @@ void Session::actionRequest(const Action &a, const Player &p)
 void Session::targetedActionRequest(const Action &a, const Player &player, const Player &target)
 {
 
+}
+
+QString Session::getId()
+{
+    return _id.toString();
+}
+
+QJsonObject Session::toJSON()
+{
+    QJsonObject json;
+    json["id"] = getId();
+    json["numOfPlayers"] = getNumOfPlayers();
+    json["playersLimit"] = _playersLimit;
+    json["owner"] = getOwner()->getUserName();
+    return json;
 }

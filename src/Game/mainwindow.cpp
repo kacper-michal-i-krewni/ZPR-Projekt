@@ -67,7 +67,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->block1, &QPushButton::clicked, this, &MainWindow::blockAction);
     connect(ui->check1, &QPushButton::clicked, this, &MainWindow::checkAction);
     connect(ui->ready1, &QPushButton::clicked, this, &MainWindow::readyAction);
-    ui->block1->setEnabled(true);
 }
 
 MainWindow::~MainWindow()
@@ -110,9 +109,13 @@ void MainWindow::createGame()
         , tr("Number of players")
         , tr("Players:")
         , QLineEdit::Normal
-        , QStringLiteral("4")
+        , QStringLiteral("2")
     );
 
+    if (playerNumber.isNull() || playerNumber.isEmpty() || playerNumber.compare("0",Qt::CaseInsensitive ) == 0 )
+    {
+        return;
+    }
     QJsonObject message;
     message["playerNumber"] = playerNumber;
     message["request"] = QStringLiteral("createRequest");
@@ -168,14 +171,13 @@ void MainWindow::attemptLogin(const QString &userName)
 void MainWindow::loggedIn()
 {
     // once we successully log in we enable the ui to display and send messages
-    ui->sendButton->setEnabled(true);
-    ui->lineEdit->setEnabled(true);
-    ui->chatView->setEnabled(true);
+    //ui->sendButton->setEnabled(true);
+    //ui->lineEdit->setEnabled(true);
+    //ui->chatView->setEnabled(true);
     ui->connectToServerAction->setEnabled(false);
     ui->createGameAction->setEnabled(true);
     ui->joinToGameAction->setEnabled(true);
     ui->disconnectAction->setEnabled(true);
-    toggleActionsInterface(true);
     // clear the user name record
     m_lastUserName.clear();
 }
@@ -199,8 +201,11 @@ void MainWindow::disconnectedFromServer()
     ui->lineEdit->setEnabled(false);
     ui->chatView->setEnabled(false);
     // enable the button to connect to the server again
-    ui->joinToGameAction->setEnabled(true);
-
+    ui->connectToServerAction->setEnabled(true);
+    ui->createGameAction->setEnabled(false);
+    ui->joinToGameAction->setEnabled(false);
+    ui->disconnectAction->setEnabled(false);
+    ui->startGameAction->setEnabled(false);
     // store the index of the new row to append to the model containing the messages
     const int newRow = m_chatModel->rowCount();
     // insert a row
@@ -258,7 +263,6 @@ void MainWindow::displaySessionDialog(QVector<Session> &sessVec)
     m_gameListDialog->setList(sessVec);
     m_gameListDialog->setModal(true);
     m_gameListDialog->exec();
-
 }
 
 void MainWindow::sendSessionDialogResponse(QJsonObject &message)
@@ -280,6 +284,8 @@ void MainWindow::sessionCreated(bool &success)
         // set the color for the text
         m_chatModel->setData(m_chatModel->index(newRow, 0), QBrush(Qt::green), Qt::ForegroundRole);
         ui->startGameAction->setEnabled(true);
+        ui->createGameAction->setEnabled(false);
+        ui->joinToGameAction->setEnabled(false);
     }
     else
     {
@@ -372,7 +378,6 @@ void MainWindow::actionExecute(const QString &sender, const QString &action)
     QMessageBox::warning(this, tr(sender.toUtf8().constData()), tr(action.toUtf8().constData()));
 }
 
-
 void MainWindow::updatePlayerInterface(const QString &player, const double money, const double lifes)
 {
     if ( ui->nickname1->text().compare(player,Qt::CaseInsensitive ) == 0 ) // if first
@@ -397,7 +402,6 @@ void MainWindow::updatePlayerInterface(const QString &player, const double money
 void MainWindow::blockAction()
 {
     ui->block1->setEnabled(false);
-    //BlockingUi *block  = new BlockingUi(nullptr, m_chatClient);
     blockingui->show();
 }
 

@@ -145,10 +145,10 @@ void ChatServer::jsonFromLoggedOut(std::shared_ptr<ServerWorker> sender, const Q
     successMessage["type"] = QStringLiteral("login");
     successMessage["success"] = true;
     sendJson(sender, successMessage);
-    QJsonObject connectedMessage;
-    connectedMessage["type"] = QStringLiteral("newuser");
-    connectedMessage["username"] = newUserName;
-    broadcast(connectedMessage, sender);
+    //QJsonObject connectedMessage;
+    //connectedMessage["type"] = QStringLiteral("newuser");
+    //connectedMessage["username"] = newUserName;
+    //broadcast(connectedMessage, sender);
 
   //TODO
 
@@ -218,18 +218,18 @@ void ChatServer::handleSessionMessage(std::shared_ptr<ServerWorker> sender, cons
         const QJsonValue numOfPlayers = docObj.value(QLatin1String("playerNumber"));
         if (numOfPlayers.isNull() || !numOfPlayers.isString())
             return;
-        int num = numOfPlayers.toInt();
+        int num = std::stoi(numOfPlayers.toString().toStdString());
 
         std::shared_ptr<Session> s(new Session(sender, num));
         _sessions.push_back(s);
         sender->setAsGameOwner(true);
         sender->setAsInGame(true);
 
-        QJsonObject broadMessage;
-        broadMessage["type"] = QStringLiteral("message");
-        broadMessage["text"] = QStringLiteral("czambo");
-        broadMessage["sender"] = sender->getUserName();
-        broadcast(broadMessage, sender);
+        //QJsonObject broadMessage;
+        //broadMessage["type"] = QStringLiteral("message");
+        //broadMessage["text"] = QStringLiteral("czambo");
+        //broadMessage["sender"] = sender->getUserName();
+        //broadcast(broadMessage, sender);
     }
 
 
