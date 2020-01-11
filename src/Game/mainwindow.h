@@ -66,6 +66,8 @@ private slots:
      * \brief connectedToServer - evoked when user clicks a button "Connect". Asks for username via input dialog
      */
     void createGame();
+    void startGame();
+    void sessionCreated(bool &success);
     void connectToServer();
     void connectedToServer();
     /*!

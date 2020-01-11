@@ -317,6 +317,8 @@
     <addaction name="separator"/>
     <addaction name="createGameAction"/>
     <addaction name="separator"/>
+    <addaction name="startGameAction"/>
+    <addaction name="separator"/>
     <addaction name="joinToGameAction"/>
     <addaction name="separator"/>
     <addaction name="disconnectAction"/>
@@ -350,6 +352,11 @@
   <action name="connectToServerAction">
    <property name="text">
     <string>Connect to server</string>
+   </property>
+  </action>
+  <action name="startGameAction">
+   <property name="text">
+    <string>Start game</string>
    </property>
   </action>
  </widget>

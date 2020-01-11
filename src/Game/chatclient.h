@@ -107,7 +107,7 @@ signals:
     void userLeft(const QString &username);
     void actionExecute(const QString &sender, const QString &action);
 
-
+    void sessionCreated(bool &success);
     void sessionListComplete(QVector<Session> &sessVec);
 
     void updatePlayerInterface(const QString &player, const double money, const double lifes);
