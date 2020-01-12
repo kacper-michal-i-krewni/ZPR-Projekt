@@ -21,7 +21,8 @@ SOURCES += \
     chatclient.cpp \
     gamelistdialog.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    playerlistdialog.cpp
 
 HEADERS += \
     actions.h \
@@ -29,12 +30,14 @@ HEADERS += \
     chatclient.h \
     gamelistdialog.h \
     mainwindow.h \
+    playerlistdialog.h \
     session.h
 
 FORMS += \
     blockingui.ui \
     gamelistdialog.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    playerlistdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

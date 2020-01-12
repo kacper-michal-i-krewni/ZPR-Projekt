@@ -40,6 +40,7 @@ void GameListDialog::onButtonClicked(){ //TODO implement this method
     message["type"] = QStringLiteral("session");
     message["id"] = s.getId();
     _sessVec.clear();
+    ui->listWidget->clear();
 
 
     emit buttonClicked(message);

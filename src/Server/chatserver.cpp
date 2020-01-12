@@ -309,6 +309,17 @@ void ChatServer::handleSessionMessage(std::shared_ptr<ServerWorker> sender, cons
 
 }
 
+bool ChatServer::checkIfPlayerIsInSession(std::shared_ptr<ServerWorker> sender)
+{
+    for(auto s: _sessions)
+    {
+        for (auto p: s->getPlayers())
+        {
+            if(p == sender) return true;
+        }
+    }
+    return false;
+}
 
 
 void ChatServer::sendSessionsInfoForDialog(std::shared_ptr<ServerWorker> sender)
@@ -327,17 +338,25 @@ void ChatServer::sendSessionsInfoForDialog(std::shared_ptr<ServerWorker> sender)
 
 void ChatServer::handleActionMessage(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj)
 {
-    const QJsonValue textVal = docObj.value(QLatin1String("text"));
-    if (textVal.isNull() || !textVal.isString())
+    if(!checkIfPlayerIsInSession(sender))
         return;
-    const QString text = textVal.toString().trimmed();
-    if (text.isEmpty())
-        return;
-    QJsonObject message;
-    //_actions->getMap[text](sender);
-    message["type"] = QStringLiteral("action");
-    message["text"] = text;
-    message["sender"] = sender->getUserName();
-    //broadcast(message, sender);
-    broadcast(message, nullptr);
+    //handle action message powinno być w sesji
+    std::shared_ptr<Session> s = sessionOfPlayer(sender);
+    s->handleActionMessage(sender,docObj);
 }
+
+
+std::shared_ptr<Session> ChatServer::sessionOfPlayer(std::shared_ptr<ServerWorker> &player)
+{
+    for(auto s: _sessions)
+    {
+        for (auto p: s->getPlayers())
+        {
+            if(p == player) return s;
+        }
+    }
+}
+
+
+
+
