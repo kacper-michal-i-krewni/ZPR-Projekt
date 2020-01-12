@@ -295,6 +295,17 @@ void ChatServer::handleSessionMessage(std::shared_ptr<ServerWorker> sender, cons
 
 }
 
+bool ChatServer::checkIfPlayerIsInSession(std::shared_ptr<ServerWorker> sender)
+{
+    for(auto s: _sessions)
+    {
+        for (auto p: s->getPlayers())
+        {
+            if(p == sender) return true;
+        }
+    }
+    return false;
+}
 
 
 void ChatServer::sendSessionsInfoForDialog(std::shared_ptr<ServerWorker> sender)
@@ -313,17 +324,28 @@ void ChatServer::sendSessionsInfoForDialog(std::shared_ptr<ServerWorker> sender)
 
 void ChatServer::handleActionMessage(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj)
 {
-    const QJsonValue textVal = docObj.value(QLatin1String("text"));
-    if (textVal.isNull() || !textVal.isString())
+    if(!checkIfPlayerIsInSession(sender))
         return;
-    const QString text = textVal.toString().trimmed();
-    if (text.isEmpty())
-        return;
-    QJsonObject message;
-    //_actions->getMap[text](sender);
-    message["type"] = QStringLiteral("action");
-    message["text"] = text;
-    message["sender"] = sender->getUserName();
-    //broadcast(message, sender);
-    broadcast(message, nullptr);
+    const QJsonValue isTargetedVal = docObj.value(QLatin1String("targeted"));
+    const bool isTargeted = isTargetedVal.toBool();
+    if (isTargeted)
+    {
+        QString action = docObj.value(QLatin1String("text")).toString();
+        QJsonObject message;
+        message["type"] = QStringLiteral("targetSpecify");
+        message["action"] = action;
+        sendJson(sender, message);
+    }
+
+//    QJsonObject message;
+//    //_actions->getMap[text](sender);
+//    message["type"] = QStringLiteral("action");
+//    message["text"] = text;
+//    message["sender"] = sender->getUserName();
+//    //broadcast(message, sender);
+//    broadcast(message, nullptr);
 }
+
+
+
+

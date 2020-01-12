@@ -79,7 +79,7 @@ private:
     void handleSessionMessage(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj);
     void handleActionMessage(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj);
     void jsonFromLoggedOut(std::shared_ptr<ServerWorker> sender, const QJsonObject &doc);
-
+    bool checkIfPlayerIsInSession(std::shared_ptr<ServerWorker> sender);
     /*!
      * \brief jsonFromLoggedIn is a function that handle conneting
      * \param sender is an user that connects

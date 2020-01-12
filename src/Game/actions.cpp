@@ -25,6 +25,7 @@ void Actions::affair()
     message["type"] = QStringLiteral("action");
     message["player"] = m_chatClient->getNickname();
     message["text"] = "affair";
+    message["targeted"] = true;
     // send the JSON using QDataStream
     clientStream << QJsonDocument(message).toJson();
 }
@@ -39,6 +40,7 @@ void Actions::eu()
     message["type"] = QStringLiteral("action");
     message["player"] = m_chatClient->getNickname();
     message["text"] = "eu";
+    message["targeted"] = false;
     // send the JSON using QDataStream
     clientStream << QJsonDocument(message).toJson();
 }
@@ -53,6 +55,7 @@ void Actions::localBiznesman()
     message["type"] = QStringLiteral("action");
     message["player"] = m_chatClient->getNickname();
     message["text"] = "localbiznesman";
+    message["targeted"] = false;
     // send the JSON using QDataStream
     clientStream << QJsonDocument(message).toJson();
 }
@@ -67,6 +70,7 @@ void Actions::media()
     message["type"] = QStringLiteral("action");
     message["player"] = m_chatClient->getNickname();
     message["text"] = "media";
+    message["targeted"] = false;
     // send the JSON using QDataStream
     clientStream << QJsonDocument(message).toJson();
 }
@@ -81,6 +85,7 @@ void Actions::onz()
     message["type"] = QStringLiteral("action");
     message["player"] = m_chatClient->getNickname();
     message["text"] = "onz";
+    message["targeted"] = true;
     // send the JSON using QDataStream
     clientStream << QJsonDocument(message).toJson();
 }
@@ -95,6 +100,7 @@ void Actions::police()
     message["type"] = QStringLiteral("action");
     message["player"] = m_chatClient->getNickname();
     message["text"] = "police";
+    message["targeted"] = true;
     // send the JSON using QDataStream
     clientStream << QJsonDocument(message).toJson();
 }
@@ -109,6 +115,7 @@ void Actions::protest()
     message["type"] = QStringLiteral("action");
     message["player"] = m_chatClient->getNickname();
     message["text"] = "protest";
+    message["targeted"] = true;
     // send the JSON using QDataStream
     clientStream << QJsonDocument(message).toJson();
 }
@@ -123,6 +130,7 @@ void Actions::russia()
     message["type"] = QStringLiteral("action");
     message["player"] = m_chatClient->getNickname();
     message["text"] = "russia";
+    message["targeted"] = false;
     // send the JSON using QDataStream
     clientStream << QJsonDocument(message).toJson();
 }
@@ -137,6 +145,7 @@ void Actions::usa()
     message["type"] = QStringLiteral("action");
     message["player"] = m_chatClient->getNickname();
     message["text"] = "usa";
+    message["targeted"] = false;
     // send the JSON using QDataStream
     clientStream << QJsonDocument(message).toJson();
 }

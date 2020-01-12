@@ -43,6 +43,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_chatClient.get(), &ChatClient::myTurn, this, &MainWindow::myTurn);
     connect(m_chatClient.get(), &ChatClient::turnOf, this, &MainWindow::turnOf);
     connect(m_gameListDialog.get(), &GameListDialog::buttonClicked, this, &MainWindow::sendSessionDialogResponse);
+    connect(m_playerListDialog.get(), &PlayerListDialog::buttonClicked, this, &MainWindow::sendTargetedAction);
     // connect the create game action to slot that will attempt creating game
     connect(ui->connectToServerAction, &QAction::triggered, this, &MainWindow::connectToServer);
     connect(ui->createGameAction, &QAction::triggered, this, &MainWindow::createGame);
@@ -327,6 +328,11 @@ void MainWindow::turnOf(QString &player)
     toggleActionsInterface(false);
 }
 
+void MainWindow::sendTargetedAction(QJsonObject &message)
+{
+    m_chatClient->sendMessageToServer(message);
+}
+
 
 // -------- MESSAGES --------- //
 
@@ -384,6 +390,7 @@ void MainWindow::sendMessage()
     // reset the last printed username
     m_lastUserName.clear();
 }
+
 
 
 

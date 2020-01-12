@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include "gamelistdialog.h"
+#include "playerlistdialog.h"
 #include "session.h"
 
 #include <QWidget>
@@ -43,6 +44,7 @@ private:
      */
     Ui::MainWindow *ui;
     std::shared_ptr<GameListDialog> m_gameListDialog;
+    std::shared_ptr<PlayerListDialog> m_playerListDialog;
     /*!
      * \brief m_chatClient - pointer to correlated chat client
      */
@@ -73,6 +75,7 @@ private slots:
     void startGame();
     void myTurn();
     void turnOf(QString &player);
+    void sendTargetedAction(QJsonObject &message);
     void sessionCreated(bool &success, QString &id);
     void connectToServer();
     void connectedToServer();
