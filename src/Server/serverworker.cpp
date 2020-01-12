@@ -12,10 +12,10 @@ ServerWorker::ServerWorker(QObject *parent)
 
 {
     // connect readyRead() to the slot that will take care of reading the data in
-    connect(m_serverSocket, &QTcpSocket::readyRead, this, &ServerWorker::receiveJson);
+    connect(m_serverSocket.get(), &QTcpSocket::readyRead, this, &ServerWorker::receiveJson);
     // forward the disconnected and error signals coming from the socket
-    connect(m_serverSocket, &QTcpSocket::disconnected, this, &ServerWorker::disconnectedFromClient);
-    connect(m_serverSocket, QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::error), this, &ServerWorker::error);
+    connect(m_serverSocket.get(), &QTcpSocket::disconnected, this, &ServerWorker::disconnectedFromClient);
+    connect(m_serverSocket.get(), QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::error), this, &ServerWorker::error);
 }
 
 
@@ -32,7 +32,7 @@ void ServerWorker::sendJson(const QJsonObject &json)
     // we notify the central server we are about to send the message
     emit logMessage("Sending to " + getUserName() + " - " + QString::fromUtf8(jsonData));
     // we send the message to the socket in the exact same way we did in the client
-    QDataStream socketStream(m_serverSocket);
+    QDataStream socketStream(m_serverSocket.get());
     socketStream.setVersion(QDataStream::Qt_5_7);
     socketStream << jsonData;
 }
@@ -52,7 +52,7 @@ void ServerWorker::disconnectFromClient()
     m_serverSocket->disconnectFromHost();
 }
 
-QString ServerWorker::getUserName() const
+QString ServerWorker::getUserName()
 {
     return m_userName;
 }
@@ -88,7 +88,7 @@ void ServerWorker::receiveJson()
     // prepare a container to hold the UTF-8 encoded JSON we receive from the socket
     QByteArray jsonData;
     // create a QDataStream operating on the socket
-    QDataStream socketStream(m_serverSocket);
+    QDataStream socketStream(m_serverSocket.get());
     // set the version so that programs compiled with different versions of Qt can agree on how to serialise
     socketStream.setVersion(QDataStream::Qt_5_7);
     // start an infinite loop

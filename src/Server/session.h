@@ -26,8 +26,9 @@ public:
     QString getId();
     QJsonObject toJSON();
     void start();
+    std::shared_ptr<ServerWorker> searchForPlayer(QString nickname);
 
-    int ROUNDTIMEOUT = 5*1000;
+    const int ROUNDTIMEOUT = 5*1000;
 
 public slots:
 
@@ -55,7 +56,7 @@ private:
     void nextPlayer();
     void turnOf(std::shared_ptr<ServerWorker> &player);
 
-    QTimer* m_Timer;
+    std::unique_ptr<QTimer> _timer;
     QVector<std::shared_ptr<ServerWorker> > _players;
     std::shared_ptr<ServerWorker> _owner;
     std::shared_ptr<ServerWorker> _currentPlayer;
