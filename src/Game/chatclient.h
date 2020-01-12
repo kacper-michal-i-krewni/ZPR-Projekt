@@ -32,7 +32,9 @@ public:
      */
     const QString getNickname() const;
     //const std::vector<QMap<QString, QVariant> > getDialogSessionInfo() {return _dialogSessionInfo;}
-    void setSessionId(QString sessionId);
+    void setTurnId(QString &turnId);
+    void setSessionId(QString &sessionId);
+    QString getTurnId();
     QString getSessionId();
     std::shared_ptr<QTcpSocket> getQTcpSocket() const;
 public slots:
@@ -138,6 +140,7 @@ private:
 
     QString nickname;
     QString _sessionId;
+    QString _turnId;
     //QVector<std::shared_ptr<QMap<QString, QVariant> > > _dialogSessionInfo;
 };
 

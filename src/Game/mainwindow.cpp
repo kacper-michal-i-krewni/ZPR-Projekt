@@ -341,6 +341,7 @@ void MainWindow::turnOf(QString &player)
 void MainWindow::sendTargetedAction(QJsonObject &message)
 {
     message["player"] = m_chatClient->getNickname();
+    message["turnId"] = m_chatClient->getTurnId();
     m_chatClient->sendMessageToServer(message);
 }
 

@@ -27,6 +27,7 @@ public slots:
     void russia();
     void usa();
 private:
+    void buildMessage(const QString &name, const bool &targeted);
     std::shared_ptr<ChatClient> m_chatClient;
 };
 

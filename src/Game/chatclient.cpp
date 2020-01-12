@@ -40,7 +40,7 @@ void ChatClient::connectToServer(const QHostAddress &address, quint16 port)
 }
 
 
-void ChatClient::setSessionId(QString sessionId)
+void ChatClient::setSessionId(QString &sessionId)
 {
     _sessionId = sessionId;
 }
@@ -49,6 +49,17 @@ QString ChatClient::getSessionId()
 {
     return _sessionId;
 }
+
+void ChatClient::setTurnId(QString &turnId)
+{
+    _turnId = turnId;
+}
+
+QString ChatClient::getTurnId()
+{
+    return _turnId;
+}
+
 
 void ChatClient::login(const QString &userName)
 {
@@ -264,6 +275,8 @@ void ChatClient::handleSessionMessage(const QJsonObject &doc)
     const QJsonValue subtypeVal = doc.value(QLatin1String("subtype"));
     if (subtypeVal.toString().compare(QLatin1String("newTurn"), Qt::CaseInsensitive) == 0)
     {
+        const QJsonValue turnId = doc.value(QLatin1String("turnId"));
+        _turnId = turnId.toString();
         const QJsonValue playerVal = doc.value(QLatin1String("player"));
         QString player = playerVal.toString();
         if (player.compare(this->nickname, Qt::CaseInsensitive) == 0)

@@ -29,7 +29,7 @@ void Session::start()
     for(auto p: _players)
     {
         QString nick = p->getUserName();
-        p->setPlayer(std::shared_ptr<Player>(new Player(nick, 2, 2, false)));
+        p->setPlayer(std::shared_ptr<Player>(new Player(nick, Session::STARTING_MONEY, 2, false)));
         _cardstack->dealCards(p->getPlayer());
 
     }
@@ -198,7 +198,7 @@ void Session::callOnCheckTimeout()
 void Session::handleActionMessage(std::shared_ptr<ServerWorker> &sender, const QJsonObject &docObj)
 {
     const QJsonValue turnId = docObj.value(QLatin1String("turnId"));
-    if(_turnId.toString().compare(turnId.toString(), Qt::CaseInsensitive) == 0)
+    if(!(_turnId.toString().compare(turnId.toString(), Qt::CaseInsensitive) == 0))
         return;
     const QJsonValue isTargetedVal = docObj.value(QLatin1String("targeted"));
     const bool isTargeted = isTargetedVal.toBool();
@@ -254,7 +254,9 @@ void Session::handleActionMessage(std::shared_ptr<ServerWorker> &sender, const Q
 
         if(actionCanBeChecked(qActionName))
         {
+
             _pendingAction = qActionName;
+            startCheckTimer();
 
             QJsonObject message;
             message["type"] = QStringLiteral("sessionMessage");
