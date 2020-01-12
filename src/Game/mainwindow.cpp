@@ -522,6 +522,8 @@ void MainWindow::error(QAbstractSocket::SocketError socketError)
     ui->sendButton->setEnabled(false);
     ui->lineEdit->setEnabled(false);
     ui->chatView->setEnabled(false);
+    toggleActionsInterface(false);
+    ui->startGameAction->setEnabled(false);
     // reset the last printed username
     m_lastUserName.clear();
 }

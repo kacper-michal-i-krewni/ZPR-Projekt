@@ -27,7 +27,7 @@ public:
      * \brief userName is a typical function getter
      * \return m_userName
      */
-    QString getUserName() const;
+    QString getUserName();
     /*!
      * \brief setUserName is a function that sets m_userName field
      * \param userName is a new m_userName
@@ -79,7 +79,7 @@ private:
     /*!
      * \brief m_serverSocket is a variable that add functions of sockets
      */
-    QTcpSocket *m_serverSocket;
+    std::shared_ptr<QTcpSocket> m_serverSocket;
     /*!
      * \brief m_userName is a string with nickname of user
      */

@@ -87,15 +87,26 @@ void ChatServer::userDisconnected(std::shared_ptr<ServerWorker> sender)
 {
     m_clients.removeAll(sender);
     const QString userName = sender->getUserName();
+    std::shared_ptr<Session> s;
     if (!userName.isEmpty())
     {
         QJsonObject disconnectedMessage;
         disconnectedMessage["type"] = QStringLiteral("userdisconnected");
         disconnectedMessage["username"] = userName;
+        for ( std::shared_ptr<Session> _s : _sessions )
+        {
+            if(_s->searchForPlayer(sender->getUserName()) !=  nullptr)
+            {
+                _s->removePlayer(_s->searchForPlayer(sender->getUserName()));
+            }
+        }
         broadcast(disconnectedMessage, nullptr);
+
         emit logMessage(userName + " disconnected");
+
     }
-    sender->deleteLater();
+    //sender->deleteLater()
+
 }
 
 void ChatServer::userError(std::shared_ptr<ServerWorker> sender)
