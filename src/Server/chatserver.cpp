@@ -97,7 +97,10 @@ void ChatServer::userDisconnected(std::shared_ptr<ServerWorker> sender)
         {
             if(_s->searchForPlayer(sender->getUserName()) !=  nullptr)
             {
-                _s->removePlayer(_s->searchForPlayer(sender->getUserName()));
+                if ( _s->getOwner() == sender )
+                    _sessions.removeOne(_s);
+                 else
+                    _s->removePlayer(_s->searchForPlayer(sender->getUserName()));
             }
         }
         broadcast(disconnectedMessage, nullptr);
