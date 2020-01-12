@@ -5,6 +5,7 @@
 Actions::Actions()
 {
     fillMap();
+    fillCards();
 }
 
 
@@ -25,7 +26,6 @@ QVector<std::string> Actions::getCards()
 {
     return _cards;
 }
-
 
 
 void Actions::affair(std::shared_ptr<Player> executer,  std::shared_ptr<Player> victim)

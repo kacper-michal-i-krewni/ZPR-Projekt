@@ -2,6 +2,7 @@
 #define SESSION_H
 
 #include "actions.h"
+#include "cardstack.h"
 #include "serverworker.h"
 #include <memory>
 #include <QTimer>
@@ -19,6 +20,7 @@ public:
     virtual ~Session();
     QVector<std::shared_ptr<ServerWorker> > getPlayers();
     void sendToAll(QJsonObject &message);
+    void sendToAllExcept(std::shared_ptr<ServerWorker> &player, QJsonObject &message);
     void addPlayer(const std::shared_ptr<ServerWorker> player);
     void removePlayer(const std::shared_ptr<ServerWorker> player);
     int getNumOfPlayers();
@@ -32,11 +34,11 @@ public:
     std::shared_ptr<ServerWorker> searchForPlayer(QString nickname);
 
 
-    const static int ROUNDTIMEOUT = 5*1000;
+    const static int CHECKTIMEOUT = 10*1000;
     const static int STARTING_MONEY = 200;
 
 public slots:
-     void sendToAllOnTimeout();
+     void callOnCheckTimeout();
 
 
 
@@ -55,15 +57,22 @@ signals:
 
 private:
     void nextPlayer();
+    void nextTurn();
     void turnOf(std::shared_ptr<ServerWorker> &player);
+    bool actionCanBeChecked(QString &action);
+    void startCheckTimer();
 
-    std::unique_ptr<QTimer> _timer;
+    std::unique_ptr<CardStack> _cardstack;
+    std::unique_ptr<QTimer> _checkTimer;
+    std::unique_ptr<QTimer> _blockTimer;
     QVector<std::shared_ptr<ServerWorker> > _players;
     std::shared_ptr<ServerWorker> _owner;
     std::shared_ptr<ServerWorker> _currentPlayer;
     std::shared_ptr<Actions> _actions;
     QUuid _id;
+    QUuid _turnId;
     int _playersLimit;
+    QString _pendingAction;
     //QTimer _timer;
     //void wait();
 
