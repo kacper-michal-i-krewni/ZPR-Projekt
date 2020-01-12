@@ -235,7 +235,7 @@ void ChatServer::handleSessionMessage(std::shared_ptr<ServerWorker> sender, cons
         for (auto s: _sessions)
         {
             if(id.toString().compare(s->getId(), Qt::CaseInsensitive) == 0)
-                if(s->getOwner()->getUserName().compare(sender->getUserName()) == 0)
+                if(s->getOwner() == sender)
                 {
                     s->start();
                     QJsonObject message;

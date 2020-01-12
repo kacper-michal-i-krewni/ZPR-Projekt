@@ -39,7 +39,7 @@ public slots:
 
 
 signals:
-    void hasTurn(const Player &p);
+
     //TODO: what type should dataRequest return?
 //    void dataRequest(const QString &playerId, const PlayerData &pData);
 //    void actionPlayed(const Action &a, const Player &p);
@@ -52,9 +52,12 @@ signals:
 
 
 private:
+    void nextPlayer();
+
     QTimer* m_Timer;
     QVector<std::shared_ptr<ServerWorker> > _players;
     std::shared_ptr<ServerWorker> _owner;
+    std::shared_ptr<ServerWorker> _currentPlayer;
     QUuid _id;
     int _playersLimit;
     //QTimer _timer;

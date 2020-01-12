@@ -18,13 +18,22 @@ void Session::start()
     m_Timer = new QTimer(this);
     connect(m_Timer, &QTimer::timeout, this,  &Session::sendToAllOnTimeout);
     m_Timer->start(ROUNDTIMEOUT);
+
+    _currentPlayer = _players.first();
+
+    QJsonObject message;
+    message["type"] = QStringLiteral("sessionMessage");
+    message["subtype"] = QStringLiteral("newTurn");
+    message["player"] = _currentPlayer->getUserName();
+
+    sendToAll(message);
+
 }
 
-QVector<std::shared_ptr<ServerWorker>>  Session::getPlayers()
+QVector<std::shared_ptr<ServerWorker> >  Session::getPlayers()
 {
     return _players;
 }
-
 
 
 void Session::addPlayer(const std::shared_ptr<ServerWorker> player)
@@ -101,4 +110,32 @@ void Session::sendToAllOnTimeout()
     message["subtype"] = QStringLiteral("timeout");
     message["timeout"] = QStringLiteral("turnTimeout");
     sendToAll(message);
+
+    nextPlayer();
+
+    QJsonObject message2;
+    message2["type"] = QStringLiteral("sessionMessage");
+    message2["subtype"] = QStringLiteral("newTurn");
+    message2["player"] = _currentPlayer->getUserName();
+
+    sendToAll(message2);
+}
+
+void Session::nextPlayer()
+{
+    for(auto p: _players)
+    {
+        if(p==_currentPlayer){
+            if(p==_players.last())
+            {
+                _currentPlayer = _players.first();
+                break;
+            }else
+            {
+                int index = _players.indexOf(p) + 1;
+                _currentPlayer = _players[index];
+                break;
+            }
+        }
+    }
 }
