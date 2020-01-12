@@ -1,6 +1,9 @@
 #include "session.h"
 
-Session::Session(std::shared_ptr<ServerWorker> owner, int playersLimit): _id(QUuid::createUuid()), _owner(owner), _playersLimit(playersLimit)
+Session::Session(std::shared_ptr<ServerWorker> owner, int playersLimit):
+    _owner(owner),
+    _id(QUuid::createUuid()),
+    _playersLimit(playersLimit)
 {
     _players.push_back(owner);
 }
@@ -93,7 +96,9 @@ void Session::sendToAll(QJsonObject &message)
 void Session::sendToAllOnTimeout()
 {
     QJsonObject message;
+
     message["type"] = QStringLiteral("sessionMessage");
+    message["subtype"] = QStringLiteral("timeout");
     message["timeout"] = QStringLiteral("turnTimeout");
     sendToAll(message);
 }
