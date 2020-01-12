@@ -76,6 +76,7 @@ private slots:
     void myTurn();
     void turnOf(QString &player);
     void sendTargetedAction(QJsonObject &message);
+    void displayPlayerList(QString &action, QVector<QString> &pVector);
     void sessionCreated(bool &success, QString &id);
     void connectToServer();
     void connectedToServer();

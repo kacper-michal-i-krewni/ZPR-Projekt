@@ -338,9 +338,20 @@ void ChatServer::handleActionMessage(std::shared_ptr<ServerWorker> sender, const
     if(!checkIfPlayerIsInSession(sender))
         return;
     //handle action message powinno być w sesji
+    std::shared_ptr<Session> s = sessionOfPlayer(sender);
+    s->handleActionMessage(sender,docObj);
+}
 
-    s->handleSessionMessage(sender,docObj);
 
+std::shared_ptr<Session> ChatServer::sessionOfPlayer(std::shared_ptr<ServerWorker> &player)
+{
+    for(auto s: _sessions)
+    {
+        for (auto p: s->getPlayers())
+        {
+            if(p == player) return s;
+        }
+    }
 }
 
 

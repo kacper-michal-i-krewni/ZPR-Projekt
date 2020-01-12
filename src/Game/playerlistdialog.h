@@ -16,7 +16,7 @@ public:
     //explicit GameListDialog(QWidget *parent);
     ~PlayerListDialog();
 
-    void setList(const QVector<QString>  &playerVec);
+    void setList(const QString &action, const QVector<QString>  &playerVec);
     void setAction(const QString &action)
     {
         this->_action = action;

@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , m_gameListDialog (new GameListDialog(this))
+    , m_playerListDialog (new PlayerListDialog(this))
     , m_chatClient(new ChatClient(this))
     , m_chatModel(new QStandardItemModel(this))
     , m_actions( new Actions(m_chatClient))
@@ -38,6 +39,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_chatClient.get(), &ChatClient::userLeft, this, &MainWindow::userLeft);
     connect(m_chatClient.get(), &ChatClient::actionExecute, this, &MainWindow::actionExecute);
     connect(m_chatClient.get(), &ChatClient::sessionListComplete, this, &MainWindow::displaySessionDialog);
+    connect(m_chatClient.get(), &ChatClient::actionTargetSpecify, this, &MainWindow::displayPlayerList);
     connect(m_chatClient.get(), &ChatClient::updatePlayerInterface, this, &MainWindow::updatePlayerInterface);
     connect(m_chatClient.get(), &ChatClient::sessionCreated, this, &MainWindow::sessionCreated);
     connect(m_chatClient.get(), &ChatClient::myTurn, this, &MainWindow::myTurn);
@@ -269,10 +271,18 @@ void MainWindow::displaySessionDialog(QVector<Session> &sessVec)
     m_gameListDialog->exec();
 }
 
+void MainWindow::displayPlayerList(QString &action, QVector<QString> &pVector)
+{
+    m_playerListDialog->setList(action, pVector);
+    m_playerListDialog->setModal(true);
+    m_playerListDialog->exec();
+}
+
 void MainWindow::sendSessionDialogResponse(QJsonObject &message)
 {
     m_chatClient->sendMessageToServer(message);
 }
+
 
 void MainWindow::sessionCreated(bool &success, QString &id)
 {
@@ -330,6 +340,7 @@ void MainWindow::turnOf(QString &player)
 
 void MainWindow::sendTargetedAction(QJsonObject &message)
 {
+    message["player"] = m_chatClient->getNickname();
     m_chatClient->sendMessageToServer(message);
 }
 

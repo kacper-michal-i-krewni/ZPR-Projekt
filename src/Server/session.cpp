@@ -1,5 +1,7 @@
 #include "session.h"
 
+#include <QJsonArray>
+
 Session::Session(std::shared_ptr<ServerWorker> owner, int playersLimit):
     _timer(new QTimer(this)),
     _owner(owner),
@@ -157,17 +159,21 @@ void Session::handleActionMessage(std::shared_ptr<ServerWorker> &sender, const Q
     const bool isTargeted = isTargetedVal.toBool();
     if (isTargeted)
     {
-        QString action = docObj.value(QLatin1String("text")).toString();
-        QJsonObject message;
-        message["type"] = QStringLiteral("sessionMessage");
-        message["subtype"] = QStringLiteral("targetSpecify");
-        message["action"] = action;
-        QJsonArray sessionArray;
-        for(auto s : _sessions)
+        QString target = docObj.value(QLatin1String("target")).toString();
+        if (target.isNull())
         {
-            sessionArray.append(s->toJSON());
+            QString action = docObj.value(QLatin1String("text")).toString();
+            QJsonObject message;
+            message["type"] = QStringLiteral("sessionMessage");
+            message["subtype"] = QStringLiteral("targetSpecify");
+            message["action"] = action;
+            QJsonArray playerArray;
+            for(auto p : _players)
+            {
+                playerArray.append(p->getUserName());
+            }
+            message["players"] = playerArray;
+            sender->sendJson(message);
         }
-        sessionMessage["sessions"] = sessionArray;
-        sender->sendJson(message);
     }
 }

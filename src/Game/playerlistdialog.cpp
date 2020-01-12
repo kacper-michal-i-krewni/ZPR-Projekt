@@ -16,8 +16,10 @@ PlayerListDialog::PlayerListDialog(QWidget *parent):
     connect(ui->selectButton, SIGNAL(clicked()), this, SLOT(close()));
 }
 
-void PlayerListDialog::setList(const QVector<QString> &playerVec)
+void PlayerListDialog::setList(const QString &action, const QVector<QString> &playerVec)
 {
+
+    this->_action = action;
     this->_playerVec = playerVec;
 
     for(auto p: playerVec)
@@ -40,9 +42,12 @@ void PlayerListDialog::onButtonClicked()
     QString p = _playerVec[row]; //TODO check if indexes are cool
 
     QJsonObject message;
-    message["type"] = QStringLiteral("targetAction");
-    message["player"] = p;
+    message["type"] = QStringLiteral("action");
+    message["target"] = p;
+    message["text"] = _action;
+    message["targeted"] = true;
     _playerVec.clear();
+    ui->listWidget->clear();
 
 
     emit buttonClicked(message);

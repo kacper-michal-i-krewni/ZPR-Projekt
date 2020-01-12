@@ -113,7 +113,7 @@ signals:
 
     void myTurn();
     void turnOf(QString &player);
-
+    void actionTargetSpecify(QString &action, QVector<QString> &pVector);
     void updatePlayerInterface(const QString &player, const double money, const double lifes);
 private:
     /*!

@@ -271,6 +271,20 @@ void ChatClient::handleSessionMessage(const QJsonObject &doc)
         else
             emit turnOf(player);
     }
+
+    if(subtypeVal.toString().compare(QLatin1String("targetSpecify"), Qt::CaseInsensitive) == 0)
+    {
+
+        QJsonArray playerArray = doc["players"].toArray();
+        QVector<QString> pVector;
+        for (int sIndex = 0; sIndex < playerArray.size(); ++sIndex) {
+                QString p = playerArray[sIndex].toString();
+                pVector.push_back(p);
+        }
+
+        QString action = doc.value(QLatin1String("action")).toString();
+        emit actionTargetSpecify(action, pVector);
+    }
 }
 
 
