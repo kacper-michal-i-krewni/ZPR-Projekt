@@ -111,6 +111,9 @@ signals:
     void sessionCreated(bool &success, QString &id);
     void sessionListComplete(QVector<Session> &sessVec);
 
+    void myTurn();
+    void turnOf(QString &player);
+
     void updatePlayerInterface(const QString &player, const double money, const double lifes);
 private:
     /*!
@@ -131,6 +134,8 @@ private:
     /*!
      * \brief nickname
      */
+    void handleSessionMessage(const QJsonObject &doc);
+
     QString nickname;
     QString _sessionId;
     //QVector<std::shared_ptr<QMap<QString, QVariant> > > _dialogSessionInfo;

@@ -252,6 +252,25 @@ void ChatClient::jsonReceived(const QJsonObject &docObj)
             return; // the text field was invalid so we ignore
 
     }
+
+    else if (typeVal.toString().compare(QLatin1String("sessionMessage"), Qt::CaseInsensitive) == 0)
+    {
+        handleSessionMessage(docObj);
+    }
+}
+
+void ChatClient::handleSessionMessage(const QJsonObject &doc)
+{
+    const QJsonValue subtypeVal = doc.value(QLatin1String("subtype"));
+    if (subtypeVal.toString().compare(QLatin1String("newTurn"), Qt::CaseInsensitive) == 0)
+    {
+        const QJsonValue playerVal = doc.value(QLatin1String("player"));
+        QString player = playerVal.toString();
+        if (player.compare(this->nickname, Qt::CaseInsensitive) == 0)
+            emit myTurn();
+        else
+            emit turnOf(player);
+    }
 }
 
 

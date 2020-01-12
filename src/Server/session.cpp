@@ -15,18 +15,14 @@ Session::~Session()
 
 void Session::start()
 {
+    // THIS IS FOR TESTING PURPOSES
     m_Timer = new QTimer(this);
     connect(m_Timer, &QTimer::timeout, this,  &Session::sendToAllOnTimeout);
-    m_Timer->start(ROUNDTIMEOUT);
+    m_Timer->start(Session::ROUNDTIMEOUT);
 
     _currentPlayer = _players.first();
+    turnOf(_currentPlayer);
 
-    QJsonObject message;
-    message["type"] = QStringLiteral("sessionMessage");
-    message["subtype"] = QStringLiteral("newTurn");
-    message["player"] = _currentPlayer->getUserName();
-
-    sendToAll(message);
 
 }
 
@@ -104,21 +100,9 @@ void Session::sendToAll(QJsonObject &message)
 
 void Session::sendToAllOnTimeout()
 {
-    QJsonObject message;
-
-    message["type"] = QStringLiteral("sessionMessage");
-    message["subtype"] = QStringLiteral("timeout");
-    message["timeout"] = QStringLiteral("turnTimeout");
-    sendToAll(message);
-
+//   THIS IS FOR TESTING PURPOSES
     nextPlayer();
-
-    QJsonObject message2;
-    message2["type"] = QStringLiteral("sessionMessage");
-    message2["subtype"] = QStringLiteral("newTurn");
-    message2["player"] = _currentPlayer->getUserName();
-
-    sendToAll(message2);
+    turnOf(_currentPlayer);
 }
 
 void Session::nextPlayer()
@@ -138,4 +122,18 @@ void Session::nextPlayer()
             }
         }
     }
+}
+
+void Session::turnOf(std::shared_ptr<ServerWorker> &player)
+{
+    QJsonObject message;
+    message["type"] = QStringLiteral("sessionMessage");
+    message["subtype"] = QStringLiteral("newTurn");
+    message["player"] = _currentPlayer->getUserName();
+    sendToAll(message);
+
+//    QJsonObject message2;
+//    message2["type"] = QStringLiteral("sessionMessage");
+//    message2["subtype"] = QStringLiteral("yourTurn");
+//    player->sendJson(message2);
 }

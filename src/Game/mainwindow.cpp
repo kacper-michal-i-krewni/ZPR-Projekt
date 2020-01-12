@@ -40,6 +40,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_chatClient.get(), &ChatClient::sessionListComplete, this, &MainWindow::displaySessionDialog);
     connect(m_chatClient.get(), &ChatClient::updatePlayerInterface, this, &MainWindow::updatePlayerInterface);
     connect(m_chatClient.get(), &ChatClient::sessionCreated, this, &MainWindow::sessionCreated);
+    connect(m_chatClient.get(), &ChatClient::myTurn, this, &MainWindow::myTurn);
+    connect(m_chatClient.get(), &ChatClient::turnOf, this, &MainWindow::turnOf);
     connect(m_gameListDialog.get(), &GameListDialog::buttonClicked, this, &MainWindow::sendSessionDialogResponse);
     // connect the create game action to slot that will attempt creating game
     connect(ui->connectToServerAction, &QAction::triggered, this, &MainWindow::connectToServer);
@@ -298,6 +300,33 @@ void MainWindow::sessionCreated(bool &success, QString &id)
         m_chatModel->setData(m_chatModel->index(newRow, 0), QBrush(Qt::red), Qt::ForegroundRole);
     }
 }
+
+void MainWindow::myTurn()
+{
+    const int newRow = m_chatModel->rowCount();
+    // insert a row
+    m_chatModel->insertRow(newRow);
+    m_chatModel->setData(m_chatModel->index(newRow, 0), tr("Your turn!"));
+    // set the alignment for the text
+    m_chatModel->setData(m_chatModel->index(newRow, 0), Qt::AlignCenter, Qt::TextAlignmentRole);
+    // set the color for the text
+    m_chatModel->setData(m_chatModel->index(newRow, 0), QBrush(Qt::darkCyan), Qt::ForegroundRole);
+    toggleActionsInterface(true);
+}
+
+void MainWindow::turnOf(QString &player)
+{
+    const int newRow = m_chatModel->rowCount();
+    // insert a row
+    m_chatModel->insertRow(newRow);
+    m_chatModel->setData(m_chatModel->index(newRow, 0), tr("%1 has turn!").arg(player));
+    // set the alignment for the text
+    m_chatModel->setData(m_chatModel->index(newRow, 0), Qt::AlignCenter, Qt::TextAlignmentRole);
+    // set the color for the text
+    m_chatModel->setData(m_chatModel->index(newRow, 0), QBrush(Qt::cyan), Qt::ForegroundRole);
+    toggleActionsInterface(false);
+}
+
 
 // -------- MESSAGES --------- //
 

@@ -53,6 +53,7 @@ signals:
 
 private:
     void nextPlayer();
+    void turnOf(std::shared_ptr<ServerWorker> &player);
 
     QTimer* m_Timer;
     QVector<std::shared_ptr<ServerWorker> > _players;

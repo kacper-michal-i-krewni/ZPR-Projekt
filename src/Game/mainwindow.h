@@ -71,6 +71,8 @@ private slots:
      */
     void createGame();
     void startGame();
+    void myTurn();
+    void turnOf(QString &player);
     void sessionCreated(bool &success, QString &id);
     void connectToServer();
     void connectedToServer();
