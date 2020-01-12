@@ -26,6 +26,7 @@ public:
     QString getId();
     QJsonObject toJSON();
     void start();
+    void handleActionMessage(std::shared_ptr<ServerWorker> &sender, const QJsonObject &docObj);
 
     int ROUNDTIMEOUT = 5*1000;
 

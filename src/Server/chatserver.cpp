@@ -326,24 +326,10 @@ void ChatServer::handleActionMessage(std::shared_ptr<ServerWorker> sender, const
 {
     if(!checkIfPlayerIsInSession(sender))
         return;
-    const QJsonValue isTargetedVal = docObj.value(QLatin1String("targeted"));
-    const bool isTargeted = isTargetedVal.toBool();
-    if (isTargeted)
-    {
-        QString action = docObj.value(QLatin1String("text")).toString();
-        QJsonObject message;
-        message["type"] = QStringLiteral("targetSpecify");
-        message["action"] = action;
-        sendJson(sender, message);
-    }
+    //handle action message powinno być w sesji
 
-//    QJsonObject message;
-//    //_actions->getMap[text](sender);
-//    message["type"] = QStringLiteral("action");
-//    message["text"] = text;
-//    message["sender"] = sender->getUserName();
-//    //broadcast(message, sender);
-//    broadcast(message, nullptr);
+    s->handleSessionMessage(sender,docObj);
+
 }
 
 

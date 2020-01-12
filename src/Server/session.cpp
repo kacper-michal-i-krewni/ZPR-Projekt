@@ -137,3 +137,24 @@ void Session::turnOf(std::shared_ptr<ServerWorker> &player)
 //    message2["subtype"] = QStringLiteral("yourTurn");
 //    player->sendJson(message2);
 }
+
+void Session::handleActionMessage(std::shared_ptr<ServerWorker> &sender, const QJsonObject &docObj)
+{
+    const QJsonValue isTargetedVal = docObj.value(QLatin1String("targeted"));
+    const bool isTargeted = isTargetedVal.toBool();
+    if (isTargeted)
+    {
+        QString action = docObj.value(QLatin1String("text")).toString();
+        QJsonObject message;
+        message["type"] = QStringLiteral("sessionMessage");
+        message["subtype"] = QStringLiteral("targetSpecify");
+        message["action"] = action;
+        QJsonArray sessionArray;
+        for(auto s : _sessions)
+        {
+            sessionArray.append(s->toJSON());
+        }
+        sessionMessage["sessions"] = sessionArray;
+        sender->sendJson(message);
+    }
+}
