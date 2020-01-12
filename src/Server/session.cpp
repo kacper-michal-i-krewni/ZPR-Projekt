@@ -12,7 +12,9 @@ Session::~Session()
 
 void Session::start()
 {
-
+    m_Timer = new QTimer(this);
+    connect(m_Timer, &QTimer::timeout, this,  &Session::sendToAllOnTimeout);
+    m_Timer->start(ROUNDTIMEOUT);
 }
 
 QVector<std::shared_ptr<ServerWorker>>  Session::getPlayers()
@@ -86,4 +88,12 @@ void Session::sendToAll(QJsonObject &message)
     {
         p->sendJson(message);
     }
+}
+
+void Session::sendToAllOnTimeout()
+{
+    QJsonObject message;
+    message["type"] = QStringLiteral("sessionMessage");
+    message["timeout"] = QStringLiteral("turnTimeout");
+    sendToAll(message);
 }

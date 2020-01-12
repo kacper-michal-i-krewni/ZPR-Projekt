@@ -25,14 +25,16 @@ public:
     std::shared_ptr<ServerWorker> getOwner();
     QString getId();
     QJsonObject toJSON();
-
     void start();
+
+    int ROUNDTIMEOUT = 5*1000;
 
 public slots:
 
      void blockRequest(const Player &p1, const Player &p2);
      void actionRequest(const Action &a, const Player &p);
      void targetedActionRequest(const Action &a, const Player &player, const Player &target);
+     void sendToAllOnTimeout();
 
 
 
@@ -50,6 +52,7 @@ signals:
 
 
 private:
+    QTimer* m_Timer;
     QVector<std::shared_ptr<ServerWorker> > _players;
     std::shared_ptr<ServerWorker> _owner;
     QUuid _id;
