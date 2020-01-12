@@ -5,6 +5,7 @@
 Session::Session(std::shared_ptr<ServerWorker> owner, int playersLimit):
     _timer(new QTimer(this)),
     _owner(owner),
+    _actions(new Actions()),
     _id(QUuid::createUuid()),
     _playersLimit(playersLimit)
 {
@@ -18,9 +19,16 @@ Session::~Session()
 
 void Session::start()
 {
+
     // THIS IS FOR TESTING PURPOSES
     connect(_timer.get(), &QTimer::timeout, this,  &Session::sendToAllOnTimeout);
     _timer->start(Session::ROUNDTIMEOUT);
+
+    for(auto p: _players)
+    {
+        QString nick = p->getUserName();
+        p->setPlayer(std::shared_ptr<Player>(new Player(nick, 2, 2, false)));
+    }
     _currentPlayer = _players.first();
     turnOf(_currentPlayer);
 
@@ -76,18 +84,6 @@ std::shared_ptr<ServerWorker> Session::getOwner()
     return _owner;
 }
 
-void Session::blockRequest(const Player &p1, const Player &p2)
-{
-
-}
-void Session::actionRequest(const Action &a, const Player &p)
-{
-
-}
-void Session::targetedActionRequest(const Action &a, const Player &player, const Player &target)
-{
-
-}
 
 QString Session::getId()
 {
@@ -175,5 +171,27 @@ void Session::handleActionMessage(std::shared_ptr<ServerWorker> &sender, const Q
             message["players"] = playerArray;
             sender->sendJson(message);
         }
+        else
+        {
+            std::shared_ptr<ServerWorker> player = searchForPlayer(target);
+
+            //TODO
+
+
+        }
+    }
+    if (!isTargeted)
+    {
+        const std::string actionName = docObj.value(QLatin1String("text")).toString().toUtf8().constData();
+        std::map<std::string, Actions::functionPointer> actions = _actions->getMap();
+        Actions::functionPointer x = actions[actionName];
+        ((_actions.get())->*x)(sender->getPlayer(), std::shared_ptr<Player>(nullptr));
+
+        //TODO: for debugging purposes
+        int money = sender->getPlayer()->getMoney();
+        QJsonObject temp;
+        temp["money"] = money;
+        sender->sendJson(temp);
+
     }
 }

@@ -1,7 +1,7 @@
 #ifndef SESSION_H
 #define SESSION_H
 
-#include "../Mutual/action.h"
+#include "actions.h"
 #include "serverworker.h"
 #include <memory>
 #include <QTimer>
@@ -32,13 +32,10 @@ public:
     std::shared_ptr<ServerWorker> searchForPlayer(QString nickname);
 
 
-    const int ROUNDTIMEOUT = 5*1000;
+    const static int ROUNDTIMEOUT = 5*1000;
+    const static int STARTING_MONEY = 200;
 
 public slots:
-
-     void blockRequest(const Player &p1, const Player &p2);
-     void actionRequest(const Action &a, const Player &p);
-     void targetedActionRequest(const Action &a, const Player &player, const Player &target);
      void sendToAllOnTimeout();
 
 
@@ -64,6 +61,7 @@ private:
     QVector<std::shared_ptr<ServerWorker> > _players;
     std::shared_ptr<ServerWorker> _owner;
     std::shared_ptr<ServerWorker> _currentPlayer;
+    std::shared_ptr<Actions> _actions;
     QUuid _id;
     int _playersLimit;
     //QTimer _timer;

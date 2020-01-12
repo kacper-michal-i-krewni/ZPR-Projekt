@@ -25,7 +25,7 @@ public:
      * \param lifes says how many lifes does player have. When the game starts every player has 2 lifes.
      * \param enabled says if this player has a turn right now. Disable on start of game.
      */
-    Player( std::string nick = "", double money = 2, int lifes = 2, bool enabled = false);
+    Player(QString nick = "", double money = 2, int lifes = 2, bool enabled = false);
     /*!
      * \brief getMoney is a function that returns how much money player has.
      * \return How much money player has.
@@ -41,7 +41,7 @@ public:
      * \brief getNick is a function that return a player's nickname
      * \return nickname as a string
      */
-    const std::string getNick();
+    QString getNick();
     /*!
      * \brief getLifes is a function that return number of lifes.
      * \return lifes that player has.
@@ -72,7 +72,7 @@ private:
     /*!
      * \brief _nick is a strong with player's nickname
      */
-    const std::string _nick;
+    QString _nick;
     /*!
      * \brief _money is an amount of money that player has.
      */

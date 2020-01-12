@@ -1,7 +1,11 @@
 #include "player.h"
 
-Player::Player( std::string nick, double money, int lifes, bool enabled): _nick(nick), _money(money), _lifes(lifes), _enabled(enabled)
+Player::Player(QString nick, double money, int lifes, bool enabled): _nick(nick), _money(money), _lifes(lifes), _enabled(enabled)
 {
+//    _nick = nick;
+//    _money = money;
+//    _lifes = lifes;
+//    _enabled = enabled;
 
 }
 
@@ -14,7 +18,7 @@ double Player::setMoney( double amount )
     _money = amount;
     return _money;
 }
-const std::string Player::getNick()
+QString Player::getNick()
 {
     return _nick;
 }

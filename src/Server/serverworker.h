@@ -45,6 +45,7 @@ public:
     void setAsGameOwner(const bool &b);
     bool isInGame();
     void setAsInGame(const bool &b);
+
 signals:
     /*!
      * \brief jsonReceived is a signal that handle reciving messages.

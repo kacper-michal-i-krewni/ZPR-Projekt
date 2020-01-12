@@ -9,6 +9,7 @@ ServerWorker::ServerWorker(QObject *parent)
     , m_serverSocket(new QTcpSocket(this))
     , _isGameOwner(false)
     , _isInGame(false)
+    , _player(new Player())
 
 {
     // connect readyRead() to the slot that will take care of reading the data in
