@@ -204,7 +204,17 @@ void Session::handleActionMessage(std::shared_ptr<ServerWorker> &sender, const Q
     const bool isTargeted = isTargetedVal.toBool();
     if (isTargeted)
     {
-        QString action = docObj.value(QLatin1String("text")).toString();
+        const QString action = docObj.value(QLatin1String("text")).toString();
+        std::string cost = action.toUtf8().constData();
+        if(sender->getPlayer()->getMoney() < _actions->howMuchActionCosts(cost))
+        {
+            QJsonObject message;
+            message["type"] = QStringLiteral("sessionMessage");
+            message["subtype"] = QStringLiteral("notEnoughMoney");
+            sender->sendJson(message);
+            return;
+        }
+
         QString target = docObj.value(QLatin1String("target")).toString();
         if (target.isNull())
         {
@@ -226,6 +236,7 @@ void Session::handleActionMessage(std::shared_ptr<ServerWorker> &sender, const Q
             QJsonObject message;
             message["type"] = QStringLiteral("sessionMessage");
             message["subtype"] = QStringLiteral("youAreATarget");
+            message["sender"] = sender->getUserName();
             message["action"] = action;
             targetPlayer->sendJson(message);
             //TODO
@@ -245,7 +256,8 @@ void Session::handleActionMessage(std::shared_ptr<ServerWorker> &sender, const Q
 
                QJsonObject message;
                message["type"] = QStringLiteral("sessionMessage");
-               message["sybtype"] = QStringLiteral("actionCompleted");
+               message["subtype"] = QStringLiteral("actionCompleted");
+               message["sender"] = sender->getUserName();
                message["action"] = qActionName;
 
                sendToAll(message);
@@ -260,7 +272,8 @@ void Session::handleActionMessage(std::shared_ptr<ServerWorker> &sender, const Q
 
             QJsonObject message;
             message["type"] = QStringLiteral("sessionMessage");
-            message["sybtype"] = QStringLiteral("actionPending");
+            message["subtype"] = QStringLiteral("actionPending");
+            message["sender"] = sender->getUserName();
             message["action"] = qActionName;
 
             sendToAll(message);

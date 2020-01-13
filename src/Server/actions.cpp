@@ -27,6 +27,15 @@ QVector<std::string> Actions::getCards()
     return _cards;
 }
 
+const int Actions::howMuchActionCosts(std::string &action)
+{
+    if(action.compare("protest") == 0)
+        return Actions::PROTEST_PRICE;
+    else if (action.compare("affair") == 0)
+        return Actions::AFFAIR_PRICE;
+    else
+        return 0;
+}
 
 void Actions::affair(std::shared_ptr<Player> executer,  std::shared_ptr<Player> victim)
 {

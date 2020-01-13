@@ -44,6 +44,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_chatClient.get(), &ChatClient::sessionCreated, this, &MainWindow::sessionCreated);
     connect(m_chatClient.get(), &ChatClient::myTurn, this, &MainWindow::myTurn);
     connect(m_chatClient.get(), &ChatClient::turnOf, this, &MainWindow::turnOf);
+    connect(m_chatClient.get(), &ChatClient::notEnoughMoney, this, &MainWindow::notEnoughMoney);
+    connect(m_chatClient.get(), &ChatClient::youAreATarget, this, &MainWindow::youAreATarget);
+    connect(m_chatClient.get(), &ChatClient::actionCompleted, this, &MainWindow::actionCompleted);
+    connect(m_chatClient.get(), &ChatClient::actionPending, this, &MainWindow::actionPending);
     connect(m_gameListDialog.get(), &GameListDialog::buttonClicked, this, &MainWindow::sendSessionDialogResponse);
     connect(m_playerListDialog.get(), &PlayerListDialog::buttonClicked, this, &MainWindow::sendTargetedAction);
     // connect the create game action to slot that will attempt creating game
@@ -343,6 +347,52 @@ void MainWindow::sendTargetedAction(QJsonObject &message)
     message["player"] = m_chatClient->getNickname();
     message["turnId"] = m_chatClient->getTurnId();
     m_chatClient->sendMessageToServer(message);
+}
+
+void MainWindow::notEnoughMoney()
+{
+    QMessageBox::warning(this, tr("Poor"), tr("Not enough money!"));
+    toggleActionsInterface(true);
+
+}
+
+void MainWindow::youAreATarget(QString &action, QString &sender)
+{
+    //TODO
+}
+
+void MainWindow::actionCompleted(QString &action, QString &sender)
+{
+    // store the index of the new row to append to the model containing the messages
+    const int newRow = m_chatModel->rowCount();
+    // insert a row
+    m_chatModel->insertRow(newRow);
+    // store in the model the message to comunicate a user left
+    m_chatModel->setData(m_chatModel->index(newRow, 0), tr("%1 used %2").arg(sender).arg(action));
+    // set the alignment for the text
+    m_chatModel->setData(m_chatModel->index(newRow, 0), Qt::AlignCenter, Qt::TextAlignmentRole);
+    // set the color for the text
+    m_chatModel->setData(m_chatModel->index(newRow, 0), QBrush(Qt::darkRed), Qt::ForegroundRole);
+    // scroll the view to display the new message
+    ui->chatView->scrollToBottom();
+
+}
+
+void MainWindow::actionPending(QString &action, QString &sender)
+{
+    const int newRow = m_chatModel->rowCount();
+    // insert a row
+    m_chatModel->insertRow(newRow);
+    // store in the model the message to comunicate a user left
+    m_chatModel->setData(m_chatModel->index(newRow, 0), tr("%1 tries to use %2 \n Check enabled!").arg(sender).arg(action));
+    // set the alignment for the text
+    m_chatModel->setData(m_chatModel->index(newRow, 0), Qt::AlignCenter, Qt::TextAlignmentRole);
+    // set the color for the text
+    m_chatModel->setData(m_chatModel->index(newRow, 0), QBrush(Qt::magenta), Qt::ForegroundRole);
+    // scroll the view to display the new message
+    ui->chatView->scrollToBottom();
+
+    //TODO
 }
 
 

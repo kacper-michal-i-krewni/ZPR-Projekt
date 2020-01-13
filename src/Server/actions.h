@@ -22,8 +22,12 @@ public:
     typedef void (Actions::*functionPointer)(std::shared_ptr<Player>, std::shared_ptr<Player>);
     Actions();
     virtual ~Actions();
+    const int howMuchActionCosts(std::string &action);
     std::map<std::string, functionPointer> getMap();
     QVector<std::string> getCards();
+
+    const static int AFFAIR_PRICE = 700;
+    const static int PROTEST_PRICE = 300;
 //public slots:
     void affair(std::shared_ptr<Player> executer,  std::shared_ptr<Player> victim = nullptr); // if action doesnt need viction the pointer will be nullptr
     void eu(std::shared_ptr<Player> executer,  std::shared_ptr<Player> victim = nullptr);

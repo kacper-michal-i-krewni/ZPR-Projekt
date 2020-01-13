@@ -298,6 +298,38 @@ void ChatClient::handleSessionMessage(const QJsonObject &doc)
         QString action = doc.value(QLatin1String("action")).toString();
         emit actionTargetSpecify(action, pVector);
     }
+
+    if(subtypeVal.toString().compare(QLatin1String("notEnoughMoney"), Qt::CaseInsensitive) == 0)
+    {
+        emit notEnoughMoney();
+    }
+
+    if(subtypeVal.toString().compare(QLatin1String("youAreATarget"), Qt::CaseInsensitive) == 0)
+    {
+         const QJsonValue sender = doc.value(QLatin1String("sender"));
+         const QJsonValue action = doc.value(QLatin1String("action"));
+         QString s_action = action.toString();
+         QString s_sender = sender.toString();
+         emit youAreATarget(s_action, s_sender);
+    }
+
+    if(subtypeVal.toString().compare(QLatin1String("actionCompleted"), Qt::CaseInsensitive) == 0)
+    {
+        const QJsonValue sender = doc.value(QLatin1String("sender"));
+        const QJsonValue action = doc.value(QLatin1String("action"));
+        QString s_action = action.toString();
+        QString s_sender = sender.toString();
+        emit actionCompleted(s_action, s_sender);
+    }
+
+    if(subtypeVal.toString().compare(QLatin1String("actionPending"), Qt::CaseInsensitive) == 0)
+    {
+        const QJsonValue sender = doc.value(QLatin1String("sender"));
+        const QJsonValue action = doc.value(QLatin1String("action"));
+        QString s_action = action.toString();
+        QString s_sender = sender.toString();
+        emit actionPending(s_action, s_sender);
+    }
 }
 
 

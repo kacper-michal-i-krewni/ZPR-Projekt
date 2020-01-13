@@ -80,6 +80,10 @@ private slots:
     void sessionCreated(bool &success, QString &id);
     void connectToServer();
     void connectedToServer();
+    void notEnoughMoney();
+    void youAreATarget(QString &action, QString &sender);
+    void actionCompleted(QString &action, QString &sender);
+    void actionPending(QString &action, QString &sender);
     /*!
      * \brief attemptLogin - try to log in via chatClient->login()
      * \param userName
