@@ -48,6 +48,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_chatClient.get(), &ChatClient::youAreATarget, this, &MainWindow::youAreATarget);
     connect(m_chatClient.get(), &ChatClient::actionCompleted, this, &MainWindow::actionCompleted);
     connect(m_chatClient.get(), &ChatClient::actionPending, this, &MainWindow::actionPending);
+    connect(m_chatClient.get(), &ChatClient::userReady, this, &MainWindow::userReady);
     connect(m_gameListDialog.get(), &GameListDialog::buttonClicked, this, &MainWindow::sendSessionDialogResponse);
     connect(m_playerListDialog.get(), &PlayerListDialog::buttonClicked, this, &MainWindow::sendTargetedAction);
     // connect the create game action to slot that will attempt creating game
@@ -238,14 +239,34 @@ void MainWindow::userJoined(const QString &username)
     // insert a row
     m_chatModel->insertRow(newRow);
     // store in the model the message to comunicate a user joined
-    m_chatModel->setData(m_chatModel->index(newRow, 0), tr("%1 Joined the Chat").arg(username));
+    m_chatModel->setData(m_chatModel->index(newRow, 0), tr("%1 Joined the game").arg(username));
     // set the alignment for the text
     m_chatModel->setData(m_chatModel->index(newRow, 0), Qt::AlignCenter, Qt::TextAlignmentRole);
     // set the color for the text
     m_chatModel->setData(m_chatModel->index(newRow, 0), QBrush(Qt::blue), Qt::ForegroundRole);
     // scroll the view to display the new message
     ui->chatView->scrollToBottom();
+
+    if ( username.compare(m_chatClient->getNickname(), Qt::CaseInsensitive) == 0)
+        ui->ready1->setEnabled(true);
     // reset the last printed username
+    m_lastUserName.clear();
+}
+
+void MainWindow::userReady(const QString &username)
+{
+    // store the index of the new row to append to the model containing the messages
+    const int newRow = m_chatModel->rowCount();
+    // insert a row
+    m_chatModel->insertRow(newRow);
+    // store in the model the message to comunicate a user joined
+    m_chatModel->setData(m_chatModel->index(newRow, 0), tr("%1 is ready").arg(username));
+    // set the alignment for the text
+    m_chatModel->setData(m_chatModel->index(newRow, 0), Qt::AlignCenter, Qt::TextAlignmentRole);
+    // set the color for the text
+    m_chatModel->setData(m_chatModel->index(newRow, 0), QBrush(Qt::blue), Qt::ForegroundRole);
+    // scroll the view to display the new message
+    ui->chatView->scrollToBottom();
     m_lastUserName.clear();
 }
 void MainWindow::userLeft(const QString &username)
@@ -285,6 +306,9 @@ void MainWindow::displayPlayerList(QString &action, QVector<QString> &pVector)
 void MainWindow::sendSessionDialogResponse(QJsonObject &message)
 {
     m_chatClient->sendMessageToServer(message);
+    ui->startGameAction->setEnabled(false);
+    ui->createGameAction->setEnabled(false);
+    ui->joinToGameAction->setEnabled(false);
 }
 
 

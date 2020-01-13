@@ -55,7 +55,7 @@ private slots:
      * \param sender is a pointer on user that send message
      * \param doc is an object that has message in json format
      */
-    void sessionBroadcast(Session &sess, const QJsonObject &message, std::shared_ptr<ServerWorker> exclude);
+    void sessionBroadcast(std::shared_ptr<Session> sess, const QJsonObject &message, std::shared_ptr<ServerWorker> exclude);
 
     void jsonReceived(std::shared_ptr<ServerWorker> sender, const QJsonObject &doc);
     /*!
@@ -78,6 +78,7 @@ private:
     void handleChatMessage(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj);
     void handleSessionMessage(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj);
     void handleActionMessage(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj);
+    void handleReadyMessage(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj);
     void jsonFromLoggedOut(std::shared_ptr<ServerWorker> sender, const QJsonObject &doc);
     std::shared_ptr<Session> sessionOfPlayer(std::shared_ptr<ServerWorker> &player);
     bool checkIfPlayerIsInSession(std::shared_ptr<ServerWorker> sender);
@@ -94,7 +95,7 @@ private:
      */
 
     void sendJson(std::shared_ptr<ServerWorker> destination, const QJsonObject &message);
-    void updateGameStatus(Session &sess);
+    void updateGameStatus(std::shared_ptr<Session> sess);
     QVector<std::shared_ptr<ServerWorker> > m_clients;
     void sendSessionsInfoForDialog(std::shared_ptr<ServerWorker> sender);
 

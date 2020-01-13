@@ -39,9 +39,9 @@ void ChatServer::sendJson(std::shared_ptr<ServerWorker> destination, const QJson
     destination->sendJson(message);
 }
 
-void ChatServer::updateGameStatus(Session &sess)
+void ChatServer::updateGameStatus(std::shared_ptr<Session> sess)
 {
-    QVector<std::shared_ptr<ServerWorker>> players = sess.getPlayers();
+    QVector<std::shared_ptr<ServerWorker>> players = sess->getPlayers();
     for ( std::shared_ptr<ServerWorker> x : players)
     {
         QJsonObject updateMessage;
@@ -64,9 +64,10 @@ void ChatServer::broadcast(const QJsonObject &message, std::shared_ptr<ServerWor
     }
 }
 
-void ChatServer::sessionBroadcast(Session &sess, const QJsonObject &message, std::shared_ptr<ServerWorker> exclude)
+void ChatServer::sessionBroadcast(std::shared_ptr<Session> sess, const QJsonObject &message, std::shared_ptr<ServerWorker> exclude)
 {
-    for(std::shared_ptr<ServerWorker> worker : sess.getPlayers()){
+    for(std::shared_ptr<ServerWorker> worker : sess->getPlayers())
+    {
         Q_ASSERT(worker);
         if(worker == exclude)
             continue;
@@ -190,6 +191,14 @@ void ChatServer::jsonFromLoggedIn(std::shared_ptr<ServerWorker> sender, const QJ
     {
         handleSessionMessage(sender, docObj);
     }
+    if(typeVal.toString().compare(QLatin1String("session"), Qt::CaseInsensitive) == 0)
+    {
+        handleSessionMessage(sender, docObj);
+    }
+    if(typeVal.toString().compare(QLatin1String("ready"), Qt::CaseInsensitive) == 0)
+    {
+        handleReadyMessage(sender, docObj);
+    }
 }
 
 void ChatServer::handleChatMessage(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj)
@@ -235,12 +244,6 @@ void ChatServer::handleSessionMessage(std::shared_ptr<ServerWorker> sender, cons
             message["id"] = s->getId();
         }
         sendJson(sender, message);
-
-        //QJsonObject broadMessage;
-        //broadMessage["type"] = QStringLiteral("message");
-        //broadMessage["text"] = QStringLiteral("czambo");
-        //broadMessage["sender"] = sender->getUserName();
-        //broadcast(broadMessage, sender);
     }
 
     if ( requestVal.toString().compare(QLatin1String("startRequest"), Qt::CaseInsensitive) == 0)
@@ -249,6 +252,7 @@ void ChatServer::handleSessionMessage(std::shared_ptr<ServerWorker> sender, cons
         for (auto s: _sessions)
         {
             if(id.toString().compare(s->getId(), Qt::CaseInsensitive) == 0)
+            {
                 if(s->getOwner() == sender)
                 {
                     s->start();
@@ -256,15 +260,16 @@ void ChatServer::handleSessionMessage(std::shared_ptr<ServerWorker> sender, cons
                     message["type"] = QStringLiteral("sessionStarted");
                     message["success"] = true;
                     s->sendToAll(message);
-                    return;
-                }else
+                }
+                else
                 {
                     QJsonObject message;
                     message["type"] = QStringLiteral("sessionStarted");
                     message["success"] = false;
                     s->sendToAll(message);
-                    return;
                 }
+            return;
+            }
         }
         QJsonObject message;
         message["type"] = QStringLiteral("sessionStarted");
@@ -283,6 +288,7 @@ void ChatServer::handleSessionMessage(std::shared_ptr<ServerWorker> sender, cons
     if ( requestVal.toString().compare(QLatin1String("joinRequest"), Qt::CaseInsensitive) == 0)
     {
         QJsonObject message;
+        std::shared_ptr<Session> ss; // session to send info to all
         message["type"] = QStringLiteral("sessionAcceptance");
         if (sender->isInGame() || sender->isGameOwner())
         {
@@ -297,16 +303,25 @@ void ChatServer::handleSessionMessage(std::shared_ptr<ServerWorker> sender, cons
                 if (sessionId.toString().compare( s->getId(), Qt::CaseInsensitive) == 0)
                 {
                     message["success"] = true;
-
                     s->addPlayer(sender);
                     sender->setAsInGame(true);
+                    message["player"] = sender->getUserName();
+                    ss = s;
                     break;
                 }
             }
         }
-        sendJson(sender, message);
+        sessionBroadcast(ss, message, std::shared_ptr<ServerWorker>(nullptr));
     }
+}
 
+void ChatServer::handleReadyMessage(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj)
+{
+    for ( auto s: _sessions)
+    {
+        if ( s->searchForPlayer(sender->getUserName()))
+            sessionBroadcast(s, docObj, std::shared_ptr<ServerWorker>(nullptr));
+    }
 }
 
 bool ChatServer::checkIfPlayerIsInSession(std::shared_ptr<ServerWorker> sender)

@@ -138,6 +138,7 @@ private slots:
      * Gets data from input dialog
      */
 
+    void userReady(const QString &username);
     void toggleActionsInterface(bool b);
     void actionExecute(const QString &sender, const QString &action);
     void displaySessionDialog(QVector<Session> &sessVec);

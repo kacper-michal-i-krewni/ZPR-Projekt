@@ -109,7 +109,7 @@ signals:
      */
     void userLeft(const QString &username);
     void actionExecute(const QString &sender, const QString &action);
-
+    void userReady(const QString &username);
     void sessionCreated(bool &success, QString &id);
     void sessionListComplete(QVector<Session> &sessVec);
 
