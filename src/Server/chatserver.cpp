@@ -186,11 +186,6 @@ void ChatServer::jsonFromLoggedIn(std::shared_ptr<ServerWorker> sender, const QJ
     {
         handleChatMessage(sender, docObj);
     }
-
-    if(typeVal.toString().compare(QLatin1String("session"), Qt::CaseInsensitive) == 0)
-    {
-        handleSessionMessage(sender, docObj);
-    }
     if(typeVal.toString().compare(QLatin1String("session"), Qt::CaseInsensitive) == 0)
     {
         handleSessionMessage(sender, docObj);
@@ -312,6 +307,13 @@ void ChatServer::handleSessionMessage(std::shared_ptr<ServerWorker> sender, cons
             }
         }
         sessionBroadcast(ss, message, std::shared_ptr<ServerWorker>(nullptr));
+        for ( auto player : ss->getPlayers() )
+        {
+            QJsonObject message;
+            message["type"] = QStringLiteral("playerInfo");
+            message["nickname"] = player->getUserName();
+            sendJson(sender, message);
+        }
     }
 }
 

@@ -273,9 +273,8 @@ void ChatClient::jsonReceived(const QJsonObject &docObj)
             return; // the username was invalid so we ignore
         // we notify of the new user via the userJoined signal
         const QJsonValue accept = docObj.value(QLatin1String("success"));
-        if (accept.isNull() || !accept.isString() || accept.toString().compare(QStringLiteral("true"), Qt::CaseInsensitive) != 0)
+        if (accept.isNull() || accept.toBool() != true)
             return; // the session connection try was invalid so we ignore it
-
         emit userJoined(usernameVal.toString());
     }
     else if (typeVal.toString().compare(QLatin1String("ready"), Qt::CaseInsensitive) == 0)
@@ -285,6 +284,14 @@ void ChatClient::jsonReceived(const QJsonObject &docObj)
             return; // the username was invalid so we ignore
 
         emit userReady(usernameVal.toString());
+    }
+    else if (typeVal.toString().compare(QLatin1String("playerInfo"), Qt::CaseInsensitive) == 0) // A user joined the chat
+    {
+        // we extract the username of the new pleyer joined session
+        const QJsonValue usernameVal = docObj.value(QLatin1String("nickname"));
+        if (usernameVal.isNull() || !usernameVal.isString())
+            return; // the username was invalid so we ignore
+        emit joinedSession(usernameVal.toString());
     }
 }
 

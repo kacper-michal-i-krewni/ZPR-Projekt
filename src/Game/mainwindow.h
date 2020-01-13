@@ -143,7 +143,7 @@ private slots:
     void actionExecute(const QString &sender, const QString &action);
     void displaySessionDialog(QVector<Session> &sessVec);
     void sendSessionDialogResponse(QJsonObject &message);
-
+    void joinedSession(const QString &username);
     void updatePlayerInterface(const QString &player, const double money, const double lifes);
     void blockAction(void);
     void checkAction(void);

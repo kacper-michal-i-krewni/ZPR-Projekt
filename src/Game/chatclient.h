@@ -108,6 +108,7 @@ signals:
      * \param username
      */
     void userLeft(const QString &username);
+    void joinedSession(const QString &username);
     void actionExecute(const QString &sender, const QString &action);
     void userReady(const QString &username);
     void sessionCreated(bool &success, QString &id);

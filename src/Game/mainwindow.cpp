@@ -49,6 +49,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_chatClient.get(), &ChatClient::actionCompleted, this, &MainWindow::actionCompleted);
     connect(m_chatClient.get(), &ChatClient::actionPending, this, &MainWindow::actionPending);
     connect(m_chatClient.get(), &ChatClient::userReady, this, &MainWindow::userReady);
+    connect(m_chatClient.get(), &ChatClient::joinedSession, this, &MainWindow::joinedSession);
     connect(m_gameListDialog.get(), &GameListDialog::buttonClicked, this, &MainWindow::sendSessionDialogResponse);
     connect(m_playerListDialog.get(), &PlayerListDialog::buttonClicked, this, &MainWindow::sendTargetedAction);
     // connect the create game action to slot that will attempt creating game
@@ -248,7 +249,32 @@ void MainWindow::userJoined(const QString &username)
     ui->chatView->scrollToBottom();
 
     if ( username.compare(m_chatClient->getNickname(), Qt::CaseInsensitive) == 0)
+    {
+        ui->lineEdit->setEnabled(true);
+        ui->sendButton->setEnabled(true);
+        ui->chatView->setEnabled(true);
         ui->ready1->setEnabled(true);
+        ui->nickname1->setText(username);
+        ui->wallet1->setText(QStringLiteral("2m"));
+    }
+    else
+    {
+        if (ui->nickname2->text().isNull())
+        {
+            ui->nickname2->setText(username);
+            ui->wallet2->setText(QStringLiteral("2m"));
+        }
+        else if (ui->nickname3->text().isNull())
+        {
+            ui->nickname3->setText(username);
+            ui->wallet3->setText(QStringLiteral("2m"));
+        }
+        else if (ui->nickname4->text().isNull())
+        {
+            ui->nickname4->setText(username);
+            ui->wallet2->setText(QStringLiteral("2m"));
+        }
+    }
     // reset the last printed username
     m_lastUserName.clear();
 }
@@ -269,6 +295,34 @@ void MainWindow::userReady(const QString &username)
     ui->chatView->scrollToBottom();
     m_lastUserName.clear();
 }
+
+void MainWindow::joinedSession(const QString &username)
+{
+    if ( username.compare(ui->nickname1->text(), Qt::CaseInsensitive) == 0)
+        return;
+    if ( username.compare(ui->nickname2->text(), Qt::CaseInsensitive) == 0)
+        return;
+    if ( username.compare(ui->nickname3->text(), Qt::CaseInsensitive) == 0)
+        return;
+    if ( username.compare(ui->nickname4->text(), Qt::CaseInsensitive) == 0)
+        return;
+    if (ui->nickname2->text().isNull())
+    {
+        ui->nickname2->setText(username);
+        ui->wallet2->setText(QStringLiteral("2m"));
+    }
+    else if (ui->nickname3->text().isNull())
+    {
+        ui->nickname3->setText(username);
+        ui->wallet3->setText(QStringLiteral("2m"));
+    }
+    else if (ui->nickname4->text().isNull())
+    {
+        ui->nickname4->setText(username);
+        ui->wallet2->setText(QStringLiteral("2m"));
+    }
+}
+
 void MainWindow::userLeft(const QString &username)
 {
     // store the index of the new row to append to the model containing the messages
@@ -329,6 +383,12 @@ void MainWindow::sessionCreated(bool &success, QString &id)
         ui->startGameAction->setEnabled(true);
         ui->createGameAction->setEnabled(false);
         ui->joinToGameAction->setEnabled(false);
+        ui->lineEdit->setEnabled(true);
+        ui->sendButton->setEnabled(true);
+        ui->chatView->setEnabled(true);
+        ui->ready1->setEnabled(true);
+        ui->nickname1->setText(m_chatClient->getNickname());
+        ui->wallet1->setText(QStringLiteral("2 mil"));
     }
     else
     {
