@@ -41,7 +41,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_chatClient.get(), &ChatClient::error, this, &MainWindow::error);
     connect(m_chatClient.get(), &ChatClient::userJoined, this, &MainWindow::userJoined);
     connect(m_chatClient.get(), &ChatClient::userLeft, this, &MainWindow::userLeft);
-    connect(m_chatClient.get(), &ChatClient::actionExecute, this, &MainWindow::actionExecute);
+    //connect(m_chatClient.get(), &ChatClient::actionExecute, this, &MainWindow::actionExecute);
     connect(m_chatClient.get(), &ChatClient::sessionListComplete, this, &MainWindow::displaySessionDialog);
     connect(m_chatClient.get(), &ChatClient::actionTargetSpecify, this, &MainWindow::displayPlayerList);
     connect(m_chatClient.get(), &ChatClient::updatePlayerInterface, this, &MainWindow::updatePlayerInterface);
@@ -81,6 +81,17 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->protestButton, &QPushButton::clicked, m_actions.get(), &Actions::protest);
     connect(ui->russiaButton, &QPushButton::clicked, m_actions.get(), &Actions::russia);
     connect(ui->usaButton, &QPushButton::clicked, m_actions.get(), &Actions::usa);
+
+    connect(ui->affairButton, &QPushButton::clicked, this, &MainWindow::blockActionsInterface);
+    connect(ui->euButton, &QPushButton::clicked, this, &MainWindow::blockActionsInterface);
+    connect(ui->localBiznesmanButton, &QPushButton::clicked, this, &MainWindow::blockActionsInterface);
+    connect(ui->mediaButton, &QPushButton::clicked, this, &MainWindow::blockActionsInterface);
+    connect(ui->onzButton, &QPushButton::clicked, this, &MainWindow::blockActionsInterface);
+    connect(ui->policeButton, &QPushButton::clicked, this, &MainWindow::blockActionsInterface);
+    connect(ui->protestButton, &QPushButton::clicked, this, &MainWindow::blockActionsInterface);
+    connect(ui->russiaButton, &QPushButton::clicked, this, &MainWindow::blockActionsInterface);
+    connect(ui->usaButton, &QPushButton::clicked, this, &MainWindow::blockActionsInterface);
+
     connect(ui->block1, &QPushButton::clicked, this, &MainWindow::blockAction);
     connect(ui->check1, &QPushButton::clicked, this, &MainWindow::checkAction);
     connect(ui->ready1, &QPushButton::clicked, this, &MainWindow::readyAction);
@@ -398,6 +409,11 @@ void MainWindow::userLeft(const QString &username)
     m_lastUserName.clear();
 }
 
+void MainWindow::blockActionsInterface()
+{
+    toggleActionsInterface(false);
+}
+
 //slot evoked when info from server is recieved
 void MainWindow::displaySessionDialog(QVector<Session> &sessVec)
 {
@@ -661,10 +677,7 @@ void MainWindow::toggleActionsInterface(bool b)
     ui->euButton->setEnabled(b);
 }
 
-void MainWindow::actionExecute(const QString &sender, const QString &action)
-{
-    QMessageBox::warning(this, tr(sender.toUtf8().constData()), tr(action.toUtf8().constData()));
-}
+
 
 void MainWindow::updatePlayerInterface(const QString &player, const double money, const double lifes)
 {

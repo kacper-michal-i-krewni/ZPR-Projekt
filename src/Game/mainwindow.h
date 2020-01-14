@@ -84,6 +84,7 @@ private slots:
     void connectToServer();
     void connectedToServer();
     void notEnoughMoney();
+    void blockActionsInterface();
     void youAreATarget(QString &action, QString &sender, QVector<QString> &blockers);
     void actionCompleted(QString &action, QString &sender);
     void actionPending(QString &action, QString &sender);
@@ -145,7 +146,6 @@ private slots:
 
     void userReady(const QString &username);
     void toggleActionsInterface(bool b);
-    void actionExecute(const QString &sender, const QString &action);
     void displaySessionDialog(QVector<Session> &sessVec);
     void sendSessionDialogResponse(QJsonObject &message);
     void joinedSession(const QString &username);

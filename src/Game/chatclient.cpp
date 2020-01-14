@@ -208,19 +208,19 @@ void ChatClient::jsonReceived(const QJsonObject &docObj)
         // we notify of the user disconnection the userLeft signal
         emit userLeft(usernameVal.toString());
     }
-    else if (typeVal.toString().compare(QLatin1String("action"), Qt::CaseInsensitive) == 0) // A user action
-    {
+//    else if (typeVal.toString().compare(QLatin1String("action"), Qt::CaseInsensitive) == 0) // A user action
+//    {
 
-        const QJsonValue textVal = docObj.value(QLatin1String("text"));
-        // we extract the sender field containing the username of the sender
-        const QJsonValue senderVal = docObj.value(QLatin1String("sender"));
-        if (textVal.isNull() || !textVal.isString())
-            return; // the text field was invalid so we ignore
-        if (senderVal.isNull() || !senderVal.isString())
-            return; // the sender field was invalid so we ignore
+//        const QJsonValue textVal = docObj.value(QLatin1String("text"));
+//        // we extract the sender field containing the username of the sender
+//        const QJsonValue senderVal = docObj.value(QLatin1String("sender"));
+//        if (textVal.isNull() || !textVal.isString())
+//            return; // the text field was invalid so we ignore
+//        if (senderVal.isNull() || !senderVal.isString())
+//            return; // the sender field was invalid so we ignore
 
-        emit actionExecute(senderVal.toString(), textVal.toString());
-    }
+//        emit actionExecute(senderVal.toString(), textVal.toString());
+//    }
 
     else if (typeVal.toString().compare(QLatin1String("sessionDialogInfo"), Qt::CaseInsensitive) == 0) // A session info
     {
