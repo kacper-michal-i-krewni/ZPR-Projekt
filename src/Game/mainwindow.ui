@@ -115,32 +115,6 @@
     <item row="0" column="0">
      <layout class="QGridLayout" name="cardsLayout4">
       <item row="0" column="2">
-       <spacer name="horizontalSpacer_5">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="0" column="0">
-       <spacer name="horizontalSpacer_7">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="0" column="5">
        <layout class="QVBoxLayout" name="playerMenu4">
         <item>
          <widget class="QLabel" name="nickname4">
@@ -184,24 +158,28 @@
         </item>
        </layout>
       </item>
-      <item row="0" column="3">
-       <widget class="QGraphicsView" name="card42"/>
-      </item>
-      <item row="0" column="1">
-       <widget class="QGraphicsView" name="card41"/>
-      </item>
-      <item row="0" column="4">
-       <spacer name="horizontalSpacer_8">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+      <item row="0" column="0">
+       <widget class="QLabel" name="card41">
+        <property name="enabled">
+         <bool>true</bool>
         </property>
-        <property name="sizeHint" stdset="0">
+        <property name="minimumSize">
          <size>
-          <width>40</width>
-          <height>20</height>
+          <width>200</width>
+          <height>300</height>
          </size>
         </property>
-       </spacer>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="card42">
+        <property name="minimumSize">
+         <size>
+          <width>200</width>
+          <height>300</height>
+         </size>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -221,52 +199,33 @@
     </item>
     <item row="1" column="0">
      <layout class="QGridLayout" name="cardsLayout1">
-      <item row="0" column="2">
-       <spacer name="horizontalSpacer_4">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="0" column="3">
-       <widget class="QGraphicsView" name="card12"/>
-      </item>
-      <item row="0" column="4">
-       <spacer name="horizontalSpacer_6">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
       <item row="0" column="0">
-       <spacer name="horizontalSpacer_2">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
+       <widget class="QLabel" name="card11">
+        <property name="minimumSize">
          <size>
-          <width>40</width>
-          <height>20</height>
+          <width>200</width>
+          <height>300</height>
          </size>
         </property>
-       </spacer>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QGraphicsView" name="card11"/>
+       <widget class="QLabel" name="card12">
+        <property name="minimumSize">
+         <size>
+          <width>200</width>
+          <height>300</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
       </item>
-      <item row="0" column="5">
+      <item row="0" column="2">
        <layout class="QVBoxLayout" name="playerManu1">
         <property name="rightMargin">
          <number>0</number>
@@ -346,38 +305,29 @@
     <item row="1" column="1">
      <layout class="QGridLayout" name="cardsLayout2">
       <item row="0" column="1">
-       <widget class="QGraphicsView" name="card21"/>
+       <widget class="QLabel" name="card22">
+        <property name="minimumSize">
+         <size>
+          <width>200</width>
+          <height>300</height>
+         </size>
+        </property>
+       </widget>
       </item>
       <item row="0" column="0">
-       <spacer name="horizontalSpacer_9">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
+       <widget class="QLabel" name="card21">
+        <property name="minimumSize">
          <size>
-          <width>40</width>
-          <height>20</height>
+          <width>200</width>
+          <height>300</height>
          </size>
         </property>
-       </spacer>
-      </item>
-      <item row="0" column="3">
-       <widget class="QGraphicsView" name="card22"/>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
       </item>
       <item row="0" column="2">
-       <spacer name="horizontalSpacer_10">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="0" column="5">
        <layout class="QVBoxLayout" name="playerMenu2">
         <item>
          <widget class="QLabel" name="nickname2"/>
@@ -417,24 +367,11 @@
         </item>
        </layout>
       </item>
-      <item row="0" column="4">
-       <spacer name="horizontalSpacer_11">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
      </layout>
     </item>
     <item row="0" column="1">
      <layout class="QGridLayout" name="cardsLayout3">
-      <item row="0" column="5">
+      <item row="0" column="2">
        <layout class="QVBoxLayout" name="playermenu3">
         <property name="rightMargin">
          <number>0</number>
@@ -482,49 +419,24 @@
        </layout>
       </item>
       <item row="0" column="1">
-       <widget class="QGraphicsView" name="card31"/>
+       <widget class="QLabel" name="card32">
+        <property name="minimumSize">
+         <size>
+          <width>200</width>
+          <height>300</height>
+         </size>
+        </property>
+       </widget>
       </item>
       <item row="0" column="0">
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
+       <widget class="QLabel" name="card31">
+        <property name="minimumSize">
          <size>
-          <width>40</width>
-          <height>20</height>
+          <width>200</width>
+          <height>300</height>
          </size>
         </property>
-       </spacer>
-      </item>
-      <item row="0" column="2">
-       <spacer name="horizontalSpacer_3">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="0" column="3">
-       <widget class="QGraphicsView" name="card32"/>
-      </item>
-      <item row="0" column="4">
-       <spacer name="horizontalSpacer_12">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
+       </widget>
       </item>
      </layout>
     </item>

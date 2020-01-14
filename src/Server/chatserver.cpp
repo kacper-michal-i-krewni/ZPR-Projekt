@@ -255,6 +255,14 @@ void ChatServer::handleSessionMessage(std::shared_ptr<ServerWorker> sender, cons
                     message["type"] = QStringLiteral("sessionStarted");
                     message["success"] = true;
                     s->sendToAll(message);
+                    for ( auto player : s->getPlayers())
+                    {
+                        QJsonObject cards;
+                        cards["type"] = QStringLiteral("cardsDealing");
+                        cards["first"] = player->getPlayer()->getCards().first()->getType();
+                        cards["second"] = player->getPlayer()->getCards().first()->getType();
+                        sendJson(player, cards);
+                    }
                 }
                 else
                 {
@@ -291,7 +299,6 @@ void ChatServer::handleSessionMessage(std::shared_ptr<ServerWorker> sender, cons
         }
         else
         {
-            message["success"] = false;
             const QJsonValue sessionId = docObj.value(QLatin1String("id"));
             for (auto s: _sessions)
             {

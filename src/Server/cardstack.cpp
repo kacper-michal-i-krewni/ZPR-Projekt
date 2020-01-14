@@ -1,39 +1,38 @@
 #include "cardstack.h"
 #include <algorithm>
 #include <random>
-#include <../../Mutual/actions/allactions.h>
-#include <../../Mutual/card.h>
+#include <card.h>
 #include "player.h"
 CardStack::CardStack()
 {
     for(int i = 0; i < 3; ++i)
     {
-        _stack.push_back(std::shared_ptr<Card>(new Card(std::shared_ptr<Action>(new Russia()) )));
+        _stack.push_back(std::shared_ptr<Card>(new Card(QStringLiteral("russia")) ));
     }
 
     for(int i = 0; i < 3; ++i)
     {
-        _stack.push_back(std::shared_ptr<Card>(new Card(std::shared_ptr<Action>(new Protest()) )));
+        _stack.push_back(std::shared_ptr<Card>(new Card(QStringLiteral("protest")) ));
     }
 
     for(int i = 0; i < 3; ++i)
     {
-        _stack.push_back(std::shared_ptr<Card>(new Card(std::shared_ptr<Action>(new Media()) )));
+        _stack.push_back(std::shared_ptr<Card>(new Card(QStringLiteral("media")) ));
     }
 
     for(int i = 0; i < 3; ++i)
     {
-        _stack.push_back(std::shared_ptr<Card>(new Card(std::shared_ptr<Action>(new ONZ()) )));
+        _stack.push_back(std::shared_ptr<Card>(new Card(QStringLiteral("onz")) ));
     }
 
     for(int i = 0; i < 3; ++i)
     {
-        _stack.push_back(std::shared_ptr<Card>(new Card(std::shared_ptr<Action>(new Police()) )));
+        _stack.push_back(std::shared_ptr<Card>(new Card(QStringLiteral("police")) ));
     }
 
     for(int i = 0; i < 3; ++i)
     {
-        _stack.push_back(std::shared_ptr<Card>(new Card(std::shared_ptr<Action>(new EU()) )));
+        _stack.push_back(std::shared_ptr<Card>(new Card(QStringLiteral("eu")) ));
     }
     std::random_device rd;
     std::mt19937 rng(rd());

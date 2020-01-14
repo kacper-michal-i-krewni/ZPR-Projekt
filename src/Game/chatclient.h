@@ -123,6 +123,7 @@ signals:
     void youAreATarget(QString &action, QString &sender, QVector<QString> &blockers);
     void actionCompleted(QString &action, QString &sender);
     void actionPending(QString &action, QString &sender);
+    void cardsDealing(QString first, QString second);
 private:
     /*!
      * \brief m_clientSocket - the socket that is bound to the specific client.

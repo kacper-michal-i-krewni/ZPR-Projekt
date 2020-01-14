@@ -38,6 +38,10 @@ void Player::takeCard(std::shared_ptr<Card> card)
     _cards.push_back(card);
 }
 
+QVector<std::shared_ptr<Card>> Player::getCards()
+{
+    return _cards;
+}
 //bool Player::isGameOwner()
 //{
 //    return _gameOwner;
