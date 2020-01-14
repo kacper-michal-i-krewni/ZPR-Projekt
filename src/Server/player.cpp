@@ -38,7 +38,7 @@ void Player::takeCard(std::shared_ptr<Card> card)
     _cards.push_back(card);
 }
 
-QVector<std::shared_ptr<Card>> Player::getCards()
+QVector<std::shared_ptr<Card> > Player::getCards()
 {
     return _cards;
 }

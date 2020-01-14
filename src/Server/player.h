@@ -63,12 +63,7 @@ public:
      */
     void takeCard(std::shared_ptr<Card> card);
 
-    QVector<std::shared_ptr<Card> > getCards
-
-//    bool isGameOwner();
-
-//    void setAsGameOwner(bool &b);
-    QVector<std::shared_ptr<Card>> getCards();
+    QVector<std::shared_ptr<Card> > getCards();
 
 
     ~Player();

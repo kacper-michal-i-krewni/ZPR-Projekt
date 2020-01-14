@@ -176,9 +176,15 @@ bool Session::actionCanBeChecked(QString &action)
     return false;
 }
 
-bool Session::checkAction(std::shared_ptr<ServerWorker> &player, QString &action)
+bool Session::checkAction(std::shared_ptr<ServerWorker> &player,const QString &action)
 {
-    player->getPlayer();  // TODO HERE
+    QVector<std::shared_ptr<Card> > playerCards = player->getPlayer()->getCards();
+    for(auto c: playerCards)
+    {
+        if(c->getType().compare(action, Qt::CaseInsensitive) == 0)
+            return true;
+    }
+    return false;
 }
 
 
@@ -316,7 +322,18 @@ void Session::handleCaunterActionMessage(std::shared_ptr<ServerWorker> &sender, 
     }
     if(subtype.toString().compare("check", Qt::CaseInsensitive) == 0)
     {
-       const QString action = docObj.value(QLatin1String("subtype")).toString();
+       _timer->stop();
+       const QString action = docObj.value(QLatin1String("action")).toString();
+       if(checkAction(_currentPlayer,action))
+       {
+           sender->getPlayer()->DecrementLifes();
+       }
+       else
+       {
+           _currentPlayer->getPlayer()->DecrementLifes();
+       }
+
+       nextTurn();
 
     }
 }
