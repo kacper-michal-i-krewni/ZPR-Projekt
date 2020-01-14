@@ -58,6 +58,7 @@ signals:
     void blockDisable(); //wysyla do serwera info
     void checkEnable(const Player &current);
     void checkDisable();
+    void sendUpdate(std::shared_ptr<Session> sess);
 
 
 private:
@@ -67,7 +68,7 @@ private:
     bool actionCanBeChecked(QString &action);
     void startCheckTimer();
     bool checkAction(std::shared_ptr<ServerWorker> &player,const QString &action);
-
+    std::shared_ptr<Session> _this;
     std::unique_ptr<CardStack> _cardstack;
     std::unique_ptr<QTimer> _timer;
     std::unique_ptr<QTimer> _blockTimer;

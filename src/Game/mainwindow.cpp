@@ -165,9 +165,10 @@ void MainWindow::disconnect()
     // for now itd wrong, need to write some more code
     //emit m_chatClient->userLeft(m_chatClient->getNickname());
     m_chatClient->disconnect();
-    ui->joinToGameAction->setEnabled(true);
-    ui->disconnectAction->setEnabled(false);
-    toggleActionsInterface(false);
+    resetUI();
+    //ui->joinToGameAction->setEnabled(true);
+    //ui->disconnectAction->setEnabled(false);
+    //toggleActionsInterface(false);
 }
 
 
@@ -269,6 +270,8 @@ void MainWindow::userJoined(const QString &username)
         ui->ready1->setEnabled(true);
         ui->nickname1->setText(username);
         ui->wallet1->setText(QStringLiteral("2m"));
+        setGraphic(QStringLiteral("back"), ui->card11);
+        setGraphic(QStringLiteral("back"), ui->card12);
     }
     else
     {
@@ -369,6 +372,28 @@ void MainWindow::userLeft(const QString &username)
     // scroll the view to display the new message
     ui->chatView->scrollToBottom();
     // reset the last printed username
+    if ( username.compare(ui->nickname2->text(), Qt::CaseInsensitive) == 0)
+    {
+        ui->nickname2->clear();
+        ui->wallet2->clear();
+        ui->card21->clear();
+        ui->card22->clear();
+    }
+    else if ( username.compare(ui->nickname3->text(), Qt::CaseInsensitive) == 0)
+    {
+        ui->nickname3->clear();
+        ui->wallet3->clear();
+        ui->card31->clear();
+        ui->card32->clear();
+    }
+    else if ( username.compare(ui->nickname4->text(), Qt::CaseInsensitive) == 0)
+    {
+        ui->nickname4->clear();
+        ui->wallet4->clear();
+        ui->card41->clear();
+        ui->card42->clear();
+    }
+
     m_lastUserName.clear();
 }
 
@@ -419,7 +444,9 @@ void MainWindow::sessionCreated(bool &success, QString &id)
         ui->chatView->setEnabled(true);
         ui->ready1->setEnabled(true);
         ui->nickname1->setText(m_chatClient->getNickname());
-        ui->wallet1->setText(QStringLiteral("2 mil"));
+        ui->wallet1->setText(QStringLiteral("2m"));
+        setGraphic(QStringLiteral("back"), ui->card11);
+        setGraphic(QStringLiteral("back"), ui->card12);
     }
     else
     {
@@ -441,6 +468,7 @@ void MainWindow::myTurn()
     m_chatModel->setData(m_chatModel->index(newRow, 0), Qt::AlignCenter, Qt::TextAlignmentRole);
     // set the color for the text
     m_chatModel->setData(m_chatModel->index(newRow, 0), QBrush(Qt::darkCyan), Qt::ForegroundRole);
+    ui->ready1->setEnabled(false);
     toggleActionsInterface(true);
     ui->block1->setEnabled(false);
     ui->check1->setEnabled(false);
@@ -456,6 +484,7 @@ void MainWindow::turnOf(QString &player)
     m_chatModel->setData(m_chatModel->index(newRow, 0), Qt::AlignCenter, Qt::TextAlignmentRole);
     // set the color for the text
     m_chatModel->setData(m_chatModel->index(newRow, 0), QBrush(Qt::darkCyan), Qt::ForegroundRole);
+    ui->ready1->setEnabled(false);
     toggleActionsInterface(false);
     ui->block1->setEnabled(false);
     ui->check1->setEnabled(false);
@@ -619,19 +648,19 @@ void MainWindow::updatePlayerInterface(const QString &player, const double money
 {
     if ( ui->nickname1->text().compare(player,Qt::CaseInsensitive ) == 0 ) // if first
     {
-        ui->wallet1->setText(QString("%1").arg(money));
+        ui->wallet1->setText(QString("%1m").arg(money));
     }
     else if ( ui->nickname2->text().compare(player,Qt::CaseInsensitive ) == 0 ) // if second
     {
-       ui->wallet2->setText(QString("%1").arg(money));
+       ui->wallet2->setText(QString("%1m").arg(money));
     }
     else if ( ui->nickname3->text().compare(player,Qt::CaseInsensitive ) == 0 ) // if third
     {
-       ui->wallet2->setText(QString("%1").arg(money));
+       ui->wallet3->setText(QString("%1m").arg(money));
     }
     else if ( ui->nickname4->text().compare(player,Qt::CaseInsensitive ) == 0 ) // if fourth
     {
-       ui->wallet2->setText(QString("%1").arg(money));
+       ui->wallet4->setText(QString("%1m").arg(money));
     }
 
 }
@@ -666,7 +695,7 @@ void MainWindow::readyAction(void)
 void MainWindow::cardsDealing(QString first, QString second)
 {
     setGraphic(first, ui->card11);
-    setGraphic(first, ui->card12);
+    setGraphic(second, ui->card12);
 
 }
 
@@ -724,14 +753,53 @@ void MainWindow::error(QAbstractSocket::SocketError socketError)
     default:
         Q_UNREACHABLE();
     }
+    resetUI();
+}
+
+void MainWindow::resetUI()
+{
     // enable the button to connect to the server again
-    ui->joinToGameAction->setEnabled(true);
+    ui->connectToServerAction->setEnabled(true);
     // disable the ui to send and display messages
+    ui->joinToGameAction->setEnabled(false);
     ui->sendButton->setEnabled(false);
     ui->lineEdit->setEnabled(false);
     ui->chatView->setEnabled(false);
     toggleActionsInterface(false);
     ui->startGameAction->setEnabled(false);
+    m_chatModel->clear();
+    // clear interface
+    ui->nickname1->clear();
+    ui->wallet1->clear();
+    ui->card11->clear();
+    ui->card12->clear();
+    ui->ready1->setEnabled(false);
+    ui->block1->setEnabled(false);
+    ui->check1->setEnabled(false);
+
+    ui->nickname2->clear();
+    ui->wallet2->clear();
+    ui->card21->clear();
+    ui->card22->clear();
+    ui->ready2->setEnabled(false);
+    ui->block2->setEnabled(false);
+    ui->check2->setEnabled(false);
+
+    ui->nickname3->clear();
+    ui->wallet3->clear();
+    ui->card31->clear();
+    ui->card32->clear();
+    ui->ready3->setEnabled(false);
+    ui->block3->setEnabled(false);
+    ui->check3->setEnabled(false);
+
+    ui->nickname4->clear();
+    ui->wallet4->clear();
+    ui->card41->clear();
+    ui->card42->clear();
+    ui->ready4->setEnabled(false);
+    ui->block4->setEnabled(false);
+    ui->check4->setEnabled(false);
     // reset the last printed username
     m_lastUserName.clear();
 }

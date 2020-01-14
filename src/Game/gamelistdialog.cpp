@@ -16,7 +16,7 @@ GameListDialog::GameListDialog(QWidget *parent):
 void GameListDialog::setList(const QVector<Session> &sessVec)
 {
     this->_sessVec = sessVec;
-
+    ui->listWidget->clear();
     for(auto s: sessVec)
     {
         QString construct ="owner: " + s.getOwner() + "/ number of players: " + std::to_string(s.getNumOfPlayers()).c_str() + " of " + std::to_string(s.getPlayersLimit()).c_str();

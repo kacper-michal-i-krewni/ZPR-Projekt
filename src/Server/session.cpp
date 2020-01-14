@@ -9,7 +9,8 @@ Session::Session(std::shared_ptr<ServerWorker> owner, int playersLimit):
     _owner(owner),
     _actions(new Actions()),
     _id(QUuid::createUuid()),
-    _playersLimit(playersLimit)
+    _playersLimit(playersLimit),
+    _this(this)
 {
     _players.push_back(owner);
     connect(_timer.get(), &QTimer::timeout, this,  &Session::callOnTimeout);
@@ -162,6 +163,7 @@ void Session::nextTurn()
 {
     nextPlayer();
     turnOf(_currentPlayer);
+    emit sendUpdate(_this);
 }
 
 
@@ -273,7 +275,7 @@ void Session::handleActionMessage(std::shared_ptr<ServerWorker> &sender, const Q
             sendToAllExcept(targetPlayer, messageToNonTargets);
         }
     }
-    if (!isTargeted)
+    else // (!isTargeted)
     {
         QString qActionName =  docObj.value(QLatin1String("text")).toString();
         if(!actionCanBeChecked(qActionName))

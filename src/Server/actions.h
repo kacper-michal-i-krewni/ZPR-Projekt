@@ -5,6 +5,7 @@
 #include <QObject>
 #include <map>
 #include <QVector>
+#include <memory>
 
 class Player;
 

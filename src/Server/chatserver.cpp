@@ -194,6 +194,7 @@ void ChatServer::jsonFromLoggedIn(std::shared_ptr<ServerWorker> sender, const QJ
     {
         handleReadyMessage(sender, docObj);
     }
+
 }
 
 void ChatServer::handleChatMessage(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj)
@@ -208,7 +209,13 @@ void ChatServer::handleChatMessage(std::shared_ptr<ServerWorker> sender, const Q
     message["type"] = QStringLiteral("message");
     message["text"] = text;
     message["sender"] = sender->getUserName();
-    broadcast(message, sender);
+    for ( auto s : _sessions)
+    {
+        if ( s->checkIfPlayerIsInSession(sender))
+        {
+            sessionbroadcast(s, message, sender);
+        }
+    }
 }
 
 
@@ -237,6 +244,7 @@ void ChatServer::handleSessionMessage(std::shared_ptr<ServerWorker> sender, cons
             sender->setAsInGame(true);
             message["success"] = true;
             message["id"] = s->getId();
+            connect(s.get(), &Session::sendUpdate, this, &ChatServer::sendUpdate);
         }
         sendJson(sender, message);
     }
@@ -260,7 +268,7 @@ void ChatServer::handleSessionMessage(std::shared_ptr<ServerWorker> sender, cons
                         QJsonObject cards;
                         cards["type"] = QStringLiteral("cardsDealing");
                         cards["first"] = player->getPlayer()->getCards().first()->getType();
-                        cards["second"] = player->getPlayer()->getCards().first()->getType();
+                        cards["second"] = player->getPlayer()->getCards().last()->getType();
                         sendJson(player, cards);
                     }
                 }
@@ -382,7 +390,7 @@ void ChatServer::handleCaunterActionMessage(std::shared_ptr<ServerWorker> sender
 }
 
 
-std::shared_ptr<Session> ChatServer::sessionOfPlayer(std::shared_ptr<ServerWorker> &player)
+std::shared_ptr<Session> ChatServer::sessionOfPlayer(std::shared_ptr<ServerWorker> player)
 {
     for(auto s: _sessions)
     {
@@ -391,6 +399,11 @@ std::shared_ptr<Session> ChatServer::sessionOfPlayer(std::shared_ptr<ServerWorke
             if(p == player) return s;
         }
     }
+}
+
+void ChatServer::sendUpdate(std::shared_ptr<Session> sess)
+{
+    updateGameStatus(sess);
 }
 
 

@@ -68,6 +68,7 @@ private slots:
      * \param sender is an user that cause the error
      */
     void userError(std::shared_ptr<ServerWorker> sender);
+    void sendUpdate(std::shared_ptr<Session> sess);
 private:
     /*!
      * \brief jsonFromLoggedOut is a function that handle disconnecting
@@ -81,7 +82,7 @@ private:
     void handleCaunterActionMessage(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj);
     void handleReadyMessage(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj);
     void jsonFromLoggedOut(std::shared_ptr<ServerWorker> sender, const QJsonObject &doc);
-    std::shared_ptr<Session> sessionOfPlayer(std::shared_ptr<ServerWorker> &player);
+    std::shared_ptr<Session> sessionOfPlayer(std::shared_ptr<ServerWorker> player);
     bool checkIfPlayerIsInSession(std::shared_ptr<ServerWorker> sender);
     /*!
      * \brief jsonFromLoggedIn is a function that handle conneting

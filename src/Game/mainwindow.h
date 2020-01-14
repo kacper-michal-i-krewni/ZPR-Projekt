@@ -64,6 +64,7 @@ private:
      */
     QString m_lastUserName;
     void setGraphic(QString name, QLabel *label);
+    void resetUI();
 private slots:
     /*!
      * \brief attemptConnection - ask user to connect to server.

@@ -262,8 +262,9 @@ void ChatClient::jsonReceived(const QJsonObject &docObj)
         if (playersLifes.isNull())
             return; // the text field was invalid so we ignore
         const QJsonValue playersMoney= docObj.value(QLatin1String("money"));
-        if (playersMoney.isNull() || !playersMoney.isDouble())
+        if (playersMoney.isNull())
             return; // the text field was invalid so we ignore
+        emit updatePlayerInterface(playersNick.toString(), playersMoney.toInt(), playersLifes.toInt());
     }
 
     else if (typeVal.toString().compare(QLatin1String("sessionMessage"), Qt::CaseInsensitive) == 0)
