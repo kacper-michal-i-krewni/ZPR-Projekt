@@ -9,13 +9,13 @@ CONFIG += debug_and_release
 
 HEADERS += \
     actions.h \
+    card.h \
     chatserver.h \
     player.h \
     serverworker.h \
     serverwindow.h \
     session.h \
     logicmodel.h \
-    ../Mutual/card.h \
     ../Mutual/action.h \
     ../Mutual/actions/affair.h \
     ../Mutual/actions/allactions.h \
@@ -31,6 +31,7 @@ HEADERS += \
 
 SOURCES += \
     actions.cpp \
+    card.cpp \
     chatserver.cpp \
     player.cpp \
     servermain.cpp \
@@ -38,7 +39,6 @@ SOURCES += \
     serverwindow.cpp \
     session.cpp \
     logicmodel.cpp \
-    ../Mutual/card.cpp \
     ../Mutual/action.cpp \
     ../Mutual/actions/affair.cpp \
     ../Mutual/actions/eu.cpp \

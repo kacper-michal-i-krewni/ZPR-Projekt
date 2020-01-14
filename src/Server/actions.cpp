@@ -71,7 +71,7 @@ void Actions::russia(std::shared_ptr<Player> executer, std::shared_ptr<Player> v
 }
 void Actions::usa(std::shared_ptr<Player> executer, std::shared_ptr<Player> victim)
 {
-    int additionalMoney = 100;
+    int additionalMoney = 1;
     executer->setMoney(executer->getMoney() + additionalMoney);
 }
 

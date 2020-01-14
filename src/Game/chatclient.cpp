@@ -293,6 +293,17 @@ void ChatClient::jsonReceived(const QJsonObject &docObj)
             return; // the username was invalid so we ignore
         emit joinedSession(usernameVal.toString());
     }
+    else if (typeVal.toString().compare(QLatin1String("cardsDealing"), Qt::CaseInsensitive) == 0) // A user joined the chat
+    {
+        // we extract the username of the new pleyer joined session
+        const QJsonValue first = docObj.value(QLatin1String("first"));
+        if (first.isNull() || !first.isString())
+            return;
+        const QJsonValue second = docObj.value(QLatin1String("second"));
+        if (second.isNull() || !second.isString())
+            return;
+        emit cardsDealing(first.toString(), second.toString());
+    }
 }
 
 void ChatClient::handleSessionMessage(const QJsonObject &doc)
