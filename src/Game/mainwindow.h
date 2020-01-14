@@ -88,6 +88,7 @@ private slots:
     void actionCompleted(QString &action, QString &sender);
     void actionPending(QString &action, QString &sender);
     void disableBlockButton();
+    void checkResult(QString &checked, QString &checking, bool &result);
     /*!
      * \brief attemptLogin - try to log in via chatClient->login()
      * \param userName

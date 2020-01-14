@@ -121,7 +121,17 @@ void Session::sendToAllExcept(std::shared_ptr<ServerWorker> &player, QJsonObject
     }
 }
 
-
+bool Session::checkIfPlayerIsInSession(std::shared_ptr<ServerWorker> sender)
+{
+    for(auto p: _players)
+    {
+        if(p==sender)
+        {
+            return true;
+        }
+    }
+    return false;
+}
 
 void Session::nextPlayer()
 {
@@ -325,16 +335,25 @@ void Session::handleCaunterActionMessage(std::shared_ptr<ServerWorker> &sender, 
     if(subtype.toString().compare("check", Qt::CaseInsensitive) == 0)
     {
        _timer->stop();
-       const QString action = docObj.value(QLatin1String("action")).toString();
-       if(checkAction(_currentPlayer,action))
+       QJsonObject message;
+       message["type"] = QStringLiteral("sessionMessage");
+       message["subtype"] = QStringLiteral("checkResult");
+       message["checking"] = sender->getPlayer()->getNick();
+       message["checked"] = _currentPlayer->getPlayer()->getNick();
+
+       //const QString action = docObj.value(QLatin1String("action")).toString();
+       if(checkAction(_currentPlayer,_pendingAction))
        {
            sender->getPlayer()->DecrementLifes();
+           message["result"] = true;
        }
        else
        {
            _currentPlayer->getPlayer()->DecrementLifes();
+           message["result"] = false;
        }
 
+       sendToAll(message);
        nextTurn();
 
     }

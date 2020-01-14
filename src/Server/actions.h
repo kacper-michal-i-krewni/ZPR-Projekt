@@ -28,8 +28,8 @@ public:
     QVector<std::string> getCards();
     QVector<QString> getActionsThatBlock(const QString &action);
 
-    const static int AFFAIR_PRICE = 700;
-    const static int PROTEST_PRICE = 300;
+    const static int AFFAIR_PRICE = 7;
+    const static int PROTEST_PRICE = 3;
 //public slots:
     void affair(std::shared_ptr<Player> executer,  std::shared_ptr<Player> victim = nullptr); // if action doesnt need viction the pointer will be nullptr
     void eu(std::shared_ptr<Player> executer,  std::shared_ptr<Player> victim = nullptr);

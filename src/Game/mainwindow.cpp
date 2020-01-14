@@ -55,6 +55,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_chatClient.get(), &ChatClient::userReady, this, &MainWindow::userReady);
     connect(m_chatClient.get(), &ChatClient::joinedSession, this, &MainWindow::joinedSession);
     connect(m_chatClient.get(), &ChatClient::cardsDealing, this, &MainWindow::cardsDealing);
+    connect(m_chatClient.get(), &ChatClient::checkResult, this, &MainWindow::checkResult);
     connect(m_gameListDialog.get(), &GameListDialog::buttonClicked, this, &MainWindow::sendSessionDialogResponse);
     connect(m_playerListDialog.get(), &PlayerListDialog::buttonClicked, this, &MainWindow::sendTargetedAction);
     // connect the create game action to slot that will attempt creating game
@@ -562,6 +563,27 @@ void MainWindow::disableBlockButton()
     ui->block1->setEnabled(false);
 }
 
+void MainWindow::checkResult(QString &checked, QString &checking, bool &result)
+{
+    const int newRow = m_chatModel->rowCount();
+    m_chatModel->insertRow(newRow);
+
+    if(result)
+    {
+        m_chatModel->setData(m_chatModel->index(newRow, 0), tr("%1 HAS IT!\n %2 looses life!").arg(checked).arg(checking));
+        m_chatModel->setData(m_chatModel->index(newRow, 0), QBrush(Qt::green), Qt::ForegroundRole);
+    }
+
+    else
+    {
+        m_chatModel->setData(m_chatModel->index(newRow, 0), tr("%1 DOESN'T HAVE IT!\n %2 looses life!").arg(checked).arg(checked));
+        m_chatModel->setData(m_chatModel->index(newRow, 0), QBrush(Qt::red), Qt::ForegroundRole);
+    }
+
+    m_chatModel->setData(m_chatModel->index(newRow, 0), Qt::AlignCenter, Qt::TextAlignmentRole);
+    ui->chatView->scrollToBottom();
+}
+
 // -------- CHAT --------- //
 
 void MainWindow::messageReceived(const QString &sender, const QString &text)
@@ -623,7 +645,7 @@ void MainWindow::sendMessage()
 
 
 
-// ------- OTHER -------- //
+// ------- INTERFACE AND POPUPS -------- //
 
 void MainWindow::toggleActionsInterface(bool b)
 {
@@ -673,12 +695,26 @@ void MainWindow::blockAction()
 
 void MainWindow::checkAction(void)
 {
+    const int newRow = m_chatModel->rowCount();
+    // insert a row
+    m_chatModel->insertRow(newRow);
+    // store in the model the message to comunicate a user left
+    m_chatModel->setData(m_chatModel->index(newRow, 0), tr("CHECK!"));
+    // set the alignment for the text
+    m_chatModel->setData(m_chatModel->index(newRow, 0), Qt::AlignCenter, Qt::TextAlignmentRole);
+    // set the color for the text
+    m_chatModel->setData(m_chatModel->index(newRow, 0), QBrush(Qt::darkBlue), Qt::ForegroundRole);
+    // scroll the view to display the new message
+    ui->chatView->scrollToBottom();
     ui->check1->setEnabled(false);
+
+
     QJsonObject message;
     message["type"] = QStringLiteral("caunterAction");
     message["subtype"] = QStringLiteral("check");
     message["turnId"] = m_chatClient->getTurnId();
     message["player"] = m_chatClient->getNickname();
+
     m_chatClient->sendMessageToServer(message);
 }
 
@@ -696,7 +732,6 @@ void MainWindow::cardsDealing(QString first, QString second)
 {
     setGraphic(first, ui->card11);
     setGraphic(second, ui->card12);
-
 }
 
 

@@ -28,6 +28,7 @@ public:
     std::shared_ptr<ServerWorker> getOwner();
     QString getId();
     QJsonObject toJSON();
+    bool checkIfPlayerIsInSession(std::shared_ptr<ServerWorker> sender);
 
     void start();
 

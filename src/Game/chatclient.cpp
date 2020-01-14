@@ -350,7 +350,7 @@ void ChatClient::handleSessionMessage(const QJsonObject &doc)
     {
          const QJsonValue sender = doc.value(QLatin1String("sender"));
          const QJsonValue action = doc.value(QLatin1String("action"));
-         const QJsonArray blockerArray = doc["blockers"].toArray();
+         QJsonArray blockerArray = doc["blockers"].toArray();
          QVector<QString> blockers;
          for (int sIndex = 0; sIndex < blockerArray.size(); ++sIndex) {
                  QString p = blockerArray[sIndex].toString();
@@ -365,8 +365,8 @@ void ChatClient::handleSessionMessage(const QJsonObject &doc)
 
     if(subtypeVal.toString().compare(QLatin1String("actionCompleted"), Qt::CaseInsensitive) == 0)
     {
-        const QJsonValue sender = doc.value(QLatin1String("sender"));
-        const QJsonValue action = doc.value(QLatin1String("action"));
+        QJsonValue sender = doc.value(QLatin1String("sender"));
+        QJsonValue action = doc.value(QLatin1String("action"));
         QString s_action = action.toString();
         QString s_sender = sender.toString();
         emit actionCompleted(s_action, s_sender);
@@ -374,11 +374,20 @@ void ChatClient::handleSessionMessage(const QJsonObject &doc)
 
     if(subtypeVal.toString().compare(QLatin1String("actionPending"), Qt::CaseInsensitive) == 0)
     {
-        const QJsonValue sender = doc.value(QLatin1String("sender"));
-        const QJsonValue action = doc.value(QLatin1String("action"));
+        QJsonValue sender = doc.value(QLatin1String("sender"));
+        QJsonValue action = doc.value(QLatin1String("action"));
         QString s_action = action.toString();
         QString s_sender = sender.toString();
         emit actionPending(s_action, s_sender);
+    }
+
+    if(subtypeVal.toString().compare(QLatin1String("checkResult"), Qt::CaseInsensitive) == 0)
+    {
+        QString checked = doc.value(QLatin1String("checked")).toString();
+        QString checking = doc.value(QLatin1String("checking")).toString();
+        bool result = doc.value(QLatin1String("result")).toBool();
+
+        emit checkResult(checked, checking, result);
     }
 }
 

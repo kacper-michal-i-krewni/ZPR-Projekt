@@ -194,6 +194,10 @@ void ChatServer::jsonFromLoggedIn(std::shared_ptr<ServerWorker> sender, const QJ
     {
         handleReadyMessage(sender, docObj);
     }
+    if (typeVal.toString().compare(QLatin1String("caunterAction"), Qt::CaseInsensitive) == 0)
+    {
+        handleCaunterActionMessage(sender, docObj);
+    }
 
 }
 
@@ -209,11 +213,11 @@ void ChatServer::handleChatMessage(std::shared_ptr<ServerWorker> sender, const Q
     message["type"] = QStringLiteral("message");
     message["text"] = text;
     message["sender"] = sender->getUserName();
-    for ( auto s : _sessions)
+    for ( auto s  : _sessions)
     {
         if ( s->checkIfPlayerIsInSession(sender))
         {
-            sessionbroadcast(s, message, sender);
+            sessionBroadcast(s, message, sender);
         }
     }
 }
