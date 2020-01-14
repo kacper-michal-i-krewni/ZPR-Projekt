@@ -32,6 +32,7 @@ public:
     void start();
 
     void handleActionMessage(std::shared_ptr<ServerWorker> &sender, const QJsonObject &docObj);
+    void handleCaunterActionMessage(std::shared_ptr<ServerWorker> &sender, const QJsonObject &docObj);
 
     std::shared_ptr<ServerWorker> searchForPlayer(QString nickname);
 
@@ -65,6 +66,7 @@ private:
     void turnOf(std::shared_ptr<ServerWorker> &player);
     bool actionCanBeChecked(QString &action);
     void startCheckTimer();
+    bool checkAction(std::shared_ptr<ServerWorker> &player, QString &action);
 
     std::unique_ptr<CardStack> _cardstack;
     std::unique_ptr<QTimer> _timer;

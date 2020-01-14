@@ -176,6 +176,10 @@ bool Session::actionCanBeChecked(QString &action)
     return false;
 }
 
+bool Session::checkAction(std::shared_ptr<ServerWorker> &player, QString &action)
+{
+    player->getPlayer();  // TODO HERE
+}
 
 
 void Session::callOnTimeout()
@@ -297,12 +301,22 @@ void Session::handleActionMessage(std::shared_ptr<ServerWorker> &sender, const Q
 
             _timer->start(Session::CHECKTIMEOUT);
         }
+    }
+}
 
-        //TODO: for debugging purposes
-//        int money = sender->getPlayer()->getMoney();
-//        QJsonObject temp;
-//        temp["money"] = money;
-//        sender->sendJson(temp);
+void Session::handleCaunterActionMessage(std::shared_ptr<ServerWorker> &sender, const QJsonObject &docObj)
+{
+    const QJsonValue turnId = docObj.value(QLatin1String("turnId"));
+    if(!(_turnId.toString().compare(turnId.toString(), Qt::CaseInsensitive) == 0))
+        return;
+    const QJsonValue subtype = docObj.value(QLatin1String("subtype"));
+    if(subtype.toString().compare("block", Qt::CaseInsensitive) == 0)
+    {
+
+    }
+    if(subtype.toString().compare("check", Qt::CaseInsensitive) == 0)
+    {
+       const QString action = docObj.value(QLatin1String("subtype")).toString();
 
     }
 }

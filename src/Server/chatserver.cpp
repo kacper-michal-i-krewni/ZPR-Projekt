@@ -365,6 +365,15 @@ void ChatServer::handleActionMessage(std::shared_ptr<ServerWorker> sender, const
     s->handleActionMessage(sender,docObj);
 }
 
+void ChatServer::handleCaunterActionMessage(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj)
+{
+    if(!checkIfPlayerIsInSession(sender))
+        return;
+    //handle action message powinno być w sesji
+    std::shared_ptr<Session> s = sessionOfPlayer(sender);
+    s->handleCaunterActionMessage(sender,docObj);
+}
+
 
 std::shared_ptr<Session> ChatServer::sessionOfPlayer(std::shared_ptr<ServerWorker> &player)
 {

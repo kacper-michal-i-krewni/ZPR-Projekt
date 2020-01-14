@@ -26,7 +26,7 @@ void BlockingUi::checkAndExecute(const QString &action)
     {
         if(action.compare(b, Qt::CaseInsensitive) == 0){
             QJsonObject message;
-            message["type"] = QStringLiteral("counterAction");
+            message["type"] = QStringLiteral("caunterAction");
             message["subtype"] = QStringLiteral("block");
             message["sender"] = client->getNickname();
             message["action"] = action;

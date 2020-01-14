@@ -78,6 +78,7 @@ private:
     void handleChatMessage(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj);
     void handleSessionMessage(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj);
     void handleActionMessage(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj);
+    void handleCaunterActionMessage(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj);
     void handleReadyMessage(std::shared_ptr<ServerWorker> sender, const QJsonObject &docObj);
     void jsonFromLoggedOut(std::shared_ptr<ServerWorker> sender, const QJsonObject &doc);
     std::shared_ptr<Session> sessionOfPlayer(std::shared_ptr<ServerWorker> &player);

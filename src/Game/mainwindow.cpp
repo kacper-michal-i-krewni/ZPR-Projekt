@@ -617,7 +617,7 @@ void MainWindow::checkAction(void)
 {
     ui->check1->setEnabled(false);
     QJsonObject message;
-    message["type"] = QStringLiteral("counterAction");
+    message["type"] = QStringLiteral("caunterAction");
     message["subtype"] = QStringLiteral("check");
     message["turnId"] = m_chatClient->getTurnId();
     message["player"] = m_chatClient->getNickname();
