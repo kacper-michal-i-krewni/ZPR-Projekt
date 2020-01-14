@@ -11,6 +11,10 @@
 #include <QInputDialog>
 #include <QMessageBox>
 #include <QHostAddress>
+#include <QGraphicsPixmapItem>
+#include <QImage>
+#include <QLabel>
+#include <QFileDialog>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -50,6 +54,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_chatClient.get(), &ChatClient::actionPending, this, &MainWindow::actionPending);
     connect(m_chatClient.get(), &ChatClient::userReady, this, &MainWindow::userReady);
     connect(m_chatClient.get(), &ChatClient::joinedSession, this, &MainWindow::joinedSession);
+    connect(m_chatClient.get(), &ChatClient::cardsDealing, this, &MainWindow::cardsDealing);
     connect(m_gameListDialog.get(), &GameListDialog::buttonClicked, this, &MainWindow::sendSessionDialogResponse);
     connect(m_playerListDialog.get(), &PlayerListDialog::buttonClicked, this, &MainWindow::sendTargetedAction);
     // connect the create game action to slot that will attempt creating game
@@ -85,6 +90,12 @@ MainWindow::~MainWindow()
 {
     // delete the elements created from the .ui file
     delete ui;
+}
+
+void MainWindow::setGraphic(QString name, QLabel *label)
+{
+    QImage image(QStringLiteral("../images/") + name + ".png");
+    label->setPixmap(QPixmap::fromImage(image));
 }
 
 
@@ -261,20 +272,32 @@ void MainWindow::userJoined(const QString &username)
     }
     else
     {
+        if ( username.compare(ui->nickname2->text(), Qt::CaseInsensitive) == 0)
+            return;
+        if ( username.compare(ui->nickname3->text(), Qt::CaseInsensitive) == 0)
+            return;
+        if ( username.compare(ui->nickname4->text(), Qt::CaseInsensitive) == 0)
+            return;
         if (ui->nickname2->text().isNull())
         {
             ui->nickname2->setText(username);
             ui->wallet2->setText(QStringLiteral("2m"));
+            setGraphic(QStringLiteral("back"), ui->card21);
+            setGraphic(QStringLiteral("back"), ui->card22);
         }
         else if (ui->nickname3->text().isNull())
         {
             ui->nickname3->setText(username);
             ui->wallet3->setText(QStringLiteral("2m"));
+            setGraphic(QStringLiteral("back"), ui->card31);
+            setGraphic(QStringLiteral("back"), ui->card32);
         }
         else if (ui->nickname4->text().isNull())
         {
             ui->nickname4->setText(username);
             ui->wallet2->setText(QStringLiteral("2m"));
+            setGraphic(QStringLiteral("back"), ui->card41);
+            setGraphic(QStringLiteral("back"), ui->card42);
         }
     }
     // reset the last printed username
@@ -312,16 +335,22 @@ void MainWindow::joinedSession(const QString &username)
     {
         ui->nickname2->setText(username);
         ui->wallet2->setText(QStringLiteral("2m"));
+        setGraphic(QStringLiteral("back"), ui->card21);
+        setGraphic(QStringLiteral("back"), ui->card22);
     }
     else if (ui->nickname3->text().isNull())
     {
         ui->nickname3->setText(username);
         ui->wallet3->setText(QStringLiteral("2m"));
+        setGraphic(QStringLiteral("back"), ui->card31);
+        setGraphic(QStringLiteral("back"), ui->card32);
     }
     else if (ui->nickname4->text().isNull())
     {
         ui->nickname4->setText(username);
         ui->wallet2->setText(QStringLiteral("2m"));
+        setGraphic(QStringLiteral("back"), ui->card41);
+        setGraphic(QStringLiteral("back"), ui->card42);
     }
 }
 
@@ -631,6 +660,13 @@ void MainWindow::readyAction(void)
     message["type"] = QStringLiteral("ready");
     message["player"] = m_chatClient->getNickname();
     m_chatClient->sendMessageToServer(message);
+
+}
+
+void MainWindow::cardsDealing(QString first, QString second)
+{
+    setGraphic(first, ui->card11);
+    setGraphic(first, ui->card12);
 
 }
 

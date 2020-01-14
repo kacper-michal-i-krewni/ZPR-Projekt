@@ -68,6 +68,8 @@ public:
 //    bool isGameOwner();
 
 //    void setAsGameOwner(bool &b);
+    QVector<std::shared_ptr<Card>> getCards();
+
 
     ~Player();
 private:
@@ -88,7 +90,7 @@ private:
      */
     bool _enabled;
     //bool _gameOwner;
-    QVector<std::shared_ptr<Card> > _cards;
+    QVector<std::shared_ptr<Card>> _cards;
 };
 
 #endif // PLAYER_H

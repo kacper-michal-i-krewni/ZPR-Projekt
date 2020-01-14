@@ -2,7 +2,7 @@
 #define CARDSTACK_H
 
 
-class Card;
+#include <card.h>
 class Player;
 #include <memory>
 #include <QVector>

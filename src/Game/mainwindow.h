@@ -13,6 +13,7 @@
 #include "blockingui.h"
 #include "ui_blockingui.h"
 #include <ui_gamelistdialog.h>
+#include <QLabel>
 
 class ChatClient;
 class QStandardItemModel;
@@ -62,6 +63,7 @@ private:
      * \brief m_lastUserName
      */
     QString m_lastUserName;
+    void setGraphic(QString name, QLabel *label);
 private slots:
     /*!
      * \brief attemptConnection - ask user to connect to server.
@@ -149,6 +151,6 @@ private slots:
     void blockAction(void);
     void checkAction(void);
     void readyAction(void);
-
+    void cardsDealing(const QString first, const QString second);
 };
 #endif // MAINWINDOW_H
