@@ -12,6 +12,7 @@ Session::Session(std::shared_ptr<ServerWorker> owner, int playersLimit):
     _playersLimit(playersLimit)
 {
     _players.push_back(owner);
+    connect(_checkTimer.get(), &QTimer::timeout, this,  &Session::callOnCheckTimeout);
 }
 
 Session::~Session()
@@ -172,7 +173,6 @@ bool Session::actionCanBeChecked(QString &action)
 
 void Session::startCheckTimer()
 {
-    connect(_checkTimer.get(), &QTimer::timeout, this,  &Session::callOnCheckTimeout);
     _checkTimer->start(Session::CHECKTIMEOUT);
 }
 
@@ -186,12 +186,12 @@ void Session::callOnCheckTimeout()
 
     QJsonObject message;
     message["type"] = QStringLiteral("sessionMessage");
-    message["sybtype"] = QStringLiteral("actionCompleted");
+    message["subtype"] = QStringLiteral("actionCompleted");
+    message["sender"] = _currentPlayer->getPlayer()->getNick();
     message["action"] = _pendingAction;
 
     sendToAll(message);
-    nextPlayer();
-    turnOf(_currentPlayer);
+    nextTurn();
 }
 
 

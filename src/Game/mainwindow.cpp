@@ -452,7 +452,7 @@ void MainWindow::actionCompleted(QString &action, QString &sender)
     // insert a row
     m_chatModel->insertRow(newRow);
     // store in the model the message to comunicate a user left
-    m_chatModel->setData(m_chatModel->index(newRow, 0), tr("%1 used %2").arg(sender).arg(action));
+    m_chatModel->setData(m_chatModel->index(newRow, 0), tr("%1 used %2").arg(sender).arg(action.toUpper()));
     // set the alignment for the text
     m_chatModel->setData(m_chatModel->index(newRow, 0), Qt::AlignCenter, Qt::TextAlignmentRole);
     // set the color for the text
@@ -468,7 +468,7 @@ void MainWindow::actionPending(QString &action, QString &sender)
     // insert a row
     m_chatModel->insertRow(newRow);
     // store in the model the message to comunicate a user left
-    m_chatModel->setData(m_chatModel->index(newRow, 0), tr("%1 tries to use %2 \n Check enabled!").arg(sender).arg(action));
+    m_chatModel->setData(m_chatModel->index(newRow, 0), tr("%1 tries to use %2 \n Check enabled!").arg(sender).arg(action.toUpper()));
     // set the alignment for the text
     m_chatModel->setData(m_chatModel->index(newRow, 0), Qt::AlignCenter, Qt::TextAlignmentRole);
     // set the color for the text
