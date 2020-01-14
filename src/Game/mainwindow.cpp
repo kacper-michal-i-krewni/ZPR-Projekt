@@ -78,6 +78,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->block1, &QPushButton::clicked, this, &MainWindow::blockAction);
     connect(ui->check1, &QPushButton::clicked, this, &MainWindow::checkAction);
     connect(ui->ready1, &QPushButton::clicked, this, &MainWindow::readyAction);
+    connect(blockingui.get(), &BlockingUi::disableBlockButton, this, &MainWindow::disableBlockButton);
 }
 
 MainWindow::~MainWindow()
@@ -155,6 +156,7 @@ void MainWindow::disconnect()
     m_chatClient->disconnect();
     ui->joinToGameAction->setEnabled(true);
     ui->disconnectAction->setEnabled(false);
+    toggleActionsInterface(false);
 }
 
 
@@ -411,6 +413,8 @@ void MainWindow::myTurn()
     // set the color for the text
     m_chatModel->setData(m_chatModel->index(newRow, 0), QBrush(Qt::darkCyan), Qt::ForegroundRole);
     toggleActionsInterface(true);
+    ui->block1->setEnabled(false);
+    ui->check1->setEnabled(false);
 }
 
 void MainWindow::turnOf(QString &player)
@@ -424,6 +428,8 @@ void MainWindow::turnOf(QString &player)
     // set the color for the text
     m_chatModel->setData(m_chatModel->index(newRow, 0), QBrush(Qt::darkCyan), Qt::ForegroundRole);
     toggleActionsInterface(false);
+    ui->block1->setEnabled(false);
+    ui->check1->setEnabled(false);
 }
 
 void MainWindow::sendTargetedAction(QJsonObject &message)
@@ -456,6 +462,7 @@ void MainWindow::youAreATarget(QString &action, QString &sender, QVector<QString
     ui->chatView->scrollToBottom();
 
     ui->block1->setEnabled(true);
+
 }
 
 void MainWindow::actionCompleted(QString &action, QString &sender)
@@ -489,11 +496,15 @@ void MainWindow::actionPending(QString &action, QString &sender)
     // scroll the view to display the new message
     ui->chatView->scrollToBottom();
 
-    //TODO
+    ui->check1->setEnabled(true);
 }
 
+void MainWindow::disableBlockButton()
+{
+    ui->block1->setEnabled(false);
+}
 
-// -------- MESSAGES --------- //
+// -------- CHAT --------- //
 
 void MainWindow::messageReceived(const QString &sender, const QString &text)
 {
@@ -606,7 +617,9 @@ void MainWindow::checkAction(void)
 {
     ui->check1->setEnabled(false);
     QJsonObject message;
-    message["type"] = QStringLiteral("check");
+    message["type"] = QStringLiteral("counterAction");
+    message["subtype"] = QStringLiteral("check");
+    message["turnId"] = m_chatClient->getTurnId();
     message["player"] = m_chatClient->getNickname();
     m_chatClient->sendMessageToServer(message);
 }

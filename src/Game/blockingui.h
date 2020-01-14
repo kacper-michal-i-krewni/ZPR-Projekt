@@ -23,6 +23,8 @@ public slots:
     void onz();
     void police();
     //void protest();
+signals:
+    void disableBlockButton();
 private:
     Ui::BlockingUi *ui;
     std::shared_ptr<ChatClient> client;

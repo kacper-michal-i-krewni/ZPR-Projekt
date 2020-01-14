@@ -26,15 +26,18 @@ void BlockingUi::checkAndExecute(const QString &action)
     {
         if(action.compare(b, Qt::CaseInsensitive) == 0){
             QJsonObject message;
-            message["type"] = QStringLiteral("block");
+            message["type"] = QStringLiteral("counterAction");
+            message["subtype"] = QStringLiteral("block");
             message["sender"] = client->getNickname();
             message["action"] = action;
+            message["turnId"] = client->getTurnId();
             client->sendMessageToServer(message);
+            emit disableBlockButton();
             emit this->close();
             return;
         }
     }
-    QMessageBox::warning(this, tr("What bro"), tr("You can't block with that!"));
+    QMessageBox::warning(this, tr("What man"), tr("You can't block with that!"));
 }
 
 void BlockingUi::eu()
