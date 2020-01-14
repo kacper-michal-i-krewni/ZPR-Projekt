@@ -40,7 +40,7 @@ public:
     const static int CHECKTIMEOUT = 10*1000;
     const static int BLOCKTIMEOUT = 15*1000;
 
-    const static int STARTING_MONEY = 200;
+    const static int STARTING_MONEY = 2;
 
 public slots:
      void callOnTimeout();
