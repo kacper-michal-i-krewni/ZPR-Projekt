@@ -81,7 +81,7 @@ private slots:
     void connectToServer();
     void connectedToServer();
     void notEnoughMoney();
-    void youAreATarget(QString &action, QString &sender);
+    void youAreATarget(QString &action, QString &sender, QVector<QString> &blockers);
     void actionCompleted(QString &action, QString &sender);
     void actionPending(QString &action, QString &sender);
     /*!

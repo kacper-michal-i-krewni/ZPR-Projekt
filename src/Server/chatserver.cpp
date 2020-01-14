@@ -283,7 +283,7 @@ void ChatServer::handleSessionMessage(std::shared_ptr<ServerWorker> sender, cons
     if ( requestVal.toString().compare(QLatin1String("joinRequest"), Qt::CaseInsensitive) == 0)
     {
         QJsonObject message;
-        std::shared_ptr<Session> ss; // session to send info to all
+
         message["type"] = QStringLiteral("sessionAcceptance");
         if (sender->isInGame() || sender->isGameOwner())
         {
@@ -297,21 +297,24 @@ void ChatServer::handleSessionMessage(std::shared_ptr<ServerWorker> sender, cons
             {
                 if (sessionId.toString().compare( s->getId(), Qt::CaseInsensitive) == 0)
                 {
-                    message["success"] = true;
-                    s->addPlayer(sender);
-                    sender->setAsInGame(true);
-                    message["player"] = sender->getUserName();
-                    ss = s;
-                    break;
+                    if(!(s->getNumOfPlayers() == s->getPlayersLimit()))
+                    {
+                        message["success"] = true;
+                        s->addPlayer(sender);
+                        sender->setAsInGame(true);
+                        message["player"] = sender->getUserName();
+                        sessionBroadcast(s, message, std::shared_ptr<ServerWorker>(nullptr));
+                        for ( auto player : s->getPlayers() )
+                        {
+                            QJsonObject update_message;
+                            update_message["type"] = QStringLiteral("playerInfo");
+                            update_message["nickname"] = player->getUserName();
+                            sendJson(sender, update_message);
+                        }
+                        return;
+                    }
                 }
             }
-        }
-        sessionBroadcast(ss, message, std::shared_ptr<ServerWorker>(nullptr));
-        for ( auto player : ss->getPlayers() )
-        {
-            QJsonObject message;
-            message["type"] = QStringLiteral("playerInfo");
-            message["nickname"] = player->getUserName();
             sendJson(sender, message);
         }
     }

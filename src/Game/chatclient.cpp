@@ -333,9 +333,15 @@ void ChatClient::handleSessionMessage(const QJsonObject &doc)
     {
          const QJsonValue sender = doc.value(QLatin1String("sender"));
          const QJsonValue action = doc.value(QLatin1String("action"));
+         const QJsonArray blockerArray = doc["blockers"].toArray();
+         QVector<QString> blockers;
+         for (int sIndex = 0; sIndex < blockerArray.size(); ++sIndex) {
+                 QString p = blockerArray[sIndex].toString();
+                 blockers.push_back(p);
+         }
          QString s_action = action.toString();
          QString s_sender = sender.toString();
-         emit youAreATarget(s_action, s_sender);
+         emit youAreATarget(s_action, s_sender, blockers);
     }
 
     if(subtypeVal.toString().compare(QLatin1String("actionCompleted"), Qt::CaseInsensitive) == 0)

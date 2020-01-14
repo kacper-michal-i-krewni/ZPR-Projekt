@@ -119,7 +119,7 @@ signals:
     void actionTargetSpecify(QString &action, QVector<QString> &pVector);
     void updatePlayerInterface(const QString &player, const double money, const double lifes);
     void notEnoughMoney();
-    void youAreATarget(QString &action, QString &sender);
+    void youAreATarget(QString &action, QString &sender, QVector<QString> &blockers);
     void actionCompleted(QString &action, QString &sender);
     void actionPending(QString &action, QString &sender);
 private:

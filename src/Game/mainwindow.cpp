@@ -422,7 +422,7 @@ void MainWindow::turnOf(QString &player)
     // set the alignment for the text
     m_chatModel->setData(m_chatModel->index(newRow, 0), Qt::AlignCenter, Qt::TextAlignmentRole);
     // set the color for the text
-    m_chatModel->setData(m_chatModel->index(newRow, 0), QBrush(Qt::cyan), Qt::ForegroundRole);
+    m_chatModel->setData(m_chatModel->index(newRow, 0), QBrush(Qt::darkCyan), Qt::ForegroundRole);
     toggleActionsInterface(false);
 }
 
@@ -440,9 +440,20 @@ void MainWindow::notEnoughMoney()
 
 }
 
-void MainWindow::youAreATarget(QString &action, QString &sender)
+void MainWindow::youAreATarget(QString &action, QString &sender, QVector<QString> &blockers)
 {
-    //TODO
+
+    const int newRow = m_chatModel->rowCount();
+    // insert a row
+    m_chatModel->insertRow(newRow);
+    // store in the model the message to comunicate a user left
+    m_chatModel->setData(m_chatModel->index(newRow, 0), tr("%1 attacks you with %2 !").arg(sender).arg(action.toUpper()));
+    // set the alignment for the text
+    m_chatModel->setData(m_chatModel->index(newRow, 0), Qt::AlignCenter, Qt::TextAlignmentRole);
+    // set the color for the text
+    m_chatModel->setData(m_chatModel->index(newRow, 0), QBrush(Qt::darkBlue), Qt::ForegroundRole);
+    // scroll the view to display the new message
+    ui->chatView->scrollToBottom();
 }
 
 void MainWindow::actionCompleted(QString &action, QString &sender)
@@ -456,7 +467,7 @@ void MainWindow::actionCompleted(QString &action, QString &sender)
     // set the alignment for the text
     m_chatModel->setData(m_chatModel->index(newRow, 0), Qt::AlignCenter, Qt::TextAlignmentRole);
     // set the color for the text
-    m_chatModel->setData(m_chatModel->index(newRow, 0), QBrush(Qt::darkRed), Qt::ForegroundRole);
+    m_chatModel->setData(m_chatModel->index(newRow, 0), QBrush(Qt::darkBlue), Qt::ForegroundRole);
     // scroll the view to display the new message
     ui->chatView->scrollToBottom();
 
@@ -472,7 +483,7 @@ void MainWindow::actionPending(QString &action, QString &sender)
     // set the alignment for the text
     m_chatModel->setData(m_chatModel->index(newRow, 0), Qt::AlignCenter, Qt::TextAlignmentRole);
     // set the color for the text
-    m_chatModel->setData(m_chatModel->index(newRow, 0), QBrush(Qt::magenta), Qt::ForegroundRole);
+    m_chatModel->setData(m_chatModel->index(newRow, 0), QBrush(Qt::cyan), Qt::ForegroundRole);
     // scroll the view to display the new message
     ui->chatView->scrollToBottom();
 

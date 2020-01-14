@@ -101,3 +101,23 @@ void Actions::fillCards()
 
 }
 
+QVector<QString> Actions::getActionsThatBlock(const QString &action)
+{
+    QVector<QString> blockers;
+    if(action.compare("police",Qt::CaseInsensitive) == 0)
+    {
+        blockers.push_back("police");
+        blockers.push_back("media");
+        blockers.push_back("onz");
+    }
+    else if(action.compare("localbiznesman",Qt::CaseInsensitive) == 0)
+    {
+        blockers.push_back("russia");
+    }
+    else if(action.compare("protest",Qt::CaseInsensitive) == 0)
+    {
+        blockers.push_back("eu");
+    }
+    return blockers;
+}
+

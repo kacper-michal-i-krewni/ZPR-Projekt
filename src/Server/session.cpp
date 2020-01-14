@@ -4,7 +4,7 @@
 
 Session::Session(std::shared_ptr<ServerWorker> owner, int playersLimit):
     _cardstack(new CardStack()),
-    _checkTimer(new QTimer(this)),
+    _timer(new QTimer(this)),
     _blockTimer(new QTimer(this)),
     _owner(owner),
     _actions(new Actions()),
@@ -12,7 +12,7 @@ Session::Session(std::shared_ptr<ServerWorker> owner, int playersLimit):
     _playersLimit(playersLimit)
 {
     _players.push_back(owner);
-    connect(_checkTimer.get(), &QTimer::timeout, this,  &Session::callOnCheckTimeout);
+    connect(_timer.get(), &QTimer::timeout, this,  &Session::callOnTimeout);
 }
 
 Session::~Session()
@@ -74,6 +74,11 @@ void Session::removePlayer(const std::shared_ptr<ServerWorker> player)
 int Session::getNumOfPlayers()
 {
     return _players.size();
+}
+
+int Session::getPlayersLimit()
+{
+    return _playersLimit;
 }
 
 std::shared_ptr<ServerWorker> Session::getOwner()
@@ -171,14 +176,11 @@ bool Session::actionCanBeChecked(QString &action)
     return false;
 }
 
-void Session::startCheckTimer()
-{
-    _checkTimer->start(Session::CHECKTIMEOUT);
-}
 
-void Session::callOnCheckTimeout()
+
+void Session::callOnTimeout()
 {
-    _checkTimer->stop();
+    _timer->stop();
     const std::string actionName =_pendingAction.toUtf8().constData();
     std::map<std::string, Actions::functionPointer> actions = _actions->getMap();
     Actions::functionPointer x = actions[actionName];
@@ -232,16 +234,33 @@ void Session::handleActionMessage(std::shared_ptr<ServerWorker> &sender, const Q
         }
         else
         {
+            _pendingAction = action;
+
             std::shared_ptr<ServerWorker> targetPlayer = searchForPlayer(target);
             QJsonObject message;
             message["type"] = QStringLiteral("sessionMessage");
             message["subtype"] = QStringLiteral("youAreATarget");
             message["sender"] = sender->getUserName();
             message["action"] = action;
+            QJsonArray blockerArray;
+            QVector<QString> blockers = _actions->getActionsThatBlock(action);
+            for(auto b : blockers)
+            {
+                blockerArray.append(b);
+            }
+
+            message["blockers"] = blockerArray;
             targetPlayer->sendJson(message);
-            //TODO
 
+            _timer->start(Session::BLOCKTIMEOUT);
 
+            QJsonObject messageToNonTargets;
+            messageToNonTargets["type"] = QStringLiteral("sessionMessage");
+            messageToNonTargets["subtype"] = QStringLiteral("actionCompleted");
+            messageToNonTargets["sender"] = sender->getUserName();
+            messageToNonTargets["action"] = action;
+
+            sendToAllExcept(targetPlayer, messageToNonTargets);
         }
     }
     if (!isTargeted)
@@ -268,15 +287,15 @@ void Session::handleActionMessage(std::shared_ptr<ServerWorker> &sender, const Q
         {
 
             _pendingAction = qActionName;
-            startCheckTimer();
 
             QJsonObject message;
             message["type"] = QStringLiteral("sessionMessage");
             message["subtype"] = QStringLiteral("actionPending");
             message["sender"] = sender->getUserName();
             message["action"] = qActionName;
-
             sendToAll(message);
+
+            _timer->start(Session::CHECKTIMEOUT);
         }
 
         //TODO: for debugging purposes

@@ -24,9 +24,11 @@ public:
     void addPlayer(const std::shared_ptr<ServerWorker> player);
     void removePlayer(const std::shared_ptr<ServerWorker> player);
     int getNumOfPlayers();
+    int getPlayersLimit();
     std::shared_ptr<ServerWorker> getOwner();
     QString getId();
     QJsonObject toJSON();
+
     void start();
 
     void handleActionMessage(std::shared_ptr<ServerWorker> &sender, const QJsonObject &docObj);
@@ -35,10 +37,12 @@ public:
 
 
     const static int CHECKTIMEOUT = 10*1000;
+    const static int BLOCKTIMEOUT = 15*1000;
+
     const static int STARTING_MONEY = 200;
 
 public slots:
-     void callOnCheckTimeout();
+     void callOnTimeout();
 
 
 
@@ -63,7 +67,7 @@ private:
     void startCheckTimer();
 
     std::unique_ptr<CardStack> _cardstack;
-    std::unique_ptr<QTimer> _checkTimer;
+    std::unique_ptr<QTimer> _timer;
     std::unique_ptr<QTimer> _blockTimer;
     QVector<std::shared_ptr<ServerWorker> > _players;
     std::shared_ptr<ServerWorker> _owner;

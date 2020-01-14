@@ -25,6 +25,7 @@ public:
     const int howMuchActionCosts(std::string &action);
     std::map<std::string, functionPointer> getMap();
     QVector<std::string> getCards();
+    QVector<QString> getActionsThatBlock(const QString &action);
 
     const static int AFFAIR_PRICE = 700;
     const static int PROTEST_PRICE = 300;
