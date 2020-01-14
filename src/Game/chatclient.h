@@ -36,6 +36,7 @@ public:
     void setSessionId(QString &sessionId);
     QString getTurnId();
     QString getSessionId();
+    QVector<QString> getCurrentBlockers();
     std::shared_ptr<QTcpSocket> getQTcpSocket() const;
 public slots:
     /*!
@@ -146,6 +147,7 @@ private:
     QString nickname;
     QString _sessionId;
     QString _turnId;
+    QVector<QString> _currentBlockers;
     //QVector<std::shared_ptr<QMap<QString, QVariant> > > _dialogSessionInfo;
 };
 

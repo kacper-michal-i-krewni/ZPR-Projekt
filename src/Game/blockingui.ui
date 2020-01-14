@@ -22,13 +22,6 @@
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="protest">
-     <property name="text">
-      <string>Protest</string>
-     </property>
-    </widget>
-   </item>
-   <item>
     <widget class="QPushButton" name="media">
      <property name="text">
       <string>Media</string>

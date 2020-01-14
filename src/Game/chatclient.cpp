@@ -60,6 +60,11 @@ QString ChatClient::getTurnId()
     return _turnId;
 }
 
+QVector<QString> ChatClient::getCurrentBlockers()
+{
+    return _currentBlockers;
+}
+
 
 void ChatClient::login(const QString &userName)
 {
@@ -341,6 +346,8 @@ void ChatClient::handleSessionMessage(const QJsonObject &doc)
          }
          QString s_action = action.toString();
          QString s_sender = sender.toString();
+
+         _currentBlockers = blockers;
          emit youAreATarget(s_action, s_sender, blockers);
     }
 

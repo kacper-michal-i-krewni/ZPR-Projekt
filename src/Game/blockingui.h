@@ -22,10 +22,12 @@ public slots:
     void media();
     void onz();
     void police();
-    void protest();
+    //void protest();
 private:
     Ui::BlockingUi *ui;
     std::shared_ptr<ChatClient> client;
+
+    void checkAndExecute(const QString &action);
 };
 
 #endif // BLOCKINGUI_H

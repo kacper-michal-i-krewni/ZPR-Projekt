@@ -454,6 +454,8 @@ void MainWindow::youAreATarget(QString &action, QString &sender, QVector<QString
     m_chatModel->setData(m_chatModel->index(newRow, 0), QBrush(Qt::darkBlue), Qt::ForegroundRole);
     // scroll the view to display the new message
     ui->chatView->scrollToBottom();
+
+    ui->block1->setEnabled(true);
 }
 
 void MainWindow::actionCompleted(QString &action, QString &sender)
