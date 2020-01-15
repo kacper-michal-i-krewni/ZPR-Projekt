@@ -13,7 +13,7 @@ class QJsonDocument;
  * \brief The ChatClient class
  *
  * ChatClient class states the client side of client-server relation.
- * It is responsible for sending siglnals to server about the connection info, messages, message statues etc.
+ * It is responsible for sending siglals to server about the connection info, messages, message statues etc.
  */
 class ChatClient : public QObject
 {
@@ -31,10 +31,25 @@ public:
      * \return nickname of client
      */
     const QString getNickname() const;
-    //const std::vector<QMap<QString, QVariant> > getDialogSessionInfo() {return _dialogSessionInfo;}
+    /*!
+     * \brief setTurnId is a function that sets ID of this turn
+     * \param turnId is a ID generated from server to protect turn from delayed messages
+     */
     void setTurnId(QString &turnId);
+    /*!
+     * \brief setSessionId is a function that sets ID of the session
+     * \param sessionId is a ID generated from server to protect session from messages that are not directed to this session
+     */
     void setSessionId(QString &sessionId);
+    /*!
+     * \brief getTurnId is a getter of turn id
+     * \return turn ID
+     */
     QString getTurnId();
+    /*!
+     * \brief getSessionId
+     * \return
+     */
     QString getSessionId();
     QVector<QString> getCurrentBlockers();
     std::shared_ptr<QTcpSocket> getQTcpSocket() const;
