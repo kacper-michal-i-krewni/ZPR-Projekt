@@ -4,6 +4,8 @@
 #include <QDataStream>
 #include <QJsonDocument>
 #include <QJsonObject>
+
+
 Actions::Actions(std::shared_ptr<ChatClient> chatClient): m_chatClient(chatClient)
 {
 

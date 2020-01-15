@@ -23,7 +23,7 @@ public:
     typedef void (Actions::*functionPointer)(std::shared_ptr<Player>, std::shared_ptr<Player>);
     Actions();
     virtual ~Actions();
-    const int howMuchActionCosts(std::string &action);
+    int howMuchActionCosts(std::string &action);
     std::map<std::string, functionPointer> getMap();
     QVector<std::string> getCards();
     QVector<QString> getActionsThatBlock(const QString &action);

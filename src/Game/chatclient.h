@@ -124,21 +124,84 @@ signals:
      * \param username
      */
     void userLeft(const QString &username);
+    /*!
+     * \brief joinedSession - signal emited when message is about joining the session
+     * \param username
+     */
     void joinedSession(const QString &username);
-    //void actionExecute(const QString &sender, const QString &action);
+    /*!
+     * \brief userReady - signal is emited to log message about readiness of user
+     * \param username is a nick of user that is ready
+     */
     void userReady(const QString &username);
+    /*!
+     * \brief sessionCreated signal is emited when message about creating session is recived
+     * \param success parameter says if session was created or not
+     * \param id is QString that represents ID of the session
+     */
     void sessionCreated(bool &success, QString &id);
+    /*!
+     * \brief sessionListComplete
+     * \param sessVec
+     */
     void sessionListComplete(QVector<Session> &sessVec);
-
+    /*!
+     * \brief myTurn is a signal that enable interface, because it is turn of player connected with this client
+     */
     void myTurn();
+    /*!
+     * \brief turnOf
+     * \param player is a QString that represents players nickname
+     */
     void turnOf(QString &player);
+    /*!
+     * \brief actionTargetSpecify
+     * \param action
+     * \param pVector
+     */
     void actionTargetSpecify(QString &action, QVector<QString> &pVector);
+    /*!
+     * \brief updatePlayerInterface
+     * \param player
+     * \param money
+     * \param lifes
+     */
     void updatePlayerInterface(const QString &player, const double money, const double lifes);
+    /*!
+     * \brief notEnoughMoney is a signal that is emited if player has not enough money to make an action
+     */
     void notEnoughMoney();
+    /*!
+     * \brief youAreATarget signal that is emitef if someone indicate you as a target in action
+     * \param action is a string with name of action
+     * \param sender is a string with nickname of player
+     * \param blockers is Vector that contians strings with blocker's names
+     */
     void youAreATarget(QString &action, QString &sender, QVector<QString> &blockers);
+    /*!
+     * \brief actionCompleted
+     * \param action
+     * \param sender
+     */
     void actionCompleted(QString &action, QString &sender);
+    /*!
+     * \brief actionPending
+     * \param action
+     * \param sender
+     */
     void actionPending(QString &action, QString &sender);
+    /*!
+     * \brief cardsDealing is signal when server send dealing cards
+     * \param first is a name of first card
+     * \param second is a name of second card
+     */
     void cardsDealing(QString first, QString second);
+    /*!
+     * \brief checkResult
+     * \param checked
+     * \param checking
+     * \param result
+     */
     void checkResult(QString &checked, QString &checking, bool &result);
 private:
     /*!
@@ -157,15 +220,26 @@ private:
      */
     void jsonReceived(const QJsonObject &doc);
     /*!
-     * \brief nickname
+     * \brief handleSessionMessage is a function that is unpacking message and emiting right signal
+     * \param doc
      */
     void handleSessionMessage(const QJsonObject &doc);
-
+    /*!
+     * \brief nickname of a player
+     */
     QString nickname;
+    /*!
+     * \brief _sessionId is a session ID
+     */
     QString _sessionId;
+    /*!
+     * \brief _turnId is a turn ID
+     */
     QString _turnId;
+    /*!
+     * \brief _currentBlockers is a vector of strings that contains names of actions that can blocks this
+     */
     QVector<QString> _currentBlockers;
-    //QVector<std::shared_ptr<QMap<QString, QVariant> > > _dialogSessionInfo;
 };
 
 #endif // CHATCLIENT_H

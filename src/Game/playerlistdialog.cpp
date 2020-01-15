@@ -52,3 +52,9 @@ void PlayerListDialog::onButtonClicked()
 
     emit buttonClicked(message);
 }
+
+
+void PlayerListDialog::setAction(const QString &action)
+{
+    this->_action = action;
+}

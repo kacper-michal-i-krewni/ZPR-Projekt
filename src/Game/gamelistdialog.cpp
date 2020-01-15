@@ -31,8 +31,9 @@ GameListDialog::~GameListDialog()
 
 void GameListDialog::onButtonClicked(){ //TODO implement this method
     if(_sessVec.isEmpty()) return;
-    QListWidgetItem* item = ui->listWidget->currentItem();
-    int row = ui->listWidget->row(item);
+    //QListWidgetItem* item = ui->listWidget->currentItem();
+    std::shared_ptr<QListWidgetItem> item(ui->listWidget->currentItem());
+    int row = ui->listWidget->row(item.get());
     Session s = _sessVec[row]; //TODO check if indexes are cool
 
     QJsonObject message;
@@ -41,8 +42,6 @@ void GameListDialog::onButtonClicked(){ //TODO implement this method
     message["id"] = s.getId();
     _sessVec.clear();
     ui->listWidget->clear();
-
-
     emit buttonClicked(message);
 
 }

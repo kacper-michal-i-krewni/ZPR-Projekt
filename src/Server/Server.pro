@@ -15,7 +15,6 @@ HEADERS += \
     serverworker.h \
     serverwindow.h \
     session.h \
-    logicmodel.h \
     cardstack.h
 
 SOURCES += \
@@ -27,7 +26,6 @@ SOURCES += \
     serverworker.cpp \
     serverwindow.cpp \
     session.cpp \
-    logicmodel.cpp \
     cardstack.cpp
 
 FORMS += \
