@@ -2,10 +2,6 @@
 
 Player::Player(QString nick, int money, int lifes, bool enabled): _nick(nick), _money(money), _lifes(lifes), _enabled(enabled)
 {
-//    _nick = nick;
-//    _money = money;
-//    _lifes = lifes;
-//    _enabled = enabled;
 
 }
 
@@ -42,15 +38,6 @@ QVector<std::shared_ptr<Card> > Player::getCards()
 {
     return _cards;
 }
-//bool Player::isGameOwner()
-//{
-//    return _gameOwner;
-//}
-
-//void Player::setAsGameOwner(bool &b)
-//{
-//    _gameOwner = b;
-//}
 
 Player::~Player()
 {

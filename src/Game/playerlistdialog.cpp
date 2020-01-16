@@ -21,7 +21,6 @@ void PlayerListDialog::setList(const QString &action, const QVector<QString> &pl
 
     this->_action = action;
     this->_playerVec = playerVec;
-
     for(auto p: playerVec)
     {
         ui->listWidget->addItem(p);
@@ -48,8 +47,6 @@ void PlayerListDialog::onButtonClicked()
     message["targeted"] = true;
     _playerVec.clear();
     ui->listWidget->clear();
-
-
     emit buttonClicked(message);
 }
 

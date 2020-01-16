@@ -23,11 +23,6 @@ Session::~Session()
 
 void Session::start()
 {
-
-    // THIS IS FOR TESTING PURPOSES
-//    connect(_timer.get(), &QTimer::timeout, this,  &Session::sendToAllOnTimeout);
-//    _timer->start(Session::ROUNDTIMEOUT);
-
     for(auto p: _players)
     {
         QString nick = p->getUserName();
@@ -37,8 +32,6 @@ void Session::start()
     }
     _currentPlayer = _players.first();
     turnOf(_currentPlayer);
-
-
 }
 
 std::shared_ptr<ServerWorker> Session::searchForPlayer(QString nickname)
@@ -162,11 +155,6 @@ void Session::turnOf(std::shared_ptr<ServerWorker> &player)
     _turnId = QUuid::createUuid();
     message["turnId"] = _turnId.toString();
     sendToAll(message);
-
-//    QJsonObject message2;
-//    message2["type"] = QStringLiteral("sessionMessage");
-//    message2["subtype"] = QStringLiteral("yourTurn");
-//    player->sendJson(message2);
 }
 
 void Session::nextTurn()
@@ -229,7 +217,7 @@ void Session::handleActionMessage(std::shared_ptr<ServerWorker> &sender, const Q
     if (isTargeted)
     {
         const QString action = docObj.value(QLatin1String("text")).toString();
-        std::string cost = action.toUtf8().constData();
+        QString cost = action.toUtf8().constData();
         if(sender->getPlayer()->getMoney() < _actions->howMuchActionCosts(cost))
         {
             QJsonObject message;
@@ -340,8 +328,6 @@ void Session::handleCaunterActionMessage(std::shared_ptr<ServerWorker> &sender, 
        message["subtype"] = QStringLiteral("checkResult");
        message["checking"] = sender->getPlayer()->getNick();
        message["checked"] = _currentPlayer->getPlayer()->getNick();
-
-       //const QString action = docObj.value(QLatin1String("action")).toString();
        if(checkAction(_currentPlayer,_pendingAction))
        {
            sender->getPlayer()->DecrementLifes();

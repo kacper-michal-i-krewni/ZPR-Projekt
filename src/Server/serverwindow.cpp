@@ -19,11 +19,14 @@ ServerWindow::~ServerWindow()
 
 void ServerWindow::toggleStartServer()
 {
-    if (m_chatServer->isListening()) {
+    if (m_chatServer->isListening())
+    {
         m_chatServer->stopServer();
         ui->startStopButton->setText(tr("Start Server"));
         logMessage(QStringLiteral("Server Stopped"));
-    } else {
+    }
+    else
+    {
         if (!m_chatServer->listen(QHostAddress::Any, 1967)) {
             QMessageBox::critical(this, tr("Error"), tr("Unable to start the server"));
             return;

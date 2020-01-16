@@ -160,13 +160,6 @@ void ChatServer::jsonFromLoggedOut(std::shared_ptr<ServerWorker> sender, const Q
     successMessage["type"] = QStringLiteral("login");
     successMessage["success"] = true;
     sendJson(sender, successMessage);
-    //QJsonObject connectedMessage;
-    //connectedMessage["type"] = QStringLiteral("newuser");
-    //connectedMessage["username"] = newUserName;
-    //broadcast(connectedMessage, sender);
-
-  //TODO
-
 }
 
 
@@ -363,7 +356,6 @@ bool ChatServer::checkIfPlayerIsInSession(std::shared_ptr<ServerWorker> sender)
 
 void ChatServer::sendSessionsInfoForDialog(std::shared_ptr<ServerWorker> sender)
 {
-    //for(std::shared_ptr<Session> s: _sessions)
     QJsonObject sessionMessage;
     sessionMessage["type"] = QStringLiteral("sessionDialogInfo");
     QJsonArray sessionArray;
@@ -379,7 +371,6 @@ void ChatServer::handleActionMessage(std::shared_ptr<ServerWorker> sender, const
 {
     if(!checkIfPlayerIsInSession(sender))
         return;
-    //handle action message powinno być w sesji
     std::shared_ptr<Session> s = sessionOfPlayer(sender);
     s->handleActionMessage(sender,docObj);
 }
@@ -400,9 +391,11 @@ std::shared_ptr<Session> ChatServer::sessionOfPlayer(std::shared_ptr<ServerWorke
     {
         for (auto p: s->getPlayers())
         {
-            if(p == player) return s;
+            if(p == player)
+                return s;
         }
     }
+    return nullptr;
 }
 
 void ChatServer::sendUpdate(std::shared_ptr<Session> sess)

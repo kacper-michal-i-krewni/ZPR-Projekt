@@ -7,7 +7,9 @@
 namespace Ui {
 class BlockingUi;
 }
-
+/*!
+ * \brief The BlockingUi class is a class that implements blocking ui with buttons to select with which action we want to block
+ */
 class BlockingUi : public QWidget
 {
     Q_OBJECT

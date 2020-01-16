@@ -59,13 +59,15 @@ public:
      */
     int setLifes( int amount );
     /*!
-     * \brief ~Player is a Player destructor
+     * \brief takeCard is a function that put cards in hand of a player
+     * \param card is a card we want to put
      */
     void takeCard(std::shared_ptr<Card> card);
-
+    /*!
+     * \brief getCards is a funtion that returns cards player have
+     * \return a vector of cards
+     */
     QVector<std::shared_ptr<Card> > getCards();
-
-
     ~Player();
 private:
     /*!
@@ -84,7 +86,9 @@ private:
      * \brief _enabled says if player can make a move.
      */
     bool _enabled;
-    //bool _gameOwner;
+    /*!
+     * \brief _cards is a vector with cards
+     */
     QVector<std::shared_ptr<Card>> _cards;
 };
 
