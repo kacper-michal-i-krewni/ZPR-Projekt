@@ -206,7 +206,7 @@ private:
      */
     std::shared_ptr<ServerWorker> _owner;
     /*!
-     * \brief _currentPlayer is a poinyer to
+     * \brief _currentPlayer is a poinyer to the ServerWorker whose turn currently is
      */
     std::shared_ptr<ServerWorker> _currentPlayer;
     /*!
@@ -226,7 +226,7 @@ private:
      */
     int _playersLimit;
     /*!
-     * \brief _pendingAction
+     * \brief _pendingAction is a name of an action that waits to be completed
      */
     QString _pendingAction;
 };

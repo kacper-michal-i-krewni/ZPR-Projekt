@@ -141,7 +141,7 @@ signals:
      */
     void sessionCreated(bool &success, QString &id);
     /*!
-     * \brief sessionListComplete
+     * \brief sessionListComplete signal is emited when message with a list of actual sessions is recieved
      * \param sessVec
      */
     void sessionListComplete(QVector<Session> &sessVec);
@@ -155,7 +155,7 @@ signals:
      */
     void turnOf(QString &player);
     /*!
-     * \brief actionTargetSpecify
+     * \brief actionTargetSpecify signal is emited when player sends an incomplete request - there's no target indication
      * \param action
      * \param pVector
      */
@@ -179,13 +179,13 @@ signals:
      */
     void youAreATarget(QString &action, QString &sender, QVector<QString> &blockers);
     /*!
-     * \brief actionCompleted
+     * \brief actionCompleted signal emited when any kind of action is completed
      * \param action
      * \param sender
      */
     void actionCompleted(QString &action, QString &sender);
     /*!
-     * \brief actionPending
+     * \brief actionPending signal is emited when an action that is able o be checked is pending for execution
      * \param action
      * \param sender
      */
@@ -197,7 +197,7 @@ signals:
      */
     void cardsDealing(QString first, QString second);
     /*!
-     * \brief checkResult
+     * \brief checkResult signal is emited when the reasul of action check is recieved
      * \param checked
      * \param checking
      * \param result
