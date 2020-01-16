@@ -186,10 +186,6 @@ private:
      */
     bool checkAction(std::shared_ptr<ServerWorker> &player,const QString &action);
     /*!
-     * \brief _this stupid pointer destroys disconnect from host
-     */
-    std::shared_ptr<Session> _this;
-    /*!
      * \brief _cardstack pointer to cardstack
      */
     std::unique_ptr<CardStack> _cardstack;

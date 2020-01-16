@@ -1,0 +1,21 @@
+var searchData=
+[
+  ['searchforplayer_135',['searchForPlayer',['../class_session.html#a58ea7f29fa1505c59203a15816107eaa',1,'Session']]],
+  ['sendjson_136',['sendJson',['../class_server_worker.html#ab502224070b0286ca793cedaa53ac2a3',1,'ServerWorker']]],
+  ['sendtoall_137',['sendToAll',['../class_session.html#afdd442e68467fb9b7fa1470b5d22b8d6',1,'Session']]],
+  ['sendtoallexcept_138',['sendToAllExcept',['../class_session.html#a5acfdb2ac2ad71ab8911d10fff787fa4',1,'Session']]],
+  ['sendupdate_139',['sendUpdate',['../class_session.html#af884be72c9c83fa5631097794fd61ccc',1,'Session']]],
+  ['serverwindow_140',['ServerWindow',['../class_server_window.html#a17fbfb5945bb3949c23189aeec66635d',1,'ServerWindow']]],
+  ['serverworker_141',['ServerWorker',['../class_server_worker.html#a877c40ee4c9824f8c95cdca7ca9435e6',1,'ServerWorker']]],
+  ['session_142',['Session',['../class_session.html#a6b834c8a74895b1250ec2490b94c3b0f',1,'Session']]],
+  ['setasgameowner_143',['setAsGameOwner',['../class_server_worker.html#a68547eda4699474393d49ba3bfaa6997',1,'ServerWorker']]],
+  ['setasingame_144',['setAsInGame',['../class_server_worker.html#a68e1c1dee10a6f99cb2bb7159bb468f7',1,'ServerWorker']]],
+  ['setlifes_145',['setLifes',['../class_player.html#a3d886652003f6e6037f2e4e9f8eb2ef8',1,'Player']]],
+  ['setmoney_146',['setMoney',['../class_player.html#aaa988a6ac35acb7901de56baf9acf88b',1,'Player']]],
+  ['setplayer_147',['setPlayer',['../class_server_worker.html#a693f57d4eca8714864bfbf45b2c9caba',1,'ServerWorker']]],
+  ['setsocketdescriptor_148',['setSocketDescriptor',['../class_server_worker.html#af7fabee95d40a9d14d31c0373d69eaeb',1,'ServerWorker']]],
+  ['settype_149',['setType',['../class_card.html#ae12e7257ac98db959089a069b81bf16f',1,'Card']]],
+  ['setusername_150',['setUserName',['../class_server_worker.html#a6c1988365df579fe74b7d92d567d9260',1,'ServerWorker']]],
+  ['start_151',['start',['../class_session.html#a47baf956cead0046fcbac45c572c70d3',1,'Session']]],
+  ['stopserver_152',['stopServer',['../class_chat_server.html#a1f24101b3bed667ec2fcf72e57e9d472',1,'ChatServer']]]
+];

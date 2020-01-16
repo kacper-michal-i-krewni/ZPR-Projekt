@@ -1,0 +1,192 @@
+\hypertarget{class_player}{}\doxysection{Player Class Reference}
+\label{class_player}\index{Player@{Player}}
+
+
+The \mbox{\hyperlink{class_player}{Player}} class.  
+
+
+
+
+{\ttfamily \#include $<$player.\+h$>$}
+
+Inheritance diagram for Player\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_player}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_player_a99b11d69193a64882ee7ded13feb41df}{Player}} (Q\+String nick=\char`\"{}\char`\"{}, int money=200, int lifes=2, bool enabled=false)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_player}{Player}} construction. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_player_ac45154df7c4eb2d1d58255c3ff1c55dd}{get\+Money}} ()
+\begin{DoxyCompactList}\small\item\em get\+Money is a function that returns how much money player has. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_aaa988a6ac35acb7901de56baf9acf88b}{set\+Money}} (int amount)
+\begin{DoxyCompactList}\small\item\em set\+Money is a function that sets player money \end{DoxyCompactList}\item 
+const Q\+String \mbox{\hyperlink{class_player_a0c840b4cf183fdd4483454184c994029}{get\+Nick}} ()
+\begin{DoxyCompactList}\small\item\em get\+Nick is a function that return a player\textquotesingle{}s nickname \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_player_a2c46dfcead55a1a75ae05c90d2232249}{get\+Lifes}} ()
+\begin{DoxyCompactList}\small\item\em get\+Lifes is a function that return number of lifes. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_player_ac28612db8e04dc652c838cdecdbfe55b}{Decrement\+Lifes}} ()
+\begin{DoxyCompactList}\small\item\em Decrement\+Lifes is a function that decrement player\textquotesingle{}s lifes if he losts one. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_player_a3d886652003f6e6037f2e4e9f8eb2ef8}{set\+Lifes}} (int amount)
+\begin{DoxyCompactList}\small\item\em set\+Lifes is a function that can set value of \+\_\+lifes if needs. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_a79f0998a9d76bc500c67cf1804d403cd}{take\+Card}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_card}{Card}} $>$ card)
+\begin{DoxyCompactList}\small\item\em take\+Card is a function that put cards in hand of a player \end{DoxyCompactList}\item 
+Q\+Vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_card}{Card}} $>$ $>$ \mbox{\hyperlink{class_player_aee55d1f78ecc5f9f5178acf7b6168591}{get\+Cards}} ()
+\begin{DoxyCompactList}\small\item\em get\+Cards is a funtion that returns cards player have \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{class_player}{Player}} class. 
+
+\mbox{\hyperlink{class_player}{Player}} class is a representation of player in game. Holds info about player like money nick etc. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_player_a99b11d69193a64882ee7ded13feb41df}\label{class_player_a99b11d69193a64882ee7ded13feb41df}} 
+\index{Player@{Player}!Player@{Player}}
+\index{Player@{Player}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{Player()}{Player()}}
+{\footnotesize\ttfamily Player\+::\+Player (\begin{DoxyParamCaption}\item[{Q\+String}]{nick = {\ttfamily \char`\"{}\char`\"{}},  }\item[{int}]{money = {\ttfamily 200},  }\item[{int}]{lifes = {\ttfamily 2},  }\item[{bool}]{enabled = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{class_player}{Player}} construction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nick} & is a string field that holds nickname of player \\
+\hline
+{\em money} & says how much money in millions has w player. When the game starts every player has 2 mil. \\
+\hline
+{\em lifes} & says how many lifes does player have. When the game starts every player has 2 lifes. \\
+\hline
+{\em enabled} & says if this player has a turn right now. Disable on start of game. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_player_ac28612db8e04dc652c838cdecdbfe55b}\label{class_player_ac28612db8e04dc652c838cdecdbfe55b}} 
+\index{Player@{Player}!DecrementLifes@{DecrementLifes}}
+\index{DecrementLifes@{DecrementLifes}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{DecrementLifes()}{DecrementLifes()}}
+{\footnotesize\ttfamily int Player\+::\+Decrement\+Lifes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Decrement\+Lifes is a function that decrement player\textquotesingle{}s lifes if he losts one. 
+
+\begin{DoxyReturn}{Returns}
+value of lifes after decrement. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_player_aee55d1f78ecc5f9f5178acf7b6168591}\label{class_player_aee55d1f78ecc5f9f5178acf7b6168591}} 
+\index{Player@{Player}!getCards@{getCards}}
+\index{getCards@{getCards}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{getCards()}{getCards()}}
+{\footnotesize\ttfamily Q\+Vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_card}{Card}} $>$ $>$ Player\+::get\+Cards (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get\+Cards is a funtion that returns cards player have 
+
+\begin{DoxyReturn}{Returns}
+a vector of cards 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_player_a2c46dfcead55a1a75ae05c90d2232249}\label{class_player_a2c46dfcead55a1a75ae05c90d2232249}} 
+\index{Player@{Player}!getLifes@{getLifes}}
+\index{getLifes@{getLifes}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{getLifes()}{getLifes()}}
+{\footnotesize\ttfamily int Player\+::get\+Lifes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get\+Lifes is a function that return number of lifes. 
+
+\begin{DoxyReturn}{Returns}
+lifes that player has. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_player_ac45154df7c4eb2d1d58255c3ff1c55dd}\label{class_player_ac45154df7c4eb2d1d58255c3ff1c55dd}} 
+\index{Player@{Player}!getMoney@{getMoney}}
+\index{getMoney@{getMoney}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{getMoney()}{getMoney()}}
+{\footnotesize\ttfamily int Player\+::get\+Money (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get\+Money is a function that returns how much money player has. 
+
+\begin{DoxyReturn}{Returns}
+How much money player has. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_player_a0c840b4cf183fdd4483454184c994029}\label{class_player_a0c840b4cf183fdd4483454184c994029}} 
+\index{Player@{Player}!getNick@{getNick}}
+\index{getNick@{getNick}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{getNick()}{getNick()}}
+{\footnotesize\ttfamily const Q\+String Player\+::get\+Nick (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get\+Nick is a function that return a player\textquotesingle{}s nickname 
+
+\begin{DoxyReturn}{Returns}
+nickname as a string 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_player_a3d886652003f6e6037f2e4e9f8eb2ef8}\label{class_player_a3d886652003f6e6037f2e4e9f8eb2ef8}} 
+\index{Player@{Player}!setLifes@{setLifes}}
+\index{setLifes@{setLifes}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{setLifes()}{setLifes()}}
+{\footnotesize\ttfamily int Player\+::set\+Lifes (\begin{DoxyParamCaption}\item[{int}]{amount }\end{DoxyParamCaption})}
+
+
+
+set\+Lifes is a function that can set value of \+\_\+lifes if needs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em amount} & is a param that say how many life pleyer should have \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value of \+\_\+lives after decrement 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_player_aaa988a6ac35acb7901de56baf9acf88b}\label{class_player_aaa988a6ac35acb7901de56baf9acf88b}} 
+\index{Player@{Player}!setMoney@{setMoney}}
+\index{setMoney@{setMoney}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{setMoney()}{setMoney()}}
+{\footnotesize\ttfamily void Player\+::set\+Money (\begin{DoxyParamCaption}\item[{int}]{amount }\end{DoxyParamCaption})}
+
+
+
+set\+Money is a function that sets player money 
+
+
+\begin{DoxyParams}{Parameters}
+{\em amount} & is an argument that says how much money player should have after that function \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+it returns the amount of money that player have after this method 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_player_a79f0998a9d76bc500c67cf1804d403cd}\label{class_player_a79f0998a9d76bc500c67cf1804d403cd}} 
+\index{Player@{Player}!takeCard@{takeCard}}
+\index{takeCard@{takeCard}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{takeCard()}{takeCard()}}
+{\footnotesize\ttfamily void Player\+::take\+Card (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_card}{Card}} $>$}]{card }\end{DoxyParamCaption})}
+
+
+
+take\+Card is a function that put cards in hand of a player 
+
+
+\begin{DoxyParams}{Parameters}
+{\em card} & is a card we want to put \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+player.\+h\item 
+player.\+cpp\end{DoxyCompactItemize}

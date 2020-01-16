@@ -1,0 +1,22 @@
+var searchData=
+[
+  ['searchforplayer_54',['searchForPlayer',['../class_session.html#a58ea7f29fa1505c59203a15816107eaa',1,'Session']]],
+  ['sendjson_55',['sendJson',['../class_server_worker.html#ab502224070b0286ca793cedaa53ac2a3',1,'ServerWorker']]],
+  ['sendtoall_56',['sendToAll',['../class_session.html#afdd442e68467fb9b7fa1470b5d22b8d6',1,'Session']]],
+  ['sendtoallexcept_57',['sendToAllExcept',['../class_session.html#a5acfdb2ac2ad71ab8911d10fff787fa4',1,'Session']]],
+  ['sendupdate_58',['sendUpdate',['../class_session.html#af884be72c9c83fa5631097794fd61ccc',1,'Session']]],
+  ['serverwindow_59',['ServerWindow',['../class_server_window.html',1,'ServerWindow'],['../class_server_window.html#a17fbfb5945bb3949c23189aeec66635d',1,'ServerWindow::ServerWindow()']]],
+  ['serverworker_60',['ServerWorker',['../class_server_worker.html',1,'ServerWorker'],['../class_server_worker.html#a877c40ee4c9824f8c95cdca7ca9435e6',1,'ServerWorker::ServerWorker()']]],
+  ['session_61',['Session',['../class_session.html',1,'Session'],['../class_session.html#a6b834c8a74895b1250ec2490b94c3b0f',1,'Session::Session()']]],
+  ['setasgameowner_62',['setAsGameOwner',['../class_server_worker.html#a68547eda4699474393d49ba3bfaa6997',1,'ServerWorker']]],
+  ['setasingame_63',['setAsInGame',['../class_server_worker.html#a68e1c1dee10a6f99cb2bb7159bb468f7',1,'ServerWorker']]],
+  ['setlifes_64',['setLifes',['../class_player.html#a3d886652003f6e6037f2e4e9f8eb2ef8',1,'Player']]],
+  ['setmoney_65',['setMoney',['../class_player.html#aaa988a6ac35acb7901de56baf9acf88b',1,'Player']]],
+  ['setplayer_66',['setPlayer',['../class_server_worker.html#a693f57d4eca8714864bfbf45b2c9caba',1,'ServerWorker']]],
+  ['setsocketdescriptor_67',['setSocketDescriptor',['../class_server_worker.html#af7fabee95d40a9d14d31c0373d69eaeb',1,'ServerWorker']]],
+  ['settype_68',['setType',['../class_card.html#ae12e7257ac98db959089a069b81bf16f',1,'Card']]],
+  ['setusername_69',['setUserName',['../class_server_worker.html#a6c1988365df579fe74b7d92d567d9260',1,'ServerWorker']]],
+  ['start_70',['start',['../class_session.html#a47baf956cead0046fcbac45c572c70d3',1,'Session']]],
+  ['starting_5fmoney_71',['STARTING_MONEY',['../class_session.html#a416482e3727f2d51eeda5f4753596bf5',1,'Session']]],
+  ['stopserver_72',['stopServer',['../class_chat_server.html#a1f24101b3bed667ec2fcf72e57e9d472',1,'ChatServer']]]
+];

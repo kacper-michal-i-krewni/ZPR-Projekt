@@ -697,7 +697,6 @@ void MainWindow::updatePlayerInterface(const QString &player, const double money
     {
        ui->wallet4->setText(QString("%1m").arg(money));
     }
-
 }
 
 void MainWindow::blockAction()

@@ -1,0 +1,129 @@
+\hypertarget{class_session}{}\doxysection{Session Class Reference}
+\label{class_session}\index{Session@{Session}}
+
+
+The \mbox{\hyperlink{class_session}{Session}} class is used to parse and store session data recived from server.  
+
+
+
+
+{\ttfamily \#include $<$session.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_session_ad92ef09b872c9227e38a6efdd4d8a837}\label{class_session_ad92ef09b872c9227e38a6efdd4d8a837}} 
+\mbox{\hyperlink{class_session_ad92ef09b872c9227e38a6efdd4d8a837}{Session}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_session}{Session}} constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_session_a148a4c0439bc4487bc7ef69fda7cfe68}{Session}} (Q\+String id, Q\+String owner, int nop)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_session}{Session}} constructor. \end{DoxyCompactList}\item 
+Q\+String \mbox{\hyperlink{class_session_aa88d8c9eb929d0407b7b9df59391a6f1}{get\+Id}} ()
+\begin{DoxyCompactList}\small\item\em get\+Id return ID of session \end{DoxyCompactList}\item 
+Q\+String \mbox{\hyperlink{class_session_a6f31248400297614416bd0cdf195fcd4}{get\+Owner}} ()
+\begin{DoxyCompactList}\small\item\em get\+Owner returns owner of session \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_session_a66c134f67276a07ab98c5ee297456f5f}{get\+Num\+Of\+Players}} ()
+\begin{DoxyCompactList}\small\item\em get\+Num\+Of\+Players returns number of players \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_session_a0d711a6f51b679528d57f80e3d201f41}{get\+Players\+Limit}} ()
+\begin{DoxyCompactList}\small\item\em get\+Players\+Limit reyurn player\textquotesingle{}s limit \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_session_ac06ace330605b9248231257513b1cde9}{read\+Values\+From\+J\+S\+ON}} (Q\+Json\+Object \&json)
+\begin{DoxyCompactList}\small\item\em read\+Values\+From\+J\+S\+ON parse info about session \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{class_session}{Session}} class is used to parse and store session data recived from server. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_session_a148a4c0439bc4487bc7ef69fda7cfe68}\label{class_session_a148a4c0439bc4487bc7ef69fda7cfe68}} 
+\index{Session@{Session}!Session@{Session}}
+\index{Session@{Session}!Session@{Session}}
+\doxysubsubsection{\texorpdfstring{Session()}{Session()}}
+{\footnotesize\ttfamily Session\+::\+Session (\begin{DoxyParamCaption}\item[{Q\+String}]{id,  }\item[{Q\+String}]{owner,  }\item[{int}]{nop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\mbox{\hyperlink{class_session}{Session}} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & ID of the session \\
+\hline
+{\em owner} & of session \\
+\hline
+{\em nop} & number of players \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_session_aa88d8c9eb929d0407b7b9df59391a6f1}\label{class_session_aa88d8c9eb929d0407b7b9df59391a6f1}} 
+\index{Session@{Session}!getId@{getId}}
+\index{getId@{getId}!Session@{Session}}
+\doxysubsubsection{\texorpdfstring{getId()}{getId()}}
+{\footnotesize\ttfamily Q\+String Session\+::get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+get\+Id return ID of session 
+
+\begin{DoxyReturn}{Returns}
+ID of session 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_session_a66c134f67276a07ab98c5ee297456f5f}\label{class_session_a66c134f67276a07ab98c5ee297456f5f}} 
+\index{Session@{Session}!getNumOfPlayers@{getNumOfPlayers}}
+\index{getNumOfPlayers@{getNumOfPlayers}!Session@{Session}}
+\doxysubsubsection{\texorpdfstring{getNumOfPlayers()}{getNumOfPlayers()}}
+{\footnotesize\ttfamily int Session\+::get\+Num\+Of\+Players (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+get\+Num\+Of\+Players returns number of players 
+
+\begin{DoxyReturn}{Returns}
+number of players 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_session_a6f31248400297614416bd0cdf195fcd4}\label{class_session_a6f31248400297614416bd0cdf195fcd4}} 
+\index{Session@{Session}!getOwner@{getOwner}}
+\index{getOwner@{getOwner}!Session@{Session}}
+\doxysubsubsection{\texorpdfstring{getOwner()}{getOwner()}}
+{\footnotesize\ttfamily Q\+String Session\+::get\+Owner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+get\+Owner returns owner of session 
+
+\begin{DoxyReturn}{Returns}
+nickname of owner 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_session_a0d711a6f51b679528d57f80e3d201f41}\label{class_session_a0d711a6f51b679528d57f80e3d201f41}} 
+\index{Session@{Session}!getPlayersLimit@{getPlayersLimit}}
+\index{getPlayersLimit@{getPlayersLimit}!Session@{Session}}
+\doxysubsubsection{\texorpdfstring{getPlayersLimit()}{getPlayersLimit()}}
+{\footnotesize\ttfamily int Session\+::get\+Players\+Limit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+get\+Players\+Limit reyurn player\textquotesingle{}s limit 
+
+\begin{DoxyReturn}{Returns}
+player\textquotesingle{}s limit 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_session_ac06ace330605b9248231257513b1cde9}\label{class_session_ac06ace330605b9248231257513b1cde9}} 
+\index{Session@{Session}!readValuesFromJSON@{readValuesFromJSON}}
+\index{readValuesFromJSON@{readValuesFromJSON}!Session@{Session}}
+\doxysubsubsection{\texorpdfstring{readValuesFromJSON()}{readValuesFromJSON()}}
+{\footnotesize\ttfamily void Session\+::read\+Values\+From\+J\+S\+ON (\begin{DoxyParamCaption}\item[{Q\+Json\+Object \&}]{json }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+read\+Values\+From\+J\+S\+ON parse info about session 
+
+
+\begin{DoxyParams}{Parameters}
+{\em json} & message from server about session \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+session.\+h\end{DoxyCompactItemize}

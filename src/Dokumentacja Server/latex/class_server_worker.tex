@@ -1,0 +1,266 @@
+\hypertarget{class_server_worker}{}\doxysection{Server\+Worker Class Reference}
+\label{class_server_worker}\index{ServerWorker@{ServerWorker}}
+
+
+The \mbox{\hyperlink{class_server_worker}{Server\+Worker}} class is responsible for every message sent and coordinate game.  
+
+
+
+
+{\ttfamily \#include $<$serverworker.\+h$>$}
+
+Inheritance diagram for Server\+Worker\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_server_worker}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_server_worker_a63fcb2e44f78b5dea4f676255459d66c}\label{class_server_worker_a63fcb2e44f78b5dea4f676255459d66c}} 
+void \mbox{\hyperlink{class_server_worker_a63fcb2e44f78b5dea4f676255459d66c}{disconnect\+From\+Client}} ()
+\begin{DoxyCompactList}\small\item\em disconnect\+From\+Client is function that handle disconnecting \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_server_worker_a4c0ecabb218149825bac11878aae3cb8}{json\+Received}} (const Q\+Json\+Object \&json\+Doc)
+\begin{DoxyCompactList}\small\item\em json\+Received is a signal that handle reciving messages. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_server_worker_a2e6c11702849e3f0aeeb8e4ff4267d5c}\label{class_server_worker_a2e6c11702849e3f0aeeb8e4ff4267d5c}} 
+void \mbox{\hyperlink{class_server_worker_a2e6c11702849e3f0aeeb8e4ff4267d5c}{disconnected\+From\+Client}} ()
+\begin{DoxyCompactList}\small\item\em disconnected\+From\+Client is a signal that handle disconnecting \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_server_worker_acac590313c425ce3bbc6c7425faf4f82}\label{class_server_worker_acac590313c425ce3bbc6c7425faf4f82}} 
+void \mbox{\hyperlink{class_server_worker_acac590313c425ce3bbc6c7425faf4f82}{error}} ()
+\begin{DoxyCompactList}\small\item\em error is a signal that inform about eror \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_server_worker_acbcc05d95c2b08e10f3f30224692a313}{log\+Message}} (const Q\+String \&msg)
+\begin{DoxyCompactList}\small\item\em log\+Message is a signal that execute log\+Message on server \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_server_worker_a877c40ee4c9824f8c95cdca7ca9435e6}{Server\+Worker}} (Q\+Object $\ast$parent=nullptr)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_server_worker}{Server\+Worker}}. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{class_server_worker_af7fabee95d40a9d14d31c0373d69eaeb}{set\+Socket\+Descriptor}} (qintptr socket\+Descriptor)
+\begin{DoxyCompactList}\small\item\em set\+Socket\+Descriptor sets socket descriptor \end{DoxyCompactList}\item 
+Q\+String \mbox{\hyperlink{class_server_worker_aab6d097f4be0559957c7dcd328a9d3a8}{get\+User\+Name}} ()
+\begin{DoxyCompactList}\small\item\em user\+Name is a typical function getter \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_server_worker_a6c1988365df579fe74b7d92d567d9260}{set\+User\+Name}} (const Q\+String \&\mbox{\hyperlink{class_server_worker_aab6d097f4be0559957c7dcd328a9d3a8}{get\+User\+Name}})
+\begin{DoxyCompactList}\small\item\em set\+User\+Name is a function that sets m\+\_\+user\+Name field \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_server_worker_ab502224070b0286ca793cedaa53ac2a3}{send\+Json}} (const Q\+Json\+Object \&json\+Data)
+\begin{DoxyCompactList}\small\item\em send\+Json send json message \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_server_worker_a693f57d4eca8714864bfbf45b2c9caba}{set\+Player}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$ player)
+\begin{DoxyCompactList}\small\item\em set\+Player is setting \+\_\+player field \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$ \mbox{\hyperlink{class_server_worker_a8d4c34cf04ba0cdc76aaaa175067f1bc}{get\+Player}} ()
+\begin{DoxyCompactList}\small\item\em get\+Player is a getter of \+\_\+player \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_server_worker_a1260a39cf65cc895224b64f5c86d9940}{is\+Game\+Owner}} ()
+\begin{DoxyCompactList}\small\item\em is\+Game\+Owner checks if this serverworker is game owner \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_server_worker_a68547eda4699474393d49ba3bfaa6997}{set\+As\+Game\+Owner}} (const bool \&b)
+\begin{DoxyCompactList}\small\item\em set\+As\+Game\+Owner sets\+\_\+is\+Game\+Owner field to true of false \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_server_worker_a5138fefc44ff5a9cd7229ff167349373}{is\+In\+Game}} ()
+\begin{DoxyCompactList}\small\item\em is\+In\+Game checks if player pley a game right know \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_server_worker_a68e1c1dee10a6f99cb2bb7159bb468f7}{set\+As\+In\+Game}} (const bool \&b)
+\begin{DoxyCompactList}\small\item\em set\+As\+In\+Game sets \+\_\+is\+In\+Game field \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{class_server_worker}{Server\+Worker}} class is responsible for every message sent and coordinate game. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_server_worker_a877c40ee4c9824f8c95cdca7ca9435e6}\label{class_server_worker_a877c40ee4c9824f8c95cdca7ca9435e6}} 
+\index{ServerWorker@{ServerWorker}!ServerWorker@{ServerWorker}}
+\index{ServerWorker@{ServerWorker}!ServerWorker@{ServerWorker}}
+\doxysubsubsection{\texorpdfstring{ServerWorker()}{ServerWorker()}}
+{\footnotesize\ttfamily Server\+Worker\+::\+Server\+Worker (\begin{DoxyParamCaption}\item[{Q\+Object $\ast$}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+\mbox{\hyperlink{class_server_worker}{Server\+Worker}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_server_worker_a8d4c34cf04ba0cdc76aaaa175067f1bc}\label{class_server_worker_a8d4c34cf04ba0cdc76aaaa175067f1bc}} 
+\index{ServerWorker@{ServerWorker}!getPlayer@{getPlayer}}
+\index{getPlayer@{getPlayer}!ServerWorker@{ServerWorker}}
+\doxysubsubsection{\texorpdfstring{getPlayer()}{getPlayer()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$ Server\+Worker\+::get\+Player (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get\+Player is a getter of \+\_\+player 
+
+\begin{DoxyReturn}{Returns}
+\+\_\+player 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_server_worker_aab6d097f4be0559957c7dcd328a9d3a8}\label{class_server_worker_aab6d097f4be0559957c7dcd328a9d3a8}} 
+\index{ServerWorker@{ServerWorker}!getUserName@{getUserName}}
+\index{getUserName@{getUserName}!ServerWorker@{ServerWorker}}
+\doxysubsubsection{\texorpdfstring{getUserName()}{getUserName()}}
+{\footnotesize\ttfamily Q\+String Server\+Worker\+::get\+User\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+user\+Name is a typical function getter 
+
+\begin{DoxyReturn}{Returns}
+m\+\_\+user\+Name 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_server_worker_a1260a39cf65cc895224b64f5c86d9940}\label{class_server_worker_a1260a39cf65cc895224b64f5c86d9940}} 
+\index{ServerWorker@{ServerWorker}!isGameOwner@{isGameOwner}}
+\index{isGameOwner@{isGameOwner}!ServerWorker@{ServerWorker}}
+\doxysubsubsection{\texorpdfstring{isGameOwner()}{isGameOwner()}}
+{\footnotesize\ttfamily bool Server\+Worker\+::is\+Game\+Owner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+is\+Game\+Owner checks if this serverworker is game owner 
+
+\begin{DoxyReturn}{Returns}
+true of false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_server_worker_a5138fefc44ff5a9cd7229ff167349373}\label{class_server_worker_a5138fefc44ff5a9cd7229ff167349373}} 
+\index{ServerWorker@{ServerWorker}!isInGame@{isInGame}}
+\index{isInGame@{isInGame}!ServerWorker@{ServerWorker}}
+\doxysubsubsection{\texorpdfstring{isInGame()}{isInGame()}}
+{\footnotesize\ttfamily bool Server\+Worker\+::is\+In\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+is\+In\+Game checks if player pley a game right know 
+
+\begin{DoxyReturn}{Returns}
+true or false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_server_worker_a4c0ecabb218149825bac11878aae3cb8}\label{class_server_worker_a4c0ecabb218149825bac11878aae3cb8}} 
+\index{ServerWorker@{ServerWorker}!jsonReceived@{jsonReceived}}
+\index{jsonReceived@{jsonReceived}!ServerWorker@{ServerWorker}}
+\doxysubsubsection{\texorpdfstring{jsonReceived}{jsonReceived}}
+{\footnotesize\ttfamily void Server\+Worker\+::json\+Received (\begin{DoxyParamCaption}\item[{const Q\+Json\+Object \&}]{json\+Doc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+json\+Received is a signal that handle reciving messages. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em json\+Doc} & is a data that is recived \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_server_worker_acbcc05d95c2b08e10f3f30224692a313}\label{class_server_worker_acbcc05d95c2b08e10f3f30224692a313}} 
+\index{ServerWorker@{ServerWorker}!logMessage@{logMessage}}
+\index{logMessage@{logMessage}!ServerWorker@{ServerWorker}}
+\doxysubsubsection{\texorpdfstring{logMessage}{logMessage}}
+{\footnotesize\ttfamily void Server\+Worker\+::log\+Message (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+log\+Message is a signal that execute log\+Message on server 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & is a message that is displayed on log out. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_server_worker_ab502224070b0286ca793cedaa53ac2a3}\label{class_server_worker_ab502224070b0286ca793cedaa53ac2a3}} 
+\index{ServerWorker@{ServerWorker}!sendJson@{sendJson}}
+\index{sendJson@{sendJson}!ServerWorker@{ServerWorker}}
+\doxysubsubsection{\texorpdfstring{sendJson()}{sendJson()}}
+{\footnotesize\ttfamily void Server\+Worker\+::send\+Json (\begin{DoxyParamCaption}\item[{const Q\+Json\+Object \&}]{json\+Data }\end{DoxyParamCaption})}
+
+
+
+send\+Json send json message 
+
+
+\begin{DoxyParams}{Parameters}
+{\em json\+Data} & is a data that is sended. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_server_worker_a68547eda4699474393d49ba3bfaa6997}\label{class_server_worker_a68547eda4699474393d49ba3bfaa6997}} 
+\index{ServerWorker@{ServerWorker}!setAsGameOwner@{setAsGameOwner}}
+\index{setAsGameOwner@{setAsGameOwner}!ServerWorker@{ServerWorker}}
+\doxysubsubsection{\texorpdfstring{setAsGameOwner()}{setAsGameOwner()}}
+{\footnotesize\ttfamily void Server\+Worker\+::set\+As\+Game\+Owner (\begin{DoxyParamCaption}\item[{const bool \&}]{b }\end{DoxyParamCaption})}
+
+
+
+set\+As\+Game\+Owner sets\+\_\+is\+Game\+Owner field to true of false 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & true or false \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_server_worker_a68e1c1dee10a6f99cb2bb7159bb468f7}\label{class_server_worker_a68e1c1dee10a6f99cb2bb7159bb468f7}} 
+\index{ServerWorker@{ServerWorker}!setAsInGame@{setAsInGame}}
+\index{setAsInGame@{setAsInGame}!ServerWorker@{ServerWorker}}
+\doxysubsubsection{\texorpdfstring{setAsInGame()}{setAsInGame()}}
+{\footnotesize\ttfamily void Server\+Worker\+::set\+As\+In\+Game (\begin{DoxyParamCaption}\item[{const bool \&}]{b }\end{DoxyParamCaption})}
+
+
+
+set\+As\+In\+Game sets \+\_\+is\+In\+Game field 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & true or false \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_server_worker_a693f57d4eca8714864bfbf45b2c9caba}\label{class_server_worker_a693f57d4eca8714864bfbf45b2c9caba}} 
+\index{ServerWorker@{ServerWorker}!setPlayer@{setPlayer}}
+\index{setPlayer@{setPlayer}!ServerWorker@{ServerWorker}}
+\doxysubsubsection{\texorpdfstring{setPlayer()}{setPlayer()}}
+{\footnotesize\ttfamily void Server\+Worker\+::set\+Player (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$}]{player }\end{DoxyParamCaption})}
+
+
+
+set\+Player is setting \+\_\+player field 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & is an arg we want to set as \+\_\+player \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_server_worker_af7fabee95d40a9d14d31c0373d69eaeb}\label{class_server_worker_af7fabee95d40a9d14d31c0373d69eaeb}} 
+\index{ServerWorker@{ServerWorker}!setSocketDescriptor@{setSocketDescriptor}}
+\index{setSocketDescriptor@{setSocketDescriptor}!ServerWorker@{ServerWorker}}
+\doxysubsubsection{\texorpdfstring{setSocketDescriptor()}{setSocketDescriptor()}}
+{\footnotesize\ttfamily bool Server\+Worker\+::set\+Socket\+Descriptor (\begin{DoxyParamCaption}\item[{qintptr}]{socket\+Descriptor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+set\+Socket\+Descriptor sets socket descriptor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em socket\+Descriptor} & a socket descriptor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_server_worker_a6c1988365df579fe74b7d92d567d9260}\label{class_server_worker_a6c1988365df579fe74b7d92d567d9260}} 
+\index{ServerWorker@{ServerWorker}!setUserName@{setUserName}}
+\index{setUserName@{setUserName}!ServerWorker@{ServerWorker}}
+\doxysubsubsection{\texorpdfstring{setUserName()}{setUserName()}}
+{\footnotesize\ttfamily void Server\+Worker\+::set\+User\+Name (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{get\+User\+Name }\end{DoxyParamCaption})}
+
+
+
+set\+User\+Name is a function that sets m\+\_\+user\+Name field 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Name} & is a new m\+\_\+user\+Name \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+serverworker.\+h\item 
+serverworker.\+cpp\end{DoxyCompactItemize}

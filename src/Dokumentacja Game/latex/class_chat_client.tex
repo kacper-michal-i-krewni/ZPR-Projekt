@@ -1,0 +1,535 @@
+\hypertarget{class_chat_client}{}\doxysection{Chat\+Client Class Reference}
+\label{class_chat_client}\index{ChatClient@{ChatClient}}
+
+
+The \mbox{\hyperlink{class_chat_client}{Chat\+Client}} class.  
+
+
+
+
+{\ttfamily \#include $<$chatclient.\+h$>$}
+
+Inheritance diagram for Chat\+Client\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_chat_client}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_chat_client_a0cc29c27d9a13d597ef0d1f740e6e0a1}{connect\+To\+Server}} (const Q\+Host\+Address \&address, quint16 port)
+\begin{DoxyCompactList}\small\item\em connect\+To\+Server -\/ connects client application to a specific host \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chat_client_a34bfb02c6f1f8b81f2417b29ed31a860}{login}} (const Q\+String \&user\+Name)
+\begin{DoxyCompactList}\small\item\em login -\/ if client is connected, sends info to server with username in order to log in \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chat_client_a0201935df988d53b5014ab63670eacd3}{send\+Message\+To\+Server}} (const Q\+Json\+Object \&message)
+\begin{DoxyCompactList}\small\item\em send\+Message -\/ sends message to server in order to forward this to other clients \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_chat_client_a2db425c79473f1dad04635231c790ffb}\label{class_chat_client_a2db425c79473f1dad04635231c790ffb}} 
+void {\bfseries send\+Chat\+Message} (const Q\+String \&text)
+\item 
+\mbox{\Hypertarget{class_chat_client_ae9fada9f0b1ce7125dce5a3e626d0d6f}\label{class_chat_client_ae9fada9f0b1ce7125dce5a3e626d0d6f}} 
+void \mbox{\hyperlink{class_chat_client_ae9fada9f0b1ce7125dce5a3e626d0d6f}{disconnect\+From\+Host}} ()
+\begin{DoxyCompactList}\small\item\em disconnect\+From\+Host -\/ disconnects client socket from server \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_chat_client_acd606e2d2a00b17af9909d8eba5ef4d1}\label{class_chat_client_acd606e2d2a00b17af9909d8eba5ef4d1}} 
+void \mbox{\hyperlink{class_chat_client_acd606e2d2a00b17af9909d8eba5ef4d1}{disconnect}} ()
+\begin{DoxyCompactList}\small\item\em disconnect \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_chat_client_ad8515ddb963e663c2329270dbbd7a962}\label{class_chat_client_ad8515ddb963e663c2329270dbbd7a962}} 
+void \mbox{\hyperlink{class_chat_client_ad8515ddb963e663c2329270dbbd7a962}{connected}} ()
+\begin{DoxyCompactList}\small\item\em connected -\/ signal bound to the signal -\/ Q\+Tcp\+Socket\+::connected \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_chat_client_a23ad59ec10fad0d9f5a3a95e563a292a}\label{class_chat_client_a23ad59ec10fad0d9f5a3a95e563a292a}} 
+void \mbox{\hyperlink{class_chat_client_a23ad59ec10fad0d9f5a3a95e563a292a}{logged\+In}} ()
+\begin{DoxyCompactList}\small\item\em logged\+In -\/ signal emited when recieved data states that login was successful \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chat_client_a1a46bd9bd68d097796953e666a35eef3}{login\+Error}} (const Q\+String \&reason)
+\begin{DoxyCompactList}\small\item\em login\+Error -\/ signal emited when recieved data states that login failed \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_chat_client_abc2dcfb22ff21e1e5daf2622dfe2ec35}\label{class_chat_client_abc2dcfb22ff21e1e5daf2622dfe2ec35}} 
+void \mbox{\hyperlink{class_chat_client_abc2dcfb22ff21e1e5daf2622dfe2ec35}{disconnected}} ()
+\begin{DoxyCompactList}\small\item\em disconnected -\/ signal bound to the signal -\/ Q\+Tcp\+Socket\+::disconnected \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chat_client_a092d485b0a0c24defb0267b9c49ce78a}{message\+Received}} (const Q\+String \&sender, const Q\+String \&text)
+\begin{DoxyCompactList}\small\item\em message\+Received -\/ signal emited when recieved data is a message \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chat_client_a29ba0501ef9a7d27740ed5d2e410948b}{error}} (Q\+Abstract\+Socket\+::\+Socket\+Error socket\+Error)
+\begin{DoxyCompactList}\small\item\em error -\/ signal bound to the signal -\/ Q\+Abstract\+Socket\+::error \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chat_client_a6df6eb34e4d22030012ec13473dcb119}{user\+Joined}} (const Q\+String \&username)
+\begin{DoxyCompactList}\small\item\em user\+Joined -\/ signal emited when data states that user joined the server \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chat_client_a254953805122a301f7c4dc5c884c75fa}{user\+Left}} (const Q\+String \&username)
+\begin{DoxyCompactList}\small\item\em user\+Left -\/ signal emited when data states that user left the server \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chat_client_a274c8bb7e54dcf1423733b556f443f6d}{joined\+Session}} (const Q\+String \&username)
+\begin{DoxyCompactList}\small\item\em joined\+Session -\/ signal emited when message is about joining the session \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chat_client_ae00f82791e1d5091d9b6ae264d74213c}{user\+Ready}} (const Q\+String \&username)
+\begin{DoxyCompactList}\small\item\em user\+Ready -\/ signal is emited to log message about readiness of user \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chat_client_a5020a76b6db20e5c3ddeb1ed0a1f533f}{session\+Created}} (bool \&success, Q\+String \&id)
+\begin{DoxyCompactList}\small\item\em session\+Created signal is emited when message about creating session is recived \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chat_client_a3e09edba4f030f744669c8d3af7e7eb4}{session\+List\+Complete}} (Q\+Vector$<$ \mbox{\hyperlink{class_session}{Session}} $>$ \&sess\+Vec)
+\begin{DoxyCompactList}\small\item\em session\+List\+Complete \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_chat_client_a5fa3bb7441d7f5e3dad9fd96fc819f8b}\label{class_chat_client_a5fa3bb7441d7f5e3dad9fd96fc819f8b}} 
+void \mbox{\hyperlink{class_chat_client_a5fa3bb7441d7f5e3dad9fd96fc819f8b}{my\+Turn}} ()
+\begin{DoxyCompactList}\small\item\em my\+Turn is a signal that enable interface, because it is turn of player connected with this client \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chat_client_ae8122283ebc5efb63f735ce64da2d2ae}{turn\+Of}} (Q\+String \&player)
+\begin{DoxyCompactList}\small\item\em turn\+Of \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chat_client_aa212a330d0c62dc5f3e94302513ba1b7}{action\+Target\+Specify}} (Q\+String \&action, Q\+Vector$<$ Q\+String $>$ \&p\+Vector)
+\begin{DoxyCompactList}\small\item\em action\+Target\+Specify \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chat_client_a65bbada51ff7d8317938bbf5f3b06b4f}{update\+Player\+Interface}} (const Q\+String \&player, const double money, const double lifes)
+\begin{DoxyCompactList}\small\item\em update\+Player\+Interface \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_chat_client_a70cf6a74bade7b5239e81bda55296455}\label{class_chat_client_a70cf6a74bade7b5239e81bda55296455}} 
+void \mbox{\hyperlink{class_chat_client_a70cf6a74bade7b5239e81bda55296455}{not\+Enough\+Money}} ()
+\begin{DoxyCompactList}\small\item\em not\+Enough\+Money is a signal that is emited if player has not enough money to make an action \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chat_client_a26ecdf44dfe185383e4ee5763b5a3cc7}{you\+Are\+A\+Target}} (Q\+String \&action, Q\+String \&sender, Q\+Vector$<$ Q\+String $>$ \&blockers)
+\begin{DoxyCompactList}\small\item\em you\+Are\+A\+Target signal that is emitef if someone indicate you as a target in action \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chat_client_ac31c23f1d85b323f6f7599997eb4e66f}{action\+Completed}} (Q\+String \&action, Q\+String \&sender)
+\begin{DoxyCompactList}\small\item\em action\+Completed \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chat_client_ab9af08e821597ca89f9e86b8ae61e995}{action\+Pending}} (Q\+String \&action, Q\+String \&sender)
+\begin{DoxyCompactList}\small\item\em action\+Pending \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chat_client_a0c5d1d84440cf8a3fe6d022e91e40535}{cards\+Dealing}} (Q\+String first, Q\+String second)
+\begin{DoxyCompactList}\small\item\em cards\+Dealing is signal when server send dealing cards \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chat_client_a01d2e99e7c0c5463364ef1e0bac0fdb4}{check\+Result}} (Q\+String \&checked, Q\+String \&checking, bool \&result)
+\begin{DoxyCompactList}\small\item\em check\+Result \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_chat_client_a8d20b3dd41d4f1f05e950db3262b68bc}{Chat\+Client}} (Q\+Object $\ast$parent=nullptr)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_chat_client}{Chat\+Client}} constructor. \end{DoxyCompactList}\item 
+const Q\+String \mbox{\hyperlink{class_chat_client_a632919b3cc5ccde3b3bce574e61b617c}{get\+Nickname}} () const
+\begin{DoxyCompactList}\small\item\em get\+Nickname -\/ method to get nickname of a client \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chat_client_a4d1a52635779520b1c50eb99fba30761}{set\+Turn\+Id}} (Q\+String \&turn\+Id)
+\begin{DoxyCompactList}\small\item\em set\+Turn\+Id is a function that sets ID of this turn \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chat_client_a6ad2b036617f0623645336bf5d74f627}{set\+Session\+Id}} (Q\+String \&session\+Id)
+\begin{DoxyCompactList}\small\item\em set\+Session\+Id is a function that sets ID of the session \end{DoxyCompactList}\item 
+Q\+String \mbox{\hyperlink{class_chat_client_a4fa9be59f3d36c7743059dabc56d76bd}{get\+Turn\+Id}} ()
+\begin{DoxyCompactList}\small\item\em get\+Turn\+Id is a getter of turn id \end{DoxyCompactList}\item 
+Q\+String \mbox{\hyperlink{class_chat_client_a9d8d1b867d41515e09e69ca73bbb85c0}{get\+Session\+Id}} ()
+\begin{DoxyCompactList}\small\item\em get\+Session\+Id \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_chat_client_a360e083f6a033eabe4483cd6ea2a9161}\label{class_chat_client_a360e083f6a033eabe4483cd6ea2a9161}} 
+Q\+Vector$<$ Q\+String $>$ {\bfseries get\+Current\+Blockers} ()
+\item 
+\mbox{\Hypertarget{class_chat_client_a568841254ce33ff1f9a4c1437ecb1737}\label{class_chat_client_a568841254ce33ff1f9a4c1437ecb1737}} 
+std\+::shared\+\_\+ptr$<$ Q\+Tcp\+Socket $>$ {\bfseries get\+Q\+Tcp\+Socket} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{class_chat_client}{Chat\+Client}} class. 
+
+\mbox{\hyperlink{class_chat_client}{Chat\+Client}} class states the client side of client-\/server relation. It is responsible for sending siglals to server about the connection info, messages, message statues etc. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_chat_client_a8d20b3dd41d4f1f05e950db3262b68bc}\label{class_chat_client_a8d20b3dd41d4f1f05e950db3262b68bc}} 
+\index{ChatClient@{ChatClient}!ChatClient@{ChatClient}}
+\index{ChatClient@{ChatClient}!ChatClient@{ChatClient}}
+\doxysubsubsection{\texorpdfstring{ChatClient()}{ChatClient()}}
+{\footnotesize\ttfamily Chat\+Client\+::\+Chat\+Client (\begin{DoxyParamCaption}\item[{Q\+Object $\ast$}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+\mbox{\hyperlink{class_chat_client}{Chat\+Client}} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & -\/ null, needed for the constructor of the super class Creates a new client T\+CP socket and creates configuration for it. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_chat_client_ac31c23f1d85b323f6f7599997eb4e66f}\label{class_chat_client_ac31c23f1d85b323f6f7599997eb4e66f}} 
+\index{ChatClient@{ChatClient}!actionCompleted@{actionCompleted}}
+\index{actionCompleted@{actionCompleted}!ChatClient@{ChatClient}}
+\doxysubsubsection{\texorpdfstring{actionCompleted}{actionCompleted}}
+{\footnotesize\ttfamily void Chat\+Client\+::action\+Completed (\begin{DoxyParamCaption}\item[{Q\+String \&}]{action,  }\item[{Q\+String \&}]{sender }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+action\+Completed 
+
+
+\begin{DoxyParams}{Parameters}
+{\em action} & \\
+\hline
+{\em sender} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chat_client_ab9af08e821597ca89f9e86b8ae61e995}\label{class_chat_client_ab9af08e821597ca89f9e86b8ae61e995}} 
+\index{ChatClient@{ChatClient}!actionPending@{actionPending}}
+\index{actionPending@{actionPending}!ChatClient@{ChatClient}}
+\doxysubsubsection{\texorpdfstring{actionPending}{actionPending}}
+{\footnotesize\ttfamily void Chat\+Client\+::action\+Pending (\begin{DoxyParamCaption}\item[{Q\+String \&}]{action,  }\item[{Q\+String \&}]{sender }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+action\+Pending 
+
+
+\begin{DoxyParams}{Parameters}
+{\em action} & \\
+\hline
+{\em sender} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chat_client_aa212a330d0c62dc5f3e94302513ba1b7}\label{class_chat_client_aa212a330d0c62dc5f3e94302513ba1b7}} 
+\index{ChatClient@{ChatClient}!actionTargetSpecify@{actionTargetSpecify}}
+\index{actionTargetSpecify@{actionTargetSpecify}!ChatClient@{ChatClient}}
+\doxysubsubsection{\texorpdfstring{actionTargetSpecify}{actionTargetSpecify}}
+{\footnotesize\ttfamily void Chat\+Client\+::action\+Target\+Specify (\begin{DoxyParamCaption}\item[{Q\+String \&}]{action,  }\item[{Q\+Vector$<$ Q\+String $>$ \&}]{p\+Vector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+action\+Target\+Specify 
+
+
+\begin{DoxyParams}{Parameters}
+{\em action} & \\
+\hline
+{\em p\+Vector} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chat_client_a0c5d1d84440cf8a3fe6d022e91e40535}\label{class_chat_client_a0c5d1d84440cf8a3fe6d022e91e40535}} 
+\index{ChatClient@{ChatClient}!cardsDealing@{cardsDealing}}
+\index{cardsDealing@{cardsDealing}!ChatClient@{ChatClient}}
+\doxysubsubsection{\texorpdfstring{cardsDealing}{cardsDealing}}
+{\footnotesize\ttfamily void Chat\+Client\+::cards\+Dealing (\begin{DoxyParamCaption}\item[{Q\+String}]{first,  }\item[{Q\+String}]{second }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+cards\+Dealing is signal when server send dealing cards 
+
+
+\begin{DoxyParams}{Parameters}
+{\em first} & is a name of first card \\
+\hline
+{\em second} & is a name of second card \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chat_client_a01d2e99e7c0c5463364ef1e0bac0fdb4}\label{class_chat_client_a01d2e99e7c0c5463364ef1e0bac0fdb4}} 
+\index{ChatClient@{ChatClient}!checkResult@{checkResult}}
+\index{checkResult@{checkResult}!ChatClient@{ChatClient}}
+\doxysubsubsection{\texorpdfstring{checkResult}{checkResult}}
+{\footnotesize\ttfamily void Chat\+Client\+::check\+Result (\begin{DoxyParamCaption}\item[{Q\+String \&}]{checked,  }\item[{Q\+String \&}]{checking,  }\item[{bool \&}]{result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+check\+Result 
+
+
+\begin{DoxyParams}{Parameters}
+{\em checked} & \\
+\hline
+{\em checking} & \\
+\hline
+{\em result} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chat_client_a0cc29c27d9a13d597ef0d1f740e6e0a1}\label{class_chat_client_a0cc29c27d9a13d597ef0d1f740e6e0a1}} 
+\index{ChatClient@{ChatClient}!connectToServer@{connectToServer}}
+\index{connectToServer@{connectToServer}!ChatClient@{ChatClient}}
+\doxysubsubsection{\texorpdfstring{connectToServer}{connectToServer}}
+{\footnotesize\ttfamily void Chat\+Client\+::connect\+To\+Server (\begin{DoxyParamCaption}\item[{const Q\+Host\+Address \&}]{address,  }\item[{quint16}]{port }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+connect\+To\+Server -\/ connects client application to a specific host 
+
+
+\begin{DoxyParams}{Parameters}
+{\em address} & -\/ server address \\
+\hline
+{\em port} & -\/ server port \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chat_client_a29ba0501ef9a7d27740ed5d2e410948b}\label{class_chat_client_a29ba0501ef9a7d27740ed5d2e410948b}} 
+\index{ChatClient@{ChatClient}!error@{error}}
+\index{error@{error}!ChatClient@{ChatClient}}
+\doxysubsubsection{\texorpdfstring{error}{error}}
+{\footnotesize\ttfamily void Chat\+Client\+::error (\begin{DoxyParamCaption}\item[{Q\+Abstract\+Socket\+::\+Socket\+Error}]{socket\+Error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+error -\/ signal bound to the signal -\/ Q\+Abstract\+Socket\+::error 
+
+
+\begin{DoxyParams}{Parameters}
+{\em socket\+Error} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chat_client_a632919b3cc5ccde3b3bce574e61b617c}\label{class_chat_client_a632919b3cc5ccde3b3bce574e61b617c}} 
+\index{ChatClient@{ChatClient}!getNickname@{getNickname}}
+\index{getNickname@{getNickname}!ChatClient@{ChatClient}}
+\doxysubsubsection{\texorpdfstring{getNickname()}{getNickname()}}
+{\footnotesize\ttfamily const Q\+String Chat\+Client\+::get\+Nickname (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get\+Nickname -\/ method to get nickname of a client 
+
+\begin{DoxyReturn}{Returns}
+nickname of client 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chat_client_a9d8d1b867d41515e09e69ca73bbb85c0}\label{class_chat_client_a9d8d1b867d41515e09e69ca73bbb85c0}} 
+\index{ChatClient@{ChatClient}!getSessionId@{getSessionId}}
+\index{getSessionId@{getSessionId}!ChatClient@{ChatClient}}
+\doxysubsubsection{\texorpdfstring{getSessionId()}{getSessionId()}}
+{\footnotesize\ttfamily Q\+String Chat\+Client\+::get\+Session\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get\+Session\+Id 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chat_client_a4fa9be59f3d36c7743059dabc56d76bd}\label{class_chat_client_a4fa9be59f3d36c7743059dabc56d76bd}} 
+\index{ChatClient@{ChatClient}!getTurnId@{getTurnId}}
+\index{getTurnId@{getTurnId}!ChatClient@{ChatClient}}
+\doxysubsubsection{\texorpdfstring{getTurnId()}{getTurnId()}}
+{\footnotesize\ttfamily Q\+String Chat\+Client\+::get\+Turn\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get\+Turn\+Id is a getter of turn id 
+
+\begin{DoxyReturn}{Returns}
+turn ID 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chat_client_a274c8bb7e54dcf1423733b556f443f6d}\label{class_chat_client_a274c8bb7e54dcf1423733b556f443f6d}} 
+\index{ChatClient@{ChatClient}!joinedSession@{joinedSession}}
+\index{joinedSession@{joinedSession}!ChatClient@{ChatClient}}
+\doxysubsubsection{\texorpdfstring{joinedSession}{joinedSession}}
+{\footnotesize\ttfamily void Chat\+Client\+::joined\+Session (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{username }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+joined\+Session -\/ signal emited when message is about joining the session 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chat_client_a34bfb02c6f1f8b81f2417b29ed31a860}\label{class_chat_client_a34bfb02c6f1f8b81f2417b29ed31a860}} 
+\index{ChatClient@{ChatClient}!login@{login}}
+\index{login@{login}!ChatClient@{ChatClient}}
+\doxysubsubsection{\texorpdfstring{login}{login}}
+{\footnotesize\ttfamily void Chat\+Client\+::login (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{user\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+login -\/ if client is connected, sends info to server with username in order to log in 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Name} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chat_client_a1a46bd9bd68d097796953e666a35eef3}\label{class_chat_client_a1a46bd9bd68d097796953e666a35eef3}} 
+\index{ChatClient@{ChatClient}!loginError@{loginError}}
+\index{loginError@{loginError}!ChatClient@{ChatClient}}
+\doxysubsubsection{\texorpdfstring{loginError}{loginError}}
+{\footnotesize\ttfamily void Chat\+Client\+::login\+Error (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{reason }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+login\+Error -\/ signal emited when recieved data states that login failed 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reason} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chat_client_a092d485b0a0c24defb0267b9c49ce78a}\label{class_chat_client_a092d485b0a0c24defb0267b9c49ce78a}} 
+\index{ChatClient@{ChatClient}!messageReceived@{messageReceived}}
+\index{messageReceived@{messageReceived}!ChatClient@{ChatClient}}
+\doxysubsubsection{\texorpdfstring{messageReceived}{messageReceived}}
+{\footnotesize\ttfamily void Chat\+Client\+::message\+Received (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{sender,  }\item[{const Q\+String \&}]{text }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+message\+Received -\/ signal emited when recieved data is a message 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & \\
+\hline
+{\em text} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chat_client_a0201935df988d53b5014ab63670eacd3}\label{class_chat_client_a0201935df988d53b5014ab63670eacd3}} 
+\index{ChatClient@{ChatClient}!sendMessageToServer@{sendMessageToServer}}
+\index{sendMessageToServer@{sendMessageToServer}!ChatClient@{ChatClient}}
+\doxysubsubsection{\texorpdfstring{sendMessageToServer}{sendMessageToServer}}
+{\footnotesize\ttfamily void Chat\+Client\+::send\+Message\+To\+Server (\begin{DoxyParamCaption}\item[{const Q\+Json\+Object \&}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+send\+Message -\/ sends message to server in order to forward this to other clients 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chat_client_a5020a76b6db20e5c3ddeb1ed0a1f533f}\label{class_chat_client_a5020a76b6db20e5c3ddeb1ed0a1f533f}} 
+\index{ChatClient@{ChatClient}!sessionCreated@{sessionCreated}}
+\index{sessionCreated@{sessionCreated}!ChatClient@{ChatClient}}
+\doxysubsubsection{\texorpdfstring{sessionCreated}{sessionCreated}}
+{\footnotesize\ttfamily void Chat\+Client\+::session\+Created (\begin{DoxyParamCaption}\item[{bool \&}]{success,  }\item[{Q\+String \&}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+session\+Created signal is emited when message about creating session is recived 
+
+
+\begin{DoxyParams}{Parameters}
+{\em success} & parameter says if session was created or not \\
+\hline
+{\em id} & is Q\+String that represents ID of the session \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chat_client_a3e09edba4f030f744669c8d3af7e7eb4}\label{class_chat_client_a3e09edba4f030f744669c8d3af7e7eb4}} 
+\index{ChatClient@{ChatClient}!sessionListComplete@{sessionListComplete}}
+\index{sessionListComplete@{sessionListComplete}!ChatClient@{ChatClient}}
+\doxysubsubsection{\texorpdfstring{sessionListComplete}{sessionListComplete}}
+{\footnotesize\ttfamily void Chat\+Client\+::session\+List\+Complete (\begin{DoxyParamCaption}\item[{Q\+Vector$<$ \mbox{\hyperlink{class_session}{Session}} $>$ \&}]{sess\+Vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+session\+List\+Complete 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sess\+Vec} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chat_client_a6ad2b036617f0623645336bf5d74f627}\label{class_chat_client_a6ad2b036617f0623645336bf5d74f627}} 
+\index{ChatClient@{ChatClient}!setSessionId@{setSessionId}}
+\index{setSessionId@{setSessionId}!ChatClient@{ChatClient}}
+\doxysubsubsection{\texorpdfstring{setSessionId()}{setSessionId()}}
+{\footnotesize\ttfamily void Chat\+Client\+::set\+Session\+Id (\begin{DoxyParamCaption}\item[{Q\+String \&}]{session\+Id }\end{DoxyParamCaption})}
+
+
+
+set\+Session\+Id is a function that sets ID of the session 
+
+
+\begin{DoxyParams}{Parameters}
+{\em session\+Id} & is a ID generated from server to protect session from messages that are not directed to this session \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chat_client_a4d1a52635779520b1c50eb99fba30761}\label{class_chat_client_a4d1a52635779520b1c50eb99fba30761}} 
+\index{ChatClient@{ChatClient}!setTurnId@{setTurnId}}
+\index{setTurnId@{setTurnId}!ChatClient@{ChatClient}}
+\doxysubsubsection{\texorpdfstring{setTurnId()}{setTurnId()}}
+{\footnotesize\ttfamily void Chat\+Client\+::set\+Turn\+Id (\begin{DoxyParamCaption}\item[{Q\+String \&}]{turn\+Id }\end{DoxyParamCaption})}
+
+
+
+set\+Turn\+Id is a function that sets ID of this turn 
+
+
+\begin{DoxyParams}{Parameters}
+{\em turn\+Id} & is a ID generated from server to protect turn from delayed messages \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chat_client_ae8122283ebc5efb63f735ce64da2d2ae}\label{class_chat_client_ae8122283ebc5efb63f735ce64da2d2ae}} 
+\index{ChatClient@{ChatClient}!turnOf@{turnOf}}
+\index{turnOf@{turnOf}!ChatClient@{ChatClient}}
+\doxysubsubsection{\texorpdfstring{turnOf}{turnOf}}
+{\footnotesize\ttfamily void Chat\+Client\+::turn\+Of (\begin{DoxyParamCaption}\item[{Q\+String \&}]{player }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+turn\+Of 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & is a Q\+String that represents players nickname \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chat_client_a65bbada51ff7d8317938bbf5f3b06b4f}\label{class_chat_client_a65bbada51ff7d8317938bbf5f3b06b4f}} 
+\index{ChatClient@{ChatClient}!updatePlayerInterface@{updatePlayerInterface}}
+\index{updatePlayerInterface@{updatePlayerInterface}!ChatClient@{ChatClient}}
+\doxysubsubsection{\texorpdfstring{updatePlayerInterface}{updatePlayerInterface}}
+{\footnotesize\ttfamily void Chat\+Client\+::update\+Player\+Interface (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{player,  }\item[{const double}]{money,  }\item[{const double}]{lifes }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+update\+Player\+Interface 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & \\
+\hline
+{\em money} & \\
+\hline
+{\em lifes} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chat_client_a6df6eb34e4d22030012ec13473dcb119}\label{class_chat_client_a6df6eb34e4d22030012ec13473dcb119}} 
+\index{ChatClient@{ChatClient}!userJoined@{userJoined}}
+\index{userJoined@{userJoined}!ChatClient@{ChatClient}}
+\doxysubsubsection{\texorpdfstring{userJoined}{userJoined}}
+{\footnotesize\ttfamily void Chat\+Client\+::user\+Joined (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{username }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+user\+Joined -\/ signal emited when data states that user joined the server 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chat_client_a254953805122a301f7c4dc5c884c75fa}\label{class_chat_client_a254953805122a301f7c4dc5c884c75fa}} 
+\index{ChatClient@{ChatClient}!userLeft@{userLeft}}
+\index{userLeft@{userLeft}!ChatClient@{ChatClient}}
+\doxysubsubsection{\texorpdfstring{userLeft}{userLeft}}
+{\footnotesize\ttfamily void Chat\+Client\+::user\+Left (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{username }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+user\+Left -\/ signal emited when data states that user left the server 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chat_client_ae00f82791e1d5091d9b6ae264d74213c}\label{class_chat_client_ae00f82791e1d5091d9b6ae264d74213c}} 
+\index{ChatClient@{ChatClient}!userReady@{userReady}}
+\index{userReady@{userReady}!ChatClient@{ChatClient}}
+\doxysubsubsection{\texorpdfstring{userReady}{userReady}}
+{\footnotesize\ttfamily void Chat\+Client\+::user\+Ready (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{username }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+user\+Ready -\/ signal is emited to log message about readiness of user 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & is a nick of user that is ready \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chat_client_a26ecdf44dfe185383e4ee5763b5a3cc7}\label{class_chat_client_a26ecdf44dfe185383e4ee5763b5a3cc7}} 
+\index{ChatClient@{ChatClient}!youAreATarget@{youAreATarget}}
+\index{youAreATarget@{youAreATarget}!ChatClient@{ChatClient}}
+\doxysubsubsection{\texorpdfstring{youAreATarget}{youAreATarget}}
+{\footnotesize\ttfamily void Chat\+Client\+::you\+Are\+A\+Target (\begin{DoxyParamCaption}\item[{Q\+String \&}]{action,  }\item[{Q\+String \&}]{sender,  }\item[{Q\+Vector$<$ Q\+String $>$ \&}]{blockers }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+you\+Are\+A\+Target signal that is emitef if someone indicate you as a target in action 
+
+
+\begin{DoxyParams}{Parameters}
+{\em action} & is a string with name of action \\
+\hline
+{\em sender} & is a string with nickname of player \\
+\hline
+{\em blockers} & is Vector that contians strings with blocker\textquotesingle{}s names \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+chatclient.\+h\item 
+chatclient.\+cpp\end{DoxyCompactItemize}

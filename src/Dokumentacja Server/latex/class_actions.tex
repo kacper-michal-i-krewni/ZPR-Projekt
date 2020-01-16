@@ -1,0 +1,293 @@
+\hypertarget{class_actions}{}\doxysection{Actions Class Reference}
+\label{class_actions}\index{Actions@{Actions}}
+
+
+The Action class that is a base class for each action in game.  
+
+
+
+
+{\ttfamily \#include $<$actions.\+h$>$}
+
+Inheritance diagram for Actions\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_actions}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_actions_a183adb7bffd52d5f951a2eabde77779e}\label{class_actions_a183adb7bffd52d5f951a2eabde77779e}} 
+typedef void(Actions\+::$\ast$ {\bfseries function\+Pointer}) (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_actions_ace0fce73fe3cfb2ea7112cfdbf12b131}\label{class_actions_ace0fce73fe3cfb2ea7112cfdbf12b131}} 
+\mbox{\hyperlink{class_actions_ace0fce73fe3cfb2ea7112cfdbf12b131}{Actions}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_actions}{Actions}} a constructor. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_actions_adf4e38250e9be79d3e8cf2846ba4526d}{how\+Much\+Action\+Costs}} (Q\+String action)
+\begin{DoxyCompactList}\small\item\em how\+Much\+Action\+Costs is a function to check actionc cost \end{DoxyCompactList}\item 
+std\+::map$<$ std\+::string, function\+Pointer $>$ \mbox{\hyperlink{class_actions_a07c0785bca7d311427715a9d640be12b}{get\+Map}} ()
+\begin{DoxyCompactList}\small\item\em get\+Map is a function that return map of a action connected with functions pointers \end{DoxyCompactList}\item 
+Q\+Vector$<$ std\+::string $>$ \mbox{\hyperlink{class_actions_a4dbc0071cb74be064608a1b153d3cd3b}{get\+Cards}} ()
+\begin{DoxyCompactList}\small\item\em get\+Cards return all type of cards \end{DoxyCompactList}\item 
+Q\+Vector$<$ Q\+String $>$ \mbox{\hyperlink{class_actions_aec250a8b12331f4d5f25bc65d9f13088}{get\+Actions\+That\+Block}} (const Q\+String \&action)
+\begin{DoxyCompactList}\small\item\em get\+Actions\+That\+Block is a function that search for blockers to action pass in parameters \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_actions_a9ad620795c586515d4918b17df3857cf}{affair}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$ executer, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$ victim=nullptr)
+\begin{DoxyCompactList}\small\item\em affair is an implementation of action affair \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_actions_ac16ac5e8831cae7d6fb5a0f1948ddf9f}{eu}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$ executer, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$ victim=nullptr)
+\begin{DoxyCompactList}\small\item\em eu is an implementation of action eu \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_actions_a630eb8d7d0ce906581a87ce4e66e5433}{local\+Biznesman}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$ executer, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$ victim=nullptr)
+\begin{DoxyCompactList}\small\item\em local\+Biznesman is an implementation of action local\+Biznesman \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_actions_af5574163e29625897ddfc0511196dcb9}{media}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$ executer, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$ victim=nullptr)
+\begin{DoxyCompactList}\small\item\em media is an implementation of action media \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_actions_a7be8beea57887d8aada183bebc67ff4c}{onz}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$ executer, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$ victim=nullptr)
+\begin{DoxyCompactList}\small\item\em onz is an implementation of action onz \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_actions_a7266231ce921219f6a9d9c16851689a1}{police}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$ executer, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$ victim=nullptr)
+\begin{DoxyCompactList}\small\item\em police is an implementation of action police \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_actions_a7412069261f089203fb4a3185a4eedfc}{protest}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$ executer, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$ victim=nullptr)
+\begin{DoxyCompactList}\small\item\em protest is an implementation of action protest \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_actions_ac0bc9a362e36bbdbf16838a1916443de}{russia}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$ executer, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$ victim=nullptr)
+\begin{DoxyCompactList}\small\item\em russia is an implementation of action russia \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_actions_af41fac3eba1b1355e1ec28d3b0bd0a59}{usa}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$ executer, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$ victim=nullptr)
+\begin{DoxyCompactList}\small\item\em usa is an implementation of action usa \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_actions_ab00be3c116a668a9e6bddde29ed25111}\label{class_actions_ab00be3c116a668a9e6bddde29ed25111}} 
+const static int \mbox{\hyperlink{class_actions_ab00be3c116a668a9e6bddde29ed25111}{A\+F\+F\+A\+I\+R\+\_\+\+P\+R\+I\+CE}} = 7
+\begin{DoxyCompactList}\small\item\em A\+F\+F\+A\+I\+R\+\_\+\+P\+R\+I\+CE is a price of affair action. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_actions_a6ad5c64b7189ecc9f5edafa5f4e36c02}\label{class_actions_a6ad5c64b7189ecc9f5edafa5f4e36c02}} 
+const static int \mbox{\hyperlink{class_actions_a6ad5c64b7189ecc9f5edafa5f4e36c02}{P\+R\+O\+T\+E\+S\+T\+\_\+\+P\+R\+I\+CE}} = 3
+\begin{DoxyCompactList}\small\item\em P\+R\+O\+T\+E\+S\+T\+\_\+\+P\+R\+I\+CE is a price of protest action. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The Action class that is a base class for each action in game. 
+
+This class is inheriting fom Q\+Object, because it needs signals. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_actions_a9ad620795c586515d4918b17df3857cf}\label{class_actions_a9ad620795c586515d4918b17df3857cf}} 
+\index{Actions@{Actions}!affair@{affair}}
+\index{affair@{affair}!Actions@{Actions}}
+\doxysubsubsection{\texorpdfstring{affair()}{affair()}}
+{\footnotesize\ttfamily void Actions\+::affair (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$}]{executer,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$}]{victim = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+
+
+affair is an implementation of action affair 
+
+
+\begin{DoxyParams}{Parameters}
+{\em executer} & is a player who execute action \\
+\hline
+{\em victim} & is a player who is attacked by executer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_actions_ac16ac5e8831cae7d6fb5a0f1948ddf9f}\label{class_actions_ac16ac5e8831cae7d6fb5a0f1948ddf9f}} 
+\index{Actions@{Actions}!eu@{eu}}
+\index{eu@{eu}!Actions@{Actions}}
+\doxysubsubsection{\texorpdfstring{eu()}{eu()}}
+{\footnotesize\ttfamily void Actions\+::eu (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$}]{executer,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$}]{victim = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+
+
+eu is an implementation of action eu 
+
+
+\begin{DoxyParams}{Parameters}
+{\em executer} & is a player who execute action \\
+\hline
+{\em victim} & is a player who is attacked by executer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_actions_aec250a8b12331f4d5f25bc65d9f13088}\label{class_actions_aec250a8b12331f4d5f25bc65d9f13088}} 
+\index{Actions@{Actions}!getActionsThatBlock@{getActionsThatBlock}}
+\index{getActionsThatBlock@{getActionsThatBlock}!Actions@{Actions}}
+\doxysubsubsection{\texorpdfstring{getActionsThatBlock()}{getActionsThatBlock()}}
+{\footnotesize\ttfamily Q\+Vector$<$ Q\+String $>$ Actions\+::get\+Actions\+That\+Block (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{action }\end{DoxyParamCaption})}
+
+
+
+get\+Actions\+That\+Block is a function that search for blockers to action pass in parameters 
+
+
+\begin{DoxyParams}{Parameters}
+{\em action} & is a name of action we want to get blocker \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector with blockers to action passed in argument 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_actions_a4dbc0071cb74be064608a1b153d3cd3b}\label{class_actions_a4dbc0071cb74be064608a1b153d3cd3b}} 
+\index{Actions@{Actions}!getCards@{getCards}}
+\index{getCards@{getCards}!Actions@{Actions}}
+\doxysubsubsection{\texorpdfstring{getCards()}{getCards()}}
+{\footnotesize\ttfamily Q\+Vector$<$ std\+::string $>$ Actions\+::get\+Cards (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get\+Cards return all type of cards 
+
+\begin{DoxyReturn}{Returns}
+vector with cards strings 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_actions_a07c0785bca7d311427715a9d640be12b}\label{class_actions_a07c0785bca7d311427715a9d640be12b}} 
+\index{Actions@{Actions}!getMap@{getMap}}
+\index{getMap@{getMap}!Actions@{Actions}}
+\doxysubsubsection{\texorpdfstring{getMap()}{getMap()}}
+{\footnotesize\ttfamily std\+::map$<$ std\+::string, Actions\+::function\+Pointer $>$ Actions\+::get\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get\+Map is a function that return map of a action connected with functions pointers 
+
+\begin{DoxyReturn}{Returns}
+map to actions and functions pointers 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_actions_adf4e38250e9be79d3e8cf2846ba4526d}\label{class_actions_adf4e38250e9be79d3e8cf2846ba4526d}} 
+\index{Actions@{Actions}!howMuchActionCosts@{howMuchActionCosts}}
+\index{howMuchActionCosts@{howMuchActionCosts}!Actions@{Actions}}
+\doxysubsubsection{\texorpdfstring{howMuchActionCosts()}{howMuchActionCosts()}}
+{\footnotesize\ttfamily int Actions\+::how\+Much\+Action\+Costs (\begin{DoxyParamCaption}\item[{Q\+String}]{action }\end{DoxyParamCaption})}
+
+
+
+how\+Much\+Action\+Costs is a function to check actionc cost 
+
+
+\begin{DoxyParams}{Parameters}
+{\em action} & is a name of an action \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+is a cost of action 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_actions_a630eb8d7d0ce906581a87ce4e66e5433}\label{class_actions_a630eb8d7d0ce906581a87ce4e66e5433}} 
+\index{Actions@{Actions}!localBiznesman@{localBiznesman}}
+\index{localBiznesman@{localBiznesman}!Actions@{Actions}}
+\doxysubsubsection{\texorpdfstring{localBiznesman()}{localBiznesman()}}
+{\footnotesize\ttfamily void Actions\+::local\+Biznesman (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$}]{executer,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$}]{victim = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+
+
+local\+Biznesman is an implementation of action local\+Biznesman 
+
+
+\begin{DoxyParams}{Parameters}
+{\em executer} & is a player who execute action \\
+\hline
+{\em victim} & is a player who is attacked by executer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_actions_af5574163e29625897ddfc0511196dcb9}\label{class_actions_af5574163e29625897ddfc0511196dcb9}} 
+\index{Actions@{Actions}!media@{media}}
+\index{media@{media}!Actions@{Actions}}
+\doxysubsubsection{\texorpdfstring{media()}{media()}}
+{\footnotesize\ttfamily void Actions\+::media (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$}]{executer,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$}]{victim = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+
+
+media is an implementation of action media 
+
+
+\begin{DoxyParams}{Parameters}
+{\em executer} & is a player who execute action \\
+\hline
+{\em victim} & is a player who is attacked by executer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_actions_a7be8beea57887d8aada183bebc67ff4c}\label{class_actions_a7be8beea57887d8aada183bebc67ff4c}} 
+\index{Actions@{Actions}!onz@{onz}}
+\index{onz@{onz}!Actions@{Actions}}
+\doxysubsubsection{\texorpdfstring{onz()}{onz()}}
+{\footnotesize\ttfamily void Actions\+::onz (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$}]{executer,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$}]{victim = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+
+
+onz is an implementation of action onz 
+
+
+\begin{DoxyParams}{Parameters}
+{\em executer} & is a player who execute action \\
+\hline
+{\em victim} & is a player who is attacked by executer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_actions_a7266231ce921219f6a9d9c16851689a1}\label{class_actions_a7266231ce921219f6a9d9c16851689a1}} 
+\index{Actions@{Actions}!police@{police}}
+\index{police@{police}!Actions@{Actions}}
+\doxysubsubsection{\texorpdfstring{police()}{police()}}
+{\footnotesize\ttfamily void Actions\+::police (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$}]{executer,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$}]{victim = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+
+
+police is an implementation of action police 
+
+
+\begin{DoxyParams}{Parameters}
+{\em executer} & is a player who execute action \\
+\hline
+{\em victim} & is a player who is attacked by executer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_actions_a7412069261f089203fb4a3185a4eedfc}\label{class_actions_a7412069261f089203fb4a3185a4eedfc}} 
+\index{Actions@{Actions}!protest@{protest}}
+\index{protest@{protest}!Actions@{Actions}}
+\doxysubsubsection{\texorpdfstring{protest()}{protest()}}
+{\footnotesize\ttfamily void Actions\+::protest (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$}]{executer,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$}]{victim = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+
+
+protest is an implementation of action protest 
+
+
+\begin{DoxyParams}{Parameters}
+{\em executer} & is a player who execute action \\
+\hline
+{\em victim} & is a player who is attacked by executer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_actions_ac0bc9a362e36bbdbf16838a1916443de}\label{class_actions_ac0bc9a362e36bbdbf16838a1916443de}} 
+\index{Actions@{Actions}!russia@{russia}}
+\index{russia@{russia}!Actions@{Actions}}
+\doxysubsubsection{\texorpdfstring{russia()}{russia()}}
+{\footnotesize\ttfamily void Actions\+::russia (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$}]{executer,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$}]{victim = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+
+
+russia is an implementation of action russia 
+
+
+\begin{DoxyParams}{Parameters}
+{\em executer} & is a player who execute action \\
+\hline
+{\em victim} & is a player who is attacked by executer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_actions_af41fac3eba1b1355e1ec28d3b0bd0a59}\label{class_actions_af41fac3eba1b1355e1ec28d3b0bd0a59}} 
+\index{Actions@{Actions}!usa@{usa}}
+\index{usa@{usa}!Actions@{Actions}}
+\doxysubsubsection{\texorpdfstring{usa()}{usa()}}
+{\footnotesize\ttfamily void Actions\+::usa (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$}]{executer,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$}]{victim = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+
+
+usa is an implementation of action usa 
+
+
+\begin{DoxyParams}{Parameters}
+{\em executer} & is a player who execute action \\
+\hline
+{\em victim} & is a player who is attacked by executer \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+actions.\+h\item 
+actions.\+cpp\end{DoxyCompactItemize}

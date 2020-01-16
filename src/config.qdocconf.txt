@@ -1,6 +1,0 @@
-include(compat.qdocconf)
-outputdir   = html
-headerdirs  = .
-sourcedirs  = .
-exampledirs = .
-imagedirs   = ../images

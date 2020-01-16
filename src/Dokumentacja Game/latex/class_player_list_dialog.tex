@@ -1,0 +1,108 @@
+\hypertarget{class_player_list_dialog}{}\doxysection{Player\+List\+Dialog Class Reference}
+\label{class_player_list_dialog}\index{PlayerListDialog@{PlayerListDialog}}
+
+
+The \mbox{\hyperlink{class_player_list_dialog}{Player\+List\+Dialog}} class is a implementation of window to select which player we want to attack with targeted action.  
+
+
+
+
+{\ttfamily \#include $<$playerlistdialog.\+h$>$}
+
+Inheritance diagram for Player\+List\+Dialog\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_player_list_dialog}
+\end{center}
+\end{figure}
+\doxysubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_player_list_dialog_a85129f68f50e05f2cb1fd09a52a50bac}{button\+Clicked}} (Q\+Json\+Object \&message)
+\begin{DoxyCompactList}\small\item\em button\+Clicked is generated when any button is clicked \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_player_list_dialog_aa0c23fdd4a863699f95209bfd91e8ae9}{Player\+List\+Dialog}} (Q\+Widget $\ast$parent=nullptr)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_player_list_dialog}{Player\+List\+Dialog}} constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_list_dialog_a1dd2a5b57abad9572c96188aa26d3427}{set\+List}} (const Q\+String \&action, const Q\+Vector$<$ Q\+String $>$ \&player\+Vec)
+\begin{DoxyCompactList}\small\item\em set\+List \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_list_dialog_aa0584b308c88d3e9486a288db2acb8c4}{set\+Action}} (const Q\+String \&action)
+\begin{DoxyCompactList}\small\item\em set\+Action sets \+\_\+action variable \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{class_player_list_dialog}{Player\+List\+Dialog}} class is a implementation of window to select which player we want to attack with targeted action. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_player_list_dialog_aa0c23fdd4a863699f95209bfd91e8ae9}\label{class_player_list_dialog_aa0c23fdd4a863699f95209bfd91e8ae9}} 
+\index{PlayerListDialog@{PlayerListDialog}!PlayerListDialog@{PlayerListDialog}}
+\index{PlayerListDialog@{PlayerListDialog}!PlayerListDialog@{PlayerListDialog}}
+\doxysubsubsection{\texorpdfstring{PlayerListDialog()}{PlayerListDialog()}}
+{\footnotesize\ttfamily Player\+List\+Dialog\+::\+Player\+List\+Dialog (\begin{DoxyParamCaption}\item[{Q\+Widget $\ast$}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+\mbox{\hyperlink{class_player_list_dialog}{Player\+List\+Dialog}} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & is a parent Q\+Widget \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_player_list_dialog_a85129f68f50e05f2cb1fd09a52a50bac}\label{class_player_list_dialog_a85129f68f50e05f2cb1fd09a52a50bac}} 
+\index{PlayerListDialog@{PlayerListDialog}!buttonClicked@{buttonClicked}}
+\index{buttonClicked@{buttonClicked}!PlayerListDialog@{PlayerListDialog}}
+\doxysubsubsection{\texorpdfstring{buttonClicked}{buttonClicked}}
+{\footnotesize\ttfamily void Player\+List\+Dialog\+::button\+Clicked (\begin{DoxyParamCaption}\item[{Q\+Json\+Object \&}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+button\+Clicked is generated when any button is clicked 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & holds info about action \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_player_list_dialog_aa0584b308c88d3e9486a288db2acb8c4}\label{class_player_list_dialog_aa0584b308c88d3e9486a288db2acb8c4}} 
+\index{PlayerListDialog@{PlayerListDialog}!setAction@{setAction}}
+\index{setAction@{setAction}!PlayerListDialog@{PlayerListDialog}}
+\doxysubsubsection{\texorpdfstring{setAction()}{setAction()}}
+{\footnotesize\ttfamily void Player\+List\+Dialog\+::set\+Action (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{action }\end{DoxyParamCaption})}
+
+
+
+set\+Action sets \+\_\+action variable 
+
+
+\begin{DoxyParams}{Parameters}
+{\em action} & is a string identificates action \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_player_list_dialog_a1dd2a5b57abad9572c96188aa26d3427}\label{class_player_list_dialog_a1dd2a5b57abad9572c96188aa26d3427}} 
+\index{PlayerListDialog@{PlayerListDialog}!setList@{setList}}
+\index{setList@{setList}!PlayerListDialog@{PlayerListDialog}}
+\doxysubsubsection{\texorpdfstring{setList()}{setList()}}
+{\footnotesize\ttfamily void Player\+List\+Dialog\+::set\+List (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{action,  }\item[{const Q\+Vector$<$ Q\+String $>$ \&}]{player\+Vec }\end{DoxyParamCaption})}
+
+
+
+set\+List 
+
+
+\begin{DoxyParams}{Parameters}
+{\em action} & \\
+\hline
+{\em player\+Vec} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+playerlistdialog.\+h\item 
+playerlistdialog.\+cpp\end{DoxyCompactItemize}

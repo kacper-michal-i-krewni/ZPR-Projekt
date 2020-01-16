@@ -1,0 +1,379 @@
+\hypertarget{class_session}{}\doxysection{Session Class Reference}
+\label{class_session}\index{Session@{Session}}
+
+
+The \mbox{\hyperlink{class_session}{Session}} class which holds all ifo about session and manage it.  
+
+
+
+
+{\ttfamily \#include $<$session.\+h$>$}
+
+Inheritance diagram for Session\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_session}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_session_a40b3c58c995034c9296626720a9474f3}\label{class_session_a40b3c58c995034c9296626720a9474f3}} 
+void \mbox{\hyperlink{class_session_a40b3c58c995034c9296626720a9474f3}{call\+On\+Timeout}} ()
+\begin{DoxyCompactList}\small\item\em call\+On\+Timeout function that is exectuted after timeout \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_session_a6ee984e9a642ff275618c3cb15434e04}\label{class_session_a6ee984e9a642ff275618c3cb15434e04}} 
+void \mbox{\hyperlink{class_session_a6ee984e9a642ff275618c3cb15434e04}{check\+Card}} ()
+\begin{DoxyCompactList}\small\item\em check\+Card if cards \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_session_ade65d33191d164329a85b0d18253cc57}{block\+Enable}} (const \mbox{\hyperlink{class_player}{Player}} \&current)
+\begin{DoxyCompactList}\small\item\em block\+Enable says that block is now enabled \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_session_aea22e545558501c6400f969c951d3a01}\label{class_session_aea22e545558501c6400f969c951d3a01}} 
+void \mbox{\hyperlink{class_session_aea22e545558501c6400f969c951d3a01}{block\+Disable}} ()
+\begin{DoxyCompactList}\small\item\em block\+Disable says that block is now disabled \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_session_aaf1f7caa9ed7923e850c338b83edf381}{check\+Enable}} (const \mbox{\hyperlink{class_player}{Player}} \&current)
+\begin{DoxyCompactList}\small\item\em check\+Enable says that check is now enabled \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_session_aaa2c287335883c84111724031f4e49e0}\label{class_session_aaa2c287335883c84111724031f4e49e0}} 
+void \mbox{\hyperlink{class_session_aaa2c287335883c84111724031f4e49e0}{check\+Disable}} ()
+\begin{DoxyCompactList}\small\item\em check\+Disable says that check is now disabled \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_session_af884be72c9c83fa5631097794fd61ccc}{send\+Update}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_session}{Session}} $>$ sess)
+\begin{DoxyCompactList}\small\item\em send\+Update sends update about session \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_session_a6b834c8a74895b1250ec2490b94c3b0f}{Session}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_server_worker}{Server\+Worker}} $>$ owner, int players\+Limit)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_session}{Session}} a constructor of sessiom. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_session_a8753bb9dee966b7d39abc9b7237cd665}\label{class_session_a8753bb9dee966b7d39abc9b7237cd665}} 
+virtual \mbox{\hyperlink{class_session_a8753bb9dee966b7d39abc9b7237cd665}{$\sim$\+Session}} ()
+\begin{DoxyCompactList}\small\item\em $\sim$\+Session is a destructor \end{DoxyCompactList}\item 
+Q\+Vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_server_worker}{Server\+Worker}} $>$ $>$ \mbox{\hyperlink{class_session_af5c174a634b1c500e5994e4a92b672a9}{get\+Players}} ()
+\begin{DoxyCompactList}\small\item\em get\+Players is a function that returns vector with players \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_session_afdd442e68467fb9b7fa1470b5d22b8d6}{send\+To\+All}} (Q\+Json\+Object \&message)
+\begin{DoxyCompactList}\small\item\em send\+To\+Allis a function that sends to all players in session a message passed in argument \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_session_a5acfdb2ac2ad71ab8911d10fff787fa4}{send\+To\+All\+Except}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_server_worker}{Server\+Worker}} $>$ \&player, Q\+Json\+Object \&message)
+\begin{DoxyCompactList}\small\item\em send\+To\+All\+Except is a function similar to send\+To\+All but we can exclude a player \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_session_a9aa1699c2aa0c4c209084bf282d9bb00}{add\+Player}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_server_worker}{Server\+Worker}} $>$ player)
+\begin{DoxyCompactList}\small\item\em add\+Player adds a player to session \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_session_a1b7b4b83e6f82f5628c680de3d445fbf}{remove\+Player}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_server_worker}{Server\+Worker}} $>$ player)
+\begin{DoxyCompactList}\small\item\em remove\+Player \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_session_a66c134f67276a07ab98c5ee297456f5f}{get\+Num\+Of\+Players}} ()
+\begin{DoxyCompactList}\small\item\em get\+Num\+Of\+Players returns how many players is in session \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_session_a0d711a6f51b679528d57f80e3d201f41}{get\+Players\+Limit}} ()
+\begin{DoxyCompactList}\small\item\em get\+Players\+Limit returns how many players can be in session \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_server_worker}{Server\+Worker}} $>$ \mbox{\hyperlink{class_session_ad9febab939e6c0df0ae7e116774e4b5b}{get\+Owner}} ()
+\begin{DoxyCompactList}\small\item\em get\+Owner returns owner of this session \end{DoxyCompactList}\item 
+Q\+String \mbox{\hyperlink{class_session_aa88d8c9eb929d0407b7b9df59391a6f1}{get\+Id}} ()
+\begin{DoxyCompactList}\small\item\em get\+Id returns ID of session \end{DoxyCompactList}\item 
+Q\+Json\+Object \mbox{\hyperlink{class_session_a625ffa82e11ddbd3bf7f859c03b6034e}{to\+J\+S\+ON}} ()
+\begin{DoxyCompactList}\small\item\em to\+J\+S\+ON is a function that parse a session to J\+S\+ON sended in message to client \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_session_ab569fb586f647cbc99831beeb8a83e33}{check\+If\+Player\+Is\+In\+Session}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_server_worker}{Server\+Worker}} $>$ sender)
+\begin{DoxyCompactList}\small\item\em check\+If\+Player\+Is\+In\+Session checks if player is in session \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_session_a47baf956cead0046fcbac45c572c70d3}\label{class_session_a47baf956cead0046fcbac45c572c70d3}} 
+void \mbox{\hyperlink{class_session_a47baf956cead0046fcbac45c572c70d3}{start}} ()
+\begin{DoxyCompactList}\small\item\em start is a function that prepare session to start \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_session_a49e56cf8e69ca00281daf66061ea7866}{handle\+Action\+Message}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_server_worker}{Server\+Worker}} $>$ \&sender, const Q\+Json\+Object \&doc\+Obj)
+\begin{DoxyCompactList}\small\item\em handle\+Action\+Message read message and check if action can be executed are send messgae about failure or success \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_session_a6e0fc6b8bd00c9dbaa1fa828439699d0}{handle\+Caunter\+Action\+Message}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_server_worker}{Server\+Worker}} $>$ \&sender, const Q\+Json\+Object \&doc\+Obj)
+\begin{DoxyCompactList}\small\item\em handle\+Caunter\+Action\+Message read message and checks conditions about counter action \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_server_worker}{Server\+Worker}} $>$ \mbox{\hyperlink{class_session_a58ea7f29fa1505c59203a15816107eaa}{search\+For\+Player}} (Q\+String nickname)
+\begin{DoxyCompactList}\small\item\em search\+For\+Player is a function to search player by its nickname \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_session_a6312cb861aa6be565298866e54deb699}\label{class_session_a6312cb861aa6be565298866e54deb699}} 
+const static int \mbox{\hyperlink{class_session_a6312cb861aa6be565298866e54deb699}{C\+H\+E\+C\+K\+T\+I\+M\+E\+O\+UT}} = 10$\ast$1000
+\begin{DoxyCompactList}\small\item\em C\+H\+E\+C\+K\+T\+I\+M\+E\+O\+UT is a time to check a action. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_session_a8fb533cb63a61d78be8904f24654a00d}\label{class_session_a8fb533cb63a61d78be8904f24654a00d}} 
+const static int \mbox{\hyperlink{class_session_a8fb533cb63a61d78be8904f24654a00d}{B\+L\+O\+C\+K\+T\+I\+M\+E\+O\+UT}} = 15$\ast$1000
+\begin{DoxyCompactList}\small\item\em B\+L\+O\+C\+K\+T\+I\+M\+E\+O\+UT is a time to block action. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_session_a416482e3727f2d51eeda5f4753596bf5}\label{class_session_a416482e3727f2d51eeda5f4753596bf5}} 
+const static int \mbox{\hyperlink{class_session_a416482e3727f2d51eeda5f4753596bf5}{S\+T\+A\+R\+T\+I\+N\+G\+\_\+\+M\+O\+N\+EY}} = 2
+\begin{DoxyCompactList}\small\item\em S\+T\+A\+R\+T\+I\+N\+G\+\_\+\+M\+O\+N\+EY is a money to start. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{class_session}{Session}} class which holds all ifo about session and manage it. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_session_a6b834c8a74895b1250ec2490b94c3b0f}\label{class_session_a6b834c8a74895b1250ec2490b94c3b0f}} 
+\index{Session@{Session}!Session@{Session}}
+\index{Session@{Session}!Session@{Session}}
+\doxysubsubsection{\texorpdfstring{Session()}{Session()}}
+{\footnotesize\ttfamily Session\+::\+Session (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_server_worker}{Server\+Worker}} $>$}]{owner,  }\item[{int}]{players\+Limit }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{class_session}{Session}} a constructor of sessiom. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em owner} & is a player who created a session \\
+\hline
+{\em players\+Limit} & how many players can join to session \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_session_a9aa1699c2aa0c4c209084bf282d9bb00}\label{class_session_a9aa1699c2aa0c4c209084bf282d9bb00}} 
+\index{Session@{Session}!addPlayer@{addPlayer}}
+\index{addPlayer@{addPlayer}!Session@{Session}}
+\doxysubsubsection{\texorpdfstring{addPlayer()}{addPlayer()}}
+{\footnotesize\ttfamily void Session\+::add\+Player (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_server_worker}{Server\+Worker}} $>$}]{player }\end{DoxyParamCaption})}
+
+
+
+add\+Player adds a player to session 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & is a pointer to player \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_session_ade65d33191d164329a85b0d18253cc57}\label{class_session_ade65d33191d164329a85b0d18253cc57}} 
+\index{Session@{Session}!blockEnable@{blockEnable}}
+\index{blockEnable@{blockEnable}!Session@{Session}}
+\doxysubsubsection{\texorpdfstring{blockEnable}{blockEnable}}
+{\footnotesize\ttfamily void Session\+::block\+Enable (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_player}{Player}} \&}]{current }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+block\+Enable says that block is now enabled 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current} & says who is know making an action \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_session_aaf1f7caa9ed7923e850c338b83edf381}\label{class_session_aaf1f7caa9ed7923e850c338b83edf381}} 
+\index{Session@{Session}!checkEnable@{checkEnable}}
+\index{checkEnable@{checkEnable}!Session@{Session}}
+\doxysubsubsection{\texorpdfstring{checkEnable}{checkEnable}}
+{\footnotesize\ttfamily void Session\+::check\+Enable (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_player}{Player}} \&}]{current }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+check\+Enable says that check is now enabled 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current} & says how is now making an action \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_session_ab569fb586f647cbc99831beeb8a83e33}\label{class_session_ab569fb586f647cbc99831beeb8a83e33}} 
+\index{Session@{Session}!checkIfPlayerIsInSession@{checkIfPlayerIsInSession}}
+\index{checkIfPlayerIsInSession@{checkIfPlayerIsInSession}!Session@{Session}}
+\doxysubsubsection{\texorpdfstring{checkIfPlayerIsInSession()}{checkIfPlayerIsInSession()}}
+{\footnotesize\ttfamily bool Session\+::check\+If\+Player\+Is\+In\+Session (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_server_worker}{Server\+Worker}} $>$}]{sender }\end{DoxyParamCaption})}
+
+
+
+check\+If\+Player\+Is\+In\+Session checks if player is in session 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & player that is checked \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true or false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_session_aa88d8c9eb929d0407b7b9df59391a6f1}\label{class_session_aa88d8c9eb929d0407b7b9df59391a6f1}} 
+\index{Session@{Session}!getId@{getId}}
+\index{getId@{getId}!Session@{Session}}
+\doxysubsubsection{\texorpdfstring{getId()}{getId()}}
+{\footnotesize\ttfamily Q\+String Session\+::get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get\+Id returns ID of session 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_session_a66c134f67276a07ab98c5ee297456f5f}\label{class_session_a66c134f67276a07ab98c5ee297456f5f}} 
+\index{Session@{Session}!getNumOfPlayers@{getNumOfPlayers}}
+\index{getNumOfPlayers@{getNumOfPlayers}!Session@{Session}}
+\doxysubsubsection{\texorpdfstring{getNumOfPlayers()}{getNumOfPlayers()}}
+{\footnotesize\ttfamily int Session\+::get\+Num\+Of\+Players (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get\+Num\+Of\+Players returns how many players is in session 
+
+\begin{DoxyReturn}{Returns}
+a number of players 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_session_ad9febab939e6c0df0ae7e116774e4b5b}\label{class_session_ad9febab939e6c0df0ae7e116774e4b5b}} 
+\index{Session@{Session}!getOwner@{getOwner}}
+\index{getOwner@{getOwner}!Session@{Session}}
+\doxysubsubsection{\texorpdfstring{getOwner()}{getOwner()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_server_worker}{Server\+Worker}} $>$ Session\+::get\+Owner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get\+Owner returns owner of this session 
+
+\begin{DoxyReturn}{Returns}
+an owner of session 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_session_af5c174a634b1c500e5994e4a92b672a9}\label{class_session_af5c174a634b1c500e5994e4a92b672a9}} 
+\index{Session@{Session}!getPlayers@{getPlayers}}
+\index{getPlayers@{getPlayers}!Session@{Session}}
+\doxysubsubsection{\texorpdfstring{getPlayers()}{getPlayers()}}
+{\footnotesize\ttfamily Q\+Vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_server_worker}{Server\+Worker}} $>$ $>$ Session\+::get\+Players (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get\+Players is a function that returns vector with players 
+
+\begin{DoxyReturn}{Returns}
+a vector with serverworkers objects 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_session_a0d711a6f51b679528d57f80e3d201f41}\label{class_session_a0d711a6f51b679528d57f80e3d201f41}} 
+\index{Session@{Session}!getPlayersLimit@{getPlayersLimit}}
+\index{getPlayersLimit@{getPlayersLimit}!Session@{Session}}
+\doxysubsubsection{\texorpdfstring{getPlayersLimit()}{getPlayersLimit()}}
+{\footnotesize\ttfamily int Session\+::get\+Players\+Limit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get\+Players\+Limit returns how many players can be in session 
+
+\begin{DoxyReturn}{Returns}
+limit of players 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_session_a49e56cf8e69ca00281daf66061ea7866}\label{class_session_a49e56cf8e69ca00281daf66061ea7866}} 
+\index{Session@{Session}!handleActionMessage@{handleActionMessage}}
+\index{handleActionMessage@{handleActionMessage}!Session@{Session}}
+\doxysubsubsection{\texorpdfstring{handleActionMessage()}{handleActionMessage()}}
+{\footnotesize\ttfamily void Session\+::handle\+Action\+Message (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_server_worker}{Server\+Worker}} $>$ \&}]{sender,  }\item[{const Q\+Json\+Object \&}]{doc\+Obj }\end{DoxyParamCaption})}
+
+
+
+handle\+Action\+Message read message and check if action can be executed are send messgae about failure or success 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & is a executer of an action \\
+\hline
+{\em doc\+Obj} & is a message we interpert \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_session_a6e0fc6b8bd00c9dbaa1fa828439699d0}\label{class_session_a6e0fc6b8bd00c9dbaa1fa828439699d0}} 
+\index{Session@{Session}!handleCaunterActionMessage@{handleCaunterActionMessage}}
+\index{handleCaunterActionMessage@{handleCaunterActionMessage}!Session@{Session}}
+\doxysubsubsection{\texorpdfstring{handleCaunterActionMessage()}{handleCaunterActionMessage()}}
+{\footnotesize\ttfamily void Session\+::handle\+Caunter\+Action\+Message (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_server_worker}{Server\+Worker}} $>$ \&}]{sender,  }\item[{const Q\+Json\+Object \&}]{doc\+Obj }\end{DoxyParamCaption})}
+
+
+
+handle\+Caunter\+Action\+Message read message and checks conditions about counter action 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & is a player that exectued a messgae \\
+\hline
+{\em doc\+Obj} & a message to interpret \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_session_a1b7b4b83e6f82f5628c680de3d445fbf}\label{class_session_a1b7b4b83e6f82f5628c680de3d445fbf}} 
+\index{Session@{Session}!removePlayer@{removePlayer}}
+\index{removePlayer@{removePlayer}!Session@{Session}}
+\doxysubsubsection{\texorpdfstring{removePlayer()}{removePlayer()}}
+{\footnotesize\ttfamily void Session\+::remove\+Player (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_server_worker}{Server\+Worker}} $>$}]{player }\end{DoxyParamCaption})}
+
+
+
+remove\+Player 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_session_a58ea7f29fa1505c59203a15816107eaa}\label{class_session_a58ea7f29fa1505c59203a15816107eaa}} 
+\index{Session@{Session}!searchForPlayer@{searchForPlayer}}
+\index{searchForPlayer@{searchForPlayer}!Session@{Session}}
+\doxysubsubsection{\texorpdfstring{searchForPlayer()}{searchForPlayer()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_server_worker}{Server\+Worker}} $>$ Session\+::search\+For\+Player (\begin{DoxyParamCaption}\item[{Q\+String}]{nickname }\end{DoxyParamCaption})}
+
+
+
+search\+For\+Player is a function to search player by its nickname 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nickname} & is a name of player \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a \mbox{\hyperlink{class_server_worker}{Server\+Worker}} pointer to player 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_session_afdd442e68467fb9b7fa1470b5d22b8d6}\label{class_session_afdd442e68467fb9b7fa1470b5d22b8d6}} 
+\index{Session@{Session}!sendToAll@{sendToAll}}
+\index{sendToAll@{sendToAll}!Session@{Session}}
+\doxysubsubsection{\texorpdfstring{sendToAll()}{sendToAll()}}
+{\footnotesize\ttfamily void Session\+::send\+To\+All (\begin{DoxyParamCaption}\item[{Q\+Json\+Object \&}]{message }\end{DoxyParamCaption})}
+
+
+
+send\+To\+Allis a function that sends to all players in session a message passed in argument 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & is a message we want to send \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_session_a5acfdb2ac2ad71ab8911d10fff787fa4}\label{class_session_a5acfdb2ac2ad71ab8911d10fff787fa4}} 
+\index{Session@{Session}!sendToAllExcept@{sendToAllExcept}}
+\index{sendToAllExcept@{sendToAllExcept}!Session@{Session}}
+\doxysubsubsection{\texorpdfstring{sendToAllExcept()}{sendToAllExcept()}}
+{\footnotesize\ttfamily void Session\+::send\+To\+All\+Except (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_server_worker}{Server\+Worker}} $>$ \&}]{player,  }\item[{Q\+Json\+Object \&}]{message }\end{DoxyParamCaption})}
+
+
+
+send\+To\+All\+Except is a function similar to send\+To\+All but we can exclude a player 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & is a pointer to player we want exclude \\
+\hline
+{\em message} & is a meesage we want to send \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_session_af884be72c9c83fa5631097794fd61ccc}\label{class_session_af884be72c9c83fa5631097794fd61ccc}} 
+\index{Session@{Session}!sendUpdate@{sendUpdate}}
+\index{sendUpdate@{sendUpdate}!Session@{Session}}
+\doxysubsubsection{\texorpdfstring{sendUpdate}{sendUpdate}}
+{\footnotesize\ttfamily void Session\+::send\+Update (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_session}{Session}} $>$}]{sess }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+send\+Update sends update about session 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sess} & is a session pointer we want to update \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_session_a625ffa82e11ddbd3bf7f859c03b6034e}\label{class_session_a625ffa82e11ddbd3bf7f859c03b6034e}} 
+\index{Session@{Session}!toJSON@{toJSON}}
+\index{toJSON@{toJSON}!Session@{Session}}
+\doxysubsubsection{\texorpdfstring{toJSON()}{toJSON()}}
+{\footnotesize\ttfamily Q\+Json\+Object Session\+::to\+J\+S\+ON (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+to\+J\+S\+ON is a function that parse a session to J\+S\+ON sended in message to client 
+
+\begin{DoxyReturn}{Returns}
+a complete J\+Son Object 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+session.\+h\item 
+session.\+cpp\end{DoxyCompactItemize}

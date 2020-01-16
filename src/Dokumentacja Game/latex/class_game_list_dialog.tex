@@ -1,0 +1,89 @@
+\hypertarget{class_game_list_dialog}{}\doxysection{Game\+List\+Dialog Class Reference}
+\label{class_game_list_dialog}\index{GameListDialog@{GameListDialog}}
+
+
+The \mbox{\hyperlink{class_game_list_dialog}{Game\+List\+Dialog}} class is a class that implements window with session list to select and join.  
+
+
+
+
+{\ttfamily \#include $<$gamelistdialog.\+h$>$}
+
+Inheritance diagram for Game\+List\+Dialog\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_game_list_dialog}
+\end{center}
+\end{figure}
+\doxysubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_game_list_dialog_a01352d11c2e8b9a0e70876b5bcc4278f}{button\+Clicked}} (Q\+Json\+Object \&message)
+\begin{DoxyCompactList}\small\item\em button\+Clicked is a signal that is emited when user chooses a session \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_game_list_dialog_a1fd225af32a991f9f962ee8268025dc9}{Game\+List\+Dialog}} (Q\+Widget $\ast$parent=nullptr)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_game_list_dialog}{Game\+List\+Dialog}} is a constructor of dialog that displays list of sessions. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_list_dialog_a3b04b1dc167b66951372eddb2f37b24f}{set\+List}} (const Q\+Vector$<$ \mbox{\hyperlink{class_session}{Session}} $>$ \&sess\+Vec)
+\begin{DoxyCompactList}\small\item\em set\+List is a function that puts data about session in dialog window \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{class_game_list_dialog}{Game\+List\+Dialog}} class is a class that implements window with session list to select and join. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_game_list_dialog_a1fd225af32a991f9f962ee8268025dc9}\label{class_game_list_dialog_a1fd225af32a991f9f962ee8268025dc9}} 
+\index{GameListDialog@{GameListDialog}!GameListDialog@{GameListDialog}}
+\index{GameListDialog@{GameListDialog}!GameListDialog@{GameListDialog}}
+\doxysubsubsection{\texorpdfstring{GameListDialog()}{GameListDialog()}}
+{\footnotesize\ttfamily Game\+List\+Dialog\+::\+Game\+List\+Dialog (\begin{DoxyParamCaption}\item[{Q\+Widget $\ast$}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+\mbox{\hyperlink{class_game_list_dialog}{Game\+List\+Dialog}} is a constructor of dialog that displays list of sessions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & is a pointer to widget that can be parent of this \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_game_list_dialog_a01352d11c2e8b9a0e70876b5bcc4278f}\label{class_game_list_dialog_a01352d11c2e8b9a0e70876b5bcc4278f}} 
+\index{GameListDialog@{GameListDialog}!buttonClicked@{buttonClicked}}
+\index{buttonClicked@{buttonClicked}!GameListDialog@{GameListDialog}}
+\doxysubsubsection{\texorpdfstring{buttonClicked}{buttonClicked}}
+{\footnotesize\ttfamily void Game\+List\+Dialog\+::button\+Clicked (\begin{DoxyParamCaption}\item[{Q\+Json\+Object \&}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+button\+Clicked is a signal that is emited when user chooses a session 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_game_list_dialog_a3b04b1dc167b66951372eddb2f37b24f}\label{class_game_list_dialog_a3b04b1dc167b66951372eddb2f37b24f}} 
+\index{GameListDialog@{GameListDialog}!setList@{setList}}
+\index{setList@{setList}!GameListDialog@{GameListDialog}}
+\doxysubsubsection{\texorpdfstring{setList()}{setList()}}
+{\footnotesize\ttfamily void Game\+List\+Dialog\+::set\+List (\begin{DoxyParamCaption}\item[{const Q\+Vector$<$ \mbox{\hyperlink{class_session}{Session}} $>$ \&}]{sess\+Vec }\end{DoxyParamCaption})}
+
+
+
+set\+List is a function that puts data about session in dialog window 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sess\+Vec} & is a Vector with sessions \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+gamelistdialog.\+h\item 
+gamelistdialog.\+cpp\end{DoxyCompactItemize}

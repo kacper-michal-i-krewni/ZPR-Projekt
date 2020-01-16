@@ -9,8 +9,7 @@ Session::Session(std::shared_ptr<ServerWorker> owner, int playersLimit):
     _owner(owner),
     _actions(new Actions()),
     _id(QUuid::createUuid()),
-    _playersLimit(playersLimit),
-    _this(this)
+    _playersLimit(playersLimit)
 {
     _players.push_back(owner);
     connect(_timer.get(), &QTimer::timeout, this,  &Session::callOnTimeout);
@@ -161,7 +160,7 @@ void Session::nextTurn()
 {
     nextPlayer();
     turnOf(_currentPlayer);
-    emit sendUpdate(_this);
+    emit sendUpdate(std::shared_ptr<Session>(std::shared_ptr<Session>{}, this)); // to send shared ptr and not delete this
 }
 
 

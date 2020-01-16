@@ -1,0 +1,107 @@
+\hypertarget{class_chat_server}{}\doxysection{Chat\+Server Class Reference}
+\label{class_chat_server}\index{ChatServer@{ChatServer}}
+
+
+The \mbox{\hyperlink{class_chat_server}{Chat\+Server}} class is a class that is responsible for Server actions like reciving jsons, send messages to everyone etc.  
+
+
+
+
+{\ttfamily \#include $<$chatserver.\+h$>$}
+
+Inheritance diagram for Chat\+Server\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_chat_server}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_chat_server_a1f24101b3bed667ec2fcf72e57e9d472}{stop\+Server}} ()
+\begin{DoxyCompactList}\small\item\em stop\+Server is a function that disconnects all clients from server \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_chat_server_abcf93763407b6015bb1d78b12b452ba0}{log\+Message}} (const Q\+String \&msg)
+\begin{DoxyCompactList}\small\item\em log\+Message is a signal that forward signal to \mbox{\hyperlink{class_server_worker_acbcc05d95c2b08e10f3f30224692a313}{Server\+Worker\+::log\+Message}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_chat_server_a927c05682b0f074fd282315ce3eaeb95}{Chat\+Server}} (Q\+Object $\ast$parent=nullptr)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_chat_server}{Chat\+Server}} constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_chat_server_aedfc45b0671bde426ad4b3b8be7b3668}{incoming\+Connection}} (qintptr socket\+Descriptor) override
+\begin{DoxyCompactList}\small\item\em incoming\+Connection is an override function from Q\+Tcp\+Server \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{class_chat_server}{Chat\+Server}} class is a class that is responsible for Server actions like reciving jsons, send messages to everyone etc. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_chat_server_a927c05682b0f074fd282315ce3eaeb95}\label{class_chat_server_a927c05682b0f074fd282315ce3eaeb95}} 
+\index{ChatServer@{ChatServer}!ChatServer@{ChatServer}}
+\index{ChatServer@{ChatServer}!ChatServer@{ChatServer}}
+\doxysubsubsection{\texorpdfstring{ChatServer()}{ChatServer()}}
+{\footnotesize\ttfamily Chat\+Server\+::\+Chat\+Server (\begin{DoxyParamCaption}\item[{Q\+Object $\ast$}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+\mbox{\hyperlink{class_chat_server}{Chat\+Server}} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_chat_server_aedfc45b0671bde426ad4b3b8be7b3668}\label{class_chat_server_aedfc45b0671bde426ad4b3b8be7b3668}} 
+\index{ChatServer@{ChatServer}!incomingConnection@{incomingConnection}}
+\index{incomingConnection@{incomingConnection}!ChatServer@{ChatServer}}
+\doxysubsubsection{\texorpdfstring{incomingConnection()}{incomingConnection()}}
+{\footnotesize\ttfamily void Chat\+Server\+::incoming\+Connection (\begin{DoxyParamCaption}\item[{qintptr}]{socket\+Descriptor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}}
+
+
+
+incoming\+Connection is an override function from Q\+Tcp\+Server 
+
+
+\begin{DoxyParams}{Parameters}
+{\em socket\+Descriptor} & It is responsible conneting right signals to slots \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chat_server_abcf93763407b6015bb1d78b12b452ba0}\label{class_chat_server_abcf93763407b6015bb1d78b12b452ba0}} 
+\index{ChatServer@{ChatServer}!logMessage@{logMessage}}
+\index{logMessage@{logMessage}!ChatServer@{ChatServer}}
+\doxysubsubsection{\texorpdfstring{logMessage}{logMessage}}
+{\footnotesize\ttfamily void Chat\+Server\+::log\+Message (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+log\+Message is a signal that forward signal to \mbox{\hyperlink{class_server_worker_acbcc05d95c2b08e10f3f30224692a313}{Server\+Worker\+::log\+Message}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & is a message that is displays on the log screen \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chat_server_a1f24101b3bed667ec2fcf72e57e9d472}\label{class_chat_server_a1f24101b3bed667ec2fcf72e57e9d472}} 
+\index{ChatServer@{ChatServer}!stopServer@{stopServer}}
+\index{stopServer@{stopServer}!ChatServer@{ChatServer}}
+\doxysubsubsection{\texorpdfstring{stopServer}{stopServer}}
+{\footnotesize\ttfamily void Chat\+Server\+::stop\+Server (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+stop\+Server is a function that disconnects all clients from server 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+chatserver.\+h\item 
+chatserver.\+cpp\end{DoxyCompactItemize}

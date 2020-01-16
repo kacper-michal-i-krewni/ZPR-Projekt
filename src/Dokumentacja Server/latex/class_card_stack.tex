@@ -1,0 +1,78 @@
+\hypertarget{class_card_stack}{}\doxysection{Card\+Stack Class Reference}
+\label{class_card_stack}\index{CardStack@{CardStack}}
+
+
+The \mbox{\hyperlink{class_card_stack}{Card\+Stack}} class is a representation of card stack.  
+
+
+
+
+{\ttfamily \#include $<$cardstack.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_card_stack_afbed87c99b0f0ac45750d28b94c057be}\label{class_card_stack_afbed87c99b0f0ac45750d28b94c057be}} 
+\mbox{\hyperlink{class_card_stack_afbed87c99b0f0ac45750d28b94c057be}{Card\+Stack}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_card_stack}{Card\+Stack}} is a constructor to card stack. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_card}{Card}} $>$ \mbox{\hyperlink{class_card_stack_a2e95fafab3bac1d205904405ba532645}{take\+Card}} ()
+\begin{DoxyCompactList}\small\item\em take\+Card shuffle cards and take first of them \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_card_stack_a9f16f816f03def022be420c4f8e1a23c}{put\+Card}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_card}{Card}} $>$ card)
+\begin{DoxyCompactList}\small\item\em put\+Card is a function to put back card in stack \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_card_stack_af7222ff31d1772d3703fe1fe4427c872}{deal\+Cards}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$ player)
+\begin{DoxyCompactList}\small\item\em deal\+Cards gives to cards to player \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{class_card_stack}{Card\+Stack}} class is a representation of card stack. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_card_stack_af7222ff31d1772d3703fe1fe4427c872}\label{class_card_stack_af7222ff31d1772d3703fe1fe4427c872}} 
+\index{CardStack@{CardStack}!dealCards@{dealCards}}
+\index{dealCards@{dealCards}!CardStack@{CardStack}}
+\doxysubsubsection{\texorpdfstring{dealCards()}{dealCards()}}
+{\footnotesize\ttfamily void Card\+Stack\+::deal\+Cards (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$}]{player }\end{DoxyParamCaption})}
+
+
+
+deal\+Cards gives to cards to player 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & is a arg we want to deal cards \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_card_stack_a9f16f816f03def022be420c4f8e1a23c}\label{class_card_stack_a9f16f816f03def022be420c4f8e1a23c}} 
+\index{CardStack@{CardStack}!putCard@{putCard}}
+\index{putCard@{putCard}!CardStack@{CardStack}}
+\doxysubsubsection{\texorpdfstring{putCard()}{putCard()}}
+{\footnotesize\ttfamily void Card\+Stack\+::put\+Card (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_card}{Card}} $>$}]{card }\end{DoxyParamCaption})}
+
+
+
+put\+Card is a function to put back card in stack 
+
+
+\begin{DoxyParams}{Parameters}
+{\em card} & card we want to put back in stack \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_card_stack_a2e95fafab3bac1d205904405ba532645}\label{class_card_stack_a2e95fafab3bac1d205904405ba532645}} 
+\index{CardStack@{CardStack}!takeCard@{takeCard}}
+\index{takeCard@{takeCard}!CardStack@{CardStack}}
+\doxysubsubsection{\texorpdfstring{takeCard()}{takeCard()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_card}{Card}} $>$ Card\+Stack\+::take\+Card (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+take\+Card shuffle cards and take first of them 
+
+\begin{DoxyReturn}{Returns}
+cards from the top 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+cardstack.\+h\item 
+cardstack.\+cpp\end{DoxyCompactItemize}
