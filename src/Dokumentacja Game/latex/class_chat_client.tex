@@ -62,14 +62,14 @@ void \mbox{\hyperlink{class_chat_client_ae00f82791e1d5091d9b6ae264d74213c}{user\
 void \mbox{\hyperlink{class_chat_client_a5020a76b6db20e5c3ddeb1ed0a1f533f}{session\+Created}} (bool \&success, Q\+String \&id)
 \begin{DoxyCompactList}\small\item\em session\+Created signal is emited when message about creating session is recived \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_chat_client_a3e09edba4f030f744669c8d3af7e7eb4}{session\+List\+Complete}} (Q\+Vector$<$ \mbox{\hyperlink{class_session}{Session}} $>$ \&sess\+Vec)
-\begin{DoxyCompactList}\small\item\em session\+List\+Complete \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em session\+List\+Complete signal is emited when message with a list of actual sessions is recieved \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_chat_client_a5fa3bb7441d7f5e3dad9fd96fc819f8b}\label{class_chat_client_a5fa3bb7441d7f5e3dad9fd96fc819f8b}} 
 void \mbox{\hyperlink{class_chat_client_a5fa3bb7441d7f5e3dad9fd96fc819f8b}{my\+Turn}} ()
 \begin{DoxyCompactList}\small\item\em my\+Turn is a signal that enable interface, because it is turn of player connected with this client \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_chat_client_ae8122283ebc5efb63f735ce64da2d2ae}{turn\+Of}} (Q\+String \&player)
 \begin{DoxyCompactList}\small\item\em turn\+Of \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_chat_client_aa212a330d0c62dc5f3e94302513ba1b7}{action\+Target\+Specify}} (Q\+String \&action, Q\+Vector$<$ Q\+String $>$ \&p\+Vector)
-\begin{DoxyCompactList}\small\item\em action\+Target\+Specify \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em action\+Target\+Specify signal is emited when player sends an incomplete request -\/ there\textquotesingle{}s no target indication \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_chat_client_a65bbada51ff7d8317938bbf5f3b06b4f}{update\+Player\+Interface}} (const Q\+String \&player, const double money, const double lifes)
 \begin{DoxyCompactList}\small\item\em update\+Player\+Interface \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_chat_client_a70cf6a74bade7b5239e81bda55296455}\label{class_chat_client_a70cf6a74bade7b5239e81bda55296455}} 
@@ -78,13 +78,13 @@ void \mbox{\hyperlink{class_chat_client_a70cf6a74bade7b5239e81bda55296455}{not\+
 void \mbox{\hyperlink{class_chat_client_a26ecdf44dfe185383e4ee5763b5a3cc7}{you\+Are\+A\+Target}} (Q\+String \&action, Q\+String \&sender, Q\+Vector$<$ Q\+String $>$ \&blockers)
 \begin{DoxyCompactList}\small\item\em you\+Are\+A\+Target signal that is emitef if someone indicate you as a target in action \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_chat_client_ac31c23f1d85b323f6f7599997eb4e66f}{action\+Completed}} (Q\+String \&action, Q\+String \&sender)
-\begin{DoxyCompactList}\small\item\em action\+Completed \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em action\+Completed signal emited when any kind of action is completed \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_chat_client_ab9af08e821597ca89f9e86b8ae61e995}{action\+Pending}} (Q\+String \&action, Q\+String \&sender)
-\begin{DoxyCompactList}\small\item\em action\+Pending \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em action\+Pending signal is emited when an action that is able o be checked is pending for execution \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_chat_client_a0c5d1d84440cf8a3fe6d022e91e40535}{cards\+Dealing}} (Q\+String first, Q\+String second)
 \begin{DoxyCompactList}\small\item\em cards\+Dealing is signal when server send dealing cards \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_chat_client_a01d2e99e7c0c5463364ef1e0bac0fdb4}{check\+Result}} (Q\+String \&checked, Q\+String \&checking, bool \&result)
-\begin{DoxyCompactList}\small\item\em check\+Result \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em check\+Result signal is emited when the reasul of action check is recieved \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -140,7 +140,7 @@ The \mbox{\hyperlink{class_chat_client}{Chat\+Client}} class.
 
 
 
-action\+Completed 
+action\+Completed signal emited when any kind of action is completed 
 
 
 \begin{DoxyParams}{Parameters}
@@ -157,7 +157,7 @@ action\+Completed
 
 
 
-action\+Pending 
+action\+Pending signal is emited when an action that is able o be checked is pending for execution 
 
 
 \begin{DoxyParams}{Parameters}
@@ -174,7 +174,7 @@ action\+Pending
 
 
 
-action\+Target\+Specify 
+action\+Target\+Specify signal is emited when player sends an incomplete request -\/ there\textquotesingle{}s no target indication 
 
 
 \begin{DoxyParams}{Parameters}
@@ -208,7 +208,7 @@ cards\+Dealing is signal when server send dealing cards
 
 
 
-check\+Result 
+check\+Result signal is emited when the reasul of action check is recieved 
 
 
 \begin{DoxyParams}{Parameters}
@@ -392,7 +392,7 @@ session\+Created signal is emited when message about creating session is recived
 
 
 
-session\+List\+Complete 
+session\+List\+Complete signal is emited when message with a list of actual sessions is recieved 
 
 
 \begin{DoxyParams}{Parameters}
